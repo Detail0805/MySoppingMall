@@ -14,7 +14,6 @@ public interface ShopOrderDAO_interface {
 	public List<ShopOrderVO>getAllOrder();
 	//新增商品及明細
 	public void addShopOrder(ShopOrderVO shoporderVO);
-	
 	//更新訂單
 	public List<ShopOrderVO> updateShopOrder();
 	
