@@ -1,0 +1,39 @@
+ul {
+    list-style-type: none;
+  margin-left: auto;
+    margin-right:auto;
+    overflow: hidden;
+    
+}
+li {
+    float: left;
+    border-right:1px;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+.active {
+    background-color: #4CAF50;
+}
+
+#title{
+	background-color: pink;
+	text-align: center;
+	font-size: 18px;
+}
+
+.s2{height:250px;width: 250px;}
+
+#block1{
+ display: block;
+    margin-left: auto;
+    margin-right:auto;}

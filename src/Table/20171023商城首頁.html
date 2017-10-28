@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<title>Title Page</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<style type="text/css">
+/*.shoprow {
+	background-color: #FFD78C;
+	text-align: center;
+}
+
+.bigshoprow {
+	background-color: #DEFFFF;
+	padding: 20px;
+}*/
+/* .detail img{width: 180px; 
+ 	height: 180px; }*/
+
+.btn-success:hover {
+    background-color: #449d44;
+    border-color: #398439;
+    color: #ffe200;
+}
+
+.eachshop
+:hover{background-color:#ffffe0}
+
+.offer.offer-default.silde-show-offer.pull-text-center {
+	height: 420px;
+}
+
+.offer-default {
+    border-color: #999;
+    padding: 10px;
+}
+.offer {
+    background: #fff;
+    border: 1px solid rgba(221, 221, 221, 0.45);
+    box-shadow: 0 10px 20px rgba(0,0,0,.2);
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.pull-text-center {
+    text-align: center;
+}
+
+.offer.offer-default.silde-show-offer.pull-text-center {
+    height: 420px;
+}
+
+/*	.description{
+		font-style: bold;
+	}
+	*/
+</style>
+
+</head>
+
+<body>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-9">
+				
+			</div>
+			<div class="col-xs-12 col-sm-3">
+				<div class="input-group">
+	  <input type="text" class="form-control" placeholder="您想找什麼...">
+	  <span class="input-group-btn">
+	    <button class="btn btn-info btn btn-warning " type="button"><span class="glyphicon glyphicon-search">
+	    </span>搜尋</button>
+	  </span>
+	</div>
+			</div>
+		</div>
+	</div>
+	
+	<br>
+	<br>
+	<br>
+
+
+	<div id="carousel-id" class="carousel slide" data-ride="carousel">
+	    <!-- 幻燈片小圓點區 -->
+	    <ol class="carousel-indicators">
+	        <li data-target="#carousel-id" data-slide-to="0" class=""></li>
+	        <li data-target="#carousel-id" data-slide-to="1" class=""></li>
+	        <li data-target="#carousel-id" data-slide-to="2" class="active"></li>
+	    </ol>
+	    <!-- 幻燈片主圖區 -->
+	    <div class="carousel-inner">
+	        <div class="item">
+	            <a href="##">
+	            <img src="https://api.fnkr.net/testimg/2800x700/aaaaaa" alt=""></a>
+
+	        </div>
+	        <div class="item">
+	            <a href="##">
+	            <img src="https://api.fnkr.net/testimg/2800x700/aaaaaa" alt=""></a>
+
+	        </div>
+	        <div class="item active">
+	            <a href="##">
+	            <img src="https://api.fnkr.net/testimg/2800x700/aaaaaa" alt=""></a>
+
+	        </div>
+	    </div>
+	    <!-- 上下頁控制區 -->
+	    <a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+	    <a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+	<br>
+
+<ol class="breadcrumb">
+	<li>
+		<a href="#">促銷商品</a>
+	</li>
+
+</ol>
+
+
+	<div class="bigshoprow">
+		<div class="container shoprow">
+			<div class="row">
+				<div class="col-xs-12 col-sm-3 eachshop">
+					<div class="offer offer-default silde-show-offer pull-text-center">
+					<div class="detail">
+						<div class="picture thumbnail" title="我是商品名稱你好阿">
+							<a href="123" title="你好我是商品名稱"> <img class="img-responsive"
+								src="https://api.fnkr.net/testimg/350x200/00CED1/FFF/?text=img+placeholder">
+							</a>
+						</div>
+						<div class="middle-content">
+							<h2 class="product-title">
+								<a href="##"> 【有我照你】商品名稱</a>
+							</h2>
+							<div class="description">Lorem ipsum dolor sit amet,
+								consectetur adipisicing elit. Ab doloribus dolorum fuga eveniet
+								saepe et eaque, adipisci quod. Eligendi, deleniti.</div>
+						</div>
+					</div>
+					<div class="add-info">
+						<div class="ash-box">
+							<div class="prices">
+								<span class="price old-price">$26,000</span> <span
+									class="price special-price">$25,000</span>
+							</div>
+							<div class="buttons">
+								<input type="button" class="btn btn-sm btn-success"
+									value="放入購物車" onclick="AjaxCart.addproducttocart_catalog('/TW/addproducttocart/catalog/2203/1/1    ');return false;">
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				<div class="col-xs-12 col-sm-3 eachshop">
+				<div class="offer offer-default silde-show-offer pull-text-center">
+					<div class="detail">
+						<div class="picture thumbnail" title="我是商品名稱你好阿">
+							<a href="123" title="你好我是商品名稱"> <img class="img-responsive"
+								src="https://api.fnkr.net/testimg/350x200/00CED1/FFF/?text=img+placeholder">
+							</a>
+						</div>
+						<div class="middle-content">
+							<h2 class="product-title">
+								<a href="##"> 【有我照你】商品名稱</a>
+							</h2>
+							<div class="description">Lorem ipsum dolor sit amet,
+								consectetur adipisicing elit. Ab doloribus dolorum fuga eveniet
+								saepe et eaque, adipisci quod. Eligendi, deleniti.</div>
+						</div>
+					</div>
+					<div class="add-info">
+						<div class="ash-box">
+							<div class="prices">
+								<span class="price old-price">$26,000</span> <span
+									class="price special-price">$25,000</span>
+							</div>
+							<div class="buttons">
+								<input type="button" class="btn btn-sm btn-success"
+									value="放入購物車"
+									onclick="AjaxCart.addproducttocart_catalog('/TW/addproducttocart/catalog/2203/1/1    ');return false;">
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-3 eachshop">
+				<div class="offer offer-default silde-show-offer pull-text-center">
+					<div class="detail">
+						<div class="picture thumbnail" title="我是商品名稱你好阿">
+							<a href="123" title="你好我是商品名稱"> <img class="img-responsive"
+								src="https://api.fnkr.net/testimg/350x200/00CED1/FFF/?text=img+placeholder">
+							</a>
+						</div>
+						<div class="middle-content">
+							<h2 class="product-title">
+								<a href="##"> 【有我照你】商品名稱 </a>
+							</h2>
+							<div class="description">Lorem ipsum dolor sit amet,
+								consectetur adipisicing elit. Ab doloribus dolorum fuga eveniet
+								saepe et eaque, adipisci quod. Eligendi, deleniti.</div>
+						</div>
+					</div>
+					<div class="add-info">
+						<div class="ash-box">
+							<div class="prices">
+								<span class="price old-price">$26,000</span> <span
+									class="price special-price">$25,000</span>
+							</div>
+							<div class="buttons">
+								<input type="button" class="btn btn-sm btn-success"
+									value="放入購物車"
+									onclick="AjaxCart.addproducttocart_catalog('/TW/addproducttocart/catalog/2203/1/1    ');return false;">
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-3 eachshop">
+				<div class="offer offer-default silde-show-offer pull-text-center">
+					<div class="detail">
+						<div class="picture thumbnail" title="我是商品名稱你好阿">
+							<a href="123" title="你好我是商品名稱"> <img class="img-responsive"
+								src="https://api.fnkr.net/testimg/350x200/00CED1/FFF/?text=img+placeholder">
+							</a>
+						</div>
+						<div class="middle-content">
+							<h2 class="product-title">
+								<a href="##"> 【有我照你】商品名稱 </a>
+							</h2>
+							<div class="description">Lorem ipsum dolor sit amet,
+								consectetur adipisicing elit. Ab doloribus dolorum fuga eveniet
+								saepe et eaque, adipisci quod. Eligendi, deleniti.</div>
+						</div>
+					</div>
+					<div class="add-info">
+						<div class="ash-box">
+							<div class="prices">
+								<span class="price old-price">$26,000</span> <span
+									class="price special-price">$25,000</span>
+							</div>
+							<div class="buttons">
+								<input type="button" class="btn btn-sm btn-success"
+									value="放入購物車"
+									onclick="AjaxCart.addproducttocart_catalog('/TW/addproducttocart/catalog/2203/1/1    ');return false;">
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<ol class="breadcrumb">
+	<li>
+		<a href="#">熱門商品</a>
+	</li>
+</ol>
+
+	<div class="bigshoprow">
+		<div class="container shoprow">
+			<div class="row">
+				<div class="col-xs-12 col-sm-3 eachshop">
+					<div class="offer offer-default silde-show-offer pull-text-center">
+					<div class="detail">
+						<div class="picture thumbnail" title="我是商品名稱你好阿">
+							<a href="123" title="你好我是商品名稱"> <img class="img-responsive"
+								src="https://api.fnkr.net/testimg/350x200/00CED1/FFF/?text=img+placeholder">
+							</a>
+						</div>
+						<div class="middle-content">
+							<h2 class="product-title">
+								<a href="##"> 【有我照你】商品名稱</a>
+							</h2>
+							<div class="description">Lorem ipsum dolor sit amet,
+								consectetur adipisicing elit. Ab doloribus dolorum fuga eveniet
+								saepe et eaque, adipisci quod. Eligendi, deleniti.</div>
+						</div>
+					</div>
+					<div class="add-info">
+						<div class="ash-box">
+							<div class="prices">
+								<span class="price old-price">$26,000</span> <span
+									class="price special-price">$25,000</span>
+							</div>
+							<div class="buttons">
+								<input type="button" class="btn btn-sm btn-success"
+									value="放入購物車"
+									onclick="AjaxCart.addproducttocart_catalog('/TW/addproducttocart/catalog/2203/1/1    ');return false;">
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				<div class="col-xs-12 col-sm-3 eachshop">
+				<div class="offer offer-default silde-show-offer pull-text-center">
+					<div class="detail">
+						<div class="picture thumbnail" title="我是商品名稱你好阿">
+							<a href="123" title="你好我是商品名稱"> <img class="img-responsive"
+								src="https://api.fnkr.net/testimg/350x200/00CED1/FFF/?text=img+placeholder">
+							</a>
+						</div>
+						<div class="middle-content">
+							<h2 class="product-title">
+								<a href="##"> 【有我照你】商品名稱</a>
+							</h2>
+							<div class="description">Lorem ipsum dolor sit amet,
+								consectetur adipisicing elit. Ab doloribus dolorum fuga eveniet
+								saepe et eaque, adipisci quod. Eligendi, deleniti.</div>
+						</div>
+					</div>
+					<div class="add-info">
+						<div class="ash-box">
+							<div class="prices">
+								<span class="price old-price">$26,000</span> <span
+									class="price special-price">$25,000</span>
+							</div>
+							<div class="buttons">
+								<input type="button" class="btn btn-sm btn-success"
+									value="放入購物車"
+									onclick="AjaxCart.addproducttocart_catalog('/TW/addproducttocart/catalog/2203/1/1    ');return false;">
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-3 eachshop">
+				<div class="offer offer-default silde-show-offer pull-text-center">
+					<div class="detail">
+						<div class="picture thumbnail" title="我是商品名稱你好阿">
+							<a href="123" title="你好我是商品名稱"> <img class="img-responsive"
+								src="https://api.fnkr.net/testimg/350x200/00CED1/FFF/?text=img+placeholder">
+							</a>
+						</div>
+						<div class="middle-content">
+							<h2 class="product-title">
+								<a href="##"> 【有我照你】商品名稱 </a>
+							</h2>
+							<div class="description">Lorem ipsum dolor sit amet,
+								consectetur adipisicing elit. Ab doloribus dolorum fuga eveniet
+								saepe et eaque, adipisci quod. Eligendi, deleniti.</div>
+						</div>
+					</div>
+					<div class="add-info">
+						<div class="ash-box">
+							<div class="prices">
+								<span class="price old-price">$26,000</span> <span
+									class="price special-price">$25,000</span>
+							</div>
+							<div class="buttons">
+								<input type="button" class="btn btn-sm btn-success"
+									value="放入購物車"
+									onclick="AjaxCart.addproducttocart_catalog('/TW/addproducttocart/catalog/2203/1/1    ');return false;">
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-3 eachshop">
+				<div class="offer offer-default silde-show-offer pull-text-center">
+					<div class="detail">
+						<div class="picture thumbnail" title="我是商品名稱你好阿">
+							<a href="123" title="你好我是商品名稱"> <img class="img-responsive"
+								src="https://api.fnkr.net/testimg/350x200/00CED1/FFF/?text=img+placeholder">
+							</a>
+						</div>
+						<div class="middle-content">
+							<h2 class="product-title">
+								<a href="##"> 【有我照你】商品名稱 </a>
+							</h2>
+							<div class="description">Lorem ipsum dolor sit amet,
+								consectetur adipisicing elit. Ab doloribus dolorum fuga eveniet
+								saepe et eaque, adipisci quod. Eligendi, deleniti.</div>
+						</div>
+					</div>
+					<div class="add-info">
+						<div class="ash-box">
+							<div class="prices">
+								<span class="price old-price">$26,000</span> <span
+									class="price special-price">$25,000</span>
+							</div>
+							<div class="buttons">
+								<input type="button" class="btn btn-sm btn-success"
+									value="放入購物車"
+									onclick="AjaxCart.addproducttocart_catalog('/TW/addproducttocart/catalog/2203/1/1    ');return false;">
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+<div class="text-center">
+
+	<ul class="pagination pagination-lg">
+	  <li><a href="#">&laquo;</a></li>
+	  <li><a href="#">1</a></li>
+	  <li><a href="#">2</a></li>
+	  <li class="active"><a href="#">3</a></li>
+	  <li><a href="#">4</a></li>
+	  <li><a href="#">5</a></li>
+	  <li><a href="#">&raquo;</a></li>
+	</ul>
+		</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<!-- 
+                        <div class="container page category-page">
+                            <div class="panel panel-default form-panel" style="border:none;box-shadow:none;">
+                                <div class="panel-body" style="padding-top:0;">
+                                    <div class="page-body">
+                                        <div class="product-grid home-page-product-grid">
+                                            <div class="row box-products">
+                                                <div class="col-md-3 paddding-left5 paddding-right5">
+                                                    <div class="offer offer-default silde-show-offer pull-text-center" style="padding-top:0;">
+                                                        <div class="product-item" data-productid="1684">
+                                                            <div class="white-box">
+                                                                <div class="picture thumbnail">
+                                                                    <a href="商品網頁" title="【Zojirushi-Baby】中型散步購物車 - Withone">
+            <img class="img-responsive" alt="我是商品ALT" src="https://api.fnkr.net/testimg/350x200/00CED1/FFF/?text=img+placeholder" title="我是商品">
+        </a>
+                                                                </div>
+                                                                <div class="middle-content">
+                                                                    <h2 class="product-title">
+            <a href="##"> 【Zojirushi-Baby】中型散步購物車 - With...
+</a>
+        </h2>
+                                                                    <div class="description">
+                                                                        輕鬆散步免提重物 走累了隨時可坐 </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="add-info">
+                                                                <div class="ash-box">
+                                                                    <div class="prices">
+                                                                        <span class="price old-price">$13,000</span>
+                                                                        <span class="price special-price">$7,800</span>
+                                                                    </div>
+                                                                    <div class="buttons">
+                                                                        <input type="button" class="btn btn-sm btn-success" value="放入購物車" onclick="AjaxCart.addproducttocart_catalog(&#39;/TW/addproducttocart/catalog/1684/1/1    &#39;);return false;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 paddding-left5 paddding-right5">
+                                                    <div class="offer offer-default silde-show-offer pull-text-center" style="padding-top:0;">
+                                                        <div class="product-item" data-productid="2275">
+                                                            <div class="white-box">
+                                                                <div class="picture thumbnail">
+                                                                    <a href="http://www.ez66.com.tw/TW/%E4%B8%8A%E6%B5%81%E8%80%81%E4%BA%BA%E4%B8%8D%E7%82%BA%E9%87%91%E9%8C%A2%E6%89%80%E5%9B%B0%E7%9A%8475%E5%80%8B%E8%80%81%E5%BE%8C%E7%94%9F%E6%B4%BB%E6%8F%90%E6%A1%88" title="上流老人：不為金錢所困的75個老後生活提案">
+           <img class="img-responsive" alt="我是商品ALT" src="https://api.fnkr.net/testimg/350x200/00CED1/FFF/?text=img+placeholder" title="我是商品">
+        </a>
+                                                                </div>
+                                                                <div class="middle-content">
+                                                                    <h2 class="product-title">
+            <a href="http://www.ez66.com.tw/TW/%E4%B8%8A%E6%B5%81%E8%80%81%E4%BA%BA%E4%B8%8D%E7%82%BA%E9%87%91%E9%8C%A2%E6%89%80%E5%9B%B0%E7%9A%8475%E5%80%8B%E8%80%81%E5%BE%8C%E7%94%9F%E6%B4%BB%E6%8F%90%E6%A1%88"> 上流老人：不為金錢所困的75個老後生活提案</a>
+        </h2>
+                                                                    <div class="description">
+                                                                        日本精神科醫師告訴你，活得愈久愈該了解的金錢觀與人生觀 </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="add-info">
+                                                                <div class="ash-box">
+                                                                    <div class="prices">
+                                                                        <span class="price old-price">$320</span>
+                                                                        <span class="price special-price">$288</span>
+                                                                    </div>
+                                                                    <div class="buttons">
+                                                                        <input type="button" class="btn btn-sm btn-success" value="放入購物車" onclick="AjaxCart.addproducttocart_catalog(&#39;/TW/addproducttocart/catalog/2275/1/1    &#39;);return false;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 paddding-left5 paddding-right5">
+                                                    <div class="offer offer-default silde-show-offer pull-text-center" style="padding-top:0;">
+                                                        <div class="product-item" data-productid="624">
+                                                            <div class="white-box">
+                                                                <div class="picture thumbnail">
+                                                                    <a href="http://www.ez66.com.tw/TW/ibuki%E9%9F%B3%E8%81%B2%E6%93%B4%E8%81%BD%E5%99%A8-clear-voice" title="【IBUKI】音聲擴聽器 - Clear Voice">
+          <img class="img-responsive" alt="我是商品ALT" src="https://api.fnkr.net/testimg/350x200/00CED1/FFF/?text=img+placeholder" title="我是商品">
+        </a>
+                                                                </div>
+                                                                <div class="middle-content">
+                                                                    <h2 class="product-title">
+            <a href="http://www.ez66.com.tw/TW/ibuki%E9%9F%B3%E8%81%B2%E6%93%B4%E8%81%BD%E5%99%A8-clear-voice"> 【IBUKI】音聲擴聽器 - Clear Voice</a>
+        </h2>
+                                                                    <div class="description">
+                                                                        幫助長輩聽的更清楚
+                                                                        <br>超輕量攜帶方便 </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="add-info">
+                                                                <div class="ash-box">
+                                                                    <div class="prices">
+                                                                        <span class="price old-price">$5,880</span>
+                                                                        <span class="price special-price">$4,990</span>
+                                                                    </div>
+                                                                    <div class="buttons">
+                                                                        <input type="button" class="btn btn-sm btn-success" value="放入購物車" onclick="AjaxCart.addproducttocart_catalog(&#39;/TW/addproducttocart/catalog/624/1/1    &#39;);return false;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 paddding-left5 paddding-right5">
+                                                    <div class="offer offer-default silde-show-offer pull-text-center" style="padding-top:0;">
+                                                        <div class="product-item" data-productid="2203">
+                                                            <div class="white-box">
+                                                                <div class="picture thumbnail">
+                                                                    <a href="http://www.ez66.com.tw/TW/lelan-%E5%B1%85%E5%AE%B6%E7%B0%A1%E7%B4%84%E9%9B%BB%E5%8B%95%E5%BA%8A%E5%A2%8A" title="【L&#39;elan】 居家簡約電動床墊，10/5-10/31買就送(價值$2400)全功能舒眠記憶枕，送完為止">
+           <img class="img-responsive" alt="我是商品ALT" src="https://api.fnkr.net/testimg/350x200/00CED1/FFF/?text=img+placeholder" title="我是商品">
+        </a>
+                                                                </div>
+                                                                <div class="middle-content">
+                                                                    <h2 class="product-title">
+            <a href="http://www.ez66.com.tw/TW/lelan-%E5%B1%85%E5%AE%B6%E7%B0%A1%E7%B4%84%E9%9B%BB%E5%8B%95%E5%BA%8A%E5%A2%8A"> 【L'elan】 居家簡約電動床墊，10/5-10/31買就...
+</a>
+        </h2>
+                                                                    <div class="description">
+                                                                        給長輩最好的睡眠品質
+                                                                        <br>起身、躺下不費力！ </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="add-info">
+                                                                <div class="ash-box">
+                                                                    <div class="prices">
+                                                                        <span class="price old-price">$26,000</span>
+                                                                        <span class="price special-price">$25,000</span>
+                                                                    </div>
+                                                                    <div class="buttons">
+                                                                        <input type="button" class="btn btn-sm btn-success" value="放入購物車" onclick="AjaxCart.addproducttocart_catalog(&#39;/TW/addproducttocart/catalog/2203/1/1    &#39;);return false;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+ -->
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>

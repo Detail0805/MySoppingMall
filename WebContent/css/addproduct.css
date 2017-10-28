@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+img {
+	display: hidden height:400px;
+	width: 400px;
+}
+
+input {
+	zoom: 2;
+	font-size: 10px;
+	color: deeppink
+}
+
+.foot {
+	zoom: 2;
+	font-size: 15px;
+	color: blue;
+}
+
+td, h3 {
+	zoom: 2;
+	font-size: 15px;
+	color: blue;
+}
+
