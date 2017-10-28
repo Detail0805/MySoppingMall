@@ -126,8 +126,9 @@ style type ="text/css">
 										<span class="price special-price">$${shopVO.PRICE}</span>
 									</div>
 									<div class="buttons">
-										<input type="button" class="btn btn-sm btn-success"
-											value="放入購物車"
+									
+									<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}">
+										<input type="button" class="btn btn-sm btn-success" value="放入購物車"
 											onclick="AjaxCart.addproducttocart_catalog('/TW/addproducttocart/catalog/2203/1/1    ');return false;">
 									</div>
 								</div>
@@ -165,12 +166,12 @@ style type ="text/css">
 							<div class="add-info">
 								<div class="ash-box">
 									<div class="prices">
-										<span class="price old-price">原價$${proVO.OLDPRICE}</span> 
-										<span class="price special-price">特價$${proVO.PRICE}</span>
+										<span class="price old-price">原價$${proVO.OLDPRICE}</span> <span
+											class="price special-price">特價$${proVO.PRICE}</span>
 									</div>
 									<div class="buttons">
-										<input type="button" class="btn btn-sm btn-success"
-											value="放入購物車"
+										<input type="hidden" name="ITEMNO" value="${proVO.ITEMNO}" > <input type="button"
+											class="btn btn-sm btn-success" value="放入購物車"
 											onclick="AjaxCart.addproducttocart_catalog('/TW/addproducttocart/catalog/2203/1/1    ');return false;">
 									</div>
 								</div>
