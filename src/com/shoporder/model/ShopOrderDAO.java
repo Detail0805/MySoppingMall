@@ -21,7 +21,9 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 	private static final String GET_ONE_BY_MEMNO="SELECT  OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) WHERE MEM_NO=?";	
 	private static final String GET_SALES_BY_ITEMNO="SELECT  OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) WHERE ITEMNO=?";
 	private static final String ADD_SHOPORDER="INSERT INTO SHOPORDER(ORDERNO,ORDER_DATE,MEM_NO,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME) VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(FORSHOPORDER.Nextval),6,'0'),CURRENT_TIMESTAMP,?,?,?,?)";
-	private static final String ADD_ORDERDETAIL="INSERT INTO ORDERDETAIL (ORDERNO,ITEMNO,ORDERCOUNT) VALUES(?,?,?)";		
+	private static final String ADD_ORDERDETAIL="INSERT INTO ORDERDETAIL (ORDERNO,ITEMNO,ORDERCOUNT) VALUES(?,?,?)";
+	//修改某訂單明細的數量
+	private static final String UPDATE_EXIST_ORDERDETAIL="UPDATE  ORDERDETAIL SET  ORDERCOUNT=700 WHERE ORDERNO='20171027-000001' AND ITEMNO=4;";		
 			
 	private static DataSource ds = null;
 	static {
@@ -145,7 +147,8 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 			pstmt.clearParameters();
 			pstmt = con.prepareStatement(ADD_ORDERDETAIL);
 			System.out.println("DB5");
-			pstmt.setString(1, "20171027-000001");
+			//須取得自增主鍵來一次完成
+			pstmt.setString(1,"20171027-000001");
 			System.out.println("DB6");
 			pstmt.setInt(2, shoporderVO.getItemno());
 			System.out.println("DB7");
@@ -154,7 +157,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 			pstmt.executeUpdate();			
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			System.out.println("addShopOrder錯誤");
 		} finally {

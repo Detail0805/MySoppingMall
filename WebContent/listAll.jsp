@@ -118,7 +118,7 @@
 
 <h2>下面測試用includ購物車網址</h2>
 
-<%@ include file="Cart.jsp" %>
+<%@ include file="/MasterOrder/Cart.jsp" %>
 
 </body>
 </html>

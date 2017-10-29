@@ -3,6 +3,7 @@ package com.detail.controller;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.detail.cart.CartVO;
 import com.shoporder.model.ShopOrderService;
 import com.shoporder.model.ShopOrderVO;
 
@@ -82,6 +85,14 @@ public class ShopOrderServlet extends HttpServlet{
 						.getRequestDispatcher("/MasterOrder/addshoporder.jsp");
 				failureView.forward(req, res);
 			}
+		}if("CONFIRM".equals(action)){//來自CHECK.JSP的請求
+			HttpSession session=req.getSession();
+			Vector<CartVO> buylist = (Vector<CartVO>) session.getAttribute("shoppingcart");
+			
+			}
+		else {
+		}
+			System.out.println("功能尚未連結到 ShopOrderServlet.java");
 		}
 	}
-}
+
