@@ -207,5 +207,37 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void addShopCartOrder(List<ShopOrderVO> shoporderVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(ADD_SHOPORDER);
+		
+
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			System.out.println("addShopOrder¿ù»~");
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	}
 		
 }

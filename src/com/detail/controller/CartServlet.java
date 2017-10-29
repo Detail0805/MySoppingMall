@@ -1,6 +1,8 @@
 package com.detail.controller;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
@@ -29,6 +31,9 @@ public class CartServlet extends HttpServlet {
 		Vector<CartVO> buylist = (Vector<CartVO>) session.getAttribute("shoppingcart");
 		String action = req.getParameter("action");
 		
+		List<String> errorMsgs = new LinkedList<String>();
+		req.setAttribute("errorMsgs", errorMsgs);
+		
 		if (action.equals("CLEARCART")) {
 			buylist.clear();
 		}
@@ -48,6 +53,17 @@ public class CartServlet extends HttpServlet {
 				// 這邊測試用stock配合前網頁參數,實際參數是quantity
 				Integer ITEMNO = Integer.parseInt(req.getParameter("ITEMNO"));
 				Integer STOCK = Integer.parseInt(req.getParameter("STOCK"));
+				
+
+				if (STOCK == 0) {
+					errorMsgs.add("商品數量不可為0");
+				}
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/listAll.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+				
 				CartVO CartVO = CartSvc.findshop(ITEMNO, STOCK);
 				// CartVO CartVO = getCartVO(req);
 				// 新增第一本書籍至購物車時

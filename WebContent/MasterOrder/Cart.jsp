@@ -14,6 +14,7 @@
 
 <table border="1" width="740">
 		<tr bgcolor="#999999">
+			<th width="200">商品圖片</th>
 			<th width="200">產品名稱</th>
 			<th width="100">商品價格</th>
 			<th width="100">商品描述</th>
@@ -27,6 +28,7 @@
 		 CartVO order = buylist.get(index);
 	%>
 	<tr>
+		<td width="200"><img src="DBPicReader?ITEMNO=<%=order.getITEMNO()%>" height="150px" width="200px">
 		<td width="200"><div align="center"><b><%=order.getNAME()%></b></div></td>
 		<td width="100"><div align="center"><b><%=order.getPRICE()%></b></div></td>
 		<td width="100"><div align="center"><b><%=order.getDES().substring(0,10)%>....</b></div></td>

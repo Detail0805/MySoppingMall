@@ -6,11 +6,12 @@
  <title>Mode II 範例程式 - Checkout.jsp</title>
 </head>
 <body bgcolor="#FFFFFF">
-<img src="images/tomcat.gif"> <font size="+3">網路書店 - 結帳 </font>
+<img src="images/tomcat.gif"> <font size="+3">訂單截帳CHECKOUT.JSP</font>
 <hr><p><center>
 
 <table border="1" width="720">
 	<tr bgcolor="#999999">
+			<th width="200">產品圖片</th>
 			<th width="200">產品名稱</th>
 			<th width="200">產品編號</th>
 			<th width="100">商品價格</th>
@@ -31,10 +32,12 @@
 			float PRICE = order.getPRICE();
 	%>
 	<tr>
+		<td width="200"><img src="DBPicReader?ITEMNO=<%=ITEMNO%>" height="150px" width="200px">
+		</td>
 		<td width="200"><div align="center"><b><%=NAME%></b></div></td>
 		<td width="200"><div align="center"><b><%=ITEMNO%></b></div></td>
 		<td width="100"><div align="center"><b><%=PRICE%></b></div></td>
-		<td width="100"><div align="center"><b><%=DES%></b></div></td>
+		<td width="100"><div align="center"><b><%=DES.substring(0,7)%>...</b></div></td>
 		<td width="100"><div align="center"><b><%=QUANTITY%></b></div></td>
 		
 	</tr>

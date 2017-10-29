@@ -88,19 +88,17 @@
 			    <input type="hidden" name="action"value="shelf"></FORM>
 			</td>
 				<FORM METHOD="post" ACTION="cart.do">
-				
-				<td><select name="STOCK">
-						<c:forEach var="STOCK" begin="0" end="${shopVO.STOCK}" step="1">
-							<option value="${STOCK}">${STOCK}
+
+					<td><select name="STOCK">
+							<c:forEach var="STOCK" begin="0" end="${shopVO.STOCK}" step="1">
+								<option value="${STOCK}">${STOCK}
          						</c:forEach> 
 						</td> 
 				</select>
 				<td>
-					
 						<input type="submit" value="加入購物車">
 							<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}"> 
 						</td>	
-						
 <!-- 						改成MVC寫法以後只需要商品ITEMO去送以免遭人串改總金額  -->
 <%-- 					     <input type="hidden" name="CLASSNO" value="${empVO.CLASSNO}"> --%>
 <%-- 					     <input type="hidden" name="STATE" value="${empVO.STATE}"> --%>

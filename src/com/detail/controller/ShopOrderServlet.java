@@ -1,6 +1,7 @@
 package com.detail.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
@@ -85,15 +86,37 @@ public class ShopOrderServlet extends HttpServlet{
 						.getRequestDispatcher("/MasterOrder/addshoporder.jsp");
 				failureView.forward(req, res);
 			}
-		}if("CONFIRM".equals(action)){//來自CHECK.JSP的請求
-			HttpSession session=req.getSession();
+		}
+		if ("CONFIRM".equals(action)) {// 來自CHECK.JSP的請求
+			HttpSession session = req.getSession();
 			Vector<CartVO> buylist = (Vector<CartVO>) session.getAttribute("shoppingcart");
 			System.out.println(buylist.size());
-			CartVO cartVO = buylist.get(0);
+			List<ShopOrderVO> list = new ArrayList<ShopOrderVO>();
+			ShopOrderService shopOrSvc = new ShopOrderService();
+			ShopOrderVO shopOrderVO = null;
+
+			for (int i = 0; i < buylist.size(); i++) {
+				CartVO cartVO = buylist.get(i);
+				shopOrderVO = new ShopOrderVO();
+				System.out.println("第 " + i + "次取出BEAN的值作測試");
+				System.out.println("cartVO.getNAME()" + cartVO.getNAME());
+				shopOrderVO.setItemno(cartVO.getITEMNO());
+				System.out.println("shopOrderVO.setItemno:" + shopOrderVO.getItemno());
+				System.out.println("cartVO.getITEMNO()" + cartVO.getITEMNO());
+				System.out.println("cartVO.getQUANTITY()" + cartVO.getQUANTITY());
+				shopOrderVO.setOrdercount(cartVO.getQUANTITY());
+				// 第一次的時候還需要設置用戶訂單地址，但那可以從會原那邊撈這邊先不實做
+				System.out.println("shopOrderVO.getOrdercount():" + shopOrderVO.getOrdercount());
+				System.out.println("cartVO.getDES()" + cartVO.getDES().substring(0, 5));
+				System.out.println("cartVO.getPRICE()" + cartVO.getPRICE());
+				//兩種版本目前用LIST版本實做，傳過去為LIST<ShopOrderVO>
+				list.add(shopOrderVO);
+				// shopOrSvc.addShopOrder(shopOrderVO);
 			}
-		else {
+			shopOrSvc.addShopCartOrder(list);
+		} else {
 		}
-			System.out.println("功能尚未連結到 ShopOrderServlet.java");
-		}
+		System.out.println("功能尚未連結到 ShopOrderServlet.java");
+	}
 	}
 
