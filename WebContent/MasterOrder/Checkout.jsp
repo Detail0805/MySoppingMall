@@ -12,10 +12,10 @@
 <table border="1" width="720">
 	<tr bgcolor="#999999">
 			<th width="200">產品名稱</th>
+			<th width="200">產品編號</th>
 			<th width="100">商品價格</th>
 			<th width="100">商品描述</th>
 			<th width="100">購買數量</th>
-		<th width="120"></th>
 	</tr>
 	
 	<%
@@ -24,6 +24,7 @@
 	%>	
 	<%	for (int i = 0; i < buylist.size(); i++) {
 			CartVO order = buylist.get(i);
+			Integer ITEMNO=order.getITEMNO();
 			String NAME = order.getNAME();
 			Integer QUANTITY = order.getQUANTITY();
 			String DES = order.getDES();
@@ -31,6 +32,7 @@
 	%>
 	<tr>
 		<td width="200"><div align="center"><b><%=NAME%></b></div></td>
+		<td width="200"><div align="center"><b><%=ITEMNO%></b></div></td>
 		<td width="100"><div align="center"><b><%=PRICE%></b></div></td>
 		<td width="100"><div align="center"><b><%=DES%></b></div></td>
 		<td width="100"><div align="center"><b><%=QUANTITY%></b></div></td>
@@ -44,12 +46,20 @@
 		<td></td>
 		<td></td>
 		<td><div align="center"><font color="red"><b>總金額：</b></font></div></td>
-		<td></td>
 		<td> <font color="red"><b>$<%=amount%></b></font> </td>
-		<td></td>
 	</tr>
 </table>
-<p><a href="listAll.jsp">是否繼續購物</a>
+				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/order.do">
+						<input type="submit" value="確認購買">
+						<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}"> 
+						</td>			     
+						<input type="hidden" name="action" value="CONFIRM">
+						<!-- 						假裝會員已經登入了 -->
+						<input type="hidden" name="MEMNO" value="MEMNO0001">
+						<input type="hidden" name="action" value="CONFIRM">
+					</FORM>
+
+<p><a href="listAll.jsp">繼續購物</a>
 </center>
 </body>
 </html>
