@@ -88,7 +88,8 @@ public class ShopOrderServlet extends HttpServlet{
 		}if("CONFIRM".equals(action)){//來自CHECK.JSP的請求
 			HttpSession session=req.getSession();
 			Vector<CartVO> buylist = (Vector<CartVO>) session.getAttribute("shoppingcart");
-			
+			System.out.println(buylist.size());
+			CartVO cartVO = buylist.get(0);
 			}
 		else {
 		}
