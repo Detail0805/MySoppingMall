@@ -78,6 +78,8 @@ public class CartServlet extends HttpServlet {
 						buylist.add(CartVO);
 				}
 			}
+			
+			//每個CARTVO帶過去的參數有NAME,PRICE,DES,QUANTITY,ITEMNO
 			session.setAttribute("shoppingcart", buylist);
 			String url = "/listAll.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
@@ -96,7 +98,7 @@ public class CartServlet extends HttpServlet {
 
 			String amount = String.valueOf(total);
 			req.setAttribute("amount", amount);
-			String url = "/Checkout.jsp";
+			String url = "/MasterOrder/Checkout.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
 			
