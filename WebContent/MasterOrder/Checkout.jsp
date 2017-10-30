@@ -7,9 +7,9 @@
 </head>
 <body bgcolor="#FFFFFF">
 <img src="images/tomcat.gif"> <font size="+3">訂單截帳CHECKOUT.JSP</font>
-<hr><p><center>
+<hr><p>
 
-<table border="1" width="720">
+<table border="1" align="center" >
 	<tr bgcolor="#999999">
 			<th width="200">產品圖片</th>
 			<th width="200">產品名稱</th>
@@ -22,6 +22,8 @@
 	<%
 		Vector<CartVO> buylist = (Vector<CartVO>) session.getAttribute("shoppingcart");
 		String amount =  (String) request.getAttribute("amount");
+		request.setAttribute("amount",amount);
+		out.println("amount = " + (String)request.getAttribute("amount"));
 	%>	
 	<%	for (int i = 0; i < buylist.size(); i++) {
 			CartVO order = buylist.get(i);
@@ -52,17 +54,17 @@
 		<td> <font color="red"><b>$<%=amount%></b></font> </td>
 	</tr>
 </table>
-				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/order.do">
+				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/order.do"  align="center" >
 						<input type="submit" value="確認購買">
 						<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}"> 
-						</td>			     
 						<input type="hidden" name="action" value="CONFIRM">
+						<input type="hidden" name="amount" value="${amount}">
 						<!-- 						假裝會員已經登入了 -->
 						<input type="hidden" name="MEMNO" value="MEMNO0001">
 						<input type="hidden" name="action" value="CONFIRM">
 					</FORM>
-
-<p><a href="listAll.jsp">繼續購物</a>
-</center>
+<div  align="center" >
+<a href="listAll.jsp" >繼續購物</a>
+</div>
 </body>
 </html>

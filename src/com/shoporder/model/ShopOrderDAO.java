@@ -3,7 +3,9 @@ package com.shoporder.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Savepoint;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,55 +131,6 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 
 
 	@Override
-	public void addShopOrder(ShopOrderVO shoporderVO) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(ADD_SHOPORDER);
-			pstmt.setString(1, shoporderVO.getMemberno());
-			System.out.println("DB1");
-			pstmt.setString(2, shoporderVO.getCustomer_address());
-			System.out.println("DB2");
-			pstmt.setString(3, shoporderVO.getCustomer_phone());
-			System.out.println("DB3");
-			pstmt.setString(4, shoporderVO.getCustomer_name());
-			System.out.println("DB4");
-			pstmt.executeUpdate();
-			pstmt.clearParameters();
-			pstmt = con.prepareStatement(ADD_ORDERDETAIL);
-			System.out.println("DB5");
-			//須取得自增主鍵來一次完成
-			pstmt.setString(1,"20171027-000001");
-			System.out.println("DB6");
-			pstmt.setInt(2, shoporderVO.getItemno());
-			System.out.println("DB7");
-			pstmt.setInt(3, shoporderVO.getOrdercount());
-			System.out.println("DB8");
-			pstmt.executeUpdate();			
-
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-			System.out.println("addShopOrder錯誤");
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-	}
-	@Override
 	public List<ShopOrderVO> getAllOrder() {
 		List<ShopOrderVO> list = new ArrayList<ShopOrderVO>();
 		ShopOrderVO shoporderVO = null;
@@ -209,17 +162,55 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 	}
 
 	@Override
-	public void addShopCartOrder(List<ShopOrderVO> shoporderVO) {
+	public void addShopOrder(ShopOrderVO shoporderVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+		String key = null;
 		try {
+			String[] cols = { "ORDERNO" };
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(ADD_SHOPORDER);
-		
-
-		} catch (SQLException e) {
+			pstmt = con.prepareStatement(ADD_SHOPORDER,cols);
+			pstmt.setString(1, shoporderVO.getMemberno());
+			System.out.println("DB1 shoporderVO.getMemberno();"+shoporderVO.getMemberno());
+			pstmt.setString(2, shoporderVO.getCustomer_address());
+			System.out.println("DB2 hoporderVO.getCustomer_address()"+shoporderVO.getCustomer_address());
+			pstmt.setString(3, shoporderVO.getCustomer_phone());
+			System.out.println("DB3 shoporderVO.getCustomer_phone()"+shoporderVO.getCustomer_phone());
+			pstmt.setString(4, shoporderVO.getCustomer_name());
+			System.out.println("DB4 shoporderVO.getCustomer_name()"+shoporderVO.getCustomer_name());
+			System.out.println(pstmt.executeUpdate());
+			pstmt.executeUpdate();
 			
+			ResultSet rs = pstmt.getGeneratedKeys();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnCount = rsmd.getColumnCount();
+			
+			if (rs.next()) {
+				do {
+					for (int i = 1; i <= columnCount; i++) {
+						key = rs.getString(i);
+						System.out.println("自增主鍵值 = " + key +"(剛新增成功的員工編號)");
+					}
+				} while (rs.next());
+			} else {
+				System.out.println("NO KEYS WERE GENERATED.");
+			}
+			
+			rs.close();
+			
+			pstmt.clearParameters();
+			pstmt = con.prepareStatement(ADD_ORDERDETAIL);
+			System.out.println("DB5");
+			//須取得自增主鍵來一次完成
+			pstmt.setString(1,key);
+			System.out.println("DB6");
+			pstmt.setInt(2, shoporderVO.getItemno());
+			System.out.println("DB7");
+			pstmt.setInt(3, shoporderVO.getOrdercount());
+			System.out.println("DB8");
+			pstmt.executeUpdate();			
+	
+		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("addShopOrder錯誤");
 		} finally {
@@ -232,6 +223,87 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 			}
 			if (con != null) {
 				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	}
+
+	@Override
+	public void addShopCartOrder(List<ShopOrderVO> shoporderVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		Savepoint savePoint = null;
+		String key = null;
+		try {
+			String[] cols = { "ORDERNO" };
+			con = ds.getConnection();
+			//把購物車的東西新增進去不得有錯，所以關閉AUTOCOMMIT
+			con.setAutoCommit(false);
+			//儲存點
+			savePoint = con.setSavepoint(); 
+			pstmt = con.prepareStatement(ADD_SHOPORDER,cols);
+			con = ds.getConnection();
+			//下面這一段只要新增一次就可以，從會員資料取得非前面表單
+			pstmt.setString(1, shoporderVO.get(0).getMemberno());
+			pstmt.setString(2, shoporderVO.get(0).getCustomer_address());
+			pstmt.setString(3, shoporderVO.get(0).getCustomer_phone());
+			pstmt.setString(4, shoporderVO.get(0).getCustomer_name());
+			pstmt.executeUpdate();
+			ResultSet rs = pstmt.getGeneratedKeys();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnCount = rsmd.getColumnCount();
+			
+			if (rs.next()) {
+				do {
+					for (int i = 1; i <= columnCount; i++) {
+						key = rs.getString(i);
+						System.out.println("自增主鍵值 = " + key +"(剛新增成功的員工編號)");
+					}
+				} while (rs.next());
+			} else {
+				System.out.println("NO KEYS WERE GENERATED.");
+			}
+			
+			rs.close();
+			
+			
+			pstmt.clearParameters();
+			
+			for(int i=0;i<shoporderVO.size();i++){
+			pstmt = con.prepareStatement(ADD_ORDERDETAIL);
+			System.out.println("DB5");
+			//須取得自增主鍵來一次完成
+			pstmt.setString(1,key);
+			pstmt.setInt(2, shoporderVO.get(i).getItemno());
+			pstmt.setInt(3, shoporderVO.get(i).getOrdercount());
+			pstmt.executeUpdate();			
+			}
+			con.commit();
+		} catch (SQLException e) {
+			try {
+				con.rollback(savePoint);
+				System.out.println("ShopOrderDAO.java新增訂單錯誤,執行rollback :"+e);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+			System.out.println("ShopOrderDAO錯誤");
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.setAutoCommit(true);
+					con.releaseSavepoint(savePoint);
 					con.close();
 				} catch (Exception e) {
 					e.printStackTrace(System.err);

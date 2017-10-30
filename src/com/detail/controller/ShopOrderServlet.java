@@ -34,7 +34,7 @@ public class ShopOrderServlet extends HttpServlet{
 		String action = req.getParameter("action");
 
 		if ("addshoporder".equals(action)) {// 來自listallpro.jsp的請求
-			System.out.println("進入shoporderservice");
+			System.out.println("進入ShopOrderSevlet");
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
@@ -94,7 +94,11 @@ public class ShopOrderServlet extends HttpServlet{
 			List<ShopOrderVO> list = new ArrayList<ShopOrderVO>();
 			ShopOrderService shopOrSvc = new ShopOrderService();
 			ShopOrderVO shopOrderVO = null;
-
+			String amount =  (String) req.getAttribute("amount");
+			System.out.println("amount::::"+amount);
+			Integer amount2=(int) (Float.parseFloat(req.getParameter("amount")));
+			
+			System.out.println("amount2 :"+amount2);
 			for (int i = 0; i < buylist.size(); i++) {
 				CartVO cartVO = buylist.get(i);
 				shopOrderVO = new ShopOrderVO();
