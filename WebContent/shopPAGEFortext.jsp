@@ -98,6 +98,7 @@ style type ="text/css">
 </head>
 <body>
 <div>	 </div>
+<div>
 	<div class="bigshoprow">
 		<div class="container shoprow">
 			<div class="row">
@@ -125,24 +126,29 @@ style type ="text/css">
 									<div class="prices">
 										<span class="price special-price">$${shopVO.PRICE}</span>
 									</div>
+
 									<div class="buttons">
+
 									<FORM METHOD="post" ACTION="cart.do">
+											<select name="STOCK">
+											<c:forEach var="STOCK" begin="1" end="${shopVO.STOCK}"
+												step="1">
+												<option value="${STOCK}">${STOCK}
+											</c:forEach> </select>
 									<input type="hidden" name="action" value="ADD">
 									<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}">
-									<input type="hidden" name="STOCK" value="1">
 									<input type="submit" class="btn btn-sm btn-success" value="放入購物車">
 										</FORM>
 									</div>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</c:forEach>
 			</div>
 		</div>
 	</div>
-
+</div>
 	<hr>下面是當天促銷中的產品</hr>
 	<div class="bigshoprow">
 		<div class="container shoprow">
@@ -172,13 +178,20 @@ style type ="text/css">
 											class="price special-price">特價$${proVO.PRICE}</span>
 									</div>
 									<div class="buttons">
-										<input type="hidden" name="ITEMNO" value="${proVO.ITEMNO}" > <input type="button"
-											class="btn btn-sm btn-success" value="放入購物車"
-											onclick="AjaxCart.addproducttocart_catalog('/TW/addproducttocart/catalog/2203/1/1    ');return false;">
+									<FORM METHOD="post" ACTION="cart.do">
+									<select name="STOCK">
+											<c:forEach var="quantity" begin="1" end="${proVO.quantity}"
+												step="1">
+												<option value="${quantity}">${quantity}
+											</c:forEach> </select>
+											
+										<input type="hidden" name="action" value="ADD">
+										<input type="hidden" name="ITEMNO" value="${proVO.ITEMNO}" > 
+										<input type="submit" class="btn btn-sm btn-success" value="放入購物車">
+										</FORM>
 									</div>
 								</div>
 							</div>
-							
 						</div>
 					</div>
 				</c:forEach>

@@ -90,7 +90,7 @@
 				<FORM METHOD="post" ACTION="cart.do">
 
 					<td><select name="STOCK">
-							<c:forEach var="STOCK" begin="0" end="${shopVO.STOCK}" step="1">
+							<c:forEach var="STOCK" begin="1" end="${shopVO.STOCK}" step="1">
 								<option value="${STOCK}">${STOCK}
          						</c:forEach> 
 						</td> 
