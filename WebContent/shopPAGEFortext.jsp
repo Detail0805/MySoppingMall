@@ -126,10 +126,12 @@ style type ="text/css">
 										<span class="price special-price">$${shopVO.PRICE}</span>
 									</div>
 									<div class="buttons">
-									
+									<FORM METHOD="post" ACTION="cart.do">
+									<input type="hidden" name="action" value="ADD">
 									<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}">
-										<input type="button" class="btn btn-sm btn-success" value="放入購物車"
-											onclick="AjaxCart.addproducttocart_catalog('/TW/addproducttocart/catalog/2203/1/1    ');return false;">
+									<input type="hidden" name="STOCK" value="1">
+									<input type="submit" class="btn btn-sm btn-success" value="放入購物車">
+										</FORM>
 									</div>
 								</div>
 							</div>
