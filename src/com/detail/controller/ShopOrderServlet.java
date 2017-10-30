@@ -56,9 +56,6 @@ public class ShopOrderServlet extends HttpServlet{
 				shopOrderVO.setMemberno(req.getParameter("MEMNO"));
 				shopOrderVO.setItemno(new Integer(req.getParameter("ITEMNO")));
 				shopOrderVO.setOrdercount(new Integer(req.getParameter("ORDERCOUNT")));
-				
-				System.out.println("1");
-
 
 				/*************************** 2.開始新增資料 *****************************************/
 				ShopOrderService shopOrderSvc = new ShopOrderService();
@@ -74,12 +71,9 @@ public class ShopOrderServlet extends HttpServlet{
 				}
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("shopordervo", shopordervo); 
-				System.out.println("2");
 				String url = "/MasterOrder/listallOrder.jsp";
-				System.out.println("3");
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
-				System.out.println("4");
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
@@ -99,24 +93,27 @@ public class ShopOrderServlet extends HttpServlet{
 			for (int i = 0; i < buylist.size(); i++) {
 				CartVO cartVO = buylist.get(i);
 				shopOrderVO = new ShopOrderVO();
-				System.out.println("第 " + i + "次取出BEAN的值作測試");
-				System.out.println("cartVO.getNAME()" + cartVO.getNAME());
+//				System.out.println("第 " + i + "次取出BEAN的值作測試");
+//				System.out.println("cartVO.getNAME()" + cartVO.getNAME());
 				shopOrderVO.setItemno(cartVO.getITEMNO());
-				System.out.println("shopOrderVO.setItemno:" + shopOrderVO.getItemno());
-				System.out.println("cartVO.getITEMNO()" + cartVO.getITEMNO());
-				System.out.println("cartVO.getQUANTITY()" + cartVO.getQUANTITY());
+//				System.out.println("shopOrderVO.setItemno:" + shopOrderVO.getItemno());
+//				System.out.println("cartVO.getITEMNO()" + cartVO.getITEMNO());
+//				System.out.println("cartVO.getQUANTITY()" + cartVO.getQUANTITY());
 				shopOrderVO.setOrdercount(cartVO.getQUANTITY());
 				// 第一次的時候還需要設置用戶訂單地址，但那可以從會原那邊撈這邊先不實做
-				System.out.println("shopOrderVO.getOrdercount():" + shopOrderVO.getOrdercount());
-				System.out.println("cartVO.getDES()" + cartVO.getDES().substring(0, 5));
-				System.out.println("cartVO.getPRICE()" + cartVO.getPRICE());
+//				System.out.println("shopOrderVO.getOrdercount():" + shopOrderVO.getOrdercount());
+//				System.out.println("cartVO.getDES()" + cartVO.getDES().substring(0, 5));
+//				System.out.println("cartVO.getPRICE()" + cartVO.getPRICE());
 				//兩種版本目前用LIST版本實做，傳過去為LIST<ShopOrderVO>
 				list.add(shopOrderVO);
 				// shopOrSvc.addShopOrder(shopOrderVO);
 			}
-			System.out.println("丟進ADDSHOPCARTORDER 前");
 			shopOrSvc.addShopCartOrder(list);
-			System.out.println("丟進ADDSHOPCARTORDER 後");
+			String url = "/MasterOrder/listallOrder.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
+																			// listallOrder.jsp
+			successView.forward(req, res);
+
 		} 
 		if ("DELETE".equals(action)) {// 來自CHECK.JSP的請求
 

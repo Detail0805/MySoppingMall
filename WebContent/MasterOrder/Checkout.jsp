@@ -57,7 +57,6 @@
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/order.do"  align="center" >
 						<input type="submit" value="確認購買">
 						<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}"> 
-						<input type="hidden" name="action" value="CONFIRM">
 						<input type="hidden" name="amount" value="${amount}">
 						<!-- 						假裝會員已經登入了 -->
 						<input type="hidden" name="MEMNO" value="MEMNO0001">

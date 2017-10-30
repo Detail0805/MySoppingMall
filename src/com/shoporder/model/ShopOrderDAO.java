@@ -270,15 +270,11 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 			} else {
 				System.out.println("NO KEYS WERE GENERATED.");
 			}
-			System.out.println("DB05");
 			rs.close();
-			System.out.println("DB06");
 			pstmt.clearParameters();
-			System.out.println("DB07");
 			// 再同時新增訂單明細內容
 			for(int i=0;i<shoporderVO.size();i++){
 				pstmt = con.prepareStatement(ADD_ORDERDETAIL);
-				System.out.println("DB5");
 				// 須取得自增主鍵來一次完成
 				pstmt.setString(1, key);
 				pstmt.setInt(2, shoporderVO.get(i).getItemno());
@@ -286,11 +282,8 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 				pstmt.executeUpdate();
 				System.out.println("第"+i+" 次新增");
 			}
-			System.out.println("commit前");
 			con.commit();
-			System.out.println("commit後");
 			con.setAutoCommit(true);
-			System.out.println("setAutoCommit後");
 		} catch (SQLException e) {
 			try {
 				con.rollback();

@@ -12,6 +12,7 @@ public class ShopOrderVO {
 	private String customer_phone;
 	private String customer_name;
 	private Date order_date;
+	
 
 	public String getOrderno() {
 		return orderno;
