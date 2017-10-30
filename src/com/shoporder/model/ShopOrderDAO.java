@@ -171,14 +171,9 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(ADD_SHOPORDER,cols);
 			pstmt.setString(1, shoporderVO.getMemberno());
-			System.out.println("DB1 shoporderVO.getMemberno();"+shoporderVO.getMemberno());
 			pstmt.setString(2, shoporderVO.getCustomer_address());
-			System.out.println("DB2 hoporderVO.getCustomer_address()"+shoporderVO.getCustomer_address());
 			pstmt.setString(3, shoporderVO.getCustomer_phone());
-			System.out.println("DB3 shoporderVO.getCustomer_phone()"+shoporderVO.getCustomer_phone());
 			pstmt.setString(4, shoporderVO.getCustomer_name());
-			System.out.println("DB4 shoporderVO.getCustomer_name()"+shoporderVO.getCustomer_name());
-			System.out.println(pstmt.executeUpdate());
 			pstmt.executeUpdate();
 			
 			ResultSet rs = pstmt.getGeneratedKeys();
@@ -245,46 +240,55 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 			//儲存點
 			savePoint = con.setSavepoint(); 
 			pstmt = con.prepareStatement(ADD_SHOPORDER,cols);
-			con = ds.getConnection();
 			//下面這一段只要新增一次就可以，從會員資料取得非前面表單
-			pstmt.setString(1, shoporderVO.get(0).getMemberno());
-			pstmt.setString(2, shoporderVO.get(0).getCustomer_address());
-			pstmt.setString(3, shoporderVO.get(0).getCustomer_phone());
-			pstmt.setString(4, shoporderVO.get(0).getCustomer_name());
+			pstmt.setString(1, "MEM0001");
+			pstmt.setString(2, "地址");
+			pstmt.setString(3, "電話");
+			pstmt.setString(4, "姓名");
 			pstmt.executeUpdate();
-			ResultSet rs = pstmt.getGeneratedKeys();
-			ResultSetMetaData rsmd = rs.getMetaData();
-			int columnCount = rsmd.getColumnCount();
+			System.out.println("DB01");
 			
+			// 取得對應的自增主鍵值
+			ResultSet rs = pstmt.getGeneratedKeys();
+			System.out.println("DB02");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			System.out.println("DB03");
+			int columnCount = rsmd.getColumnCount();
 			if (rs.next()) {
+				System.out.println("DB04");
 				do {
 					for (int i = 1; i <= columnCount; i++) {
 						key = rs.getString(i);
-						System.out.println("自增主鍵值 = " + key +"(剛新增成功的員工編號)");
+						System.out.println("自增主鍵值 = " + key +"(剛新增成功的訂單編號)");
 					}
 				} while (rs.next());
 			} else {
 				System.out.println("NO KEYS WERE GENERATED.");
 			}
-			
+			System.out.println("DB05");
 			rs.close();
-			
-			
+			System.out.println("DB06");
 			pstmt.clearParameters();
-			
+			System.out.println("DB07");
+			// 再同時新增訂單明細內容
 			for(int i=0;i<shoporderVO.size();i++){
-			pstmt = con.prepareStatement(ADD_ORDERDETAIL);
-			System.out.println("DB5");
-			//須取得自增主鍵來一次完成
-			pstmt.setString(1,key);
-			pstmt.setInt(2, shoporderVO.get(i).getItemno());
-			pstmt.setInt(3, shoporderVO.get(i).getOrdercount());
-			pstmt.executeUpdate();			
+				pstmt = con.prepareStatement(ADD_ORDERDETAIL);
+				System.out.println("DB5");
+				// 須取得自增主鍵來一次完成
+				pstmt.setString(1, key);
+				pstmt.setInt(2, shoporderVO.get(i).getItemno());
+				pstmt.setInt(3, shoporderVO.get(i).getOrdercount());
+				pstmt.executeUpdate();
+				System.out.println("第"+i+" 次新增");
 			}
+			System.out.println("commit前");
 			con.commit();
+			System.out.println("commit後");
+			con.setAutoCommit(true);
+			System.out.println("setAutoCommit後");
 		} catch (SQLException e) {
 			try {
-				con.rollback(savePoint);
+				con.rollback();
 				System.out.println("ShopOrderDAO.java新增訂單錯誤,執行rollback :"+e);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
@@ -302,8 +306,6 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 			}
 			if (con != null) {
 				try {
-					con.setAutoCommit(true);
-					con.releaseSavepoint(savePoint);
 					con.close();
 				} catch (Exception e) {
 					e.printStackTrace(System.err);

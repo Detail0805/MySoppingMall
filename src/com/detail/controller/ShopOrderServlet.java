@@ -94,11 +94,8 @@ public class ShopOrderServlet extends HttpServlet{
 			List<ShopOrderVO> list = new ArrayList<ShopOrderVO>();
 			ShopOrderService shopOrSvc = new ShopOrderService();
 			ShopOrderVO shopOrderVO = null;
-			String amount =  (String) req.getAttribute("amount");
-			System.out.println("amount::::"+amount);
-			Integer amount2=(int) (Float.parseFloat(req.getParameter("amount")));
-			
-			System.out.println("amount2 :"+amount2);
+			Integer amount=(int) (Float.parseFloat(req.getParameter("amount")));
+
 			for (int i = 0; i < buylist.size(); i++) {
 				CartVO cartVO = buylist.get(i);
 				shopOrderVO = new ShopOrderVO();
@@ -117,7 +114,9 @@ public class ShopOrderServlet extends HttpServlet{
 				list.add(shopOrderVO);
 				// shopOrSvc.addShopOrder(shopOrderVO);
 			}
+			System.out.println("丟進ADDSHOPCARTORDER 前");
 			shopOrSvc.addShopCartOrder(list);
+			System.out.println("丟進ADDSHOPCARTORDER 後");
 		} else {
 		}
 		System.out.println("功能尚未連結到 ShopOrderServlet.java");
