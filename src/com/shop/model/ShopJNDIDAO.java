@@ -170,15 +170,12 @@ public class ShopJNDIDAO implements ShopDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE2);
 			pstmt.setInt(1, shopVO);
-			System.out.println("DELETE2開始");
 			pstmt.executeUpdate();
-			System.out.println("DELETE2完畢");
 			pstmt.clearParameters();
-			System.out.println("DELETE開始");
 			pstmt = con.prepareStatement(DELETE);
 			pstmt.setInt(1, shopVO);
 			pstmt.executeUpdate();
-			System.out.println("DELETE完畢");
+
 
 
 		} catch (SQLException se) {

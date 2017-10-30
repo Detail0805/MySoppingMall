@@ -18,5 +18,7 @@ public interface ShopOrderDAO_interface {
 	public void addShopCartOrder(List<ShopOrderVO> shoporderVO);
 	//更新訂單
 	public List<ShopOrderVO> updateShopOrder();
+	//用ITEMNO&ORDERID刪除
+	public void delete(String orderno,String memno);
 	
 }

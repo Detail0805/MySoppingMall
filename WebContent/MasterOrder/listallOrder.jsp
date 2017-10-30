@@ -16,7 +16,7 @@
 
 <html>
 <head>
-<body background="images/leaf.jpg">
+<body background="<%=request.getContextPath()%>/images/leaf.jpg">
 <title>Insert title here</title>
 </head>
 <body>
@@ -40,8 +40,8 @@
 		<th>會員編號</th>
 		<th>訂單成立日期</th>
 		<th>會員編號</th>
-		<th>按鈕</th>
-		<th>按鈕</th>
+		<th>刪除訂單</th>
+		<th>修改訂單</th>
 
 	</tr>
 	<c:forEach var="shoporderVO" items="${list}">
@@ -52,16 +52,18 @@
 			<td>${shoporderVO.order_date}</td>
 			<td>${shoporderVO.customer_name}</td>
 			<td>
-			  <FORM METHOD="post" ACTION="shop.do">
-			     <input type="submit" value="修改">
-			     <input type="hidden" name="ITEMNO" value="${shoporderVO.itemno}">
-			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/order.do">
+			     <input type="submit" value="刪除">
+			     <input type="hidden" name="ORDERID" value="${shoporderVO.orderno}">
+			     <input type="hidden" name="MEMBERNO" value="${shoporderVO.memberno}">
+			     <input type="hidden" name="action"	value="DELETE"></FORM>
 			</td>
-
 				<td>
-					<FORM METHOD="post" ACTION="cart.do">
-						<input type="submit" value="加入購物車">
-						<input type="hidden" name="action" value="ADD">
+					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/order.do">
+						<input type="hidden" name="ORDERID" value="${shoporderVO.orderno}">
+						<input type="hidden" name="MEMBERNO"value="${shoporderVO.memberno}"> 
+						<input type="submit" value="修改"> 
+						<input type="hidden" name="action" value="UPDATE_ORDERID">
 					</FORM>
 				</td>
 		</tr>

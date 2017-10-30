@@ -35,4 +35,7 @@ public class ShopOrderService {
 			dao.addShopCartOrder(shoporderVO);
 		return shoporderVO;
 	}
+	public void delete(String orderno,String memno){
+		dao.delete(orderno, memno);
+	}
 }

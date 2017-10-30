@@ -117,9 +117,27 @@ public class ShopOrderServlet extends HttpServlet{
 			System.out.println("丟進ADDSHOPCARTORDER 前");
 			shopOrSvc.addShopCartOrder(list);
 			System.out.println("丟進ADDSHOPCARTORDER 後");
-		} else {
+		} 
+		if ("DELETE".equals(action)) {// 來自CHECK.JSP的請求
+
+			try {
+				String ORDERID = (String) req.getParameter("ORDERID");
+				String MEMBERNO = (String) req.getParameter("MEMBERNO");
+
+				ShopOrderService shopOrderSvc = new ShopOrderService();
+				shopOrderSvc.delete(ORDERID, MEMBERNO);
+
+				String url = "/MasterOrder/listallOrder.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
+																				// listallOrder.jsp
+				successView.forward(req, res);
+
+			} catch (Exception e) {
+				System.out.println("ShopOrderServlet.java DELETE失敗 :" + e);
+			}
+
 		}
-		System.out.println("功能尚未連結到 ShopOrderServlet.java");
+		
 	}
-	}
+}
 

@@ -19,6 +19,11 @@ import com.shop.model.ShopVO;
 public class ShopOrderDAO implements ShopOrderDAO_interface{
 	private static final String GET_ALL_NO="SELECT ORDERNO FROM SHOPORDER";
 	private static final String GET_ALL="SELECT ORDERNO ,MEM_NO,ORDER_DATE,CUSTOMER_NAME FROM SHOPORDER";
+	private static final String GET_ALL_ORDER_BY_DATE="SELECT ORDERNO ,MEM_NO,ORDER_DATE,CUSTOMER_NAME FROM SHOPORDER ORDER BY ORDER_DATE DESC";
+	private static final String GET_ALL_ORDER_BY_ORDERNO="SELECT ORDERNO ,MEM_NO,ORDER_DATE,CUSTOMER_NAME FROM SHOPORDER ORDER BY ORDERNO";
+	private static final String DELETE_ORDERDETAIL="DELETE FROM ORDERDETAIL where ORDERNO =?";
+	private static final String DELETE_SHOPORDER="DELETE FROM SHOPORDER where ORDERNO =?";
+	
 	private static final String GET_ONE_BY_ORDERNO="SELECT  OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) WHERE OT.orderno=?";	
 	private static final String GET_ONE_BY_MEMNO="SELECT  OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) WHERE MEM_NO=?";	
 	private static final String GET_SALES_BY_ITEMNO="SELECT  OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) WHERE ITEMNO=?";
@@ -313,5 +318,44 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 			}
 		}
 	}
+
+	@Override
+	public void delete(String Orderno,String memno) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
 		
+		try {
+			con=ds.getConnection();
+			pstmt=con.prepareStatement(DELETE_ORDERDETAIL);
+			pstmt.setString(1, Orderno);
+			pstmt.executeUpdate();
+			pstmt.clearParameters();
+			
+			pstmt=con.prepareStatement(DELETE_SHOPORDER);
+			pstmt.setString(1, Orderno);
+			pstmt.executeUpdate();
+			pstmt.execute();
+			System.out.println("­q³æ§R°£§¹²¦");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(pstmt!=null){
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+			}
+			if(con!=null){
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 }
