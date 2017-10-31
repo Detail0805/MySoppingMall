@@ -7,14 +7,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/CalendarStyles.css" />
-<script src="js/addproduct.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/Ecalendar.jquery.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/CalendarStyles.css" />
+<script src="<%=request.getContextPath()%>/js/addproduct.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/Ecalendar.jquery.min.js"></script>
 
 <title>addpromotion.jsp</title>
 </head>
-<body background="images/sale.jpg" style="background-size: cover;">
+<body background="<%=request.getContextPath()%>/images/sale.jpg" style="background-size: cover;">
 	<h3 align="center">促銷專案新增</h3>
 
 
@@ -63,7 +63,7 @@
 	</form>
 	
 	<div align="center" class="foot">
-		<a href="listAllPro.jsp">查詢所有促銷商品</a><br>
+		<a href="Promotion/listAllPro.jsp">查詢所有促銷商品</a><br>
 	</div>
 	
 	<script type="text/javascript">

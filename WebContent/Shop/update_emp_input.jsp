@@ -42,7 +42,7 @@
 		</c:if>
 	</table>
 
-	<FORM METHOD="post" ACTION="pro.do" name="form1" align='center'>
+	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/pro.do" name="form1" align='center'>
 <table border="0" align='center'>
 	<tr>
 		<td>商品編號：<font color=red><b>*</b></font></td>

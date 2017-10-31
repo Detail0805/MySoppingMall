@@ -32,7 +32,7 @@
 
 <html>
 <head>
-<body background="images/leaf.jpg">
+<body background="<%=request.getContextPath()%>/images/leaf.jpg">
 <title>Insert title here</title>
 </head>
 <body>
@@ -64,10 +64,10 @@
 		<th>加入購物車</th>
 
 	</tr>
-	<%@ include file="page1.file" %> 
+	<%@ include file="/page1.file" %> 
 	<c:forEach var="shopVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		<tr align='center' valign='middle'>
-			<td width="200"><img src="DBPicReader?ITEMNO=${shopVO.ITEMNO}" height="150px" width="200px">
+			<td width="200"><img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${shopVO.ITEMNO}" height="150px" width="200px">
 		</td>
 			<td>${shopVO.ITEMNO}</td>
 			<td>${shopVO.CLASSNO}</td>
@@ -81,13 +81,13 @@
 			</td>
 			
 			<td>
-			  <FORM METHOD="post" ACTION="shop.do">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shop.do">
 			    <input type="submit" value="${((shopVO.STATE)==1)?'下架':'上架'}">
 			    <input type="hidden" name="STATE" value="${shopVO.STATE}">
 			    <input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}">
 			    <input type="hidden" name="action"value="shelf"></FORM>
 			</td>
-				<FORM METHOD="post" ACTION="cart.do">
+				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/cart.do">
 
 					<td><select name="STOCK">
 							<c:forEach var="STOCK" begin="1" end="${shopVO.STOCK}" step="1">
@@ -112,7 +112,7 @@
 		</tr>
 	</c:forEach>
 </table>
-<%@ include file="page2.file" %>
+<%@ include file="/page2.file" %>
 
 <h2>下面測試用includ購物車網址</h2>
 

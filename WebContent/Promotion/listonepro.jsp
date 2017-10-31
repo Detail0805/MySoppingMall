@@ -18,7 +18,7 @@ pageContext.setAttribute("list",list);
 <table border='1' cellpadding='5' cellspacing='0' width='1200' align='center'>
 	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 		<td>
-		<h3>促銷專案</h3>
+		<h3>促銷專案 listonepro.jsp</h3>
 		<a href="mainforpro.jsp">回查詢頁面</a>
 		</td>
 	</tr>

@@ -13,7 +13,7 @@ ShopVO shopVO = (ShopVO) request.getAttribute("shopVO"); //EmpServlet.java(Concr
 <table border='1' cellpadding='5' cellspacing='0' width='600' align='center'>
 	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 		<td>
-		<h3>商品資料</h3>
+		<h3>商品資料listone.jsp</h3>
 		<a href="mainpage.jsp">回查詢頁面</a>
 		</td>
 	</tr>

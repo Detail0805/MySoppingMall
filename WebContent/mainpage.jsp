@@ -44,7 +44,7 @@ font {
 
 						<br> <br> <font size="5"><a
 							href='ShowAll.jsp'>列出所有商品</a><br>
-							<a href='listAll.jsp'>列出所有商品by EL</a></font><br> <br>
+							<a href='<%=request.getContextPath()%>/Shop/listAll.jsp'>列出所有商品by EL</a></font><br> <br>
 
 						<form action="shop.do" class="form-inline" method="POST">
 							<div class="form-group">

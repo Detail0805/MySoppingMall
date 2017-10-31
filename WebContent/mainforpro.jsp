@@ -49,7 +49,7 @@ font {
 					<div class="col-sm-12">
 
 						<br> <br> <font size="5">
-							<a href='listAllPro.jsp'>列出所有促銷專案by EL</a></font><br> <br>
+							<a href='Promotion/listAllPro.jsp'>列出所有促銷專案by EL</a></font><br> <br>
 
 						<form action="pro.do" class="form-inline" method="POST">
 							<div class="form-group">
@@ -105,7 +105,7 @@ font {
 						</form>
 
 						<font size="5">商品管理:</font> <br> <br> <font size="5"><a
-							href='addpromotion.jsp'>新增促銷專案</a></font><br> <br>
+							href='Promotion/addpromotion.jsp'>新增促銷專案</a></font><br> <br>
 
 					</div>
 				</div>

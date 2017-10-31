@@ -34,7 +34,7 @@
 							href='ShowAll.jsp'>列出所有商品</a><br>
 							<a href='listAll.jsp'>列出所有商品by EL</a></font><br> <br>
 
-						<form action="emp.do" class="form-inline" method="POST">
+						<form action="shop.do" class="form-inline" method="POST">
 							<div class="form-group">
 								<font size="5">輸入商品編號：</font><input placeholder="輸入 ID"
 									class="form-control input" type="text" size="8" name="ITEMNO"> 
@@ -51,7 +51,7 @@
 				<div class="row">
 					<div class="col-sm-2"></div>
 					<div class="col-sm-12">
-						<form action="emp.do" class="form-inline" method="POST">
+						<form action="shop.do" class="form-inline" method="POST">
 							<input type="hidden" name="action" value="getOne_For_Display">
 							<div class="form-group">
 								<font size="5">選擇商品編號：<select name="ITEMNO"
@@ -72,7 +72,7 @@
 				<div class="row">
 					<div class="col-sm-2"></div>
 					<div class="col-sm-12">
-						<form action="emp.do" class="form-inline" method="POST">
+						<form action="shop.do" class="form-inline" method="POST">
 						<input type="hidden" name="action" value="getOne_For_Display2">
 							<div class="form-group">
 								<font size="5">選擇商品名稱：<select  name="ITEMNO"

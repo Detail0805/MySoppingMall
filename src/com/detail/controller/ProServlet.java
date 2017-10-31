@@ -61,7 +61,7 @@ public class ProServlet extends HttpServlet{
 				}
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("proVO", proVO); // 資料庫取出的empVO物件,存入req
-				String url = "/listonepro.jsp";
+				String url = "/Promotion/listonepro.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -105,7 +105,7 @@ public class ProServlet extends HttpServlet{
 				}
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("proVO", proVO); // 資料庫取出的empVO物件,存入req
-				String url = "/listoneProForName.jsp";
+				String url = "/Promotion/listoneProForName.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -161,7 +161,7 @@ public class ProServlet extends HttpServlet{
 				}
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("proVO", proVO); // 資料庫取出的empVO物件,存入req
-				String url = "/listoneProForName.jsp";
+				String url = "/Promotion/listoneProForName.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -190,7 +190,7 @@ public class ProServlet extends HttpServlet{
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("proVO", proVO);         // 資料庫取出的empVO物件,存入req
-				String url = "/update_pro_input.jsp";
+				String url = "/Promotion/update_pro_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_pro_input.jsp
 				successView.forward(req, res);
 
@@ -199,7 +199,7 @@ public class ProServlet extends HttpServlet{
 				System.out.println("getOne_For_Update跳錯了");
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/listAllPro.jsp");
+						.getRequestDispatcher("/Promotion/listAllPro.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -236,7 +236,7 @@ public class ProServlet extends HttpServlet{
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("proVO", proVO); // 含有輸入格式錯誤的proVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/update_pro_input.jsp");
+							.getRequestDispatcher("/Promotion/update_pro_input.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -250,7 +250,7 @@ public class ProServlet extends HttpServlet{
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("proVO", proVO); // 含有輸入格式錯誤的proVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/update_pro_input.jsp");
+							.getRequestDispatcher("/Promotion/update_pro_input.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -262,7 +262,7 @@ public class ProServlet extends HttpServlet{
 				System.out.println("pro修改資料後");
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("proVO", proVO); // 資料庫update成功後,正確的的proVO物件,存入req
-				String url = "/listoneProForName.jsp";
+				String url = "/Promotion/listoneProForName.jsp";
 				System.out.println("PROSERVLET成功FORWARED TO  LISTONEPRO");
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
@@ -273,7 +273,7 @@ public class ProServlet extends HttpServlet{
 				System.out.println("進入了*其他可能的錯誤處理*");
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/update_pro_input.jsp");
+						.getRequestDispatcher("/Promotion/update_pro_input.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -291,7 +291,7 @@ public class ProServlet extends HttpServlet{
 					errorMsgs.add("請輸入商品名稱");
 				}
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/addpromotion.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/Promotion/addpromotion.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -309,7 +309,7 @@ public class ProServlet extends HttpServlet{
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("proVO", proVO); // 含有輸入格式錯誤的proVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/addpromotion.jsp");
+							.getRequestDispatcher("/Promotion/addpromotion.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -322,7 +322,7 @@ public class ProServlet extends HttpServlet{
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("proVO", proVO); // 含有輸入格式錯誤的proVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/addpromotion.jsp");
+							.getRequestDispatcher("/Promotion/addpromotion.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -333,7 +333,7 @@ public class ProServlet extends HttpServlet{
 				proVO = proSvc.addPro(NAME, new java.sql.Date(BEGINDATE*1000L),new java.sql.Date(ENDDATE*1000L));
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("proVO", proVO); // 資料庫update成功後,正確的的proVO物件,存入req
-				String url = "/listAllPromotion.jsp";
+				String url = "/Promotion/listAllPromotion.jsp";
 				System.out.println("PROSERVLET成功FORWARED TO  listAllPro");
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
@@ -344,7 +344,7 @@ public class ProServlet extends HttpServlet{
 				System.out.println("進入了*其他可能的錯誤處理*");
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/addpromotion.jsp");
+						.getRequestDispatcher("/Promotion/addpromotion.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -367,7 +367,7 @@ public class ProServlet extends HttpServlet{
 				empSvc.deleteEmp(ITEMNO);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/listAllPro.jsp";
+				String url = "/Promotion/listAllPro.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				
@@ -375,7 +375,7 @@ public class ProServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/listAllPro.jsp");
+						.getRequestDispatcher("/Promotion/listAllPro.jsp");
 				failureView.forward(req, res);
 			}
 		}

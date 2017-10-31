@@ -97,7 +97,8 @@ public class CartServlet extends HttpServlet {
 			
 			//每個CARTVO帶過去的參數有NAME,PRICE,DES,QUANTITY,ITEMNO
 			session.setAttribute("shoppingcart", buylist);
-			String url = "/listAll.jsp";
+			System.out.println("forward到/Shop/listAll.jsp");
+			String url = "/Shop/listAll.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
 		}

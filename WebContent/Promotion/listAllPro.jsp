@@ -12,7 +12,7 @@
 
 <html>
 <head>
-<body background="images/leaf.jpg">
+<body background="<%=request.getContextPath()%>/images/leaf.jpg">
 <title>Insert title here</title>
 </head>
 <body>
@@ -42,10 +42,10 @@
 			<th>刪除</th>
 
 		</tr>
-		<%@ include file="page1.file" %> 
+		<%@ include file="/page1.file" %> 
 	<c:forEach var="proVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 			<tr align='center' valign='middle'>
-				<td width="200"><img src="DBPicReader?ITEMNO=${proVO.ITEMNO}"
+				<td width="200"><img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${proVO.ITEMNO}"
 					height="150px" width="200px">
 				<td>${proVO.NAME}</td>
 				<td>${proVO.SHOPNAME}</td>
@@ -71,7 +71,7 @@
 			</tr>
 		</c:forEach>
 </table>
-<%@ include file="page2.file" %>
+<%@ include file="/page2.file" %>
 
 </body>
 </html>

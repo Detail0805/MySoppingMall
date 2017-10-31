@@ -69,7 +69,7 @@ public class ShopServlet extends HttpServlet {
 				}
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("shopVO", shopVO); // 資料庫取出的shopVO物件,存入req
-				String url = "/listone.jsp";
+				String url = "/Shop/listone.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -100,7 +100,7 @@ public class ShopServlet extends HttpServlet {
 				}
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("shopVO", shopVO); // 資料庫取出的shopVO物件,存入req
-				String url = "/listone.jsp";
+				String url = "/Shop/listone.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -129,7 +129,7 @@ public class ShopServlet extends HttpServlet {
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("shopVO", shopVO);         // 資料庫取出的shopVO物件,存入req
-				String url = "/update_emp_input.jsp";
+				String url = "/Shop/update_emp_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 
@@ -244,7 +244,7 @@ public class ShopServlet extends HttpServlet {
 				}
 
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/listAll.jsp";
+				String url = "/Shop/listAll.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				/***************************其他可能的錯誤處理**********************************/
