@@ -12,6 +12,8 @@ public class ShopOrderVO {
 	private String customer_phone;
 	private String customer_name;
 	private Date order_date;
+	private Integer price;
+	private Integer promotionprice;
 	public Integer getPrice() {
 		return price;
 	}
@@ -27,11 +29,7 @@ public class ShopOrderVO {
 	public void setPromotionprice(Integer promotionprice) {
 		this.promotionprice = promotionprice;
 	}
-
-	private Integer price;
-	private Integer promotionprice;
 	
-
 	public String getOrderno() {
 		return orderno;
 	}
