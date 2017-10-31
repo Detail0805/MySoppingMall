@@ -20,7 +20,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<b><font color=red>此頁練習採用 EL 的寫法取值:</font></b><br>
+<b><font color=red>ListallOrder.jsp</font></b><br>
 <a href="javascript:history.go(-1);">回上一頁</a>
 <br><br>
 

@@ -12,6 +12,24 @@ public class ShopOrderVO {
 	private String customer_phone;
 	private String customer_name;
 	private Date order_date;
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public Integer getPromotionprice() {
+		return promotionprice;
+	}
+
+	public void setPromotionprice(Integer promotionprice) {
+		this.promotionprice = promotionprice;
+	}
+
+	private Integer price;
+	private Integer promotionprice;
 	
 
 	public String getOrderno() {
