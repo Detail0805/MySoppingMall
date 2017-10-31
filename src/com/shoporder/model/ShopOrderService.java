@@ -44,4 +44,7 @@ public class ShopOrderService {
 	public Integer returnAfterShoppingPoint(Integer total,String memno) {
 		return dao.returnAfterShoppingPoint(total, memno);
 	}
+	public Integer returnPointback(String orderno) {
+		return dao.returnPointback(orderno);
+	}
 }

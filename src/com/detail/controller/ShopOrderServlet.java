@@ -116,7 +116,7 @@ public class ShopOrderServlet extends HttpServlet{
 				// shopOrSvc.addShopOrder(shopOrderVO);
 				}
 			}else{
-				System.out.println("餘額不足");
+				System.out.println("餘額不足訂單未成立");
 			}
 
 			Integer NowPoint=shopOrSvc.returnAfterShoppingPoint(amount, MEMNO);

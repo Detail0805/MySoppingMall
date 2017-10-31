@@ -24,5 +24,7 @@ public interface ShopOrderDAO_interface {
 	public Integer returnPoint(String memno);
 	//扣除會員點數
 	public Integer returnAfterShoppingPoint(Integer total,String memno);
+	//刪除訂單後返還會員點數  //回傳剩餘點數
+	public Integer returnPointback(String Orderno);
 	
 }
