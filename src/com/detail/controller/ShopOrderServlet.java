@@ -84,18 +84,25 @@ public class ShopOrderServlet extends HttpServlet{
 		if ("CONFIRM".equals(action)) {// 來自CHECK.JSP的請求
 			HttpSession session = req.getSession();
 			Vector<CartVO> buylist = (Vector<CartVO>) session.getAttribute("shoppingcart");
-			System.out.println(buylist.size());
+			Integer Point=null;
+			
 			List<ShopOrderVO> list = new ArrayList<ShopOrderVO>();
 			ShopOrderService shopOrSvc = new ShopOrderService();
-			ShopOrderVO shopOrderVO = null;
+			
 			Integer amount=(int) (Float.parseFloat(req.getParameter("amount")));
-
+			String MEMNO=req.getParameter("MEMNO");
+			Point=shopOrSvc.returnPoint(MEMNO);
+			ShopOrderVO shopOrderVO = null;
+			//這邊要先查詢一次這位會員的POINT有沒有低於總金額在執行下面動做
+			if(Point>=amount) {
+				System.out.println("餘額足夠");
 			for (int i = 0; i < buylist.size(); i++) {
 				CartVO cartVO = buylist.get(i);
 				shopOrderVO = new ShopOrderVO();
 //				System.out.println("第 " + i + "次取出BEAN的值作測試");
 //				System.out.println("cartVO.getNAME()" + cartVO.getNAME());
 				shopOrderVO.setItemno(cartVO.getITEMNO());
+				shopOrderVO.setMemberno(MEMNO);
 //				System.out.println("shopOrderVO.setItemno:" + shopOrderVO.getItemno());
 //				System.out.println("cartVO.getITEMNO()" + cartVO.getITEMNO());
 //				System.out.println("cartVO.getQUANTITY()" + cartVO.getQUANTITY());
@@ -107,8 +114,14 @@ public class ShopOrderServlet extends HttpServlet{
 				//兩種版本目前用LIST版本實做，傳過去為LIST<ShopOrderVO>
 				list.add(shopOrderVO);
 				// shopOrSvc.addShopOrder(shopOrderVO);
+				}
+			}else{
+				System.out.println("餘額不足");
 			}
+
+			Integer NowPoint=shopOrSvc.returnAfterShoppingPoint(amount, MEMNO);
 			shopOrSvc.addShopCartOrder(list);
+			System.out.println("消費前點數 :"+Point+",消費後點數"+NowPoint);
 			String url = "/MasterOrder/listallOrder.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
 																			// listallOrder.jsp
@@ -133,6 +146,22 @@ public class ShopOrderServlet extends HttpServlet{
 				System.out.println("ShopOrderServlet.java DELETE失敗 :" + e);
 			}
 
+		}
+		
+		if ("UPDATE_ORDERID".equals(action)) {// 來自CHECK.JSP的請求
+			
+			System.out.println("進入ShopOrderServlet.java.UPdate_orderid邏輯運算");
+			
+			try {
+			String url = "/MasterOrder/listallOrder.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
+				// listallOrder.jsp
+				successView.forward(req, res);
+				
+			} catch (Exception e) {
+				System.out.println("ShopOrderServlet.java DELETE失敗 :" + e);
+			}
+			
 		}
 		
 	}

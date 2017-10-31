@@ -2,20 +2,15 @@ package com.shop.model;
 
 import java.util.List;
 
-
 public class ShopService {
 	private ShopDAO_interface dao;
-	
-	
-	
+
 	public ShopService() {
 		dao = new ShopJNDIDAO();
 	}
-	
-	
-	
-	public ShopVO addEmp(int ITEMNO,int STOCK,int PRICE,int STATE,int CLASSNO,String NAME,String DES) {
-		
+
+	public ShopVO addEmp(int ITEMNO, int STOCK, int PRICE, int STATE, int CLASSNO, String NAME, String DES) {
+
 		ShopVO empVO = new ShopVO();
 		empVO.setITEMNO(ITEMNO);
 		empVO.setSTOCK(STOCK);
@@ -27,9 +22,9 @@ public class ShopService {
 		dao.insert(empVO);
 		return empVO;
 	}
-	
-	public ShopVO updateEmp(int ITEMNO,int STOCK,int PRICE,String NAME,String DES) {
-		
+
+	public ShopVO updateEmp(int ITEMNO, int STOCK, int PRICE, String NAME, String DES) {
+
 		ShopVO empVO = new ShopVO();
 		empVO.setITEMNO(ITEMNO);
 		empVO.setSTOCK(STOCK);
@@ -39,11 +34,11 @@ public class ShopService {
 		dao.update2(empVO);
 		return empVO;
 	}
-	
-	public void changeState(Integer itemno,Integer state) {
-		dao.changeState(itemno,state);
+
+	public void changeState(Integer itemno, Integer state) {
+		dao.changeState(itemno, state);
 	}
-	
+
 	public void deleteEmp(Integer shopNO) {
 		dao.delete(shopNO);
 	}
@@ -51,6 +46,7 @@ public class ShopService {
 	public ShopVO getOneEmp(Integer shopNO) {
 		return dao.findByPrimaryKey(shopNO);
 	}
+
 	public ShopVO getOneEmpbyString(String shopNO) {
 		return dao.findByPrimaryKeyByString(shopNO);
 	}
@@ -58,6 +54,7 @@ public class ShopService {
 	public List<ShopVO> getAll() {
 		return dao.getAll();
 	}
+
 	public List<ShopVO> getAllFromBack() {
 		return dao.getAllFromBack();
 	}

@@ -18,6 +18,8 @@ import com.shop.model.ShopVO;
 
 public class ShopOrderDAO implements ShopOrderDAO_interface{
 	private static final String GET_ALL_NO="SELECT ORDERNO FROM SHOPORDER";
+	private static final String GET_POINT_BYMEMNO="SELECT POINT FROM MEMBER WHERE MEM_NO=?";
+	private static final String UPDATE_MEMBER_POINT="UPDATE MEMBER  SET POINT=? WHERE MEM_NO=?";
 	private static final String GET_ALL="SELECT ORDERNO ,MEM_NO,ORDER_DATE,CUSTOMER_NAME FROM SHOPORDER";
 	private static final String GET_ALL_ORDER_BY_DATE="SELECT ORDERNO ,MEM_NO,ORDER_DATE,CUSTOMER_NAME FROM SHOPORDER ORDER BY ORDER_DATE DESC";
 	private static final String GET_ALL_ORDER_BY_ORDERNO="SELECT ORDERNO ,MEM_NO,ORDER_DATE,CUSTOMER_NAME FROM SHOPORDER ORDER BY ORDERNO";
@@ -29,7 +31,6 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 	private static final String GET_SALES_BY_ITEMNO="SELECT  OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) WHERE ITEMNO=?";
 	private static final String ADD_SHOPORDER="INSERT INTO SHOPORDER(ORDERNO,ORDER_DATE,MEM_NO,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME) VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(FORSHOPORDER.Nextval),6,'0'),CURRENT_TIMESTAMP,?,?,?,?)";
 	private static final String ADD_ORDERDETAIL="INSERT INTO ORDERDETAIL (ORDERNO,ITEMNO,ORDERCOUNT) VALUES(?,?,?)";
-	//修改某訂單明細的數量
 	private static final String UPDATE_EXIST_ORDERDETAIL="UPDATE  ORDERDETAIL SET  ORDERCOUNT=700 WHERE ORDERNO='20171027-000001' AND ITEMNO=4;";		
 			
 	private static DataSource ds = null;
@@ -237,6 +238,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 		PreparedStatement pstmt = null;
 		Savepoint savePoint = null;
 		String key = null;
+		
 		try {
 			String[] cols = { "ORDERNO" };
 			con = ds.getConnection();
@@ -350,5 +352,91 @@ public class ShopOrderDAO implements ShopOrderDAO_interface{
 				}
 			}
 		}
+	}
+
+	@Override
+	public Integer returnPoint(String memno) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Integer Point=null;
+		try {
+			con=ds.getConnection();
+			pstmt=con.prepareStatement(GET_POINT_BYMEMNO);
+			pstmt.setString(1, memno);
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+			Point=rs.getInt("POINT");
+			}
+			
+			System.out.println("Point"+Point);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(pstmt!=null){
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+			}
+			if(con!=null){
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return Point;
+	}
+
+	@Override
+	public Integer returnAfterShoppingPoint(Integer total,String memno) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Integer Point=null;
+		Integer NewPoint=null;
+		
+		try {
+			con=ds.getConnection();
+			pstmt=con.prepareStatement(GET_POINT_BYMEMNO);
+			pstmt.setString(1, memno);
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+			Point=rs.getInt("POINT");
+			}
+			NewPoint=Point-total;
+			pstmt.clearParameters();
+			pstmt=con.prepareStatement(UPDATE_MEMBER_POINT);
+			pstmt.setInt(1, (NewPoint));
+			pstmt.setString(2, memno);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(pstmt!=null){
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+			}
+			if(con!=null){
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return NewPoint;
 	}
 }

@@ -38,4 +38,10 @@ public class ShopOrderService {
 	public void delete(String orderno,String memno){
 		dao.delete(orderno, memno);
 	}
+	public Integer returnPoint(String memno) {
+		return dao.returnPoint(memno);
+	}
+	public Integer returnAfterShoppingPoint(Integer total,String memno) {
+		return dao.returnAfterShoppingPoint(total, memno);
+	}
 }

@@ -15,7 +15,17 @@ public class CartVO implements java.io.Serializable{
 	private Integer QUANTITY;
 	private Integer CLASSNO;
 	private String DES;
+	private Integer totalprice;
 	
+	public Integer getTotalprice() {
+		return totalprice;
+	}
+	public void setTotalprice(Integer totalprice) {
+		this.totalprice = totalprice;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	public Integer getPROMOTIOMNO() {
 		return PROMOTIOMNO;
 	}

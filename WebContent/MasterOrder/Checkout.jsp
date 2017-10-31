@@ -59,7 +59,7 @@
 						<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}"> 
 						<input type="hidden" name="amount" value="${amount}">
 						<!-- 						假裝會員已經登入了 -->
-						<input type="hidden" name="MEMNO" value="MEMNO0001">
+						<input type="hidden" name="MEMNO" value="MEM0001">
 						<input type="hidden" name="action" value="CONFIRM">
 					</FORM>
 <div  align="center" >
