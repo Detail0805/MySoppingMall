@@ -14,6 +14,8 @@ public class CartService {
 	}
 	//促銷活動商品查詢
 	public CartVO findshopbypro(Integer number,Integer quantity) {
+		System.out.println("進入CartService.findshopbypro");
+		System.out.println("傳入參數number quantity"+number+","+quantity);
 		return dao.findshopbypro(number,quantity);
 	}
 }

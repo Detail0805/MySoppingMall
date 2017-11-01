@@ -93,6 +93,52 @@ public class CartServlet extends HttpServlet {
 					if (!match)
 						buylist.add(CartVO);
 				}
+			}else if (action.equals("ADD2")) {
+				boolean match = false;
+				// 取得後來新增的書籍
+				CartService CartSvc = new CartService();
+				// 這邊測試用stock配合前網頁參數,實際參數是quantity
+				Integer ITEMNO = Integer.parseInt(req.getParameter("ITEMNO"));
+				Integer STOCK = Integer.parseInt(req.getParameter("STOCK"));
+
+				if (STOCK == 0) {
+					errorMsgs.add("商品數量不可為0");
+				}
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/listAll.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+				System.out.println("findshopbypro開始");
+				CartVO CartVO = CartSvc.findshopbypro(ITEMNO, STOCK);
+				// CartVO CartVO = getCartVO(req);
+				// 新增第一本書籍至購物車時
+				if (buylist == null) {
+					buylist = new Vector<CartVO>();
+					buylist.add(CartVO);
+				}  else {
+					for (int i = 0; i < buylist.size(); i++) {
+						CartVO cartVO = buylist.get(i);
+
+						// 假若新增的書籍和購物車的書籍一樣時
+						if (cartVO.getNAME().equals(CartVO.getNAME())) {
+							cartVO.setQUANTITY(cartVO.getQUANTITY() + CartVO.getQUANTITY());
+							buylist.setElementAt(cartVO, i);
+							System.out.println("新增到重複的商品名稱 :" + cartVO.getNAME());
+							match = true;
+							System.out.println("期標已被更改");
+						} // end of if name matches
+						// System.out.println("選擇的商品名稱"+cartVO.getNAME());
+						// System.out.println("選擇的商品數量"+cartVO.getQuantity());
+						// System.out.println("選擇的商品描述"+cartVO.getDES());
+						// System.out.println("選擇的商品編號"+cartVO.getITEMNO());
+						// System.out.println("選擇的商品價格"+cartVO.getPRICE());
+					} // end of for
+
+					// 假若新增的書籍和購物車的書籍不一樣時
+					if (!match)
+						buylist.add(CartVO);
+				}
 			}
 			
 			//每個CARTVO帶過去的參數有NAME,PRICE,DES,QUANTITY,ITEMNO

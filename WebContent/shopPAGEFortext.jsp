@@ -185,7 +185,7 @@ style type ="text/css">
 												<option value="${quantity}">${quantity}
 											</c:forEach> </select>
 											
-										<input type="hidden" name="action" value="ADD">
+										<input type="hidden" name="action" value="ADD2">
 										<input type="hidden" name="ITEMNO" value="${proVO.ITEMNO}" > 
 										<input type="submit" class="btn btn-sm btn-success" value="放入購物車">
 										</FORM>

@@ -1,11 +1,13 @@
 package com.shoporder.model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Savepoint;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -490,8 +492,28 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		Statement stat = null;
+		Date ORDERDATE = null;
+		Integer PROMOTIONNO=null;
 		try {
+			
 			con = ds.getConnection();
+			stat = con.createStatement();
+			rs=stat.executeQuery("SELECT ORDER_DATE FROM SHOPORDER WHERE ORDERNO='"+orderno+"'");
+			while(rs.next()){
+			ORDERDATE=rs.getDate("ORDER_DATE");}
+			System.out.println(ORDERDATE);
+			
+			pstmt = con.prepareStatement("SELECT PROMOTIONNO FROM PROMOTION WHERE BEGINDATE<? AND ENDDATE>?");
+			pstmt.setDate(1,ORDERDATE);
+			pstmt.setDate(2, ORDERDATE);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				PROMOTIONNO=rs.getInt("PROMOTIONNO");
+				}
+			System.out.println("PROMOTIONNO :"+PROMOTIONNO);
+			
+			pstmt.clearParameters();
 			pstmt = con.prepareStatement(GET_ALL_BUY_PRICE_BY_ORDERNO);
 			pstmt.setString(1, orderno);
 			rs = pstmt.executeQuery();
