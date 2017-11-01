@@ -606,16 +606,16 @@ INSERT INTO ORDERDETAIL (ORDERNO,ITEMNO,ORDERCOUNT) VALUES(to_char(sysdate,'yyyy
 
 --------------------------促銷專案假資料------------------------------
 INSERT INTO PROMOTION (PROMOTIONNO,NAME,BEGINDATE,ENDDATE) 
-VALUES(1,'中秋節活動',TO_DATE('2017/5/5', 'yyyy-mm-dd'),TO_DATE('2017/5/20', 'yyyy-mm-dd'));
+VALUES(1,'中秋節活動',TO_DATE('2017/9/1', 'yyyy-mm-dd'),TO_DATE('2017/9/30', 'yyyy-mm-dd'));
 
 INSERT INTO PROMOTION (PROMOTIONNO,NAME,BEGINDATE,ENDDATE) 
-VALUES(2,'端午節活動',TO_DATE('2017/6/5', 'yyyy-mm-dd'),TO_DATE('2017/6/15', 'yyyy-mm-dd'));
+VALUES(2,'端午節活動',TO_DATE('2017/10/1', 'yyyy-mm-dd'),TO_DATE('2017/10/30', 'yyyy-mm-dd'));
 
 INSERT INTO PROMOTION (PROMOTIONNO,NAME,BEGINDATE,ENDDATE) 
-VALUES(3,'萬聖節活動',TO_DATE('2017/7/4', 'yyyy-mm-dd'),TO_DATE('2017/7/12', 'yyyy-mm-dd'));
+VALUES(3,'萬聖節活動',TO_DATE('2017/11/1', 'yyyy-mm-dd'),TO_DATE('2017/11/30', 'yyyy-mm-dd'));
 
 INSERT INTO PROMOTION (PROMOTIONNO,NAME,BEGINDATE,ENDDATE) 
-VALUES(4,'聖誕節活動',TO_DATE('2017/10/5', 'yyyy-mm-dd'),TO_DATE('2017/12/25', 'yyyy-mm-dd'));
+VALUES(4,'聖誕節活動',TO_DATE('2017/12/1', 'yyyy-mm-dd'),TO_DATE('2017/12/30', 'yyyy-mm-dd'));
 
 
 -------------------------------促銷專案明細資料-----------------------------------------------
