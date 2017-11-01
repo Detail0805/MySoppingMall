@@ -151,7 +151,9 @@ public class ShopOrderServlet extends HttpServlet{
 		if ("UPDATE_ORDERID".equals(action)) {// 來自CHECK.JSP的請求
 			
 			System.out.println("進入ShopOrderServlet.java.UPdate_orderid邏輯運算");
-			
+			String orderid=req.getParameter("ORDERID");
+			String memberno=req.getParameter("MEMBERNO");
+			System.out.println("orderid :"+orderid+" ,memberno :"+memberno);
 			try {
 			String url = "/MasterOrder/listallOrder.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交

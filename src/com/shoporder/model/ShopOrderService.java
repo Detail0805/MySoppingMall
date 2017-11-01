@@ -19,7 +19,7 @@ public class ShopOrderService {
 	}
 	
 	public List<ShopOrderVO> getOneByMenNO(String menno){
-		return dao.getOneByMenNO(menno);
+		return dao.getAllByMenNO(menno);
 	}
 	public List<ShopOrderVO>getAllOrder(){
 		return dao.getAllOrder();

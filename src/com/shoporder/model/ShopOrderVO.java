@@ -14,6 +14,16 @@ public class ShopOrderVO {
 	private Date order_date;
 	private Integer price;
 	private Integer promotionprice;
+	private String des;
+	
+	public String getDes() {
+		return des;
+	}
+
+	public void setDes(String des) {
+		this.des = des;
+	}
+
 	public Integer getPrice() {
 		return price;
 	}

@@ -1,7 +1,17 @@
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 import com.shop.model.*;
 public class Test {
@@ -39,8 +49,35 @@ public class Test {
 		System.out.println(list.get(1));
 		System.out.println(list.get(2));
 		System.out.println(list.get(3));
-		System.out.println(list.get(4));
 		//§R°£¦¨¥\
+		String sqltext="SELECT OT.ORDERNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE,PD.PRICE AS NEWPRICE FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO) JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO JOIN PROMOTIONDETAIL PD ON SP.ITEMNO=PD.ITEMNO WHERE OT.ORDERNO='20171025-000040'";
+		DataSource ds = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+			try {
+				Context ctx = new InitialContext();
+				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+				try {
+					con=ds.getConnection();
+					pstmt=con.prepareStatement(sqltext);
+					rs=pstmt.executeQuery();
+					System.out.println(rs.wasNull());
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+			} catch (NamingException e) {
+				e.printStackTrace();
+				
+		}
+			
+			
+		
+		
 	}
 
 }

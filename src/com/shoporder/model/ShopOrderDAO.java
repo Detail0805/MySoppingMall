@@ -26,8 +26,8 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 	private static final String DELETE_ORDERDETAIL = "DELETE FROM ORDERDETAIL where ORDERNO =?";
 	private static final String DELETE_SHOPORDER = "DELETE FROM SHOPORDER where ORDERNO =?";
 
-	private static final String GET_ONE_BY_ORDERNO = "SELECT  OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) WHERE OT.orderno=?";
-	private static final String GET_ONE_BY_MEMNO = "SELECT  OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) WHERE MEM_NO=?";
+	private static final String GET_ALL_BY_ORDERNO = "SELECT  OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) WHERE OT.orderno=?";
+	private static final String GET_ALL_BY_MEMNO = "SELECT  OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) WHERE MEM_NO=?";
 	private static final String GET_SALES_BY_ITEMNO = "SELECT  OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) WHERE ITEMNO=?";
 	private static final String ADD_SHOPORDER = "INSERT INTO SHOPORDER(ORDERNO,ORDER_DATE,MEM_NO,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME) VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(FORSHOPORDER.Nextval),6,'0'),CURRENT_TIMESTAMP,?,?,?,?)";
 	private static final String ADD_ORDERDETAIL = "INSERT INTO ORDERDETAIL (ORDERNO,ITEMNO,ORDERCOUNT) VALUES(?,?,?)";
@@ -53,7 +53,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ONE_BY_ORDERNO);
+			pstmt = con.prepareStatement(GET_ALL_BY_ORDERNO);
 			pstmt.setString(1, orderno);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -70,7 +70,8 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 	}
 
 	@Override
-	public List<ShopOrderVO> getOneByMenNO(String menno) {
+	//取得該會員所購買的商品
+	public List<ShopOrderVO> getAllByMenNO(String menno) {
 		List<ShopOrderVO> list = new ArrayList<ShopOrderVO>();
 		ShopOrderVO shoporderVO = null;
 		Connection con = null;
@@ -79,7 +80,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ONE_BY_MEMNO);
+			pstmt = con.prepareStatement(GET_ALL_BY_MEMNO);
 			pstmt.setString(1, menno);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
