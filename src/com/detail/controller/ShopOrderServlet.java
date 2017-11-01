@@ -150,11 +150,31 @@ public class ShopOrderServlet extends HttpServlet{
 		if ("UPDATE_ORDERID".equals(action)) {// 來自CHECK.JSP的請求
 			
 			System.out.println("進入ShopOrderServlet.java.UPdate_orderid邏輯運算");
-			String orderid=req.getParameter("ORDERID");
-			String memberno=req.getParameter("MEMBERNO");
-			System.out.println("orderid :"+orderid+" ,memberno :"+memberno);
-			ShopOrderService shopOrderSvc= new ShopOrderService();
-			shopOrderSvc.getPomotionPriceByOrderNoIfHave(orderid);
+			String orderid = req.getParameter("ORDERID");
+			String memberno = req.getParameter("MEMBERNO");
+			List<ShopOrderVO> FinishShopOrderVO = null;
+			ShopOrderService shopOrderSvc = new ShopOrderService();
+			// liatinpromotion訂單中有特價的商品為哪些(多一個VO屬性newprice)
+			List<ShopOrderVO> ListInPromotion = shopOrderSvc.getPomotionPriceByOrderNoIfHave(orderid);
+			System.out.println("-----------------------------------------------");
+			// listall是全部訂購商品的明細
+			List<ShopOrderVO> ListAll = shopOrderSvc.getPriceByOrderNo(orderid);
+			// 雙迴圈比對是否有促銷價格，有的話覆蓋到listall
+			for (int i = 0; i < ListAll.size(); i++) {
+				ShopOrderVO ListShopVO = ListAll.get(i);
+				for (int j = 0; j < ListInPromotion.size(); j++) {
+					ShopOrderVO ListShopProVO = ListInPromotion.get(j);
+					if (ListShopVO.getItemno() == ListShopProVO.getItemno()) {
+						ListShopVO.setPrice(ListShopProVO.getPromotionprice());
+						System.out.println("原本ListShopVO.getPrice() :" + ListShopVO.getPrice()
+								+ " \nListShopProVO.getPromotionprice():" + ListShopProVO.getPromotionprice());
+						System.out.println("兩屬性值相同表是改變成功。");
+					}
+				}
+		}
+			for(int i=0;i<ListAll.size();i++){
+				System.out.println(ListAll.get(i).getPrice());
+			}
 			try {
 			String url = "/MasterOrder/listallOrder.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交

@@ -8,7 +8,9 @@ public interface ShopOrderDAO_interface {
 	public List<ShopOrderVO> getAllByOrderNo(String orderno);
 	//取得訂購該商品編號的所有人明細
 	public List<ShopOrderVO> getOneByItemNo(Integer pk);
-	//取得該商品編號是否有促銷
+	//取得該訂單編號的所有商品
+	public List<ShopOrderVO> getPriceByOrderNo(String orderno);
+	//取得該訂單編號有促銷的商品
 	public List<ShopOrderVO> getPomotionPriceByOrderNoIfHave(String orderno);
 	//取得該會員所購買的商品
 	public List<ShopOrderVO> getAllByMenNO(String menno);
