@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 import com.shop.model.ShopVO;
 
 public class ShopOrderDAO implements ShopOrderDAO_interface {
-	private static final String GET_ALL_NO = "SELECT ORDERNO FROM SHOPORDER";
+	private static final String GET_PROMOTIONPRICE_BY_ORDERNO = "SELECT OT.ORDERNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE,PD.PRICE AS NEWPRICE FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO) JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO JOIN PROMOTIONDETAIL PD ON SP.ITEMNO=PD.ITEMNO WHERE OT.ORDERNO=?";
 	private static final String GET_POINT_BYMEMNO = "SELECT POINT FROM MEMBER WHERE MEM_NO=?";
 	private static final String UPDATE_MEMBER_POINT = "UPDATE MEMBER  SET POINT=? WHERE MEM_NO=?";
 	private static final String GET_ALL = "SELECT ORDERNO ,MEM_NO,ORDER_DATE,CUSTOMER_NAME FROM SHOPORDER";
@@ -443,5 +443,42 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 	@Override
 	public Integer returnPointback(String Orderno) {
 		return null;
+	}
+
+	@Override
+	public List<ShopOrderVO> getPomotionPriceByOrderNoIfHave(String orderno) {
+		List<ShopOrderVO> list = new ArrayList<ShopOrderVO>();
+		ShopOrderVO shoporderVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_PROMOTIONPRICE_BY_ORDERNO);
+			pstmt.setString(1, orderno);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				shoporderVO = new ShopOrderVO();
+				shoporderVO.setOrderno(rs.getString("ORDERNO"));
+				shoporderVO.setItemno(rs.getInt("ITEMNO"));
+				shoporderVO.setOrdercount(rs.getInt("ORDERCOUNT"));
+				shoporderVO.setMemberno(rs.getString("MEM_NO"));
+				shoporderVO.setOrder_date(rs.getDate("ORDER_DATE"));
+				shoporderVO.setCustomer_address(rs.getString("CUSTOMER_ADDRESS"));
+				shoporderVO.setCustomer_phone(rs.getString("CUSTOMER_PHONE"));
+				shoporderVO.setCustomer_name(rs.getString("NAME"));
+				shoporderVO.setPrice(rs.getInt("PRICE"));
+				shoporderVO.setPromotionprice(rs.getInt("NEWPRICE"));
+				System.out.println("拿到的BEAN內容 :[ ORDERNO :"+shoporderVO.getOrderno()+" ,ITEMNO :"+shoporderVO.getOrdercount() +" ,ORDERCOUNT :"+shoporderVO.getOrdercount());
+				System.out.println(" ,MEM_NO :"+shoporderVO.getMemberno()+" ,ORDER_DATE :"+shoporderVO.getOrder_date() +" ,CUSTOMER_ADDRESS :"+shoporderVO.getCustomer_address());
+				System.out.println(" ,CUSTOMER_PHONE :"+shoporderVO.getCustomer_phone()+" ,NAME :"+shoporderVO.getCustomer_name() +" ,PRICE :"+shoporderVO.getPrice());
+				System.out.println(" ,NEWPRICE :"+shoporderVO.getPromotionprice());
+				
+				list.add(shoporderVO);
+			}
+		} catch (SQLException e) {
+			System.out.println("GET_ONE_BY_ORDERNO錯誤 :" + e);
+		}
+		return list;
 	}
 }

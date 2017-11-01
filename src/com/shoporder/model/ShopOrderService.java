@@ -47,4 +47,9 @@ public class ShopOrderService {
 	public Integer returnPointback(String orderno) {
 		return dao.returnPointback(orderno);
 	}
+	
+	public List<ShopOrderVO> getPomotionPriceByOrderNoIfHave(String orderno){
+		return dao.getPomotionPriceByOrderNoIfHave(orderno);
+	}
+	
 }

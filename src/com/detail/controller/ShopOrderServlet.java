@@ -145,7 +145,6 @@ public class ShopOrderServlet extends HttpServlet{
 			} catch (Exception e) {
 				System.out.println("ShopOrderServlet.java DELETE失敗 :" + e);
 			}
-
 		}
 		
 		if ("UPDATE_ORDERID".equals(action)) {// 來自CHECK.JSP的請求
@@ -154,16 +153,16 @@ public class ShopOrderServlet extends HttpServlet{
 			String orderid=req.getParameter("ORDERID");
 			String memberno=req.getParameter("MEMBERNO");
 			System.out.println("orderid :"+orderid+" ,memberno :"+memberno);
+			ShopOrderService shopOrderSvc= new ShopOrderService();
+			shopOrderSvc.getPomotionPriceByOrderNoIfHave(orderid);
 			try {
 			String url = "/MasterOrder/listallOrder.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
 				// listallOrder.jsp
 				successView.forward(req, res);
-				
 			} catch (Exception e) {
 				System.out.println("ShopOrderServlet.java DELETE失敗 :" + e);
 			}
-			
 		}
 		
 	}
