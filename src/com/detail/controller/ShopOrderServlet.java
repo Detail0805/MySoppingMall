@@ -33,7 +33,7 @@ public class ShopOrderServlet extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
-		if ("addshoporder".equals(action)) {// 來自listallpro.jsp的請求
+		if ("addshoporder".equals(action)) {// 來自ListAllPropro.jsp的請求
 			System.out.println("進入ShopOrderSevlet");
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -71,7 +71,7 @@ public class ShopOrderServlet extends HttpServlet{
 				}
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("shopordervo", shopordervo); 
-				String url = "/MasterOrder/listallOrder.jsp";
+				String url = "/MasterOrder/ListAllProOrder.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 			} catch (Exception e) {
@@ -122,9 +122,9 @@ public class ShopOrderServlet extends HttpServlet{
 			Integer NowPoint=shopOrSvc.returnAfterShoppingPoint(amount, MEMNO);
 			shopOrSvc.addShopCartOrder(list);
 			System.out.println("消費前點數 :"+Point+",消費後點數"+NowPoint);
-			String url = "/MasterOrder/listallOrder.jsp";
+			String url = "/MasterOrder/ListAllProOrder.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
-																			// listallOrder.jsp
+																			// ListAllProOrder.jsp
 			successView.forward(req, res);
 
 		} 
@@ -137,9 +137,9 @@ public class ShopOrderServlet extends HttpServlet{
 				ShopOrderService shopOrderSvc = new ShopOrderService();
 				shopOrderSvc.delete(ORDERID, MEMBERNO);
 
-				String url = "/MasterOrder/listallOrder.jsp";
+				String url = "/MasterOrder/ListAllProOrder.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
-																				// listallOrder.jsp
+																				// ListAllProOrder.jsp
 				successView.forward(req, res);
 
 			} catch (Exception e) {
@@ -156,17 +156,17 @@ public class ShopOrderServlet extends HttpServlet{
 			List<ShopOrderVO> FinishShopOrderVO = null;
 			ShopOrderService shopOrderSvc = new ShopOrderService();
 			// liatinpromotion訂單中有特價的商品為哪些(多一個VO屬性newprice)
-			List<ShopOrderVO> ListInPromotion = shopOrderSvc.getPomotionPriceByOrderNoIfHave(orderid);
-			System.out.println("搜尋全部商品時的ListInPromotion.size() :"+ListInPromotion.size());
+			List<ShopOrderVO> ListAllOrderShop = shopOrderSvc.getPomotionPriceByOrderNoIfHave(orderid);
+			System.out.println("搜尋全部商品時的ListAllOrderShop.size() :"+ListAllOrderShop.size());
 			System.out.println("-----------------------------------------------");
-			// listall是全部訂購商品的明細
-			List<ShopOrderVO> ListAll = shopOrderSvc.getPriceByOrderNo(orderid);
-			System.out.println("搜尋全部商品時的ListAll.size() :"+ListAll.size());
-			// 雙迴圈比對是否有促銷價格，有的話覆蓋到listall
-			for (int i = 0; i < ListAll.size(); i++) {
-				ShopOrderVO ListShopVO = ListAll.get(i);
-				for (int j = 0; j < ListInPromotion.size(); j++) {
-					ShopOrderVO ListShopProVO = ListInPromotion.get(j);
+			// ListAllPro是全部訂購商品的明細
+			List<ShopOrderVO> ListAllPro = shopOrderSvc.getPriceByOrderNo(orderid);
+			System.out.println("搜尋全部商品時的ListAllPro.size() :"+ListAllPro.size());
+			// 雙迴圈比對是否有促銷價格，有的話覆蓋到ListAllPro
+			for (int i = 0; i < ListAllPro.size(); i++) {
+				ShopOrderVO ListShopVO = ListAllPro.get(i);
+				for (int j = 0; j < ListAllOrderShop.size(); j++) {
+					ShopOrderVO ListShopProVO = ListAllOrderShop.get(j);
 					if (ListShopVO.getItemno() == ListShopProVO.getItemno()) {
 						ListShopVO.setPrice(ListShopProVO.getPromotionprice());
 						System.out.println("原本ListShopVO.getPrice() :" + ListShopVO.getPrice()
@@ -176,18 +176,18 @@ public class ShopOrderServlet extends HttpServlet{
 				}
 			}
 			//算出此筆訂單的總金額
-			for (int i = 0; i < ListAll.size(); i++) {
-				total+=ListAll.get(i).getPrice();
-				System.out.println("ListAll.size() :" + ListAll.size());
-				System.out.println("ListAll.get(i).getPrice() :" + ListAll.get(i).getPrice());
-				System.out.println("ListAll.get(i).getItemno() :"+ListAll.get(i).getItemno());
-				System.out.println("ListAll.get(i).getItemno() :"+ListAll.get(i).getCustomer_name());
-				System.out.println("ListAll.get(i).getItemno() :"+ListAll.get(i).getPrice());
+			for (int i = 0; i < ListAllPro.size(); i++) {
+				total+=ListAllPro.get(i).getPrice();
+				System.out.println("ListAllPro.size() :" + ListAllPro.size());
+				System.out.println("ListAllPro.get(i).getPrice() :" + ListAllPro.get(i).getPrice());
+				System.out.println("ListAllPro.get(i).getItemno() :"+ListAllPro.get(i).getItemno());
+				System.out.println("ListAllPro.get(i).getItemno() :"+ListAllPro.get(i).getCustomer_name());
+				System.out.println("ListAllPro.get(i).getItemno() :"+ListAllPro.get(i).getPrice());
 			}
 			System.out.println("總金額 :"+total);
 			try {
 				req.setAttribute("total", total);
-				req.setAttribute("OrderList", ListAll);
+				req.setAttribute("OrderList", ListAllPro);
 				String url = "/MasterOrder/Update_one_order.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
 																				// Update_one_order.jsp
