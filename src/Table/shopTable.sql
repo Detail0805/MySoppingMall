@@ -373,8 +373,8 @@ WHERE OT.ORDERNO='20171030-000040';
 SELECT ORDER_DATE FROM SHOPORDER WHERE ORDERNO='20171030-000040';
 --------------------------------------利用會員訂單時間去查詢當下有無促銷-----------------------------------------
 SELECT PROMOTIONNO FROM PROMOTION WHERE 
-BEGINDATE<to_date('2017-11-01', 'yyyy-mm-dd') 
-AND ENDDATE>to_date('2017-10-25', 'yyyy-mm-dd') ;
+BEGINDATE<=to_date('2017-11-01', 'yyyy-mm-dd') 
+AND ENDDATE>=to_date('2017-10-25', 'yyyy-mm-dd') ;
 
 --------------------------------------查詢特定會員編號購買的商品+促銷價格(可設定時間+PROMOTIONNO)-----------------------------------------
 SELECT OT.ORDERNO,PD.PROMOTIONNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE,PD.PRICE AS NEWPRICE

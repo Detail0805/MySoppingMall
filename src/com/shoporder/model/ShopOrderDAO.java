@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 import com.shop.model.ShopVO;
 
 public class ShopOrderDAO implements ShopOrderDAO_interface {
-	private static final String GET_PROMOTIONPRICE_BY_ORDERNO = "SELECT OT.ORDERNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE,PD.PRICE AS NEWPRICE FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO) JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO JOIN PROMOTIONDETAIL PD ON SP.ITEMNO=PD.ITEMNO WHERE OT.ORDERNO=?";
+	private static final String GET_PROMOTIONPRICE_BY_ORDERNO ="SELECT OT.ORDERNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO) JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO  WHERE OT.ORDERNO=?"; 
 	private static final String GET_ALL_BUY_PRICE_BY_ORDERNO = "SELECT OT.ORDERNO,PD.PROMOTIONNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE,PD.PRICE AS NEWPRICE FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO)  JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO JOIN PROMOTIONDETAIL PD ON SP.ITEMNO=PD.ITEMNO WHERE OT.ORDERNO=? AND PD.PROMOTIONNO=?";
 	private static final String GET_ALL_BUY_PRICE_BY_ORDERNO2 = "SELECT OT.ORDERNO,PD.PROMOTIONNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE,PD.PRICE AS NEWPRICE FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO)  JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO JOIN PROMOTIONDETAIL PD ON SP.ITEMNO=PD.ITEMNO WHERE OT.ORDERNO=?";
 	private static final String GET_POINT_BYMEMNO = "SELECT POINT FROM MEMBER WHERE MEM_NO=?";
@@ -450,7 +450,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 	}
 
 	@Override
-	public List<ShopOrderVO> getPomotionPriceByOrderNoIfHave(String orderno) {
+	public List<ShopOrderVO> getPriceByOrderNoIfHave(String orderno) {
 		List<ShopOrderVO> list = new ArrayList<ShopOrderVO>();
 		ShopOrderVO shoporderVO = null;
 		Connection con = null;
@@ -471,8 +471,8 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 				shoporderVO.setCustomer_address(rs.getString("CUSTOMER_ADDRESS"));
 				shoporderVO.setCustomer_phone(rs.getString("CUSTOMER_PHONE"));
 				shoporderVO.setCustomer_name(rs.getString("NAME"));
+				shoporderVO.setShopname(rs.getString("CUSTOMER_NAME"));
 				shoporderVO.setPrice(rs.getInt("PRICE"));
-				shoporderVO.setPromotionprice(rs.getInt("NEWPRICE"));
 				// System.out.println("拿到的BEAN內容 :[ ORDERNO :"+shoporderVO.getOrderno()+"
 				// ,ITEMNO :"+shoporderVO.getOrdercount() +" ,ORDERCOUNT
 				// :"+shoporderVO.getOrdercount());
@@ -537,13 +537,13 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 					shoporderVO.setCustomer_address(rs.getString("CUSTOMER_ADDRESS"));
 					shoporderVO.setCustomer_phone(rs.getString("CUSTOMER_PHONE"));
 					shoporderVO.setCustomer_name(rs.getString("NAME"));
-					shoporderVO.setPrice(rs.getInt("PRICE"));
+					shoporderVO.setPrice(rs.getInt("NEWPRICE"));
 					System.out.println("拿到的BEAN內容 :[ ORDERNO :" + shoporderVO.getOrderno() + " ,ITEMNO :"
 							+ shoporderVO.getOrdercount() + " ,ORDERCOUNT :" + shoporderVO.getOrdercount());
 					System.out.println(" ,MEM_NO :" + shoporderVO.getMemberno() + " ,ORDER_DATE :"
 							+ shoporderVO.getOrder_date() + " ,CUSTOMER_ADDRESS :" + shoporderVO.getCustomer_address());
-					System.out.println(" ,CUSTOMER_PHONE :" + shoporderVO.getCustomer_phone() + " ,NAME :"
-							+ shoporderVO.getCustomer_name() + " ,PRICE :" + shoporderVO.getPrice());
+					System.out.println(" ,CUSTOMER_PHONE :" + shoporderVO.getCustomer_phone() + " ,SHOPNAME :"
+							+ shoporderVO.getCustomer_name() +",NAME :"+shoporderVO.getCustomer_name()+ " ,PRICE :" + shoporderVO.getPrice());
 
 					list.add(shoporderVO);
 				}

@@ -22,13 +22,13 @@
 		<th>會員編號</th>
 		<th>商品編號</th>
 		<th>訂購數量</th>
-		<th>會員名稱</th>
+		<th>商品名稱</th>
+		<th>會員名子</th>
 		<th>會員地址</th>
 		<th>會員手機</th>
 		<th>訂單成立時間</th>
 		<th>商品價格</th>
 		<th>按鈕1</th>
-
 		<th>按鈕2</th>
 		
 
@@ -42,6 +42,7 @@
 				<td>${OrderList.itemno}</td>
 				<td>${OrderList.ordercount}</td>
 				<td>${OrderList.customer_name}</td>
+				<td>${OrderList.shopname}</td>
 				<td>${OrderList.customer_address}</td>
 				<td>${OrderList.customer_phone}</td>
 				<td>${OrderList.order_date}</td>
@@ -65,9 +66,9 @@
 		</tr>
 
 </c:forEach>
-	total=<%=total%> 
-EL total=${total}
 </table>
-
+total=<%=total%> 
+EL total=${total}
+Update_one_order.jsp
 </body>
 </html>

@@ -15,7 +15,16 @@ public class ShopOrderVO {
 	private Integer price;
 	private Integer promotionprice;
 	private String des;
+	private String shopname;
 	
+	public String getShopname() {
+		return shopname;
+	}
+
+	public void setShopname(String shopname) {
+		this.shopname = shopname;
+	}
+
 	public String getDes() {
 		return des;
 	}

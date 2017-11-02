@@ -11,7 +11,7 @@ public interface ShopOrderDAO_interface {
 	//取得該訂單編號的所有商品
 	public List<ShopOrderVO> getPriceByOrderNo(String orderno);
 	//取得該訂單編號有促銷的商品
-	public List<ShopOrderVO> getPomotionPriceByOrderNoIfHave(String orderno);
+	public List<ShopOrderVO> getPriceByOrderNoIfHave(String orderno);
 	//取得該會員所購買的商品
 	public List<ShopOrderVO> getAllByMenNO(String menno);
 	//取得所有的訂單&對應的會員
