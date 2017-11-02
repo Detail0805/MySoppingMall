@@ -157,9 +157,11 @@ public class ShopOrderServlet extends HttpServlet{
 			ShopOrderService shopOrderSvc = new ShopOrderService();
 			// liatinpromotion訂單中有特價的商品為哪些(多一個VO屬性newprice)
 			List<ShopOrderVO> ListInPromotion = shopOrderSvc.getPomotionPriceByOrderNoIfHave(orderid);
+			System.out.println("搜尋全部商品時的ListInPromotion.size() :"+ListInPromotion.size());
 			System.out.println("-----------------------------------------------");
 			// listall是全部訂購商品的明細
 			List<ShopOrderVO> ListAll = shopOrderSvc.getPriceByOrderNo(orderid);
+			System.out.println("搜尋全部商品時的ListAll.size() :"+ListAll.size());
 			// 雙迴圈比對是否有促銷價格，有的話覆蓋到listall
 			for (int i = 0; i < ListAll.size(); i++) {
 				ShopOrderVO ListShopVO = ListAll.get(i);
@@ -176,7 +178,11 @@ public class ShopOrderServlet extends HttpServlet{
 			//算出此筆訂單的總金額
 			for (int i = 0; i < ListAll.size(); i++) {
 				total+=ListAll.get(i).getPrice();
+				System.out.println("ListAll.size() :" + ListAll.size());
 				System.out.println("ListAll.get(i).getPrice() :" + ListAll.get(i).getPrice());
+				System.out.println("ListAll.get(i).getItemno() :"+ListAll.get(i).getItemno());
+				System.out.println("ListAll.get(i).getItemno() :"+ListAll.get(i).getCustomer_name());
+				System.out.println("ListAll.get(i).getItemno() :"+ListAll.get(i).getPrice());
 			}
 			System.out.println("總金額 :"+total);
 			try {
