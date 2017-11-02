@@ -148,10 +148,11 @@ public class ShopOrderServlet extends HttpServlet{
 		}
 		
 		if ("UPDATE_ORDERID".equals(action)) {// 來自CHECK.JSP的請求
-			
+
 			System.out.println("進入ShopOrderServlet.java.UPdate_orderid邏輯運算");
 			String orderid = req.getParameter("ORDERID");
 			String memberno = req.getParameter("MEMBERNO");
+			Integer total=0;
 			List<ShopOrderVO> FinishShopOrderVO = null;
 			ShopOrderService shopOrderSvc = new ShopOrderService();
 			// liatinpromotion訂單中有特價的商品為哪些(多一個VO屬性newprice)
@@ -171,20 +172,25 @@ public class ShopOrderServlet extends HttpServlet{
 						System.out.println("兩屬性值相同表是改變成功。");
 					}
 				}
-		}
-			for(int i=0;i<ListAll.size();i++){
-				System.out.println(ListAll.get(i).getPrice());
 			}
+			//算出此筆訂單的總金額
+			for (int i = 0; i < ListAll.size(); i++) {
+				total+=ListAll.get(i).getPrice();
+				System.out.println("ListAll.get(i).getPrice() :" + ListAll.get(i).getPrice());
+			}
+			System.out.println("總金額 :"+total);
 			try {
-			String url = "/MasterOrder/listallOrder.jsp";
+				req.setAttribute("total", total);
+				req.setAttribute("OrderList", ListAll);
+				String url = "/MasterOrder/Update_one_order.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
-				// listallOrder.jsp
+																				// Update_one_order.jsp
 				successView.forward(req, res);
 			} catch (Exception e) {
 				System.out.println("ShopOrderServlet.java DELETE失敗 :" + e);
 			}
 		}
-		
+
 	}
 }
 
