@@ -4,6 +4,26 @@
 <head>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <title>Mode II 範例程式  - Cart.jsp</title>
+ <script type="text/javascript">
+
+		function deleteitem() {
+			var b = window.confirm("您確認刪除嗎?");
+			if (b) {
+				return true;
+			} else {
+				return false
+			}
+		}
+
+		function clearCart() {
+			var b = window.confirm("您確定清空嗎?");
+			if (b) {
+				return true;
+			} else {
+				return false
+			}
+		}
+	</script>
 </head>
 <body bgcolor="#FFFFFF">
 
@@ -37,21 +57,22 @@
 		
 		
 		<td width="100"><div align="center">
-          <form name="deleteForm" action="cart.do" method="POST">
+          <form name="deleteForm" action="cart.do" method="POST" onsubmit="return deleteitem()">
               <input type="hidden" name="action" value="DELETE">
               <input type="hidden" name="del" value="<%= index %>">
-              <input type="submit" value="刪除"></div>
+              <input type="submit"  value="刪除"></div>
         </td></form>
 	</tr>
 	<%}%>
 </table>
+
 <p>
           <form name="checkoutForm" action="cart.do" method="POST">
               <input type="hidden" name="action"	value="CHECKOUT"> 
               <input type="submit" value="付款結帳">
           </form>
           
-                    <form name="claerForm" action="cart.do" method="POST">
+                    <form name="claerForm" action="cart.do" method="POST" onsubmit="return clearCart()">
               <input type="hidden" name="action"value="CLEARCART"> 
               <input type="submit" value="清空購物車">
           </form>

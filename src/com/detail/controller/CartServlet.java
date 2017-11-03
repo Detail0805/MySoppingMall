@@ -151,6 +151,7 @@ public class CartServlet extends HttpServlet {
 
 		// 結帳，計算購物車書籍價錢總數
 		else if (action.equals("CHECKOUT")) {
+			
 			float total = 0;
 			for (int i = 0; i < buylist.size(); i++) {
 				CartVO order = buylist.get(i);
