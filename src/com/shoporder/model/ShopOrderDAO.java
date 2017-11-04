@@ -24,7 +24,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 	private static final String GET_ALL_BUY_PRICE_BY_ORDERNO2 = "SELECT OT.ORDERNO,PD.PROMOTIONNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE,PD.PRICE AS NEWPRICE FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO)  JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO JOIN PROMOTIONDETAIL PD ON SP.ITEMNO=PD.ITEMNO WHERE OT.ORDERNO=?";
 	private static final String GET_POINT_BYMEMNO = "SELECT POINT FROM MEMBER WHERE MEM_NO=?";
 	private static final String UPDATE_MEMBER_POINT = "UPDATE MEMBER  SET POINT=? WHERE MEM_NO=?";
-	private static final String GET_ALL = "SELECT ORDERNO ,MEM_NO,ORDER_DATE,CUSTOMER_NAME FROM SHOPORDER";
+	private static final String GET_ALL = "SELECT ORDERNO ,MEM_NO,ORDER_DATE,CUSTOMER_NAME FROM SHOPORDER ORDER BY ORDERNO";
 	private static final String GET_ALL_ORDER_BY_DATE = "SELECT ORDERNO ,MEM_NO,ORDER_DATE,CUSTOMER_NAME FROM SHOPORDER ORDER BY ORDER_DATE DESC";
 	private static final String GET_ALL_ORDER_BY_ORDERNO = "SELECT ORDERNO ,MEM_NO,ORDER_DATE,CUSTOMER_NAME FROM SHOPORDER ORDER BY ORDERNO";
 	private static final String DELETE_ORDERDETAIL = "DELETE FROM ORDERDETAIL where ORDERNO =?";
@@ -69,6 +69,22 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 		} catch (SQLException e) {
 			System.out.println("GET_ONE_BY_ORDERNO¿ù»~ :" + e);
 
+		}finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return list;
 	}
@@ -104,6 +120,22 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 		} catch (SQLException e) {
 			System.out.println("GET_ALL_NO¿ù»~ :" + e);
 
+		}finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return list;
 	}
@@ -161,6 +193,21 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 			}
 		} catch (SQLException e) {
 			System.out.println("GET_ONE_BY_ORDERNO¿ù»~ :" + e);
+		}finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
 		}
 		return list;
 	}
@@ -487,6 +534,22 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 			}
 		} catch (SQLException e) {
 			System.out.println("GET_PROMOTIONPRICE_BY_ORDERNO¿ù»~ :" + e);
+		}finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return list;
 	}
@@ -574,6 +637,22 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 			}
 		} catch (SQLException e) {
 			System.out.println("GET_ONE_BY_ORDERNO2¿ù»~ :" + e);
+		}finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return list;
 	}

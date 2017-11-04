@@ -2,7 +2,7 @@ package com.shoporder.model;
 
 import java.sql.Date;
 
-public class ShopOrderVO {
+public class ShopOrderVO implements java.io.Serializable{
 
 	private String orderno;
 	private Integer itemno;

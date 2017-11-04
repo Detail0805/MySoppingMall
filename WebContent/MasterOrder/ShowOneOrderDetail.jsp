@@ -8,36 +8,18 @@
 <%
 	List<ShopOrderVO> OrderList= (List<ShopOrderVO>) request.getAttribute("OrderList");
 	Integer total =(Integer)request.getAttribute("total");
-	session.setAttribute("OrderList", OrderList);
 %>
-<%int i=0;%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
 <title>Insert title here</title>
- <script type="text/javascript">
-    function changeQuantity(input) {
 
-        var quantity = input.value; // 得到要修改的数量
-
-        //檢查是否為數字
-        if(isNaN(quantity)) {
-            alert("請輸入數字!");
-            //還原原來的值
-            input.value = oldValue;
-            return;
-        }
-        //檢查輸入是否為正整數
-        if(quantity<0 || quantity!=parseInt(quantity)) {    // 1.1 != 1     parseInt("abc")返回NaN
-            alert("請輸入一個正整數!!");
-            input.value = oldValue;
-            return;
-        }
-
-    }
-</script>
 </head>
 <body>
+<div align='center'>
+<a href="javascript:history.go(-1);" >回上一頁</a></div>
+
 <table border='1' bordercolor='#CCCCFF' width='800' align='center'>
 total :${total}
 	<tr>
@@ -51,12 +33,7 @@ total :${total}
 		<th>會員手機</th>
 		<th>訂單成立時間</th>
 		<th>商品價格</th>
-		<th>按鈕1</th>
-
-		
-
 	</tr>
-	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/order.do"  align="center" >
 	<c:forEach var="OrderList" items="${OrderList}">
 	
 		<tr align='center' valign='middle'>
@@ -71,24 +48,9 @@ total :${total}
 				<td>${OrderList.customer_phone}</td>
 				<td>${OrderList.order_date}</td>
 				<td>${OrderList.price}</td>
-
-				<td>
-			     <input type="text" name="quantity<%=i++%>" onchange="changeQuantity(this)" value="${OrderList.ordercount}" style="width: 35px"  />
-			     <input type="text" name="quantity"  value="${OrderList.ordercount}" style="width: 35px"  />
-			     </td>
-			</td>
 		</tr>
 </c:forEach>
 </table>
-	<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}">
-	<input type="hidden" name="amount" id="amount" value="${total}">
-	<!-- 						假裝會員已經登入了 -->
-	<input type="hidden" name="MEMNO" value="MEM0001">
-	<input type="hidden" name="action" value="CONFIRM_UPDATE_ORDERID">
-	<div align="center">
-		<input type="submit" value="確認購買">
-	</div>
-	</FORM>
 total=<%=total%> 
 EL total=${total}
 Update_one_order.jsp

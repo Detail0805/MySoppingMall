@@ -47,7 +47,7 @@
 	<c:forEach var="shoporderVO" items="${list}">
 		<tr align='center' valign='middle'>
 		
-			<td>${shoporderVO.orderno}</td>
+			<td><a href="<%=request.getContextPath()%>/order.do?action=LOOKORDERID&ORDERID=${shoporderVO.orderno}&MEMBERNO=${shoporderVO.memberno}">${shoporderVO.orderno}</a></td>
 			<td>${shoporderVO.memberno}</td>
 			<td>${shoporderVO.order_date}</td>
 			<td>${shoporderVO.customer_name}</td>
