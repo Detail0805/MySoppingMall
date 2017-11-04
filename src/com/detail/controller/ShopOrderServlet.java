@@ -185,7 +185,7 @@ public class ShopOrderServlet extends HttpServlet{
 			}
 			//算出此筆訂單的總金額
 			for (int i = 0; i < ListAllOrderShop.size(); i++) {
-				total+=ListAllOrderShop.get(i).getPrice();
+				total+=ListAllOrderShop.get(i).getPrice()*ListAllOrderShop.get(i).getOrdercount();
 				System.out.println("ListAllPro.size() :" + ListAllOrderShop.size());
 				System.out.println("ListAllPro.get(i).getPrice() :" + ListAllOrderShop.get(i).getPrice());
 				System.out.println("ListAllPro.get(i).getItemno() :"+ListAllOrderShop.get(i).getItemno());
@@ -213,52 +213,28 @@ public class ShopOrderServlet extends HttpServlet{
 			}
 		}
 		if ("CONFIRM_UPDATE_ORDERID".equals(action)) {// 來自CHECK.JSP的請求
-
+			Integer amount=new Integer(req.getParameter("amount"));
+			Integer newTotal=0;
+			String Orderno=null;
+			
 			HttpSession session = req.getSession();
 			List<ShopOrderVO> OrderList = (List<ShopOrderVO>) session.getAttribute("OrderList");
-
 			for(int i=0;i<OrderList.size();i++){
 				ShopOrderVO ShopOrderVO = OrderList.get(i);
 				ShopOrderVO.setOrdercount(new Integer(req.getParameter("quantity"+i)));
-				System.out.println("所改變的數量 :"+req.getParameter("quantity"+i));
+				newTotal+=ShopOrderVO.getOrdercount()*ShopOrderVO.getPrice();
+				System.out.println("新的價格 :"+newTotal);
+				Orderno=ShopOrderVO.getOrderno();
 			}
-
-//			
-//			List<ShopOrderVO> list = new ArrayList<ShopOrderVO>();
-//			ShopOrderService shopOrSvc = new ShopOrderService();
-//			
-//			Integer amount=(int) (Float.parseFloat(req.getParameter("amount")));
-//			String MEMNO=req.getParameter("MEMNO");
-//			Point=shopOrSvc.returnPoint(MEMNO);
-//			ShopOrderVO shopOrderVO = null;
-//			//這邊要先查詢一次這位會員的POINT有沒有低於總金額在執行下面動做
-//			if(Point>=amount) {
-//				System.out.println("餘額足夠");
-//			for (int i = 0; i < buylist.size(); i++) {
-//				CartVO cartVO = buylist.get(i);
-//				shopOrderVO = new ShopOrderVO();
-////				System.out.println("第 " + i + "次取出BEAN的值作測試");
-////				System.out.println("cartVO.getNAME()" + cartVO.getNAME());
-//				shopOrderVO.setItemno(cartVO.getITEMNO());
-//				shopOrderVO.setMemberno(MEMNO);
-////				System.out.println("shopOrderVO.setItemno:" + shopOrderVO.getItemno());
-////				System.out.println("cartVO.getITEMNO()" + cartVO.getITEMNO());
-////				System.out.println("cartVO.getQUANTITY()" + cartVO.getQUANTITY());
-//				shopOrderVO.setOrdercount(cartVO.getQUANTITY());
-//				// 第一次的時候還需要設置用戶訂單地址，但那可以從會原那邊撈這邊先不實做
-////				System.out.println("shopOrderVO.getOrdercount():" + shopOrderVO.getOrdercount());
-////				System.out.println("cartVO.getDES()" + cartVO.getDES().substring(0, 5));
-////				System.out.println("cartVO.getPRICE()" + cartVO.getPRICE());
-//				//兩種版本目前用LIST版本實做，傳過去為LIST<ShopOrderVO>
-//				list.add(shopOrderVO);
-//				// shopOrSvc.addShopOrder(shopOrderVO);
-//				}
-//			}else{
-//				System.out.println("餘額不足訂單未成立");
-//			}
-//
-//			Integer NowPoint=shopOrSvc.returnAfterShoppingPoint(amount, MEMNO);
-//			shopOrSvc.addShopCartOrder(list);
+			Integer finalTotal=amount-newTotal;
+			ShopOrderService shopOrSvc = new ShopOrderService();
+			Integer Point=shopOrSvc.returnPoint(OrderList.get(0).getMemberno());
+			if(Point>finalTotal) {
+			shopOrSvc.updateShopOrder(OrderList,finalTotal);
+			}else {
+				System.out.println("餘額不足動作失敗");
+			}
+			
 //			System.out.println("消費前點數 :"+Point+",消費後點數"+NowPoint);
 //			String url = "/MasterOrder/listallOrder.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交

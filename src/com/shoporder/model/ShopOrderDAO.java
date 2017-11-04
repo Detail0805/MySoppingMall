@@ -213,11 +213,70 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 	}
 
 	@Override
-	public List<ShopOrderVO> updateShopOrder() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public List<ShopOrderVO> updateShopOrder(List<ShopOrderVO> shoporderVO,Integer finalTotal) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String key = null;
+		Integer Point = null;
+		String orderno=shoporderVO.get(0).getOrderno();
+		String memno=shoporderVO.get(0).getMemberno();
+		
+		try {
+			con = ds.getConnection();
+			// 大量更動資料庫，不能有錯誤。
+			con.setAutoCommit(false);
+			// 再同時新增訂單明細內容
+			for (int i = 0; i < shoporderVO.size(); i++) {
+				if(shoporderVO.get(i).getOrdercount()!=0) {
+				pstmt = con.prepareStatement("UPDATE ORDERDETAIL SET ORDERCOUNT=? WHERE ITEMNO=? AND ORDERNO=?");
 
+				
+				pstmt.setInt(1, shoporderVO.get(i).getOrdercount());
+				pstmt.setInt(2, shoporderVO.get(i).getItemno());
+				pstmt.setString(3, shoporderVO.get(i).getOrderno());
+				pstmt.executeUpdate();
+				}else if (shoporderVO.get(i).getOrdercount()==0) {
+					pstmt = con.prepareStatement("DELETE  FROM ORDERDETAIL WHERE ITEMNO=? AND ORDERNO=?");
+					pstmt.setInt(1, shoporderVO.get(i).getItemno());
+					pstmt.setString(2, shoporderVO.get(i).getOrderno());
+					pstmt.executeUpdate();
+				}
+			}
+			pstmt=con.prepareStatement("UPDATE MEMBER SET POINT =POINT+(?) WHERE MEM_NO=?");
+			pstmt.setInt(1, finalTotal);
+			pstmt.setString(2, memno);
+			pstmt.executeUpdate();
+			con.commit();
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			try {
+				con.rollback();
+				System.out.println("updateShopOrder.java新增訂單錯誤,執行rollback :" + e);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+			System.out.println("ShopOrderDAO錯誤");
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return shoporderVO;
+	}
 	@Override
 	public void addShopOrder(ShopOrderVO shoporderVO) {
 		Connection con = null;

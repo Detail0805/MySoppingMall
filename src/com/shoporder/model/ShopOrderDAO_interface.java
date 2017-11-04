@@ -21,7 +21,7 @@ public interface ShopOrderDAO_interface {
 	//購物車商品批次新增
 	public void addShopCartOrder(List<ShopOrderVO> shoporderVO);
 	//更新訂單
-	public List<ShopOrderVO> updateShopOrder();
+	public List<ShopOrderVO> updateShopOrder(List<ShopOrderVO> shoporderVO,Integer finalTotal);
 	//用ITEMNO&ORDERID刪除
 	public void delete(String orderno,String memno);
 	//回報會員的儲值點數

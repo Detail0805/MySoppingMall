@@ -74,8 +74,7 @@ total :${total}
 
 				<td>
 			     <input type="text" name="quantity<%=i++%>" onchange="changeQuantity(this)" value="${OrderList.ordercount}" style="width: 35px"  />
-			     <input type="text" name="quantity"  value="${OrderList.ordercount}" style="width: 35px"  />
-			     </td>
+   </td>
 			</td>
 		</tr>
 </c:forEach>

@@ -28,8 +28,8 @@ public class ShopOrderService {
 		dao.addShopOrder(shoporderVO);
 		return shoporderVO;
 	}
-	public List<ShopOrderVO> updateShopOrder(){
-		return dao.updateShopOrder();
+	public List<ShopOrderVO> updateShopOrder(List<ShopOrderVO> shoporderVO,Integer finalTotal){
+		return dao.updateShopOrder(shoporderVO,finalTotal);
 	}
 	public List<ShopOrderVO> addShopCartOrder(List<ShopOrderVO> shoporderVO){
 			dao.addShopCartOrder(shoporderVO);
