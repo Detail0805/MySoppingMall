@@ -40,8 +40,10 @@
 		<th>會員編號</th>
 		<th>訂單成立日期</th>
 		<th>會員編號</th>
+		<th>訂單狀態</th>
 		<th>刪除訂單</th>
 		<th>修改訂單</th>
+
 
 	</tr>
 	<c:forEach var="shoporderVO" items="${list}">
@@ -51,6 +53,7 @@
 			<td>${shoporderVO.memberno}</td>
 			<td>${shoporderVO.order_date}</td>
 			<td>${shoporderVO.customer_name}</td>
+			<td>${shoporderVO.order_state}</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/order.do">
 			     <input type="submit" value="刪除">

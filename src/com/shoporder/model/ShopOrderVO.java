@@ -16,7 +16,16 @@ public class ShopOrderVO implements java.io.Serializable{
 	private Integer promotionprice;
 	private String des;
 	private String shopname;
+	private String order_state;
 	
+	public String getOrder_state() {
+		return order_state;
+	}
+
+	public void setOrder_state(String order_state) {
+		this.order_state = order_state;
+	}
+
 	public String getShopname() {
 		return shopname;
 	}
