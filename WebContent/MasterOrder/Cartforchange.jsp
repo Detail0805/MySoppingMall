@@ -149,12 +149,7 @@
 							<tr>
 								<td> </td>
 								<td> </td>
-								<td> 
-								<td><a href="<%=request.getContextPath()%>/shopPAGEFortext.jsp" class="btn btn-warning"
-									role="button"><span class="glyphicon glyphicon-remove"></span></span>
-									    <input type="hidden" name="action"value="CLEARCART">
-									清空購物車</a></td>
-								</td>
+								<td> </td>
 								<td><a href="<%=request.getContextPath()%>/shopPAGEFortext.jsp" class="btn btn-default"
 									role="button"><span
 										class="glyphicon glyphicon-shopping-cart"></span> Continue
@@ -162,7 +157,6 @@
 								<td>
 								  <form name="checkoutForm" action="<%=request.getContextPath()%>/cart.do" method="POST">
 									<button type="submit" class="btn btn-success">
-									<input type="hidden" name="action"	value="CHECKOUT"> 
 										Checkout <span class="glyphicon glyphicon-play"></span>
 									</button>
 									</form>

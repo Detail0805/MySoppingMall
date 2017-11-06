@@ -2,79 +2,124 @@
 <%@ page import="java.util.* , com.detail.cart.CartVO"%>
 <html>
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <title>Mode II 範例程式 - Checkout.jsp</title>
-</head>
-<body bgcolor="#FFFFFF">
- <font size="+3">訂單截帳CHECKOUT.JSP</font>
-<hr><p>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<table border="1" align="center" >
-	<tr bgcolor="#999999">
-			<th width="200">產品圖片</th>
-			<th width="200">產品名稱</th>
-			<th width="200">產品編號</th>
-			<th width="100">商品價格</th>
-			<th width="100">商品描述</th>
-			<th width="100">購買數量</th>
-	</tr>
-<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/order.do"  align="center" >
-	<%
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<body>
+<div class="container">
+    <div class="row">
+			<div class="col-sm-12 col-md-10 col-md-offset-1">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>產品名稱</th>
+							<th>數量</th>
+							<th class="text-center">單價</th>
+							<th class="text-center">總價</th>
+							<th> </th>
+						</tr>
+					</thead>
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/order.do" align="center">
+<%
 		Vector<CartVO> buylist = (Vector<CartVO>) session.getAttribute("shoppingcart");
 		String amount =  (String) request.getAttribute("amount");
 		request.setAttribute("amount",amount);
 		out.println("amount = " + (String)request.getAttribute("amount"));
-	%>	
-	<%	for (int i = 0; i < buylist.size(); i++) {
+%>
+<%	for (int i = 0; i < buylist.size(); i++) {
 			CartVO order = buylist.get(i);
 			Integer ITEMNO=order.getITEMNO();
 			String NAME = order.getNAME();
 			Integer QUANTITY = order.getQUANTITY();
 			String DES = order.getDES();
 			float PRICE = order.getPRICE();
-	%>
-	<tr>
-		<td width="200"><img src="DBPicReader?ITEMNO=<%=ITEMNO%>" height="150px" width="200px">
-		</td>
-		<td width="200"><div align="center"><b><%=NAME%></b></div></td>
-		<td width="200"><div align="center"><b><%=ITEMNO%></b></div></td>
-		<td width="100"><div align="center"><b><%=PRICE%></b></div></td>
-		<td width="100"><div align="center"><b><%=DES.substring(0,7)%>...</b></div></td>
-		
-<%-- 		<td width="100"><div align="center"><b><%=QUANTITY%></b></div></td> --%>
-		<td width="100"><div align="center">
-		<input type="text" name="quantity<%=i%>" id="exampleInputEmail1" value="<%=QUANTITY%>" 
-		style="width: 35px" onchange="changeQuantity(this,<%=QUANTITY%>,<%=PRICE%>,<%=amount%>)" /></div></td>
+%>
+						<tbody>
+							<tr>
+								<td class="col-sm-8 col-md-6">
+									<div class="media">
+										<a class="thumbnail pull-left" href="#"> <img
+											src="DBPicReader?ITEMNO=<%=ITEMNO%>" height="72px"
+											width="72px">
+										</a>
+										<div class="media-body">
+											<h4 class="media-heading" style="margin-top: 25px">
+												<a href="#"><%=NAME%></a>
+											</h4>
 
-	</tr>
-	<%
+										</div>
+									</div>
+								</td>
+								<td class="col-sm-1 col-md-1" style="text-align: center"><input
+									type="text" class="form-control" id="exampleInputEmail1"
+									name="quantity<%=i%>" value="<%=QUANTITY%>"
+									onchange="changeQuantity(this,<%=QUANTITY%>,<%=PRICE%>,<%=amount%>)">
+								</td>
+								<td class="	col-sm-1 col-md-1 text-center"><strong>$<%=PRICE%></strong></td>
+								<td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
+								<td class="col-sm-1 col-md-1">
+
+									
+										
+										<a class="btn btn-danger" role="button" href="javascript:del.submit();" onclick="del();">
+										<span class="glyphicon glyphicon-remove"></span>
+										<input type="hidden" name="action" value="DELETE">
+										 <input type="hidden" name="del" value="<%=i%>">
+										 Remove
+										</a>
+									</button>
+								</td>
+							</tr>
+
+							<%
 		}
 	%>
-	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td><div align="center"><font color="red"><b>總金額：</b></font></div></td>
-		<td> <font color="red"><b id="amountofshow">$<%=amount%></b></font> </td>
-	</tr>
-</table>
 
+							<tr>
+								<td> </td>
+								<td> </td>
+								<td> </td>
+								<td><h3>Total</h3></td>
+								<td class="text-right"><h3>
+										<strong>$<b id="amountofshow"><%=amount%></b></strong>
+									</h3></td>
+							</tr>
+							<tr>
+								<td> </td>
+								<td> </td>
+								<td> </td>
+								<td>
+								<a href="shopPAGEFortext.jsp" class="btn btn-default" role="button"><span class="glyphicon glyphicon-shopping-cart"></span>
+										Continue Shopping</a>
 
-	<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}">
-	<input type="hidden" name="amount" id="amountt" value="${amount}">
-	<!-- 						假裝會員已經登入了 -->
-	<input type="hidden" name="MEMNO" value="MEM0001">
-	<input type="hidden" name="action" value="CONFIRM">
-	<div align="center">
-		<input type="submit" value="確認購買">
-	</div>
-	</FORM>
-					
-<div  align="center" >
-<a href="Shop/listAll.jsp" >繼續購物</a>
+								</td>
+								<td>
+									<button  type="submit" class="btn btn-success">
+										Checkout <span class="glyphicon glyphicon-play"></span>
+									</button>
+								</td>
+								<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}">
+								<input type="hidden" name="amount" id="amountt"
+									value="${amount}">
+								<!-- 						假裝會員已經登入了 -->
+								<input type="hidden" name="MEMNO" value="MEM0001">
+								<input type="hidden" name="action" value="CONFIRM">
+							</tr>
+						</tbody>
+				</table>
+			</div>
+			</FORM>
+    </div>
 </div>
 </body>
- <script type="text/javascript">
+
+<script type="text/javascript">
     function changeQuantity(input,oldValue,price,amount) {
 
         var quantity = input.value; // 得到要修改的数量

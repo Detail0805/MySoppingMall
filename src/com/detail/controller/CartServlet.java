@@ -20,9 +20,12 @@ import com.detail.cart.CartVO;
 @WebServlet("/CartServlet")
 public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		doPost(req,res);
+	}
+	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+System.out.println("進入cartservlet");
 		req.setCharacterEncoding("UTF-8");
 		// res.setContentType("text/html; charset=UTF-8");
 		// PrintWriter out = res.getWriter();
@@ -41,6 +44,7 @@ public class CartServlet extends HttpServlet {
 
 			// 刪除購物車中的書籍
 			if (action.equals("DELETE")) {
+				System.out.println("進入cartservlet.DELETE");
 				String del = req.getParameter("del");
 				int d = Integer.parseInt(del);
 				buylist.removeElementAt(d);
@@ -139,7 +143,27 @@ public class CartServlet extends HttpServlet {
 					if (!match)
 						buylist.add(CartVO);
 				}
+				float total = 0;
+				for (int i = 0; i < buylist.size(); i++) {
+					CartVO order = buylist.get(i);
+					float price = order.getPRICE();
+					int quantity = order.getQUANTITY();
+					total += (price * quantity);
+				}
+
+				String amount = String.valueOf(total);
+				req.setAttribute("amount", amount);
 			}
+			
+			float total = 0;
+			for (int i = 0; i < buylist.size(); i++) {
+				CartVO order = buylist.get(i);
+				float price = order.getPRICE();
+				int quantity = order.getQUANTITY();
+				total += (price * quantity);
+			}
+			String amount = String.valueOf(total);
+			req.setAttribute("amount", amount);
 			
 			//每個CARTVO帶過去的參數有NAME,PRICE,DES,QUANTITY,ITEMNO
 			session.setAttribute("shoppingcart", buylist);

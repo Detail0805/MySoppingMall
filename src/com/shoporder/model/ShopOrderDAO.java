@@ -441,7 +441,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 			pstmt.setString(1, Orderno);
 			pstmt.executeUpdate();
 			pstmt.execute();
-			System.out.println("訂單刪除完畢");
+			System.out.println("DAO訂單刪除完畢");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
