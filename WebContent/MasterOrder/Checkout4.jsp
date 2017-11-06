@@ -62,18 +62,9 @@
 									onchange="changeQuantity(this,<%=QUANTITY%>,<%=PRICE%>,<%=amount%>)">
 								</td>
 								<td class="	col-sm-1 col-md-1 text-center"><strong>$<%=PRICE%></strong></td>
-								<td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
+								<td class="col-sm-1 col-md-1 text-center"><strong>$<%=PRICE*QUANTITY%></strong></td>
 								<td class="col-sm-1 col-md-1">
 
-									
-										
-										<a class="btn btn-danger" role="button" href="javascript:del.submit();" onclick="del();">
-										<span class="glyphicon glyphicon-remove"></span>
-										<input type="hidden" name="action" value="DELETE">
-										 <input type="hidden" name="del" value="<%=i%>">
-										 Remove
-										</a>
-									</button>
 								</td>
 							</tr>
 

@@ -148,7 +148,7 @@
 							</tr>
 							<tr>
 								<td> </td>
-								<td> </td>
+								
 								<td> 
 								<td><a href="<%=request.getContextPath()%>/shopPAGEFortext.jsp" class="btn btn-warning"
 									role="button"><span class="glyphicon glyphicon-remove"></span></span>
@@ -167,6 +167,7 @@
 									</button>
 									</form>
 								</td>
+								<td> </td>
 							</tr>
 						</tbody>
 				</table>
