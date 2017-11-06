@@ -123,7 +123,11 @@ public class ShopOrderServlet extends HttpServlet{
 				// shopOrSvc.addShopOrder(shopOrderVO);
 				}
 			}else{
-				System.out.println("餘額不足訂單未成立");
+				System.out.println("餘額不足訂單未成立,FORWARD出去了。");
+				String url = "/MasterOrder/listallOrder.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
+																				// ListAllProOrder.jsp
+				successView.forward(req, res);
 			}
 
 			Integer NowPoint=shopOrSvc.returnAfterShoppingPoint(amount, MEMNO);
