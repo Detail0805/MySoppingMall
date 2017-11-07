@@ -16,7 +16,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
 <title>Insert title here</title>
  <script type="text/javascript">
-    function changeQuantity(input) {
+    function changeQuantity(input,oldValue) {
 
         var quantity = input.value; // 得到要修改的数量
 
@@ -73,7 +73,7 @@ total :${total}
 				<td>${OrderList.price}</td>
 
 				<td>
-			     <input type="text" name="quantity<%=i++%>" onchange="changeQuantity(this)" value="${OrderList.ordercount}" style="width: 35px"  />
+			     <input type="text" name="quantity<%=i++%>" onchange="changeQuantity(this,${OrderList.ordercount})" value="${OrderList.ordercount}" style="width: 35px"  />
    </td>
 			</td>
 		</tr>

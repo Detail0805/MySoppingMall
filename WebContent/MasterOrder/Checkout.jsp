@@ -30,7 +30,6 @@
 		Vector<CartVO> buylist = (Vector<CartVO>) session.getAttribute("shoppingcart");
 		String amount =  (String) request.getAttribute("amount");
 		request.setAttribute("amount",amount);
-		out.println("amount = " + (String)request.getAttribute("amount"));
 %>
 <%	for (int i = 0; i < buylist.size(); i++) {
 			CartVO order = buylist.get(i);
@@ -44,25 +43,48 @@
 							<tr>
 								<td class="col-sm-8 col-md-6">
 									<div class="media">
-										<a class="thumbnail pull-left" href="#"> <img
-											src="DBPicReader?ITEMNO=<%=ITEMNO%>" height="72px"
-											width="72px">
+										<a class="thumbnail pull-left" href="#" style=" margin-top: 10px;"> 
+										<img src="DBPicReader?ITEMNO=<%=ITEMNO%>" height="72px" width="72px">
 										</a>
 										<div class="media-body">
-											<h4 class="media-heading" style="margin-top: 25px">
+											<h4 class="media-heading" style="margin-top: 39px">
 												<a href="#"><%=NAME%></a>
 											</h4>
 
 										</div>
 									</div>
 								</td>
-								<td class="col-sm-1 col-md-1" style="text-align: center"><input
-									type="text" class="form-control" id="exampleInputEmail1"
-									name="quantity<%=i%>" value="<%=QUANTITY%>"
+								
+																<td class="	col-sm-1 col-md-1 text-center">
+									<div class="media">
+										<div class="media-body">
+											<h4 class="media-heading" style="margin-top: 28px">
+												<input type="number" class="form-control" id="exampleInputEmail1" name="quantity<%=i%>" value="<%=QUANTITY%>"
 									onchange="changeQuantity(this,<%=QUANTITY%>,<%=PRICE%>,<%=amount%>,oneprice<%=i%>,changeoneprice<%=i%>)">
+											</h4>
+										</div>
+									</div>
 								</td>
-								<td class="	col-sm-1 col-md-1 text-center"><strong>$<b id="oneprice<%=i%>"><%=PRICE%></b></strong></td>
-								<td class="col-sm-1 col-md-1 text-center"><strong>$<b id="changeoneprice<%=i%>"><%=PRICE*QUANTITY%></b></strong></td>
+
+								<td class="	col-sm-1 col-md-1 text-center">
+									<div class="media">
+										<div class="media-body">
+											<h4 class="media-heading" style="margin-top: 36px">
+												<strong>$<b id="oneprice<%=i%>"><%=PRICE%></strong>
+											</h4>
+										</div>
+									</div>
+								</td>
+								<td class="	col-sm-1 col-md-1 text-center">
+									<div class="media">
+										<div class="media-body">
+											<h4 class="media-heading" style="margin-top: 36px">
+												<strong>$<b id="changeoneprice<%=i%>"><%=PRICE*QUANTITY%></b></strong>
+											</h4>
+										</div>
+									</div>
+								</td>
+			　
 					
 							</tr>
 
@@ -84,7 +106,7 @@
 								<td> </td>
 								<td> </td>
 								<td>
-								<a href="shopPAGEFortext.jsp" class="btn btn-default" role="button"><span class="glyphicon glyphicon-shopping-cart"></span>
+								<a href="<%=request.getContextPath()%>/shopPAGEFortext.jsp" class="btn btn-default" role="button"><span class="glyphicon glyphicon-shopping-cart"></span>
 										Continue Shopping</a>
 
 								</td>
@@ -117,9 +139,10 @@
         var amountofshow=document.getElementById("amountofshow");//show出來的總價
       
 
-        var changeoneprice=changeoneprice.innerHTML;
-        console.log(changeoneprice);
-        var oneprice=oneprice.innerHTML;
+        var changeonepricenow=parseInt(changeoneprice.innerHTML);
+        console.log('changeonepricenow :'+changeonepricenow);
+        var oneprice=parseInt(oneprice.innerHTML);
+       
         var amountofshow2=parseInt((amountofshow.innerHTML).substring(1));
         var element2=amountofshow2;
         var neverchange=amount;
@@ -167,7 +190,7 @@
         	iwillchange=finalPrice;
         	console.log('neverchange後的值 : '+neverchange);
         	console.log('iwillchange後的值 : '+iwillchange);
-        	changeoneprice.innerHTML=quantity*oneprice;
+        	changeoneprice.innerHTML=oneprice*quantity;
         } else if(!isNaN(quantity) && oldValue<quantity){
         	console.log('oldValue<quantity :oldValue :'+oldValue+' quantity'+quantity)
         	var news=(quantity-oldValue)*price;
@@ -181,11 +204,14 @@
         	console.log('neverchange後的值 : '+neverchange);
         	iwillchange=finalPrice;
         	console.log('iwillchange後的值 : '+iwillchange);
+        	changeoneprice.innerHTML=oneprice*quantity;
         }else if (!isNaN(quantity) && oldValue==quantity)
         	{
 			newamountofshow.innerHTML=neverchange;
 			newamount.innerHTML=neverchange;
+			changeoneprice.innerHTML=oneprice*quantity;
         	}
+        
     }
 </script>
 </html>

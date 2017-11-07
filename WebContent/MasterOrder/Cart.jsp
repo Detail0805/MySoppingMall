@@ -75,12 +75,12 @@
 							<tr>
 								<td class="col-sm-8 col-md-6">
 									<div class="media">
-										<a class="thumbnail pull-left" href="#"> <img
+										<a class="thumbnail pull-left" href="#" style=" margin-top: 10px;"> <img
 											src="DBPicReader?ITEMNO=<%=ITEMNO%>" height="72px"
 											width="72px">
 										</a>
 										<div class="media-body">
-											<h4 class="media-heading" style="margin-top: 25px">
+											<h4 class="media-heading" style="margin-top: 39px">
 												<a href="#"><%=NAME%></a>
 											</h4>
 
@@ -91,7 +91,7 @@
 								<td class="col-sm-1 col-md-1 text-center">
 									<div class="media">
 										<div class="media-body">
-											<h4 class="media-heading" style="margin-top: 25px">
+											<h4 class="media-heading" style="margin-top: 28px">
 												<%=QUANTITY%>
 											</h4>
 										</div>
@@ -100,7 +100,7 @@
 								<td class="	col-sm-1 col-md-1 text-center">
 									<div class="media">
 										<div class="media-body">
-											<h4 class="media-heading" style="margin-top: 25px">
+											<h4 class="media-heading" style="margin-top: 36px">
 												<strong>$<%=PRICE%></strong>
 											</h4>
 										</div>
@@ -109,7 +109,7 @@
 								<td class="	col-sm-1 col-md-1 text-center">
 									<div class="media">
 										<div class="media-body">
-											<h4 class="media-heading" style="margin-top: 25px">
+											<h4 class="media-heading" style="margin-top: 36px">
 												<strong>$<%=PRICE * QUANTITY%></strong>
 											</h4>
 										</div>
@@ -121,7 +121,7 @@
 								<div class="media">
 										<div class="media-body">
 							<form name="deleteForm" action="<%=request.getContextPath()%>/cart.do" method="POST" onsubmit="return deleteitem()">
-								<button  type="submit" class="btn btn-danger" role="button" style="margin-top:20px">
+								<button  type="submit" class="btn btn-danger" role="button" style="margin-top:30px">
 										 <span class="glyphicon glyphicon-remove"></span>Remove
 									</button>
 										<input type="hidden" name="action" value="DELETE"> 
