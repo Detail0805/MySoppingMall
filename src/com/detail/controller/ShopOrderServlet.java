@@ -148,7 +148,7 @@ public class ShopOrderServlet extends HttpServlet{
 				ShopOrderService shopOrderSvc = new ShopOrderService();
 				shopOrderSvc.delete(ORDERID, MEMBERNO);
 
-				String url = "/MasterOrder/listallOrder.jsp";
+				String url = "/MasterOrder/listallOrderbeautiful.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
 																				// ListAllProOrder.jsp
 				successView.forward(req, res);
