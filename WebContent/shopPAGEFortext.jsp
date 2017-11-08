@@ -99,31 +99,6 @@
   .price.old-price {
     text-decoration: line-through;
 }
-
-.close{
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  overflow: hidden;
-    &:hover {
-    &::before, &::after {
-      background: $blue;
-    }
-    &.blades {
-    &::before, &::after {
-      border-radius: 5px 0;
-    }
-  }
-  &.heavy {
-    &::before, &::after {
-      height: 12px;
-      margin-top: -6px;
-    	}
-  	}
-  }
-  
-
 /*	.description{
 		font-style: bold;
 	}
@@ -174,6 +149,7 @@
         	<h4 align="center"><img src="<%=request.getContextPath()%>/images/greenpick.png" height="72px" width="72px">已成功添加到購物車！！</h4>
       </div>
       <div class="modal-footer">
+      <button type="button" class="btn btn-info btn-lg left" data-dismiss="modal">前網購物車</button>
         <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">OK</button>
       </div>
     </div>
