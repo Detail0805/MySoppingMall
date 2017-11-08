@@ -138,11 +138,12 @@
         var element=document.getElementById("amount");//藏在input裡的總價
         var amountofshow=document.getElementById("amountofshow");//show出來的總價
       
-
+        var totalprice=changeoneprice;
+        console.log('totalprice :'+totalprice);
         var changeonepricenow=parseInt(changeoneprice.innerHTML);
         console.log('changeonepricenow :'+changeonepricenow);
         var oneprice=parseInt(oneprice.innerHTML);
-       
+  
         var amountofshow2=parseInt((amountofshow.innerHTML).substring(1));
         var element2=amountofshow2;
         var neverchange=amount;
@@ -190,7 +191,10 @@
         	iwillchange=finalPrice;
         	console.log('neverchange後的值 : '+neverchange);
         	console.log('iwillchange後的值 : '+iwillchange);
-        	changeoneprice.innerHTML=oneprice*quantity;
+        	console.log('oneprice*quantity後的值 : '+oneprice*quantity);
+
+            
+        	changeoneprice.innerHTML=price*quantity;
         } else if(!isNaN(quantity) && oldValue<quantity){
         	console.log('oldValue<quantity :oldValue :'+oldValue+' quantity'+quantity)
         	var news=(quantity-oldValue)*price;
@@ -204,12 +208,14 @@
         	console.log('neverchange後的值 : '+neverchange);
         	iwillchange=finalPrice;
         	console.log('iwillchange後的值 : '+iwillchange);
-        	changeoneprice.innerHTML=oneprice*quantity;
+        	console.log('oneprice*quantity後的值 : '+oneprice*quantity);
+        	
+        	changeoneprice.innerHTML=price*quantity;
         }else if (!isNaN(quantity) && oldValue==quantity)
         	{
 			newamountofshow.innerHTML=neverchange;
 			newamount.innerHTML=neverchange;
-			changeoneprice.innerHTML=oneprice*quantity;
+			changeoneprice.innerHTML=price*quantity;
         	}
         
     }
