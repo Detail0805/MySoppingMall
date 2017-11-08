@@ -48,8 +48,10 @@ System.out.println("進入cartservlet");
 			if (action.equals("DELETE")) {
 				System.out.println("進入cartservlet.DELETE");
 				String del = req.getParameter("del");
+//				String price = req.getParameter("price");
 				int d = Integer.parseInt(del);
 				buylist.removeElementAt(d);
+				
 			}
 			// 新增書籍至購物車中
 			else if (action.equals("ADD")) {
@@ -152,8 +154,9 @@ System.out.println("進入cartservlet");
 					int quantity = order.getQUANTITY();
 					total += (price * quantity);
 				}
-
+			
 				String amount = String.valueOf(total);
+				session.setAttribute("amount", amount);
 				req.setAttribute("amount", amount);
 			}
 			
@@ -165,12 +168,13 @@ System.out.println("進入cartservlet");
 				total += (price * quantity);
 			}
 			String amount = String.valueOf(total);
+			session.setAttribute("amount", amount);
 			req.setAttribute("amount", amount);
 			
 			//每個CARTVO帶過去的參數有NAME,PRICE,DES,QUANTITY,ITEMNO
 			session.setAttribute("shoppingcart", buylist);
 			System.out.println("forward到/Shop/listAll.jsp");
-			String url = "/Shop/listAll.jsp";
+			String url = "/MasterOrder/Cart.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
 		}
@@ -188,6 +192,7 @@ System.out.println("進入cartservlet");
 
 			String amount = String.valueOf(total);
 			req.setAttribute("amount", amount);
+			session.setAttribute("amount", amount);
 			String url = "/MasterOrder/Checkout.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);

@@ -48,7 +48,8 @@
 	padding: 20px;
 }*/
 	/* .detail img{width: 180px; 
- 	height: 180px; }*/ .btn-success:hover {
+ 	height: 180px; }*/ 
+ 	.btn-success:hover {
 	background-color: #449d44;
 	border-color: #398439;
 	color: #ffe200;
@@ -92,16 +93,18 @@
 	}
 	*/
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript">  
         $(document).ready(function(){  
         	console.log('in jquery1');
             $('form').on('submit',function(event){
                 event.preventDefault();
             	console.log($(this).children().eq(2).val());
-                var STOCK = $(this).children().eq(0).val()
-                var action = $(this).children().eq(1).val() 
-                var ITEMNO = $(this).children().eq(2).val()  
+                var STOCK = $(this).children().eq(0).val();
+                var action = $(this).children().eq(1).val(); 
+                var ITEMNO = $(this).children().eq(2).val(); 
                 console.log('STOCK :'+STOCK+' ,ITEMNO :'+ITEMNO+' ,action :'+action);
 
                      $.ajax({  
@@ -109,7 +112,7 @@
                         url: "cart.do",  
                         data: {"STOCK" : STOCK,"action" : action,"ITEMNO" : ITEMNO},  
                         success: function(msg){  
-                            $("#tryajax").html('tryajaxtryajaxtryajaxtryajaxtryajaxtryajax');
+                        	$('#myModal').modal();
                         }  
                     });   
                
@@ -122,7 +125,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div id="tryajax">	 </div>
+<div id="tryajax"></div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div>
 	<div class="bigshoprow">
 		<div class="container shoprow">
@@ -212,7 +234,7 @@
 											
 										<input type="hidden" name="action" value="ADD2" id="ADD2">
 										<input type="hidden" name="ITEMNO" value="${proVO.ITEMNO}" id="ITEMNO" > 
-										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" id="subm">
+										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" >
 										</FORM>
 									</div>
 								</div>

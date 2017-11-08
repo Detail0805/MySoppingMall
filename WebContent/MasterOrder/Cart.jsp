@@ -43,7 +43,8 @@
 
 						<%
 							Vector<CartVO> buylist = (Vector<CartVO>) session.getAttribute("shoppingcart");
-							String amount = (String) request.getAttribute("amount");
+							String amount = (String)session.getAttribute("amount");
+							
 							request.setAttribute("amount", amount);
 						%>
 						<%if (buylist != null && (buylist.size() > 0)) {%>
@@ -76,7 +77,7 @@
 								<td class="col-sm-8 col-md-6">
 									<div class="media">
 										<a class="thumbnail pull-left" href="#" style=" margin-top: 10px;"> <img
-											src="DBPicReader?ITEMNO=<%=ITEMNO%>" height="72px"
+											src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=<%=ITEMNO%>" height="72px"
 											width="72px">
 										</a>
 										<div class="media-body">
@@ -124,6 +125,7 @@
 								<button  type="submit" class="btn btn-danger" role="button" style="margin-top:30px">
 										 <span class="glyphicon glyphicon-remove"></span>Remove
 									</button>
+										<input type="hidden" name="price" value=<%=PRICE%>> 
 										<input type="hidden" name="action" value="DELETE"> 
 										<input type="hidden" name="del" value="<%=i%>"> 
 							</form>
