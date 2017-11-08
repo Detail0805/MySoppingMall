@@ -54,6 +54,15 @@
 	border-color: #398439;
 	color: #ffe200;
 }
+.special-price {
+    font-size: 1.3em;
+    color: red;
+}
+.prices {
+
+    font-weight: 700;
+}
+
 .product-title{
     font-size: 20px;
     font-weight: 600;
@@ -87,6 +96,33 @@
 .offer.offer-default.silde-show-offer.pull-text-center {
 	height: 420px;
 }
+  .price.old-price {
+    text-decoration: line-through;
+}
+
+.close{
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+    &:hover {
+    &::before, &::after {
+      background: $blue;
+    }
+    &.blades {
+    &::before, &::after {
+      border-radius: 5px 0;
+    }
+  }
+  &.heavy {
+    &::before, &::after {
+      height: 12px;
+      margin-top: -6px;
+    	}
+  	}
+  }
+  
 
 /*	.description{
 		font-style: bold;
@@ -125,22 +161,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div id="tryajax"></div>
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+        	<h4 align="center"><img src="<%=request.getContextPath()%>/images/greenpick.png" height="72px" width="72px">已成功添加到購物車！！</h4>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">OK</button>
       </div>
     </div>
   </div>
