@@ -29,7 +29,9 @@ System.out.println("¶i¤Jcartservlet");
 		req.setCharacterEncoding("UTF-8");
 		// res.setContentType("text/html; charset=UTF-8");
 		// PrintWriter out = res.getWriter();
-
+		System.out.println(req.getParameter("STOCK"));
+		System.out.println(req.getParameter("action"));
+		System.out.println(req.getParameter("ITEMNO"));
 		HttpSession session = req.getSession();
 		Vector<CartVO> buylist = (Vector<CartVO>) session.getAttribute("shoppingcart");
 		String action = req.getParameter("action");

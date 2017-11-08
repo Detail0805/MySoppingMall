@@ -91,7 +91,7 @@
 								<td class="col-sm-1 col-md-1 text-center">
 									<div class="media">
 										<div class="media-body">
-											<h4 class="media-heading" style="margin-top: 28px">
+											<h4 class="media-heading" style="margin-top: 36px">
 												<%=QUANTITY%>
 											</h4>
 										</div>

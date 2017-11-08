@@ -32,13 +32,12 @@
 	
 	
 
-	
+
 %>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
 
-style type ="text/css"> 
 /*.shoprow {
 	background-color: #FFD78C;
 	text-align: center;
@@ -93,11 +92,37 @@ style type ="text/css">
 	}
 	*/
 </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">  
+        $(document).ready(function(){  
+        	console.log('in jquery1');
+            $('form').on('submit',function(event){
+                event.preventDefault();
+            	console.log($(this).children().eq(2).val());
+                var STOCK = $(this).children().eq(0).val()
+                var action = $(this).children().eq(1).val() 
+                var ITEMNO = $(this).children().eq(2).val()  
+                console.log('STOCK :'+STOCK+' ,ITEMNO :'+ITEMNO+' ,action :'+action);
+
+                     $.ajax({  
+                        type: "POST",  
+                        url: "cart.do",  
+                        data: {"STOCK" : STOCK,"action" : action,"ITEMNO" : ITEMNO},  
+                        success: function(msg){  
+                            $("#tryajax").html('tryajaxtryajaxtryajaxtryajaxtryajaxtryajax');
+                        }  
+                    });   
+               
+                
+
+            });  
+        });  
+      </script>  
 
 <title>Insert title here</title>
 </head>
 <body>
-<div>	 </div>
+<div id="tryajax">	 </div>
 <div>
 	<div class="bigshoprow">
 		<div class="container shoprow">
@@ -129,14 +154,14 @@ style type ="text/css">
 
 									<div class="buttons">
 
-									<FORM METHOD="post" ACTION="cart.do">
-											<select name="STOCK">
+									<FORM METHOD="post" >
+											<select name="STOCK" id="STOCK">
 											<c:forEach var="STOCK" begin="1" end="${shopVO.STOCK}"
 												step="1">
 												<option value="${STOCK}">${STOCK}
 											</c:forEach> </select>
-									<input type="hidden" name="action" value="ADD">
-									<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}">
+									<input type="hidden" name="action" value="ADD" ">
+									<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}" >
 									<input type="submit" class="btn btn-sm btn-success" value="放入購物車">
 										</FORM>
 									</div>
@@ -179,15 +204,15 @@ style type ="text/css">
 									</div>
 									<div class="buttons">
 									<FORM METHOD="post" ACTION="cart.do">
-									<select name="STOCK">
+									<select name="STOCK" id="STOCK">
 											<c:forEach var="quantity" begin="1" end="${proVO.quantity}"
 												step="1">
 												<option value="${quantity}">${quantity}
 											</c:forEach> </select>
 											
-										<input type="hidden" name="action" value="ADD2">
-										<input type="hidden" name="ITEMNO" value="${proVO.ITEMNO}" > 
-										<input type="submit" class="btn btn-sm btn-success" value="放入購物車">
+										<input type="hidden" name="action" value="ADD2" id="ADD2">
+										<input type="hidden" name="ITEMNO" value="${proVO.ITEMNO}" id="ITEMNO" > 
+										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" id="subm">
 										</FORM>
 									</div>
 								</div>
