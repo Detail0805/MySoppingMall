@@ -5,99 +5,52 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.5/sweetalert2.all.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-$(document).ready(function(){  
-	console.log('in jquery1');
-    $('FORM').on('submit',function(event){
-         event.preventDefault();
-    	console.log($(this).children().eq(2).val());
-        var price = $(this).children().eq(1).val();
-        var action = $(this).children().eq(2).val(); 
-        var del = $(this).children().eq(3).val(); 
-        console.log('price :'+price+' ,action :'+action+' ,del :'+del);
+       
+  
+	function deleteitem() {
+		swal({
+  		  title: '',
+  		  text: "已成功加入購物車。",
+  		  type: 'success',
+  		  showCancelButton: true,
 
-        swal({
-          title: "Are you sure?",
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#DD6B55",
-          confirmButtonText: "確定刪除!",
-          cancelButtonText: "不，繼續保留。",
-        }).then(function () {
-                $.ajax({
-                  type: 'POST',
-                  url: '<%=request.getContextPath()%>/cart.do',
-                  data:{"price" : price,"action" : action,"del" : del},  
-                  success: function (data) {
-                    swal("刪除成功!", "你所選擇的商品已經刪除!", "success");
-                   
-                    setTimeout(function(){
-                    	window.location.reload();
-                        console.log('B');
-                    },1500);
-                  },
+  		  confirmButtonText: '前往購物車',
+  		  cancelButtonText: '  OK  ',
+  		  confirmButtonClass: 'btn btn-success',
+  		  cancelButtonClass: 'btn btn-danger',
+  		  buttonsStyling: false
+  		}).then(function () {
+  			console.log('按下左邊');
+  			return true;
+  			 window.location.href ='<%=request.getContextPath()%>/MasterOrder/Cart.jsp';
+  		}, function (dismiss) {
+  		  // dismiss can be 'cancel', 'overlay',
+  		  // 'close', and 'timer'
+  		  if (dismiss === 'cancel') {
+  			return false
+  			  console.log('按下右邊');
+  		  }
+  		})
+		
+		var b = window.confirm("您確認刪除嗎?");
+		if (b) {
+			return true;
+		} else {
+			return false
+		}
+	}
 
-                });
-			console.log('in isConfirm');
-                return true;
-              },function (dismiss) {
-            	  if (dismiss === 'cancel') {
-        			  console.log('按下右邊');
-        		        console.log('false');
-        		          return false;
-        		  }
-            	  
-            });
-
-    });  
-});
-
-$(document).ready(function(){  
-	console.log('in jquery1');
-    $('#2').on('submit',function(event){
-         event.preventDefault();
-    	console.log($(this).children().eq(0).val());
-        var action = $(this).children().eq(0).val();
-        console.log('action :'+action);
-
-        swal({
-          title: "確定要清空購物車嗎?",
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#DD6B55",
-          confirmButtonText: "確定清空!",
-          cancelButtonText: "不，繼續保留。",
-        }).then(function () {
-                $.ajax({
-                  type: 'POST',
-                  url: '<%=request.getContextPath()%>/cart.do',
-                  data:{"action" : action},  
-                  success: function (data) {
-                    swal("刪除清除!", "你所選擇的商品已經刪除!", "success");
-                   
-                    setTimeout(function(){
-                    	window.location.href = '<%=request.getContextPath()%>/shopPAGEFortext.jsp';
-                        console.log('B');
-                    },1500);
-                  },
-
-                });
-			console.log('in isConfirm');
-                return true;
-              },function (dismiss) {
-            	  if (dismiss === 'cancel') {
-        			  console.log('按下右邊');
-        		        console.log('false');
-        		          return false;
-        		  }
-            	  
-            });
-
-    });  
-});
-</script>  
+	function clearCart() {
+		var b = window.confirm("您確定清空嗎?");
+		if (b) {
+			return true;
+		} else {
+			return false
+		}
+	}
+</script>
 </head>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -196,7 +149,7 @@ $(document).ready(function(){
 
 								<div class="media">
 										<div class="media-body">
-							<form  name="deleteForm" action="<%=request.getContextPath()%>/cart.do" method="POST" ">
+							<form name="deleteForm" action="<%=request.getContextPath()%>/cart.do" method="POST" onsubmit="return deleteitem()">
 								<button  type="submit" class="btn btn-danger" role="button" style="margin-top:30px">
 										 <span class="glyphicon glyphicon-remove"></span>Remove
 									</button>
@@ -227,10 +180,11 @@ $(document).ready(function(){
 								
 								<td> 
 								<td>
-								<form name="claerForm" id="2" action="<%=request.getContextPath()%>/cart.do" method="POST" onsubmit="return clearCart()">
-								<input type="hidden" name="action" value="CLEARCART">
+								<form name="claerForm" action="<%=request.getContextPath()%>/cart.do" method="POST" onsubmit="return clearCart()">
+								
 								<button type="submit" class="btn btn-warning">
 								<span class="glyphicon glyphicon-remove"></span>
+									    <input type="hidden" name="action" value="CLEARCART">
 									清空購物車</button>
 									</form>
 									</td>
