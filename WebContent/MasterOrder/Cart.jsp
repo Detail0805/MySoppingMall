@@ -4,8 +4,36 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.5/sweetalert2.all.js"></script>
 <script type="text/javascript">
+
+       
+  
 	function deleteitem() {
+		swal({
+  		  title: '',
+  		  text: "已成功加入購物車。",
+  		  type: 'success',
+  		  showCancelButton: true,
+
+  		  confirmButtonText: '前往購物車',
+  		  cancelButtonText: '  OK  ',
+  		  confirmButtonClass: 'btn btn-success',
+  		  cancelButtonClass: 'btn btn-danger',
+  		  buttonsStyling: false
+  		}).then(function () {
+  			console.log('按下左邊');
+  			return true;
+  			 window.location.href ='<%=request.getContextPath()%>/MasterOrder/Cart.jsp';
+  		}, function (dismiss) {
+  		  // dismiss can be 'cancel', 'overlay',
+  		  // 'close', and 'timer'
+  		  if (dismiss === 'cancel') {
+  			return false
+  			  console.log('按下右邊');
+  		  }
+  		})
+		
 		var b = window.confirm("您確認刪除嗎?");
 		if (b) {
 			return true;

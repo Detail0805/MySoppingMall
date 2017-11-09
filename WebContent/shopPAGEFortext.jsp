@@ -99,6 +99,11 @@
   .price.old-price {
     text-decoration: line-through;
 }
+
+.btn-danger{
+	margin-left: 10;
+	width: 100px;
+}
 /*	.description{
 		font-style: bold;
 	}
@@ -107,6 +112,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.5/sweetalert2.all.js"></script>
         <script type="text/javascript">  
         $(document).ready(function(){  
         	console.log('in jquery1');
@@ -122,8 +128,31 @@
                         type: "POST",  
                         url: "cart.do",  
                         data: {"STOCK" : STOCK,"action" : action,"ITEMNO" : ITEMNO},  
-                        success: function(msg){  
-                        	$('#myModal').modal();
+                        success: function(msg){
+                        	swal({
+                        		  title: '',
+                        		  text: "已成功加入購物車。",
+                        		  type: 'success',
+                        		  showCancelButton: true,
+
+                        		  confirmButtonText: '前往購物車',
+                        		  cancelButtonText: '  OK  ',
+                        		  confirmButtonClass: 'btn btn-success',
+                        		  cancelButtonClass: 'btn btn-danger',
+                        		  buttonsStyling: false
+                        		}).then(function () {
+                        			console.log('按下左邊');
+                        			 window.location.href ='<%=request.getContextPath()%>/MasterOrder/Cart.jsp';
+                        		}, function (dismiss) {
+                        		  // dismiss can be 'cancel', 'overlay',
+                        		  // 'close', and 'timer'
+                        		  if (dismiss === 'cancel') {
+                        			  console.log('按下右邊');
+                        		  }
+                        		})
+                     
+//                        	sweetAlert("", "已成功加入購物車。","success");
+//                         	$('#myModal').modal();
                         }  
                     });   
                
@@ -134,7 +163,6 @@
       </script>  
 
 <title>Insert title here</title>
-<script src="js/jquery.mycart.js"></script>
 </head>
 <body>
 

@@ -7,25 +7,6 @@
 
 </head>
 <body>
-<script type="text/javascript">
-	function deleteitem() {
-		var b = window.confirm("您確認刪除嗎?");
-		if (b) {
-			return true;
-		} else {
-			return false
-		}
-	}
-
-	function clearCart() {
-		var b = window.confirm("您確定清空嗎?");
-		if (b) {
-			return true;
-		} else {
-			return false
-		}
-	}
-</script>
 						<%
 							Vector<CartVO> buylist = (Vector<CartVO>) session.getAttribute("shoppingcart");
 							String amount = (String)session.getAttribute("amount");
