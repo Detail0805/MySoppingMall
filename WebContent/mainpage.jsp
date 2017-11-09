@@ -16,7 +16,7 @@ font {
 </style>
 </head>
 
-<body background="images/tooopen.jpg" style="background-size: cover;">
+<body background="<%=request.getContextPath()%>/images/tooopen.jpg" style="background-size: cover;">
 
 
 	<h3 align="center">
