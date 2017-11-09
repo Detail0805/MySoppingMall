@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.shop.model.*"%>
+<%@ page import="com.shop.model.*, com.detail.cart.CartVO"%>
 <%@ page import="com.detail.promotion.*"%>
 <%
 //此段複寫equals 去比較itemno
@@ -134,8 +134,32 @@
       </script>  
 
 <title>Insert title here</title>
+<script src="js/jquery.mycart.js"></script>
 </head>
 <body>
+
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalforShopCart">Open Modal</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModalforShopCart" role="dialog">
+    <div class="modal-dialog" style="width:1200px;">
+    
+      <!-- Modal content-->
+      <div class="modal-content" >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">購物車內容</h4>
+        </div>
+        <div class="modal-body">
+          <%@ include file="MasterOrder/pages/Cartinclude.jsp" %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -149,7 +173,7 @@
         	<h4 align="center"><img src="<%=request.getContextPath()%>/images/greenpick.png" height="72px" width="72px">已成功添加到購物車！！</h4>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-info btn-lg left" data-dismiss="modal">前網購物車</button>
+      <button onclick="location.href ='<%=request.getContextPath()%>/MasterOrder/Cart.jsp';" type="button" class="btn btn-info btn-lg left" data-dismiss="modal">前往購物車</button>
         <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">OK</button>
       </div>
     </div>

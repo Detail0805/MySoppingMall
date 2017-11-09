@@ -11,7 +11,7 @@
     ShopOrderService shopOrderSvc = new ShopOrderService();
     List<ShopOrderVO> list = shopOrderSvc.getAllOrder();
     pageContext.setAttribute("list", list);
-int i=0;
+int z=0;
 %>
 
 <html>
@@ -205,9 +205,10 @@ $(document).ready(function(){
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="shoporderVO" items="${list}">
+                <%@ include file="pages/listallOrder1.file" %>
+                <c:forEach var="shoporderVO" items="${list}"  begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
                     <tr>
-                    	<td><%=++i%></td>
+                    	<td><%=++z%></td>
                         <td><a href="<%=request.getContextPath()%>/order.do?action=LOOKORDERID&ORDERID=${shoporderVO.orderno}&MEMBERNO=${shoporderVO.memberno}">${shoporderVO.orderno}</a></td>
                         <td>${shoporderVO.memberno}</td>
                         <td>${shoporderVO.order_date}</td>
@@ -233,8 +234,11 @@ $(document).ready(function(){
                         </td>
                     </tr>
 			</c:forEach>
+	
                 </tbody>
+               
             </table>
+             <%@ include file="pages/listallOrder2.file" %>
         </div>
     </div>     
 </body>

@@ -3,11 +3,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.shoporder.model.*"%>
 
-<%-- 此頁練習採用 EL 的寫法取值 --%>
-
 <%
 //此段複寫equals 去比較itemno
-
     ShopOrderService shopOrderSvc = new ShopOrderService();
     List<ShopOrderVO> list = shopOrderSvc.getAllOrder();
     pageContext.setAttribute("list", list);
@@ -17,7 +14,7 @@
 <html>
 <head>
 <body background="<%=request.getContextPath()%>/images/leaf.jpg">
-<title>Insert title here</title>
+<title>訂單管理頁面</title>
 </head>
 <body>
 <b><font color=red>ListallOrder.jsp</font></b><br>
