@@ -28,7 +28,7 @@
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/order.do" align="center">
 <%
 		Vector<CartVO> buylist = (Vector<CartVO>) session.getAttribute("shoppingcart");
-		String amount =  (String) request.getAttribute("amount");
+		String amount =  (String) session.getAttribute("amount");
 		request.setAttribute("amount",amount);
 %>
 <%	for (int i = 0; i < buylist.size(); i++) {

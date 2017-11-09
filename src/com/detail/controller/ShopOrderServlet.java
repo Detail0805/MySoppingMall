@@ -122,18 +122,24 @@ public class ShopOrderServlet extends HttpServlet{
 				list.add(shopOrderVO);
 				// shopOrSvc.addShopOrder(shopOrderVO);
 				}
+			//金額足夠訂單成立
+			shopOrSvc.addShopCartOrder(list);
 			}else{
 				System.out.println("餘額不足訂單未成立,FORWARD出去了。");
-				String url = "/MasterOrder/listallOrder.jsp";
+				//String url = "/MasterOrder/listallOrder.jsp";
+				String url = "/MasterOrder/listallOrderbeautiful.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
 																				// ListAllProOrder.jsp
 				successView.forward(req, res);
+				//必須要斷了程式才不會繼續跑，通透性。
+				return;
 			}
 
 			Integer NowPoint=shopOrSvc.returnAfterShoppingPoint(amount, MEMNO);
-			shopOrSvc.addShopCartOrder(list);
+			
 			System.out.println("消費前點數 :"+Point+",消費後點數"+NowPoint);
-			String url = "/MasterOrder/listallOrder.jsp";
+			//String url = "/MasterOrder/listallOrder.jsp";
+			String url = "/MasterOrder/listallOrderbeautiful.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
 																			// ListAllProOrder.jsp
 			successView.forward(req, res);

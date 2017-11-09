@@ -131,7 +131,7 @@
 										class="glyphicon glyphicon-shopping-cart"></span> Continue
 										Shopping</a></td>
 							<td><a class="btn btn-success" role="button" href='<%=request.getContextPath()%>/MasterOrder/Checkout.jsp' >
-							 Checkout<span class="glyphicon glyphicon-play"></span></a></td>
+							 前往購買<span class="glyphicon glyphicon-play"></span></a></td>
 								
 							</tr>
 						</tbody>

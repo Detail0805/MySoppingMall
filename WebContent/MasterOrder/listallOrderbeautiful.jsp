@@ -16,8 +16,8 @@ int z=0;
 
 <html>
 <head>
-<body background="<%=request.getContextPath()%>/images/leaf.jpg">
-<title>Insert title here</title>
+<body>
+<title>ListallOrder.jsp</title>
 </head>
 <body>
 <b><font color=red>ListallOrder.jsp</font></b><br>
@@ -184,7 +184,7 @@ $(document).ready(function(){
                     <div class="col-sm-6">
                         <div class="search-box">
 							<div class="input-group">								
-								<input type="text" id="search" class="form-control" placeholder="Search by Name">
+								<input type="text" id="search" class="form-control" placeholder="Search by OrderId">
                                 <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
 							</div>
                         </div>
