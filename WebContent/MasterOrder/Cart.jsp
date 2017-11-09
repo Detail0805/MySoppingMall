@@ -54,7 +54,26 @@ $(document).ready(function(){
     });  
 });
 
+
+function submitDetailsForm() {
+    $("#Checkout").submit();
+ }
+
+// $(document).ready(function(){  
+// 	console.log('in jqueryCHECKOUT');
+// 	var check=$("#Checkout");
+//     $('#Checkout').on('submit',function(event){
+//     	event.preventDefault();
+//     	check.submit();
+//     });
+// }); 
+
+ 
+
+
+
 $(document).ready(function(){  
+	
 	console.log('in jquery1');
     $('#2').on('submit',function(event){
          event.preventDefault();
@@ -97,6 +116,11 @@ $(document).ready(function(){
 
     });  
 });
+
+
+
+
+ 
 </script>  
 </head>
 <link rel="stylesheet"
@@ -240,12 +264,9 @@ $(document).ready(function(){
 										class="glyphicon glyphicon-shopping-cart"></span> Continue
 										Shopping</a></td>
 								<td>
-								  <form name="checkoutForm" action="<%=request.getContextPath()%>/cart.do" method="POST">
-									<button type="submit" class="btn btn-success">
-									<input type="hidden" name="action"	value="CHECKOUT"> 
-										Checkout <span class="glyphicon glyphicon-play"></span>
-									</button>
-									</form>
+								<a href="<%=request.getContextPath()%>/cart.do?action=CHECKOUT" class="btn btn-success" role="button">
+								Checkout <span class="glyphicon glyphicon-play"></span></a>
+		
 								</td>
 								<td> </td>
 							</tr>
