@@ -47,27 +47,29 @@
 	background-color: #DEFFFF;
 	padding: 20px;
 }*/
-	/* .detail img{width: 180px; 
- 	height: 180px; }*/ 
- 	.btn-success:hover {
+/* .detail img{width: 180px; 
+ 	height: 180px; }*/
+.btn-success:hover {
 	background-color: #449d44;
 	border-color: #398439;
 	color: #ffe200;
 }
+
 .special-price {
-    font-size: 1.3em;
-    color: red;
+	font-size: 1.3em;
+	color: red;
 }
+
 .prices {
-
-    font-weight: 700;
+	font-weight: 700;
 }
 
-.product-title{
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 20px;
-    }
+.product-title {
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 20px;
+}
+
 .pull-text-center:hover {
 	background-color: #ffffe0
 }
@@ -96,13 +98,25 @@
 .offer.offer-default.silde-show-offer.pull-text-center {
 	height: 420px;
 }
-  .price.old-price {
-    text-decoration: line-through;
+
+.price.old-price {
+	text-decoration: line-through;
 }
 
-.btn-danger{
+.btn-danger {
 	margin-left: 10;
 	width: 100px;
+}
+
+.mid-content-title {
+	font-size: 18px;
+	margin: 0;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9ca52),
+		to(#ed3123));
+	background: -moz-linear-gradient(top, #f9ca52, #ed3123);
+	margin: 15px 0;
+	color: #fff;
+	padding: 8px 12px;
 }
 /*	.description{
 		font-style: bold;
@@ -133,8 +147,10 @@
                         		  title: '',
                         		  text: "已成功加入購物車。",
                         		  type: 'success',
+                        		  timer: 5000,
                         		  showCancelButton: true,
-
+                                  confirmButtonColor: "#8fdd54",
+                                  cancelButtonColor: "#DD6B55",
                         		  confirmButtonText: '前往購物車',
                         		  cancelButtonText: '  OK  ',
                         		  confirmButtonClass: 'btn btn-success',
@@ -166,7 +182,7 @@
 </head>
 <body>
 
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalforShopCart">Open Modal</button>
+<!--   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalforShopCart">Open Modal</button> -->
 
   <!-- Modal -->
   <div class="modal fade" id="myModalforShopCart" role="dialog">
@@ -207,12 +223,18 @@
     </div>
   </div>
 </div>
+
+
+
+<div class="col-xs-12 col-sm-2"></div>
+<div class="col-xs-12 col-sm-8">
 <div>
+<div class="title mid-content-title">
+            <strong>熱門推薦</strong>
+        </div>
 	<div class="bigshoprow">
 		<div class="container shoprow">
 			<div class="row">
-
-
 				<c:forEach var="shopVO" items="${list}">
 					<div class="col-xs-12 col-sm-3 eachshop">
 						<div class="offer offer-default silde-show-offer pull-text-center">
@@ -258,7 +280,19 @@
 		</div>
 	</div>
 </div>
-	<hr>下面是當天促銷中的產品</hr>
+</div>
+
+
+<div class="col-xs-12 col-sm-12">
+
+<br>
+<div class="col-xs-12 col-sm-2">
+</div>
+<div class="col-xs-12 col-sm-8">
+<div class="title mid-content-title">
+            <strong>熱門推薦</strong>
+        </div>
+        
 	<div class="bigshoprow">
 		<div class="container shoprow">
 			<div class="row">
@@ -307,7 +341,7 @@
 			</div>
 		</div>
 	</div>
-
-
+ </div>
+</div>
 </body>
 </html>

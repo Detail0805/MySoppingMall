@@ -22,7 +22,8 @@ $(document).ready(function(){
           title: "Are you sure?",
           type: "warning",
           showCancelButton: true,
-          confirmButtonColor: "#DD6B55",
+          confirmButtonColor: "#8fdd54",
+          cancelButtonColor: "#DD6B55",
           confirmButtonText: "確定刪除!",
           cancelButtonText: "不，繼續保留。",
         }).then(function () {
@@ -85,7 +86,8 @@ $(document).ready(function(){
           title: "確定要清空購物車嗎?",
           type: "warning",
           showCancelButton: true,
-          confirmButtonColor: "#DD6B55",
+          confirmButtonColor: "#8fdd54",
+          cancelButtonColor: "#DD6B55",
           confirmButtonText: "確定清空!",
           cancelButtonText: "不，繼續保留。",
         }).then(function () {
