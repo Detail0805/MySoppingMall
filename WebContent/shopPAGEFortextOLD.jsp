@@ -118,7 +118,6 @@
 	color: #fff;
 	padding: 8px 12px;
 }
-
 /*	.description{
 		font-style: bold;
 	}
@@ -286,7 +285,7 @@
 
 <div class="col-xs-12 col-sm-12">
 
-
+<br>
 <div class="col-xs-12 col-sm-2">
 </div>
 <div class="col-xs-12 col-sm-8">
@@ -294,118 +293,64 @@
             <strong>熱門推薦</strong>
                     <span class="pull-right">
                     <a class="title-carousel-control" href="#carousel-recently-generic" data-slide="prev">
-                        <i class="fa fa-angle-left">\f104</i>
+                        <i class="fa fa-angle-left">1</i>
                     </a>
                     <a class="title-carousel-control" href="#carousel-recently-generic" data-slide="next">
-                        <i class="fa fa-angle-right">\f105</i>
+                        <i class="fa fa-angle-right">2</i>
                     </a>
                 </span>
                   </div>
-             <div id="carousel-recently-generic" class="carousel slide recently-added-products-page" data-ride="carousel">
-             
-            <div class="carousel-inner">
+                   <div id="carousel-recently-generic" class="carousel slide recently-added-products-page" data-ride="carousel">
+	<div class="bigshoprow">
+		<div class="container shoprow">
+			<div class="row">
 
-<%
-	for (int i=0;i<listforpro.size();i++) {
-		
-		if(i==0||i%4==0){
-			%>
-			
-				<div class="item <%=(i==0)?"active":""%>" >
-					<div class="col-lg-3 col-md-3 col-sm-6 col-md-12">
-                            <div class="offer offer-default silde-show-offer pull-text-center">
-                               <div class="detail">
+
+				<c:forEach var="proVO" items="${listforpro}" >
+					<div class="col-xs-12 col-sm-3 eachshop">
+						<div class="offer offer-default silde-show-offer pull-text-center">
+							<div class="detail">
 								<div class="picture thumbnail" title="我是商品名稱你好阿">
 									<a href="123" title="你好我是商品名稱"> <img class="img-responsive"
-										img src="DBPicReader?ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" height="180px"
-										width="180px">
+										img src="DBPicReader?ITEMNO=${proVO.ITEMNO}"  height="180px" width="180px">
 									</a>
 								</div>
 								<div class="middle-content">
 									<h2 class="product-title">
-										<a href="##"> <%=((ProVO)(listforpro.get(i))).getNAME()%></a>
+										<a href="##"> ${proVO.SHOPNAME}</a>
 									</h2>
-									<div class="description"><%=((ProVO)(listforpro.get(i))).getDES().substring(0,15)%>...</div>
+									<div class="description">${proVO.DES.substring(0,15)}...</div>
 								</div>
 							</div>
 							<div class="add-info">
 								<div class="ash-box">
-								<div class="prices">
-								<span class="price old-price">原價$<%=((ProVO)(listforpro.get(i))).getOLDPRICE()%></span> <span
-											class="price special-price">特價$<%=((ProVO)(listforpro.get(i))).getPRICE()%></span>
+									<div class="prices">
+										<span class="price old-price">原價$${proVO.OLDPRICE}</span> <span
+											class="price special-price">特價$${proVO.PRICE}</span>
 									</div>
 									<div class="buttons">
 									<FORM METHOD="post" ACTION="cart.do">
 									<select name="STOCK" id="STOCK">
-									<c:forEach var="quantity" begin="1" end="<%=((ProVO)(listforpro.get(i))).getQuantity()%>" step="1">
+											<c:forEach var="quantity" begin="1" end="${proVO.quantity}"
+												step="1">
 												<option value="${quantity}">${quantity}
 											</c:forEach> </select>
-											<input type="hidden" name="action" value="ADD2" id="ADD2">
+											
+										<input type="hidden" name="action" value="ADD2" id="ADD2">
 										<input type="hidden" name="ITEMNO" value="${proVO.ITEMNO}" id="ITEMNO" > 
 										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" >
 										</FORM>
-										</div>
 									</div>
 								</div>
 							</div>
-                         </div>
-					
-		<%
-	}else if(i!=1||i%4!=0){
-	%>
-					<div class="col-lg-3 col-md-3 col-sm-6 col-md-12">
-                            <div class="offer offer-default silde-show-offer pull-text-center">
-                               <div class="detail">
-								<div class="picture thumbnail" title="我是商品名稱你好阿">
-									<a href="123" title="你好我是商品名稱"> <img class="img-responsive"
-										img src="DBPicReader?ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" height="180px"
-										width="180px">
-									</a>
-								</div>
-								<div class="middle-content">
-									<h2 class="product-title">
-										<a href="##"> <%=((ProVO)(listforpro.get(i))).getNAME()%></a>
-									</h2>
-									<div class="description"><%=((ProVO)(listforpro.get(i))).getDES().substring(0,15)%>...</div>
-								</div>
-							</div>
-							<div class="add-info">
-								<div class="ash-box">
-								<div class="prices">
-								<span class="price old-price">原價$<%=((ProVO)(listforpro.get(i))).getOLDPRICE()%></span> <span
-											class="price special-price">特價$<%=((ProVO)(listforpro.get(i))).getPRICE()%></span>
-									</div>
-									<div class="buttons">
-									<FORM METHOD="post" ACTION="cart.do">
-									<select name="STOCK" id="STOCK">
-									<c:forEach var="quantity" begin="1" end="<%=((ProVO)(listforpro.get(i))).getQuantity()%>" step="1">
-												<option value="${quantity}">${quantity}
-											</c:forEach> </select>
-											<input type="hidden" name="action" value="ADD2" id="ADD2">
-										<input type="hidden" name="ITEMNO" value="${proVO.ITEMNO}" id="ITEMNO" > 
-										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" >
-										</FORM>
-										</div>
-									</div>
-								</div>
-							</div>
-                         </div>
-	
-	<%if(i==3||i%4==3){ %>
-				</div>
-			<%
-			}
-			%>
-	<%
-			} 
-		}
-	%>
-
-				
+						</div>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
  </div>
- 
+  </div>
+</div>
 </body>
 </html>
