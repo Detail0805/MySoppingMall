@@ -3,6 +3,177 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.shop.model.*, com.detail.cart.CartVO"%>
 <%@ page import="com.detail.promotion.*"%>
+<!-- -------- -->
+  <head>
+    <meta charset="utf-8">
+    
+  <!-- 頁面標題 ================================================== -->
+    <title>有我罩你</title>
+  <!-- 頁面標題 ================================================== -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- NavBar的CSS 專區 不能刪喔 ================================================== -->
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/navbar/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/navbar/usebootstrap.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/navbar/newstyle_footer.css">
+  <!-- NavBar的CSS 專區 不能刪喔 ================================================== -->
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="bootstrap/html5shiv.js"></script>
+      <script src="bootstrap/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>
+  
+
+<!-- image資料夾 - share裡有 一些小圖示可使用 (都是.png檔//是透明底圖//) -->
+
+<!-- 大家的各自頁面拜託記得要加上註解 這樣之後整合 會比較好找到 -->
+<!-- 各自 CSS & JS 資料夾記得取名歸類  -->
+
+<!-- 專題加油～～～～～  -->
+
+
+
+<!-- 是Navbar 不要亂刪 感謝～～ ==================================================================== -->
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+            
+<!-- logo 區 稍後會補上 ================================================== -->
+    <a href="#" class="navbar-brand">
+      <img src="">有我罩你
+    </a>
+<!-- logo 區 稍後會補上 ================================================== -->
+
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+
+    <div class="navbar-collapse collapse" id="navbar-main">
+              
+
+    		 
+  <!-- 各項button 連結請自行找 <a href= "填入自己的頁面連結 (溫腥提醒:記得用動態) "> ================== -->
+
+      <ul class="nav navbar-nav">
+                
+        <!-- 關於我們 ================================================== -->
+        <li>
+          <a href="#">關於我們</a>
+        </li>
+  <!-- 關於我們 ================================================== -->
+
+
+  <!-- 最新消息 ================================================== -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">最新消息 <span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="themes">
+            <li><a href="#">最新消息</a></li>
+            <li><a href="#">保健資訊</a></li>
+          </ul>
+        </li>
+  <!-- 最新消息 ================================================== -->
+
+
+
+  <!-- 長照服務 ================================================== -->
+        <li>
+          <a href="#">長照服務</a>
+        </li>
+  <!-- 長照服務 ================================================== -->
+
+  <!-- 派車服務 ================================================== -->
+        <li>
+          <a href="#">派車服務</a>
+        </li>
+  <!-- 派車服務 ================================================== -->
+
+
+  <!-- 送餐服務 ================================================== -->
+        <li>
+          <a href="#">送餐服務</a>
+        </li>
+  <!-- 送餐服務 ================================================== -->
+
+
+  <!-- 商城服務 ================================================== -->
+        <li>
+          <a href="#">商&nbsp&nbsp&nbsp&nbsp城</a>
+        </li>
+  <!-- 商城服務 ================================================== -->
+
+
+  <!-- 聯絡我們 ================================================== -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">聯絡我們 <span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="themes">
+            <li><a href="#">線上客服</a></li>
+            <li><a href="#">意見回饋</a></li>
+          </ul>
+        </li>
+  <!-- 聯絡我們 ================================================== -->
+
+
+      </ul>
+      		  
+      <ul class="nav navbar-nav navbar-right">
+
+
+  <!-- 會員專區 ================================================== -->
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">會員專區 <span class="caret"></span></a>
+        <ul class="dropdown-menu" aria-labelledby="themes">
+          <li><a href="#">會員資料管理</a></li>
+          <li><a href="#">我的錢包</a></li>
+          <li><a href="#">訂單管理</a></li>
+          <li><a href="#">我的最愛</a></li>
+        </ul>
+      </li>
+  <!-- 會員專區 ================================================== -->
+
+
+  <!-- 登入 / 註冊 ================================================== -->
+      <li><a href="#">登入 / 註冊 </a></li>
+  <!-- 登入 / 註冊 ================================================== -->
+
+      </ul>
+    		  
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- 大圖bannan -->
+
+<!-- 大圖bannan -->
+
+
+
+
+<!-- 各項button 連結請自行找 <a href= "填入自己的頁面連結 (溫腥提醒:記得用動態) "> ================== -->
+
+
+<!-- 這裡是JS專區 =========================================================== -->
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/front/js/navbar/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/front/js/navbar/usebootstrap.js"></script>
+
+<!-- 這裡是JS專區 =========================================================== -->
+
+</body>
+<!-- ----- ----->
 <%
 //此段複寫equals 去比較itemno
     ShopService shopSvc = new ShopService();
@@ -118,6 +289,8 @@
 	color: #fff;
 	padding: 8px 12px;
 }
+
+
 .title-carousel-control {
 
     padding: 10px;
@@ -192,8 +365,6 @@
 
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalforShopCart">Open Modal</button>
 
-
-
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12">
@@ -222,51 +393,53 @@
 	</div>
 
   <!-- Modal -->
-<!--   <div class="modal fade" id="myModalforShopCart" role="dialog"> -->
-<!--     <div class="modal-dialog" style="width:1200px;"> -->
+  <div class="modal fade" id="myModalforShopCart" role="dialog">
+    <div class="modal-dialog" style="width:1200px;">
     
-<!--       Modal content -->
-<!--       <div class="modal-content" > -->
-<!--         <div class="modal-header"> -->
-<!--           <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-<!--           <h4 class="modal-title">購物車內容</h4> -->
-<!--         </div> -->
-<!--         <div class="modal-body"> -->
-<%--           <%@ include file="MasterOrder/pages/Cartinclude.jsp" %> --%>
-<!--         </div> -->
-<!--         <div class="modal-footer"> -->
-<!--           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-<!--         </div> -->
-<!--       </div> -->
+      <!-- Modal content-->
+      <div class="modal-content" >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">購物車內容</h4>
+        </div>
+        <div class="modal-body">
+          <%@ include file="MasterOrder/pages/Cartinclude.jsp" %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
       
-<!--     </div> -->
-<!--   </div> -->
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        	<h4 align="center"><img src="<%=request.getContextPath()%>/images/greenpick.png" height="72px" width="72px">已成功添加到購物車！！</h4>
-      </div>
-      <div class="modal-footer">
-      <button onclick="location.href ='<%=request.getContextPath()%>/MasterOrder/Cart.jsp';" type="button" class="btn btn-info btn-lg left" data-dismiss="modal">前往購物車</button>
-        <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">OK</button>
-      </div>
     </div>
   </div>
-</div>
+
+<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+<!--   <div class="modal-dialog" role="document"> -->
+<!--     <div class="modal-content"> -->
+<!--       <div class="modal-header"> -->
+<!--         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+<!--           <span aria-hidden="true">&times;</span> -->
+<!--         </button> -->
+<!--       </div> -->
+<!--       <div class="modal-body"> -->
+<%--         	<h4 align="center"><img src="<%=request.getContextPath()%>/images/greenpick.png" height="72px" width="72px">已成功添加到購物車！！</h4> --%>
+<!--       </div> -->
+<!--       <div class="modal-footer"> -->
+<%--       <button onclick="location.href ='<%=request.getContextPath()%>/MasterOrder/Cart.jsp';" type="button" class="btn btn-info btn-lg left" data-dismiss="modal">前往購物車</button> --%>
+<!--         <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">OK</button> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </div> -->
 
 
 
 <div class="col-xs-12 col-sm-2"></div>
+
 <div class="col-xs-12 col-sm-8">
-	<div class="title mid-content-title">
-            <strong>熱門推薦</strong>
+
+<div class="title mid-content-title">
+            <strong>促銷商品</strong>
                     <span class="pull-right">
                     <a class="title-carousel-control" href="#carousel-recently-generic" data-slide="prev">
                         <i class="fa fa-angle-left">◀</i>
@@ -316,7 +489,7 @@
 												<option value="${quantity}">${quantity}
 											</c:forEach> </select>
 											<input type="hidden" name="action" value="ADD2" id="ADD2">
-										<input type="hidden" name="ITEMNO" value="<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" id="ITEMNO" > 
+										<input type="hidden" name="ITEMNO" value="${proVO.ITEMNO}" id="ITEMNO" > 
 										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" >
 										</FORM>
 										</div>
@@ -357,7 +530,7 @@
 												<option value="${quantity}">${quantity}
 											</c:forEach> </select>
 											<input type="hidden" name="action" value="ADD2" id="ADD2">
-										<input type="hidden" name="ITEMNO" value="<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" id="ITEMNO" > 
+										<input type="hidden" name="ITEMNO" value="${proVO.ITEMNO}" id="ITEMNO" > 
 										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" >
 										</FORM>
 										</div>
@@ -380,18 +553,16 @@
 			</div>
 		</div>
 	</div>
-</div>
 
 
 <div class="col-xs-12 col-sm-12">
 
-
-<div class="col-xs-12 col-sm-2">
-</div>
-<div class="col-xs-12 col-sm-8">
+<div>
+<div class="row">
 <div class="title mid-content-title">
             <strong>熱門推薦</strong>
         </div>
+
 	<div class="bigshoprow">
 		<div class="container shoprow">
 			<div class="row">
@@ -429,17 +600,57 @@
 									<input type="hidden" name="action" value="ADD" ">
 									<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}" >
 									<input type="submit" class="btn btn-sm btn-success" value="放入購物車">
-										</FORM>
+											</FORM>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</c:forEach>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
 	</div>
- </div>
- 
+</div>
+</div>
+
+<!-------------------------------------->
+
+  <!-- NavBar的CSS 專區 不能刪喔 ================================================== -->
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/usebootstrap.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/navbar/newstyle_footer.css">
+  <!-- NavBar的CSS 專區 不能刪喔 ================================================== -->
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="bootstrap/html5shiv.js"></script>
+      <script src="bootstrap/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>
+  
+
+<!-- 專題加油～～～～～  -->
+
+
+<!-- 是footer bar 不要亂刪 感謝～～ ==================================================================== -->
+<div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <p class="navbar-text text-center">BA104G1&nbsp ©&nbsp 2017 &nbsp&nbsp 有我罩你全家股份有限公司 </p>
+        </div>
+    </div>
+<!-- 是footer bar 不要亂刪 感謝～～ ==================================================================== -->
+
+<!-- 這裡是JS專區 =========================================================== -->
+
+<script src="<%=request.getContextPath()%>/front/js/navbar/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/front/js/navbar/usebootstrap.js"></script>
+
+<!-- 這裡是JS專區 =========================================================== -->
+
+<!-------------------------------------->
+
 </body>
 </html>
