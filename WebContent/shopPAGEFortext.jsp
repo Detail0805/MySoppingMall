@@ -446,14 +446,14 @@
                             <div class="offer offer-default silde-show-offer pull-text-center">
                                <div class="detail">
 								<div class="picture thumbnail" title="我是商品名稱你好阿">
-									<a href="123" title="你好我是商品名稱"> <img class="img-responsive"
+									<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>&PRO=1" title="<%=((ProVO)(listforpro.get(i))).getSHOPNAME()%>" title="<%=((ProVO)(listforpro.get(i))).getSHOPNAME()%>"> <img class="img-responsive"
 										img src="DBPicReader?ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" height="180px"
 										width="180px">
 									</a>
 								</div>
 								<div class="middle-content">
 									<h2 class="product-title">
-										<a href="##"> <%=((ProVO)(listforpro.get(i))).getSHOPNAME()%></a>
+										<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>&PRO=1" title="<%=((ProVO)(listforpro.get(i))).getSHOPNAME()%>"> <%=((ProVO)(listforpro.get(i))).getSHOPNAME()%></a>
 									</h2>
 									<div class="description"><%=((ProVO)(listforpro.get(i))).getDES().substring(0,15)%>...</div>
 								</div>
@@ -487,14 +487,14 @@
                             <div class="offer offer-default silde-show-offer pull-text-center">
                                <div class="detail">
 								<div class="picture thumbnail" title="我是商品名稱你好阿">
-									<a href="123" title="你好我是商品名稱"> <img class="img-responsive"
+									<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>&PRO=1" title="<%=((ProVO)(listforpro.get(i))).getSHOPNAME()%>" title="<%=((ProVO)(listforpro.get(i))).getSHOPNAME()%>"> <img class="img-responsive"
 										img src="DBPicReader?ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" height="180px"
 										width="180px">
 									</a>
 								</div>
 								<div class="middle-content">
 									<h2 class="product-title">
-										<a href="##"> <%=((ProVO)(listforpro.get(i))).getSHOPNAME()%></a>
+										<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>&PRO=1" title="<%=((ProVO)(listforpro.get(i))).getSHOPNAME()%>"> <%=((ProVO)(listforpro.get(i))).getSHOPNAME()%></a>
 									</h2>
 									<div class="description"><%=((ProVO)(listforpro.get(i))).getDES().substring(0,15)%>...</div>
 								</div>
@@ -554,15 +554,15 @@
 					<div class="col-xs-12 col-sm-3 eachshop">
 						<div class="offer offer-default silde-show-offer pull-text-center">
 							<div class="detail">
-								<div class="picture thumbnail" title="我是商品名稱你好阿">
-									<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}" title="你好我是商品名稱"> <img class="img-responsive"
+								<div class="picture thumbnail" title="${shopVO.NAME}">
+									<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}&PRO=0" title="${shopVO.NAME}"> <img class="img-responsive"
 										img src="DBPicReader?ITEMNO=${shopVO.ITEMNO}" height="180px"
 										width="180px">
 									</a>
 								</div>
 								<div class="middle-content">
 									<h2 class="product-title">
-										<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}"> ${shopVO.NAME}</a>
+										<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}&PRO=0"> ${shopVO.NAME}</a>
 									</h2>
 									<div class="description">${shopVO.DES.substring(0,15)}...</div>
 								</div>

@@ -16,6 +16,7 @@ import com.shop.model.ShopVO;
 
 public class ProDAO implements ProDAO_interface{
 	private static final String FIND_ALL_PRO="SELECT * FROM PROMOTION ORDER BY PROMOTIONNO";
+	private static final String GET_ONE_PRO_SHOP="SELECT P.PROMOTIONNO,P.ITEMNO,P.PRICE,PT.NAME,BEGINDATE,ENDDATE,SP.NAME AS SHOPNAME,SP.DES,SP.PRICE AS OLDPRICE,SP.STOCK FROM PROMOTIONDETAIL P JOIN PROMOTION PT ON (P.PROMOTIONNO = PT.PROMOTIONNO) JOIN SHOPPINGMALL SP  ON SP.ITEMNO = P.ITEMNO where to_char(BEGINDATE,'yyyymmdd')<=to_char(sysdate,'yyyymmdd') and to_char(ENDDATE,'yyyymmdd')>=to_char(sysdate,'yyyymmdd') and P.ITEMNO=?";
 	private static final String INSERT_STMT = "INSERT INTO PROMOTION (PROMOTIONNO,NAME,BEGINDATE,ENDDATE) VALUES(FORPROMOTION.NEXTVAL,?,?,?)";
 	private static final String INSERT_STMT2 = "UPDATE PROMOTION set NAME=? WHERE PROMOTIONNO=?";
 	private static final String GET_ALL_PRO_SHOP =
@@ -601,5 +602,63 @@ public class ProDAO implements ProDAO_interface{
 			}
 		}
 		return list;
+	}
+	
+	public ProVO getOneProShop(Integer itemno) {
+		ProVO proVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_PRO_SHOP);
+			pstmt.setInt(1,itemno);
+			rs = pstmt.executeQuery();
+			System.out.println("進來getOneProShop");
+			while (rs.next()) {
+				proVO=new ProVO();
+				proVO.setITEMNO(rs.getInt("ITEMNO"));
+				System.out.println("proVO.getITEMNO() :"+proVO.getITEMNO());
+				proVO.setPROMOTIOMNO(rs.getInt("PROMOTIONNO"));
+				proVO.setPRICE(rs.getInt("PRICE"));
+				proVO.setBEGINDATE(rs.getDate("BEGINDATE"));
+				proVO.setENDDATE(rs.getDate("ENDDATE"));
+				proVO.setNAME(rs.getString("NAME"));
+				proVO.setSHOPNAME(rs.getString("SHOPNAME"));
+				proVO.setDES(rs.getString("DES"));
+				proVO.setOLDPRICE(rs.getInt("OLDPRICE"));
+				// proVO 也稱為 Domain objects
+			}
+	
+			// Handle any driver errors
+		} catch (SQLException se) {
+			System.out.println("全體查尋失敗 :"+se);
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		System.out.println("proVO.getITEMNO() :"+proVO.getITEMNO());
+		return proVO;
 	}
 }

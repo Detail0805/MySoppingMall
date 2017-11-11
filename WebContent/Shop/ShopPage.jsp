@@ -5,6 +5,7 @@
 
 <%
 ShopVO shopVO = (ShopVO) request.getAttribute("shopVO");
+ProVO proVO = (ProVO) request.getAttribute("proVO");
 
 //此段複寫equals 去比較itemno
 ShopService shopSvc = new ShopService();
@@ -54,11 +55,15 @@ list = list3;// include page1.file JSP用
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
          <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.5/sweetalert2.all.js"></script>
         <script type="text/javascript">  
-        $(document).ready(function(){  
+   
+        
+        $(document).ready(function(){ 
+        
+        	
         	console.log('in jquery1');
             $('form').on('submit',function(event){
                 event.preventDefault();
-
+                console.log('form')
             	console.log($(this).children().eq(0).val());
 
 
@@ -205,6 +210,7 @@ hr {
   height: 3.5em
 }
 
+
 .detail-total-form td li {
   line-height: 1.5em
 }
@@ -287,6 +293,15 @@ div.backgroundpng {
 body {
   font-family: Arial, Verdana, Helvetica, "LiHei Pro Medium", 微軟正黑體,
     sans-serif;
+}
+
+.special-price {
+	font-size: 1.3em;
+	color: red;
+}
+
+.price.old-price {
+	text-decoration: line-through;
 }
 
 .navbar {
@@ -534,7 +549,7 @@ color: #333;
       <!-- 主區塊左側 -->
       <div class="col-xs-12 col-sm-6">
         <div style="padding: 15px; ">
-        <td width="200"><img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${shopVO.ITEMNO}" height="350px" width="100%">
+        <td width="200"><img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${((shopVO.ITEMNO)==null)?proVO.ITEMNO:shopVO.ITEMNO}" height="350px" width="100%">
           </div>
 
       </div>
@@ -558,7 +573,7 @@ color: #333;
         </thead>
         <tbody>
           <tr>
-            <td>${shopVO.DES}</td>
+            <td>${((shopVO.DES)==null)?proVO.DES:shopVO.DES}</td>
           </tr>
 
 
@@ -567,7 +582,7 @@ color: #333;
       </div>
           <div class="row main_block_detail" style="margin-left:0px;margin-bottom: 25px;">
             <div>網路會員價:
-            <span style="color: #B80709; font-size:35px;font-weight: 700;">$${shopVO.PRICE} </span>
+            <span style="color: #B80709; font-size:35px;font-weight: 700;">$${((shopVO.PRICE)==null)?proVO.PRICE:shopVO.PRICE}</span>
             </div>
           </div>
   
@@ -579,8 +594,8 @@ color: #333;
                 <input  type="number" value="1" id="STOCK" style="text-align:center;border-radius:4px;width:50px;height: 34px;border: 1px solid">
               </div>
               <div class="col-xs-12 col-sm-4">
-                <input type="hidden" name="action" value="ADD" id="action" ">
-                <input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}" id="ITEMNO" ">
+                <input type="hidden" name="action" value="ADD2" id="action" ">
+                <input type="hidden" name="ITEMNO" value="${((shopVO.ITEMNO)==null)?proVO.ITEMNO:shopVO.ITEMNO}" id="ITEMNO" ">
                 <input type="submit" class="btn btn-sm btn-success" value="放入購物車" style="height: 35; width: 100%;font-size: 15px;">
     			</FORM>
               </div>
@@ -609,8 +624,8 @@ color: #333;
     <!-- 詳細資訊表格左邊 -->
     <!-- 其中一欄資訊表格開始 -->
     <div style="height:185px;">
-      <h3 class="form_title">商品詳細資訊:</h3>
-      <table class="table table-hover">
+      <h3 class="form_title">注意事項:</h3>
+      <table class="table">
 
         <thead>
         </thead>
@@ -661,15 +676,15 @@ color: #333;
 					<div class="col-lg-3 col-md-3 col-sm-6 col-md-12">
                             <div class="offer offer-default silde-show-offer pull-text-center">
                                <div class="detail">
-								<div class="picture thumbnail" title="我是商品名稱你好阿">
-									<a href="123" title="你好我是商品名稱"> <img class="img-responsive"
+								<div class="picture thumbnail" title="<%=((ProVO)(listforpro.get(i))).getSHOPNAME()%>">
+									<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>&PRO=1" title="<%=((ProVO)(listforpro.get(i))).getSHOPNAME()%>"><img class="img-responsive"
 										img src="DBPicReader?ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" height="180px"
 										width="180px">
 									</a>
 								</div>
 								<div class="middle-content">
 									<h2 class="product-title">
-										<a href="##"> <%=((ProVO)(listforpro.get(i))).getSHOPNAME()%></a>
+										<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>&PRO=1"> <%=((ProVO)(listforpro.get(i))).getSHOPNAME()%></a>
 									</h2>
 									<div class="description"><%=((ProVO)(listforpro.get(i))).getDES().substring(0,15)%>...</div>
 								</div>
@@ -681,13 +696,13 @@ color: #333;
 											class="price special-price">特價$<%=((ProVO)(listforpro.get(i))).getPRICE()%></span>
 									</div>
 									<div class="buttons">
-									<FORM METHOD="post" ACTION="cart.do">
+									<FORM METHOD="post" ACTION="cart.do" id="btnSubmit">
 									<select name="STOCK" id="STOCK">
-									<c:forEach var="quantity" begin="1" end="<%=((ProVO)(listforpro.get(i))).getQuantity()%>" step="1">
+									<c:forEach var="quantity" begin="1" end="" step="1">
 												<option value="${quantity}">${quantity}
 											</c:forEach> </select>
-											<input type="hidden" name="action" value="ADD2" id="ADD2">
-										<input type="hidden" name="ITEMNO" value="<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" id="ITEMNO" > 
+											<input type="hidden" name="action" value="ADD2" id="action">
+										<input type="hidden"  id="ITEMNO" name="ITEMNO" value="<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" id="ITEMNO" > 
 										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" >
 										</FORM>
 										</div>
@@ -695,22 +710,22 @@ color: #333;
 								</div>
 							</div>
                          </div>
-					
+
 		<%
 	}else if(i!=1||i%4!=0){
 	%>
 					<div class="col-lg-3 col-md-3 col-sm-6 col-md-12">
                             <div class="offer offer-default silde-show-offer pull-text-center">
                                <div class="detail">
-								<div class="picture thumbnail" title="我是商品名稱你好阿">
-									<a href="123" title="你好我是商品名稱"> <img class="img-responsive"
+								<div class="picture thumbnail" title="<%=((ProVO)(listforpro.get(i))).getSHOPNAME()%>">
+									<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>&PRO=1" title="<%=((ProVO)(listforpro.get(i))).getSHOPNAME()%>"> <img class="img-responsive"
 										img src="DBPicReader?ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" height="180px"
 										width="180px">
 									</a>
 								</div>
 								<div class="middle-content">
 									<h2 class="product-title">
-										<a href="##"> <%=((ProVO)(listforpro.get(i))).getSHOPNAME()%></a>
+										<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>&PRO=1"> <%=((ProVO)(listforpro.get(i))).getSHOPNAME()%></a>
 									</h2>
 									<div class="description"><%=((ProVO)(listforpro.get(i))).getDES().substring(0,15)%>...</div>
 								</div>
@@ -722,7 +737,7 @@ color: #333;
 											class="price special-price">特價$<%=((ProVO)(listforpro.get(i))).getPRICE()%></span>
 									</div>
 									<div class="buttons">
-									<FORM METHOD="post" ACTION="cart.do">
+									<FORM METHOD="post" ACTION="cart.do" id="btnSubmit">
 									<select name="STOCK" id="STOCK">
 									<c:forEach var="quantity" begin="1" end="<%=((ProVO)(listforpro.get(i))).getQuantity()%>" step="1">
 												<option value="${quantity}">${quantity}

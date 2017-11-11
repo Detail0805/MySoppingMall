@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.detail.promotion.ProService;
+import com.detail.promotion.ProVO;
 import com.shop.model.ShopService;
 import com.shop.model.ShopVO;
 
@@ -295,18 +297,36 @@ public class ShopServlet extends HttpServlet {
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer ITEMNO = new Integer(req.getParameter("ITEMNO").trim());
-				ShopVO shopVO=null;
-				/***************************2.開始修改資料*****************************************/
-				ShopService empSvc = new ShopService();
-				shopVO = empSvc.getOneEmp(ITEMNO);
+		
+				Integer pro=new Integer((req.getParameter("PRO")));
+				System.out.println((pro == 1));
+				if (pro == 0) {
+					System.out.println("無促銷明細顯示");
+					ProService proSvc = new ProService();
+					ShopVO shopVO = null;
+					System.out.println("無促銷明細顯示1");
+					/*************************** 2.開始修改資料 *****************************************/
+					ShopService empSvc = new ShopService();
+					System.out.println("無促銷明細顯示3");
+					shopVO = empSvc.getOneEmp(ITEMNO);
+					System.out.println("無促銷明細顯示4");
 
-				
-				/***************************3.修改完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("shopVO", shopVO); // 資料庫update成功後,正確的的shopVO物件,存入req
-				String url = "/Shop/ShopPage.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
-				successView.forward(req, res);
-
+					/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
+					req.setAttribute("shopVO", shopVO); // 資料庫update成功後,正確的的shopVO物件,存入req
+					System.out.println("無促銷明細顯示5");
+					String url = "/Shop/ShopPage.jsp";
+					System.out.println("無促銷明細顯示6");
+					RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
+					successView.forward(req, res);
+				} else if (pro == 1) {
+					System.out.println("有促銷明細顯示");
+					ProService proSvc = new ProService();
+					ProVO proVO = proSvc.getOneProShop(ITEMNO);
+					req.setAttribute("proVO", proVO);
+					String url = "/Shop/ShopPage.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
+					successView.forward(req, res);
+				}
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				RequestDispatcher failureView = req
