@@ -228,6 +228,7 @@ public class ShopServlet extends HttpServlet {
 		
 		if ("shelf".equals(action)) { // 來自addshop.do
 
+			
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 	
@@ -255,6 +256,66 @@ public class ShopServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		
+		if ("getOne_For_Update".equals(action)) { // 來自addshop.jsp的請求
+			
+			System.out.println("進入getOne_For_Update");
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/***************************1.接收請求參數****************************************/
+				Integer ITEMNO = new Integer(req.getParameter("ITEMNO"));
+				
+				/***************************2.開始查詢資料****************************************/
+				ShopService empSvc = new ShopService();
+				ShopVO shopVO = empSvc.getOneEmp(ITEMNO);
+								
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				req.setAttribute("shopVO", shopVO);         // 資料庫取出的shopVO物件,存入req
+				String url = "/Shop/update_emp_input.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				System.out.println("跳錯了");
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/ShowAll.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+		if ("checkone".equals(action)) {	// 來自update_emp_input.jsp的請求
+			System.out.println("checkone");
+
+			try {
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+				Integer ITEMNO = new Integer(req.getParameter("ITEMNO").trim());
+				ShopVO shopVO=null;
+				/***************************2.開始修改資料*****************************************/
+				ShopService empSvc = new ShopService();
+				shopVO = empSvc.getOneEmp(ITEMNO);
+
+				
+				/***************************3.修改完成,準備轉交(Send the Success view)*************/
+				req.setAttribute("shopVO", shopVO); // 資料庫update成功後,正確的的shopVO物件,存入req
+				String url = "/Shop/ShopPage.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理*************************************/
+			} catch (Exception e) {
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/Shop/ShopPage.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+		
 	}
 
 }

@@ -74,7 +74,7 @@
 			<td>${shopVO.STATE}</td>
 			<td>${shopVO.DES}</td>
 			<td>
-			  <FORM METHOD="post" ACTION="shop.do">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shop.do">
 			     <input type="submit" value="修改">
 			     <input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
@@ -115,8 +115,6 @@
 <%@ include file="/page2.file" %>
 
 <h2>下面測試用includ購物車網址</h2>
-
-<%@ include file="/MasterOrder/Cart.jsp" %>
 
 </body>
 </html>

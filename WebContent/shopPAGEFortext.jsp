@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.shop.model.*, com.detail.cart.CartVO"%>
-<%@ page import="com.detail.promotion.*"%>
+<%@ page import="com.shop.model.*, com.detail.cart.CartVO ,com.detail.promotion.*"%>
+
 <%
 //此段複寫equals 去比較itemno
     ShopService shopSvc = new ShopService();
@@ -421,7 +421,7 @@
 <div class="col-xs-12 col-sm-2"></div>
 <div class="col-xs-12 col-sm-8">
 	<div class="title mid-content-title">
-            <strong>熱門推薦</strong>
+            <strong>現正促銷</strong>
                     <span class="pull-right">
                     <a class="title-carousel-control" href="#carousel-recently-generic" data-slide="prev">
                         <i class="fa fa-angle-left">◀</i>
@@ -453,7 +453,7 @@
 								</div>
 								<div class="middle-content">
 									<h2 class="product-title">
-										<a href="##"> <%=((ProVO)(listforpro.get(i))).getNAME()%></a>
+										<a href="##"> <%=((ProVO)(listforpro.get(i))).getSHOPNAME()%></a>
 									</h2>
 									<div class="description"><%=((ProVO)(listforpro.get(i))).getDES().substring(0,15)%>...</div>
 								</div>
@@ -494,7 +494,7 @@
 								</div>
 								<div class="middle-content">
 									<h2 class="product-title">
-										<a href="##"> <%=((ProVO)(listforpro.get(i))).getNAME()%></a>
+										<a href="##"> <%=((ProVO)(listforpro.get(i))).getSHOPNAME()%></a>
 									</h2>
 									<div class="description"><%=((ProVO)(listforpro.get(i))).getDES().substring(0,15)%>...</div>
 								</div>
@@ -555,14 +555,14 @@
 						<div class="offer offer-default silde-show-offer pull-text-center">
 							<div class="detail">
 								<div class="picture thumbnail" title="我是商品名稱你好阿">
-									<a href="123" title="你好我是商品名稱"> <img class="img-responsive"
+									<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}" title="你好我是商品名稱"> <img class="img-responsive"
 										img src="DBPicReader?ITEMNO=${shopVO.ITEMNO}" height="180px"
 										width="180px">
 									</a>
 								</div>
 								<div class="middle-content">
 									<h2 class="product-title">
-										<a href="##"> ${shopVO.NAME}</a>
+										<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}"> ${shopVO.NAME}</a>
 									</h2>
 									<div class="description">${shopVO.DES.substring(0,15)}...</div>
 								</div>
