@@ -29,9 +29,6 @@
 	}
     pageContext.setAttribute("list", list3); // forEach EL用
 	list = list3;// include page1.file JSP用
-	
-	
-
 
 %>
 <link rel="stylesheet"

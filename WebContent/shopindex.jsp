@@ -34,6 +34,11 @@
 
 
 %>
+
+
+<title>Insert title here</title>
+</head>
+<body>
    <title>有我罩你</title>
   <!-- 頁面標題 ================================================== -->
     
@@ -299,6 +304,7 @@
 	}
 	*/
 </style>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -354,9 +360,6 @@
         });  
       </script>  
 
-<title>Insert title here</title>
-</head>
-<body>
 
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalforShopCart">Open Modal</button>
 
@@ -379,9 +382,9 @@
 			</div>
 			<div class="col-xs-12 col-sm-3">
 				<div class="input-group">
-	  <input type="text" class="form-control" placeholder="您想找什麼...">
+	  <input type="text" class="form-control" style="border-radius: 5px;" placeholder="您想找什麼...">
 	  <span class="input-group-btn">
-	    <button class="btn btn-info btn btn-warning " type="button"><span class="glyphicon glyphicon-search">
+	    <button class="btn btn-info btn btn-warning " style="border-radius: 5px;" type="button"><span class="glyphicon glyphicon-search">
 	    </span>搜尋</button>
 	  </span>
 	</div>
