@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=Big5" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=Big5" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*"%>
 <%@ page import="javax.naming.*"%>
@@ -38,7 +38,7 @@
 		<table border="1" cellpadding="5">
 		<tr><td width="200"><img src="DBPicReader?ITEMNO=<%=ITEMNO%>" height="150px" width="200px">
 		</td>
-		<td width="400">²£«~½s¸¹:<%=ITEMNO%><br>²£«~¦WºÙ :<%=NAME%><br>®w¦s¼Æ¶q : <select name="number" id="number<%=i%>">
+		<td width="400">ç”¢å“ç·¨è™Ÿ:<%=ITEMNO%><br>ç”¢å“åç¨± :<%=NAME%><br>åº«å­˜æ•¸é‡ : <select name="number" id="number<%=i%>">
 			<%
 				if (stock > 0) {
 						for (int j = 1; j < stock + 1; j++) {
@@ -53,15 +53,15 @@
 			<%
 				}
 			%>
-		</select><br>²£«~´y­z:<%=des %></td>
+		</select><br>ç”¢å“æè¿°:<%=des %></td>
 		<td width="50">
 					<form name="empnoForm" method="post" action="emp.do">
-						<input type="submit" value="­×§ï"> <input type="hidden"
+						<input type="submit" value="ä¿®æ”¹"> <input type="hidden"
 							name="ITEMNO" value=<%=ITEMNO%>> <input type="hidden"
 							name="action" value="getOne_For_Update">
 					</form>
 					<form name="empnoForm" method="post" action="emp.do">
-						<input type=submit value=§R°£> <input type="hidden"
+						<input type=submit value=åˆªé™¤> <input type="hidden"
 							name="ITEMNO" value=<%=ITEMNO%>> <input type="hidden"
 							name="action" value="delete">
 					</form>
@@ -77,6 +77,6 @@
 		con.close();
 	%>
 
-	<div id="fontA"><a href="javascript:history.go(-1);">¦^¤W¤@­¶</a></div>
+	<div id="fontA"><a href="javascript:history.go(-1);">å›žä¸Šä¸€é </a></div>
 </body>
 </html>

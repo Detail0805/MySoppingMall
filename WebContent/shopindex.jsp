@@ -204,10 +204,23 @@
 }*/
 /* .detail img{width: 180px; 
  	height: 180px; }*/
+ 	
 .btn-success:hover {
-	background-color: #449d44;
-	border-color: #398439;
-	color: #ffe200;
+    background-color: #449d44;
+    border-color: #398439;
+    color: #ffe200;
+}
+.btn-success {
+    color: #fff;
+    background-color: green;
+    border-color: #4cae4c;
+    font-size: 20px;
+    padding: 4px 10px;
+    line-height: 1.5;
+    border-radius: 3px;
+    font-family: Microsoft JhengHei;
+    border: 1px solid ;
+    margin-bottom: 10px;
 }
 
 .special-price {
@@ -377,25 +390,25 @@
 	</div>
 
   <!-- Modal -->
-<!--   <div class="modal fade" id="myModalforShopCart" role="dialog"> -->
-<!--     <div class="modal-dialog" style="width:1200px;"> -->
+  <div class="modal fade" id="myModalforShopCart" role="dialog">
+    <div class="modal-dialog" style="width:1200px;">
     
-<!--       Modal content -->
-<!--       <div class="modal-content" > -->
-<!--         <div class="modal-header"> -->
-<!--           <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-<!--           <h4 class="modal-title">購物車內容</h4> -->
-<!--         </div> -->
-<!--         <div class="modal-body"> -->
-<%--           <%@ include file="MasterOrder/pages/Cartinclude.jsp" %> --%>
-<!--         </div> -->
-<!--         <div class="modal-footer"> -->
-<!--           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-<!--         </div> -->
-<!--       </div> -->
+      Modal content
+      <div class="modal-content" >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">購物車內容</h4>
+        </div>
+        <div class="modal-body">
+          <%@ include file="MasterOrder/pages/Cartinclude.jsp" %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
       
-<!--     </div> -->
-<!--   </div> -->
+    </div>
+  </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -472,7 +485,7 @@
 											</c:forEach> </select>
 											<input type="hidden" name="action" value="ADD2" id="ADD2">
 										<input type="hidden" name="ITEMNO" value="<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" id="ITEMNO" > 
-										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" >
+										<input type="submit" class="btn btn-sm btn-success" style="background-color: green;font-size: 16px;" value="放入購物車" >
 										</FORM>
 										</div>
 									</div>
@@ -513,7 +526,7 @@
 											</c:forEach> </select>
 											<input type="hidden" name="action" value="ADD2" id="ADD2">
 										<input type="hidden" name="ITEMNO" value="<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" id="ITEMNO" > 
-										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" >
+										<input type="submit" class="btn btn-sm btn-success" style="background-color: green;font-size: 16px;" value="放入購物車" >
 										</FORM>
 										</div>
 									</div>
@@ -583,7 +596,7 @@
 											</c:forEach> </select>
 									<input type="hidden" name="action" value="ADD" ">
 									<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}" >
-									<input type="submit" class="btn btn-sm btn-success" value="放入購物車">
+									<input type="submit" style="background-color: green;font-size: 16px;" class="btn btn-sm btn-success" value="放入購物車">
 										</FORM>
 									</div>
 								</div>

@@ -391,6 +391,12 @@ body {
   border-radius: 0px;
 }
 
+.btn-success:hover {
+    background-color: #449d44;
+    border-color: #398439;
+    color: #ffe200;
+}
+
 .input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group
   {
   padding-top: 0.7em;
@@ -529,9 +535,9 @@ color: #333;
     <div class="col-xs-12 col-sm-3"></div>
     <div class="row">
     <ol class="breadcrumb">
-      <li><a href="#" style="color:#fff;"><strong>首頁</strong></a></li>
-      <li><a href="#" style="color:#fff;"><strong>商品區</strong></a></li>
-      <li class="active" style="color:#fff;"><strong>${shopVO.NAME}</strong></li>
+      <li><a href="<%=request.getContextPath()%>/shopindex.jsp" style="color:#fff;"><strong>首頁</strong></a></li>
+      <li><a href="<%=request.getContextPath()%>/shopindex.jsp" style="color:#fff;"><strong>${(proVO.NAME!=null)?proVO.NAME:'商品區'}</strong></a></li>
+      <li class="active" style="color:#fff;"><strong>${((shopVO.NAME)==null)?proVO.SHOPNAME:shopVO.NAME}</strong></li>
     </ol>
     </div>
     <div class="col-xs-12 col-sm-9"></div>
@@ -596,7 +602,7 @@ color: #333;
               <div class="col-xs-12 col-sm-4">
                 <input type="hidden" name="action" value="ADD2" id="action" ">
                 <input type="hidden" name="ITEMNO" value="${((shopVO.ITEMNO)==null)?proVO.ITEMNO:shopVO.ITEMNO}" id="ITEMNO" ">
-                <input type="submit" class="btn btn-sm btn-success" value="放入購物車" style="height: 35; width: 100%;font-size: 15px;">
+                <input type="submit" class="btn btn-sm btn-success"  style="background-color: green;font-size: 16px;" value="放入購物車" style="height: 35; width: 100%;font-size: 15px;">
     			</FORM>
               </div>
 
