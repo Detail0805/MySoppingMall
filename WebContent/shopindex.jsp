@@ -381,13 +381,15 @@
 				
 			</div>
 			<div class="col-xs-12 col-sm-3">
-				<div class="input-group">
+	<form action="<%=request.getContextPath()%>/shop.do" class="form-inline" method="POST">
+		<div class="input-group">
 	  <input type="text" class="form-control" style="border-radius: 5px;" placeholder="您想找什麼...">
 	  <span class="input-group-btn">
 	    <button class="btn btn-info btn btn-warning " style="border-radius: 5px;" type="button"><span class="glyphicon glyphicon-search">
 	    </span>搜尋</button>
 	  </span>
 	</div>
+	</form>
 			</div>
 		</div>
 	</div>
@@ -413,6 +415,14 @@
     </div>
   </div>
 
+<style type="text/css">
+.btn-success:hover {
+background-color: #449d44;
+border-color: #398439;
+color: #ffe200;
+}
+</style>
+		
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

@@ -271,7 +271,8 @@ public class ShopJNDIDAO implements ShopDAO_interface {
 
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement("SELECT ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES ,PICTURE1,PICTURE2,PICTURE3 FROM ShoppingMall where NAME ='"+pk+"'");
+//			pstmt = con.prepareStatement("SELECT ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES ,PICTURE1,PICTURE2,PICTURE3 FROM ShoppingMall where NAME ='"+pk+"'");
+			pstmt = con.prepareStatement("SELECT ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES ,PICTURE1,PICTURE2,PICTURE3 FROM ShoppingMall where NAME LIKE '%"+pk+"%'");
 
 		//	pstmt.setString(1, pk);
 

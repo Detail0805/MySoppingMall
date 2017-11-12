@@ -58,8 +58,7 @@ font {
 						</form>
 					</div>
 				</div>
-				<jsp:useBean id="empSvc" scope="page"
-					class="com.shop.model.ShopService" />
+				<jsp:useBean id="empSvc" scope="page" class="com.shop.model.ShopService" />
 				<div class="row">
 					<div class="col-sm-2"></div>
 					<div class="col-sm-12">
@@ -84,7 +83,7 @@ font {
 				<div class="row">
 					<div class="col-sm-2"></div>
 					<div class="col-sm-12">
-						<form action="shop.do" class="form-inline" method="POST">
+					<form action="shop.do" class="form-inline" method="POST">
 						<input type="hidden" name="action" value="getOne_For_Display2">
 							<div class="form-group">
 								<font size="5">選擇商品名稱：<select  name="ITEMNO"

@@ -36,6 +36,68 @@
 
 <!DOCTYPE html>
 <html lang="">
+
+<style type="text/css">
+  
+  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border: 1px solid #ddd;
+  }
+  
+body > div > table > tbody > tr:nth-child(2) > td{
+      box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+}
+
+}
+.btn-success {
+    color: #fff;
+    background-color: green;
+    border-color: #4cae4c;
+    font-size: 20px;
+    padding: 4px 10px;
+    line-height: 1.5;
+    border-radius: 3px;
+    font-family: Microsoft JhengHei;
+    border: 1px solid ;
+    margin-bottom: 10px;
+}
+.btn-success:hover {
+    background-color: #449d44;
+    border-color: #398439;
+    color: #ffe200;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+.old-price{
+  font-size: 1.5em;
+  font-weight: 700;
+
+}
+
+.special-price{
+  font-size: 1.9em;
+  color: red;
+  font-weight: 700;
+}
+
+#search{
+    font-size: 16px;
+    border-radius: 3px;
+    font-family: Microsoft JhengHei;
+    padding: 8px 16px;
+    
+}
+
+</style>
+
+
+
+<body>
 <head>
   <meta charset="UTF-8">
   <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -219,69 +281,102 @@
 <script src="<%=request.getContextPath()%>/front/js/navbar/usebootstrap.js"></script>
 
 <!-- 這裡是JS專區 =========================================================== -->
+
+  <div class="col-xs-12 col-sm-12">
+    <table class="table" " style="border:5px" id="search">
+        <tr>
+          <th style="background-color: #f5f5f5;border-color: #ddd;border: 3px;border: 1px solid #ddd;font-size: 24px;font-family: Microsoft JhengHei;">搜尋</th>
+        </tr>
+
 <style type="text/css">
-  
-  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
-    padding: 8px;
-    line-height: 1.42857143;
-    vertical-align: top;
-    border: 1px solid #ddd;
-  }
-  
-body > div > table > tbody > tr:nth-child(2) > td{
-      box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
-}
-
-}
-.btn-success {
-    color: #fff;
-    background-color: green;
-    border-color: #4cae4c;
-    font-size: 20px;
-    padding: 4px 10px;
-    line-height: 1.5;
-    border-radius: 3px;
-    font-family: Microsoft JhengHei;
-    border: 1px solid ;
-    margin-bottom: 10px;
-}
 .btn-success:hover {
-    background-color: #449d44;
-    border-color: #398439;
-    color: #ffe200;
+	background-color: #449d44;
+	border-color: #398439;
+	color: #ffe200;
+}
+#inputforserarh{
+height: 40px;border-radius: 3px;
+}
+#bigword{
+    font-size: 25px;
+    font-weight: 700;
 }
 
-a {
-    color: #000;
-    text-decoration: none;
-}
-.old-price{
-  font-size: 1.5em;
-  font-weight: 700;
 
-}
-
-.special-price{
-  font-size: 1.9em;
-  color: red;
-  font-weight: 700;
-
-}
 </style>
 
+				<tr>
+					<td id="bigword">搜尋關鍵字: <br>
+						<form action="shop.do" class="form-inline" method="POST">
+							<div class="form-group">
+								<input placeholder="您想找尋些什麼..." class="form-control input" id="inputforserarh" name="ITEMNO">
+								<input type="hidden" name="action" value="getOne_For_Display">
+								<button class="btn btn-success btn" id="search">
+									<span class="glyphicon glyphicon-search" ></span>查詢
+								</button>
+							</div>
+						</form>
+					</td>
+				</tr>
+				<tr>
+       <td id="bigword">依照商品搜尋: <br>
+       	<jsp:useBean id="empSvc" scope="page" class="com.shop.model.ShopService" />
+						<form action="<%=request.getContextPath()%>/shop.do"
+							class="form-inline" method="POST">
+							<input type="hidden" name="action" value="getOne_For_Display2">
+							<div class="form-group">
+								<select name="ITEMNO" class="form-control" id="inputforserarh">
+									<c:forEach var="empVO" items="${list}">
+										<option value="${empVO.NAME}">${empVO.NAME}
+       									  </c:forEach>   
+								</select></font>
+								<button class="btn btn-success btn" id="search">
+									<span class="glyphicon glyphicon-search"></span>查詢
+								</button>
+							</div>
+						</form>
+      </td>
+     </tr>
+     	 <tr>
+       <td id="bigword">
+		促銷商品查詢:
+		<br>
+				<jsp:useBean id="proSvc2" scope="page" class="com.detail.promotion.ProService" />
+				<form action="<%=request.getContextPath()%>/pro.do" class="form-inline" method="POST">
+						<input type="hidden" name="action" value="getOne_For_Display2">
+							<div class="form-group">
+								<select  name="ITEMNO" id="inputforserarh" class="form-control">
+										  <c:forEach var="proVO" items="${listforpro}" > 
+         									 <option value="${proVO.SHOPNAME}">${proVO.SHOPNAME}
+       									  </c:forEach>   
+								</select></font>
+								<button class="btn btn-success btn" id="search">
+									<span class="glyphicon glyphicon-search"></span>查詢
+								</button>
+							</div>
+						</form>
+      </td>
+     </tr>
+    </table>
+  </div>
 
 
-<body>
 
-
+<!-- ------------------------------ -->
   <div class="col-xs-12 col-sm-12">
     <table class="table" " style="border:5px">
         <tr>
-          <th style="background-color: #f5f5f5;border-color: #ddd;border: 3px;border: 1px solid #ddd;">搜尋</th>
+          <th style="background-color: #f5f5f5;border-color: #ddd;border: 3px;border: 1px solid #ddd;font-size: 24px;font-family: Microsoft JhengHei;">搜尋</th>
         </tr>
 
-
-	<c:forEach var="shopVO" items="${list}" >
+<style type="text/css">
+.btn-success:hover {
+	background-color: #449d44;
+	border-color: #398439;
+	color: #ffe200;
+}
+</style>
+				<c:forEach var="shopVO" items="${list}" >
 	
 	 <tr>
           <td>
@@ -308,7 +403,7 @@ a {
                   <div class="ash-box">
                     <div class="prices" style="float:right;">
                       <span class="price old-price">$3,500</span> <span class="price special-price">$3,080
-                      </span><input class="btn btn-sm btn-success" style="background-color: green;font-size: 16px;" type="button" value="加入購物車">
+                      </span><input class="btn btn-sm btn-success" style="background-color: green;font-size: 16px;border-radius: 3px;" type="button" value="加入購物車">
                       
                     </div>
                   

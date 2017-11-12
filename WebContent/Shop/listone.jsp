@@ -1,32 +1,32 @@
-<%@ page contentType="text/html; charset=Big5"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.shop.model.*"%>
 <%
-ShopVO shopVO = (ShopVO) request.getAttribute("shopVO"); //EmpServlet.java(Concroller), ¦s¤JreqªºempVOª«¥ó
+ShopVO shopVO = (ShopVO) request.getAttribute("shopVO"); //EmpServlet.java(Concroller), å­˜å…¥reqçš„empVOç‰©ä»¶
 
 %>
 <html>
 <head>
-<title>­û¤u¸ê®Æ </title>
+<title>å“¡å·¥è³‡æ–™ </title>
 </head>
 <body bgcolor='white'>
 
 <table border='1' cellpadding='5' cellspacing='0' width='600' align='center'>
 	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 		<td>
-		<h3>°Ó«~¸ê®Ælistone.jsp</h3>
-		<a href="mainpage.jsp">¦^¬d¸ß­¶­±</a>
+		<h3>å•†å“è³‡æ–™listone.jsp</h3>
+		<a href="mainpage.jsp">å›žæŸ¥è©¢é é¢</a>
 		</td>
 	</tr>
 </table>
 
 <table border='1' bordercolor='#CCCCFF' width='600' align='center'>
 	<tr>
-		<th>°Ó«~¹Ï¤ù</th>
-		<th>°Ó«~½s¸¹</th>
-		<th>²£«~¦WºÙ</th>
-		<th>®w¦s¼Æ¶q</th>
-		<th>°Ó«~»ù¿ú</th>
-		<th>²£«~´y­z</th>
+		<th>å•†å“åœ–ç‰‡</th>
+		<th>å•†å“ç·¨è™Ÿ</th>
+		<th>ç”¢å“åç¨±</th>
+		<th>åº«å­˜æ•¸é‡</th>
+		<th>å•†å“åƒ¹éŒ¢</th>
+		<th>ç”¢å“æè¿°</th>
 		
 
 	</tr>

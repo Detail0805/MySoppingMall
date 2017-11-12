@@ -25,7 +25,7 @@ public class ProServlet extends HttpServlet{
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
+		System.out.println("in /pro.do");
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
