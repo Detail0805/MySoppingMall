@@ -114,6 +114,36 @@ public class ShopServlet extends HttpServlet {
 			}
 		}
 
+		
+		if ("getOne_For_Display_byString".equals(action)) {// 來自mainpage.jsp的請求
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			ShopService shopSvc = new ShopService();
+			try {
+				String str = req.getParameter("ITEMNO");
+				if(str.length()==0) {
+					List<ShopVO> list = shopSvc.getAllFromBack();
+					req.setAttribute("list", list); 
+					String url = "/Shop/listAll.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+					successView.forward(req, res);
+				}else {
+					ShopVO shopVO = shopSvc.getOneEmpbyString(str);
+					req.setAttribute("shopVO", shopVO); // 資料庫取出的shopVO物件,存入req
+					String url = "/Shop/listone.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+					successView.forward(req, res);
+				}
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/mainpage.jsp");
+				failureView.forward(req, res);
+			}
+		}
+
+		
+		
 		if ("getOne_For_Update".equals(action)) { // 來自addshop.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();

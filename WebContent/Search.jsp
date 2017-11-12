@@ -307,10 +307,10 @@ height: 40px;border-radius: 3px;
 
 				<tr>
 					<td id="bigword">搜尋關鍵字: <br>
-						<form action="shop.do" class="form-inline" method="POST">
+						<form action="<%=request.getContextPath()%>/shop.do" class="form-inline" method="POST">
 							<div class="form-group">
 								<input placeholder="您想找尋些什麼..." class="form-control input" id="inputforserarh" name="ITEMNO">
-								<input type="hidden" name="action" value="getOne_For_Display">
+								<input type="hidden" name="action" value="getOne_For_Display_byString">
 								<button class="btn btn-success btn" id="search">
 									<span class="glyphicon glyphicon-search" ></span>查詢
 								</button>
