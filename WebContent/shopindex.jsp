@@ -473,7 +473,7 @@ color: #ffe200;
                                <div class="detail">
 								<div class="picture thumbnail" title="我是商品名稱你好阿">
 									<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>&PRO=1" title="<%=((ProVO)(listforpro.get(i))).getSHOPNAME()%>" title="<%=((ProVO)(listforpro.get(i))).getSHOPNAME()%>"> <img class="img-responsive"
-										img src="DBPicReader?ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" height="180px"
+										img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" height="180px"
 										width="180px">
 									</a>
 								</div>
@@ -514,7 +514,7 @@ color: #ffe200;
                                <div class="detail">
 								<div class="picture thumbnail" title="我是商品名稱你好阿">
 									<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>&PRO=1" title="<%=((ProVO)(listforpro.get(i))).getSHOPNAME()%>" title="<%=((ProVO)(listforpro.get(i))).getSHOPNAME()%>"> <img class="img-responsive"
-										img src="DBPicReader?ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" height="180px"
+										img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" height="180px"
 										width="180px">
 									</a>
 								</div>
@@ -582,7 +582,7 @@ color: #ffe200;
 							<div class="detail">
 								<div class="picture thumbnail" title="${shopVO.NAME}">
 									<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}&PRO=0" title="${shopVO.NAME}"> <img class="img-responsive"
-										img src="DBPicReader?ITEMNO=${shopVO.ITEMNO}" height="180px"
+										img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${shopVO.ITEMNO}" height="180px"
 										width="180px">
 									</a>
 								</div>
