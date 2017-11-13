@@ -322,7 +322,7 @@
 
                      $.ajax({  
                         type: "POST",  
-                        url: "cart.do",  
+                        url: "<%=request.getContextPath()%>/cart.do",  
                         data: {"STOCK" : STOCK,"action" : action,"ITEMNO" : ITEMNO},  
                         success: function(msg){
                         	swal({
@@ -405,7 +405,7 @@
           <h4 class="modal-title">購物車內容</h4>
         </div>
         <div class="modal-body">
-          <%@ include file="MasterOrder/pages/Cartinclude.jsp" %>
+          <%@ include file="/MasterOrder/pages/Cartinclude.jsp" %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

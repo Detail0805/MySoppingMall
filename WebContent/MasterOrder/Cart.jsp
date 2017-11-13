@@ -99,7 +99,7 @@ $(document).ready(function(){
                     swal("刪除清除!", "你所選擇的商品已經刪除!", "success");
                    
                     setTimeout(function(){
-                    	window.location.href = '<%=request.getContextPath()%>/shopindex.jsp';
+                    	window.location.href = '<%=request.getContextPath()%>/front/shopindex.jsp';
                         console.log('B');
                     },1500);
                   },
@@ -261,7 +261,7 @@ $(document).ready(function(){
 									</form>
 									</td>
 								</td>
-								<td><a href="<%=request.getContextPath()%>/shopindex.jsp" class="btn btn-default"
+								<td><a href="<%=request.getContextPath()%>/front/shopindex.jsp" class="btn btn-default"
 									role="button"><span
 										class="glyphicon glyphicon-shopping-cart"></span> Continue
 										Shopping</a></td>

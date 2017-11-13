@@ -106,7 +106,7 @@
 								<td> </td>
 								<td> </td>
 								<td>
-								<a href="<%=request.getContextPath()%>/shopPAGEFortext.jsp" class="btn btn-default" role="button"><span class="glyphicon glyphicon-shopping-cart"></span>
+								<a href="<%=request.getContextPath()%>/front/shopindex.jsp" class="btn btn-default" role="button"><span class="glyphicon glyphicon-shopping-cart"></span>
 										Continue Shopping</a>
 
 								</td>
