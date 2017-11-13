@@ -304,6 +304,56 @@ height: 40px;border-radius: 3px;
 
 
 </style>
+	
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.5/sweetalert2.all.js"></script>
+        <script type="text/javascript">  
+        $(document).ready(function(){  
+        	console.log('in jquery1');
+            $('.searchnow').on('submit',function(event){
+            	console.log('in jquery2');
+                event.preventDefault();
+            	console.log($(this).children().eq(2).val());
+                var STOCK = $(this).children().eq(0).val();
+                var action = $(this).children().eq(1).val(); 
+                var ITEMNO = $(this).children().eq(2).val(); 
+                console.log('STOCK :'+STOCK+' ,ITEMNO :'+ITEMNO+' ,action :'+action);
+
+                     $.ajax({  
+                        type: "POST",  
+                        url: "cart.do",  
+                        data: {"STOCK" : STOCK,"action" : action,"ITEMNO" : ITEMNO},  
+                        success: function(msg){
+                        	swal({
+                        		  title: '',
+                        		  text: "已成功加入購物車。",
+                        		  type: 'success',
+                        		  timer: 5000,
+                        		  showCancelButton: true,
+                                  confirmButtonColor: "#8fdd54",
+                                  cancelButtonColor: "#DD6B55",
+                        		  confirmButtonText: '前往購物車',
+                        		  cancelButtonText: '  OK  ',
+                        		  confirmButtonClass: 'btn btn-success',
+                        		  cancelButtonClass: 'btn btn-danger',
+                        		  buttonsStyling: false
+                        		}).then(function () {
+                        			console.log('按下左邊');
+                        			 window.location.href ='<%=request.getContextPath()%>/MasterOrder/Cart.jsp';
+                        		}, function (dismiss) {
+                        		  // dismiss can be 'cancel', 'overlay',
+                        		  // 'close', and 'timer'
+                        		  if (dismiss === 'cancel') {
+                        			  console.log('按下右邊');
+                        		  }
+                        		})
+                     
+//                        	sweetAlert("", "已成功加入購物車。","success");
+//                         	$('#myModal').modal();
+                        }  
+                    });   
+            });  
+        });  
+      </script>  
 
 				<tr>
 					<td id="bigword">搜尋關鍵字: <br>
@@ -376,14 +426,16 @@ height: 40px;border-radius: 3px;
 	color: #ffe200;
 }
 </style>
-				<c:forEach var="shopVO" items="${list}" >
+		<%@ include file="/listallOrderForSearch1.file" %> 
+				<c:forEach var="shopVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>" >
+
 	
 	 <tr>
           <td>
   <div class="row">
         <div class="col-xs-12 col-sm-3">
           <div class="picture thumbnail">
-                    <a href="#"><img class="img-responsive" src="http://www.ez66.com.tw/Content/Images/thumbs/000/0003335_venture-kb-1230_180.jpeg" style=" height: 188px; width: 188px;" title="##"></a>
+                    <a href="#"><img class="img-responsive" img src="DBPicReader?ITEMNO=${shopVO.ITEMNO}" style=" height: 188px; width: 188px;" title="##"></a>
                   </div>
         </div>
         <div class="col-xs-12 col-sm-9">
@@ -393,18 +445,25 @@ height: 40px;border-radius: 3px;
                 <div class="white-box">
                   
                   <div class="middle-content">
-                    <h2 class="product-title"><a href="">Unicode轉換工具主要功能是字符...</a></h2>
-                    <div class="description">
-                        中文中文
+                    <h2 class="product-title"><a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}&PRO=0">${shopVO.NAME}</a></h2>
+                    <div class="description" style="font-size: 18px;">
+                        	${shopVO.DES.substring(0,15)}...
                     </div>
                   </div>
+                   <br><br>
                 </div>
+
+
                 <div class="add-info">
                   <div class="ash-box">
                     <div class="prices" style="float:right;">
-                      <span class="price old-price">$3,500</span> <span class="price special-price">$3,080
-                      </span><input class="btn btn-sm btn-success" style="background-color: green;font-size: 16px;border-radius: 3px;" type="button" value="加入購物車">
-                      
+                    	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/cart.do" class="searchnow">
+                       <span class="price special-price">$${shopVO.PRICE}
+                       <input type="hidden" name="action" value="ADD">
+                       <input type="hidden" name="STOCK" value="1">
+                       <input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}" id="ITEMNO" >
+                      </span><input class="btn btn-sm btn-success" style="background-color: green;font-size: 16px;border-radius: 3px;" type="submit" value="放入購物車">
+                      	</FORM>
                     </div>
                   
                   </div>
@@ -418,16 +477,16 @@ height: 40px;border-radius: 3px;
                 </tr>
 	</c:forEach>
     </table>
+    <%@ include file="/listallOrderForSearch2.file" %> 
   </div>
-  <script src="https://code.jquery.com/jquery.js">
+  
   </script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js">
   </script>
 
 
   <!-- NavBar的CSS 專區 不能刪喔 ================================================== -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/bootstrap.css" media="screen">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/usebootstrap.css">
+
     <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/navbar/newstyle_footer.css">
   <!-- NavBar的CSS 專區 不能刪喔 ================================================== -->
     

@@ -600,7 +600,7 @@ color: #333;
                 <input  type="number" value="1" id="STOCK" style="text-align:center;border-radius:4px;width:50px;height: 34px;border: 1px solid">
               </div>
               <div class="col-xs-12 col-sm-4">
-                <input type="hidden" name="action" value="ADD2" id="action" ">
+                <input type="hidden" name="action" value="ADD" id="action" ">
                 <input type="hidden" name="ITEMNO" value="${((shopVO.ITEMNO)==null)?proVO.ITEMNO:shopVO.ITEMNO}" id="ITEMNO" ">
                 <input type="submit" class="btn btn-sm btn-success"  style="background-color: green;font-size: 16px;" value="放入購物車" style="height: 35; width: 100%;font-size: 15px;">
     			</FORM>
@@ -704,11 +704,11 @@ color: #333;
 									<div class="buttons">
 									<FORM METHOD="post" ACTION="cart.do" id="btnSubmit">
 									<select name="STOCK" id="STOCK">
-									<c:forEach var="quantity" begin="1" end="" step="1">
+									<c:forEach var="quantity" begin="1" end="<%=((ProVO)(listforpro.get(i))).getQuantity()%>" step="1">
 												<option value="${quantity}">${quantity}
 											</c:forEach> </select>
 											<input type="hidden" name="action" value="ADD2" id="action">
-										<input type="hidden"  id="ITEMNO" name="ITEMNO" value="<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" id="ITEMNO" > 
+										<input type="hidden" id="ITEMNO" name="ITEMNO" value="<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" id="ITEMNO" > 
 										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" >
 										</FORM>
 										</div>
@@ -749,7 +749,7 @@ color: #333;
 												<option value="${quantity}">${quantity}
 											</c:forEach> </select>
 											<input type="hidden" name="action" value="ADD2" id="ADD2">
-										<input type="hidden" name="ITEMNO" value="<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" id="ITEMNO" > 
+										<input type="hidden" id="ITEMNO" name="ITEMNO" value="<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" id="ITEMNO" > 
 										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" >
 										</FORM>
 										</div>

@@ -108,8 +108,8 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">最新消息 <span class="caret"></span></a>
           <ul class="dropdown-menu" aria-labelledby="themes">
-            <li><a href="#">最新消息</a></li>
-            <li><a href="#">保健資訊</a></li>
+            <li><a href="#" style="padding: 12px 15px;">最新消息</a></li>
+            <li><a href="#" style="padding: 12px 15px;">保健資訊</a></li>
           </ul>
         </li>
   <!-- 最新消息 ================================================== -->
@@ -147,8 +147,8 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">聯絡我們 <span class="caret"></span></a>
           <ul class="dropdown-menu" aria-labelledby="themes">
-            <li><a href="#">線上客服</a></li>
-            <li><a href="#">意見回饋</a></li>
+            <li><a href="#" style="padding: 12px 15px;">線上客服</a></li>
+            <li><a href="#" style="padding: 12px 15px;">意見回饋</a></li>
           </ul>
         </li>
   <!-- 聯絡我們 ================================================== -->
@@ -163,10 +163,10 @@
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">會員專區 <span class="caret"></span></a>
         <ul class="dropdown-menu" aria-labelledby="themes">
-          <li><a href="#">會員資料管理</a></li>
-          <li><a href="#">我的錢包</a></li>
-          <li><a href="#">訂單管理</a></li>
-          <li><a href="#">我的最愛</a></li>
+          <li><a href="#" style="padding: 12px 15px;">會員資料管理</a></li>
+          <li><a href="#" style="padding: 12px 15px;">我的錢包</a></li>
+          <li><a href="#" style="padding: 12px 15px;">訂單管理</a></li>
+          <li><a href="#" style="padding: 12px 15px;">我的最愛</a></li>
         </ul>
       </li>
   <!-- 會員專區 ================================================== -->

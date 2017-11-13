@@ -177,13 +177,13 @@ $(document).ready(function(){
 							<tr>
 								<td class="col-sm-8 col-md-6">
 									<div class="media">
-										<a class="thumbnail pull-left" href="#" style=" margin-top: 10px;"> <img
+										<a class="thumbnail pull-left" href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=<%=ITEMNO%>&PRO=0"" style=" margin-top: 10px;"> <img
 											src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=<%=ITEMNO%>" height="72px"
 											width="72px">
 										</a>
 										<div class="media-body">
 											<h4 class="media-heading" style="margin-top: 39px">
-												<a href="#"><%=NAME%></a>
+												<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=<%=ITEMNO%>&PRO=0"><%=NAME%></a>
 											</h4>
 
 										</div>

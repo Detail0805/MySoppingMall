@@ -43,12 +43,12 @@
 							<tr>
 								<td class="col-sm-8 col-md-6">
 									<div class="media">
-										<a class="thumbnail pull-left" href="#" style=" margin-top: 10px;"> 
+										<a class="thumbnail pull-left" href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=<%=ITEMNO%>&PRO=0"" style=" margin-top: 10px;"> 
 										<img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=<%=ITEMNO%>" height="72px" width="72px">
 										</a>
 										<div class="media-body">
 											<h4 class="media-heading" style="margin-top: 39px">
-												<a href="#"><%=NAME%></a>
+												<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=<%=ITEMNO%>&PRO=0"><%=NAME%></a>
 											</h4>
 
 										</div>
@@ -59,7 +59,7 @@
 									<div class="media">
 										<div class="media-body">
 											<h4 class="media-heading" style="margin-top: 28px">
-												<input type="number" class="form-control" id="exampleInputEmail1" name="quantity<%=i%>" value="<%=QUANTITY%>"
+												<input type="number"  min="0" class="form-control" id="exampleInputEmail1" name="quantity<%=i%>" value="<%=QUANTITY%>"
 									onchange="changeQuantity(this,<%=QUANTITY%>,<%=PRICE%>,<%=amount%>,oneprice<%=i%>,changeoneprice<%=i%>)">
 											</h4>
 										</div>
