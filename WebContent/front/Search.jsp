@@ -451,7 +451,7 @@ height: 40px;border-radius: 3px;
 }
 
 </style>
-		<%@ include file="/listallOrderForSearch1.file" %> 
+		<%@ include file="pages/listallOrderForSearch1.file" %> 
 				<c:forEach var="shopVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>" >
 
 	
@@ -460,7 +460,7 @@ height: 40px;border-radius: 3px;
   <div class="row">
         <div class="col-xs-12 col-sm-3">
           <div class="picture thumbnail">
-                    <a href="#"><img class="img-responsive" img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${shopVO.ITEMNO}" style=" height: 188px; width: 188px;" title="##"></a>
+                    <a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}&PRO=0"><img class="img-responsive" img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${shopVO.ITEMNO}" style=" height: 188px; width: 188px;" title="##"></a>
                   </div>
         </div>
         <div class="col-xs-12 col-sm-9">
@@ -502,7 +502,7 @@ height: 40px;border-radius: 3px;
                 </tr>
 	</c:forEach>
     </table>
-    <%@ include file="/listallOrderForSearch2.file" %> 
+    <%@ include file="pages/listallOrderForSearch2.file" %> 
   </div>
   
   </script> 

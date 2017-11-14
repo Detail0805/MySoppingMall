@@ -484,6 +484,7 @@ height: 40px;border-radius: 3px;
                   <div class="ash-box">
                     <div class="prices" style="float:right;">
                     	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/cart.do" class="searchnow">
+                    <span class="price old-price" style="text-decoration: line-through;">原價$${SeachForOneProShop.OLDPRICE}</span>
                        <span class="price special-price">$${SeachForOneProShop.PRICE}
                        <input type="hidden" class="action" name="action" value="ADD2">
                        <input type="hidden" class="STOCK" name="STOCK" value="1">

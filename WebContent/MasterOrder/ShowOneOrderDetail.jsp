@@ -53,6 +53,6 @@ total :${total}
 </table>
 total=<%=total%> 
 EL total=${total}
-Update_one_order.jsp
+ShowOneOrderDetail.jsp
 </body>
 </html>

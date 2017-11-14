@@ -487,7 +487,7 @@ color: #ffe200;
 							<div class="add-info">
 								<div class="ash-box">
 								<div class="prices">
-								<span class="price old-price">原價$<%=((ProVO)(listforpro.get(i))).getOLDPRICE()%></span> <span
+								<span class="price old-price" >原價$<%=((ProVO)(listforpro.get(i))).getOLDPRICE()%></span> <span
 											class="price special-price">特價$<%=((ProVO)(listforpro.get(i))).getPRICE()%></span>
 									</div>
 									<div class="buttons">
