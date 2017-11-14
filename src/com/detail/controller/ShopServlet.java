@@ -83,7 +83,7 @@ public class ShopServlet extends HttpServlet {
 			}
 		}
 
-		if ("getOne_For_Display2".equals(action)) {// 來自mainpage.jsp的請求
+		if ("getOne_For_Display2".equals(action)) {// 來自search.jsp的請求
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
@@ -96,20 +96,20 @@ public class ShopServlet extends HttpServlet {
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/mainpage.jsp");
+							.getRequestDispatcher("/front/SearchForNormalShop.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("shopVO", shopVO); // 資料庫取出的shopVO物件,存入req
-				String url = "/Shop/listone.jsp";
+				String url = "/front/SearchForNormalShop.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/mainpage.jsp");
+						.getRequestDispatcher("/front/SearchFroNormalShop.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -331,6 +331,7 @@ public class ShopServlet extends HttpServlet {
 				Integer pro=new Integer((req.getParameter("PRO")));
 				System.out.println((pro == 1));
 				if (pro == 0) {
+					
 					System.out.println("無促銷明細顯示");
 					ProService proSvc = new ProService();
 					ShopVO shopVO = null;
@@ -349,6 +350,8 @@ public class ShopServlet extends HttpServlet {
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 					successView.forward(req, res);
 				} else if (pro == 1) {
+					Integer isPro=1;
+					req.setAttribute("isPro", isPro);
 					System.out.println("有促銷明細顯示");
 					ProService proSvc = new ProService();
 					ProVO proVO = proSvc.getOneProShop(ITEMNO);

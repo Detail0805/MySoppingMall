@@ -36,10 +36,10 @@ ProVO proVO = (ProVO)request.getAttribute("proVO"); //EmpServlet.java(Concroller
 		<tr align='center' valign='middle'>
 			<td width="200"><img src="DBPicReader?ITEMNO=${proVO.ITEMNO}" height="150px" width="200px">
 		</td>
-			<td><%=proVO.getNAME()%></td>
+			<td><%=proVO.getSHOPNAME()%></td>
 			<td><%=proVO.getPROMOTIOMNO()%></td>
 			<td><%=proVO.getPRICE()%></td>
-			<td><%=proVO.getITEMNO()%></td>
+			<td><%=proVO.getDES()%></td>
 			<td>
 			  <FORM METHOD="post" ACTION="pro.do">
 			     <input type="submit" value="修改">

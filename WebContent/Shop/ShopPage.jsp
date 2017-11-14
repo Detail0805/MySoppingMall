@@ -600,7 +600,7 @@ color: #333;
                 <input  type="number" value="1" id="STOCK" style="text-align:center;border-radius:4px;width:50px;height: 34px;border: 1px solid">
               </div>
               <div class="col-xs-12 col-sm-4">
-                <input type="hidden" name="action" value="ADD" id="action" ">
+                <input type="hidden" name="action" value="${(isPro==1)?'ADD2':'ADD'}" id="action" ">
                 <input type="hidden" name="ITEMNO" value="${((shopVO.ITEMNO)==null)?proVO.ITEMNO:shopVO.ITEMNO}" id="ITEMNO" ">
                 <input type="submit" class="btn btn-sm btn-success"  style="background-color: green;font-size: 16px;" value="放入購物車" style="height: 35; width: 100%;font-size: 15px;">
     			</FORM>

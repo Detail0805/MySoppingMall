@@ -332,17 +332,18 @@ public class ProDAO implements ProDAO_interface{
 		ResultSet rs = null;
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement("SELECT P.PROMOTIONNO,P.ITEMNO,P.PRICE,PT.NAME,BEGINDATE,ENDDATE,SP.NAME AS SHOPNAME FROM PROMOTIONDETAIL P JOIN PROMOTION PT ON (P.PROMOTIONNO = PT.PROMOTIONNO) JOIN (SELECT * FROM SHOPPINGMALL WHERE NAME='"+PK+"')SP  ON SP.ITEMNO = P.ITEMNO");
+			pstmt = con.prepareStatement("SELECT P.PROMOTIONNO,P.ITEMNO,P.PRICE,PT.NAME,BEGINDATE,ENDDATE,SP.NAME AS SHOPNAME,SP.DES FROM PROMOTIONDETAIL P JOIN PROMOTION PT ON (P.PROMOTIONNO = PT.PROMOTIONNO) JOIN (SELECT * FROM SHOPPINGMALL WHERE NAME='"+PK+"')SP  ON SP.ITEMNO = P.ITEMNO");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				proVO=new ProVO();
+				proVO.setDES(rs.getString("DES"));
 				proVO.setITEMNO(rs.getInt("ITEMNO"));
 				proVO.setPROMOTIOMNO(rs.getInt("PROMOTIONNO"));
 				proVO.setPRICE(rs.getInt("PRICE"));
 				proVO.setBEGINDATE(rs.getDate("BEGINDATE"));
 				proVO.setENDDATE(rs.getDate("ENDDATE"));
 				proVO.setNAME(rs.getString("NAME"));
-				proVO.setSHOPNAME("SHOPNAME");
+				proVO.setSHOPNAME(rs.getString("SHOPNAME"));
 		//		proVO.setACTIVITYNAME(rs.getString("NAME"));
 				
 				// proVO ¤]ºÙ¬° Domain objects

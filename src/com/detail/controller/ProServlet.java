@@ -88,9 +88,6 @@ public class ProServlet extends HttpServlet{
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
-
-
-
 				/*************************** 2.開始查詢資料 *****************************************/
 				ProService proSvc = new ProService();
 				ProVO proVO =  proSvc.getOneEmpForStringName(str);
@@ -99,20 +96,22 @@ public class ProServlet extends HttpServlet{
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/mainforpro.jsp");
+							.getRequestDispatcher("/Promotion/listoneProForName.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("proVO", proVO); // 資料庫取出的empVO物件,存入req
-				String url = "/Promotion/listoneProForName.jsp";
+				req.setAttribute("SeachForOneProShop", proVO); // 資料庫取出的empVO物件,存入req
+				//String url = "/Promotion/listoneProForName.jsp";
+				String url = "/front/SearchForProShop.jsp";
+				
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/mainforpro.jsp");
+						.getRequestDispatcher("/Promotion/listoneProForName.jsp");
 				failureView.forward(req, res);
 			}
 		}
