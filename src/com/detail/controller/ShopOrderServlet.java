@@ -210,9 +210,9 @@ public class ShopOrderServlet extends HttpServlet{
 //				session.setAttribute("OrderList", ListAllOrderShop);
 				String url = null;
 				if("UPDATE_ORDERID".equals(action)) {
-					 url = "/MasterOrder/Update_one_order.jsp";
+					 url = "/back/production/BA104G1_back_OrderMasterFORUPDATE.jsp";
 				}else if("LOOKORDERID".equals(action)){
-					url = "/MasterOrder/ShowOneOrderDetail.jsp";
+					url = "/back/production/BA104G1_back_OrderMaster.jsp";
 				}
 				
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交

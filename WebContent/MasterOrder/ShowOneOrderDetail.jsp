@@ -10,6 +10,7 @@
 	Integer total =(Integer)request.getAttribute("total");
 %>
 
+	<%if (OrderList != null && (OrderList.size() > 0)) {%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
@@ -54,5 +55,7 @@ total :${total}
 total=<%=total%> 
 EL total=${total}
 ShowOneOrderDetail.jsp
+
+<%}%>
 </body>
 </html>

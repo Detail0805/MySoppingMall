@@ -38,7 +38,10 @@
 </script>
 </head>
 <body>
-<table border='1' bordercolor='#CCCCFF' width='800' align='center'>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-md-10 col-md-offset-1">
+				<table class="table table-hover">
 total :${total}
 	<tr>
 		<th>訂單編號</th>
@@ -51,7 +54,7 @@ total :${total}
 		<th>會員手機</th>
 		<th>訂單成立時間</th>
 		<th>商品價格</th>
-		<th>按鈕1</th>
+		<th>修改數量</th>
 
 		
 
@@ -78,6 +81,9 @@ total :${total}
 			</td>
 		</tr>
 </c:forEach>
+			</div>
+		</div>
+	</div>
 </table>
 	<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}">
 	<input type="hidden" name="amount" id="amount" value="${total}">
@@ -91,5 +97,6 @@ total :${total}
 total=<%=total%> 
 EL total=${total}
 Update_one_order.jsp
+
 </body>
 </html>

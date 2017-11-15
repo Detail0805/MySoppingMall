@@ -7,11 +7,11 @@
 
 <%
 //此段複寫equals 去比較itemno
-//     ShopService shopSvc = new ShopService();
-//     List<ShopVO> list = shopSvc.getAllFromBack();
-//     pageContext.setAttribute("list", list);
+    ShopService shopSvc = new ShopService();
+    List<ShopVO> list = shopSvc.getAllFromBack();
+    pageContext.setAttribute("list", list);
     
-   List<ShopVO> list = (List<ShopVO>)request.getAttribute("list");
+//    List<ShopVO> list = (List<ShopVO>)request.getAttribute("list");
    
 // 	ProService proSvc = new ProService();
 // 	List<ProVO> list2 = proSvc.getAll();

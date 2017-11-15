@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+</style>
         <footer>
           <div class="pull-right">
             有我照你股份有限公司 <a href="https://colorlib.com">Colorlib</a>
           </div>
-          <div class="clearfix"></div>
+          <div class="clearfix" style=" margin: auto;"></div>
         </footer>
 
 
