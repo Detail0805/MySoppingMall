@@ -212,7 +212,7 @@ public class ShopOrderServlet extends HttpServlet{
 				if("UPDATE_ORDERID".equals(action)) {
 					 url = "/back/production/BA104G1_back_OrderMasterFORUPDATE.jsp";
 				}else if("LOOKORDERID".equals(action)){
-					url = "/back/production/BA104G1_back_OrderMaster.jsp";
+					url = "/back/production/BA104G1_back_OrderMasterForShowOne.jsp";
 				}
 				
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交

@@ -11,6 +11,8 @@
 	session.setAttribute("OrderList", OrderList);
 %>
 <%int i=0;%>
+
+	<%if (OrderList != null && (OrderList.size() > 0)) {%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
@@ -40,11 +42,10 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 col-md-10 col-md-offset-1">
-				<table class="table table-hover">
-total :${total}
+			<table class="table table-hover" style="font-size:16px;">
+<thead>
 	<tr>
-		<th>訂單編號</th>
+		<th style="width: 150px;">訂單編號</th>
 		<th>會員編號</th>
 		<th>商品編號</th>
 		<th>訂購數量</th>
@@ -55,8 +56,7 @@ total :${total}
 		<th>訂單成立時間</th>
 		<th>商品價格</th>
 		<th>修改數量</th>
-
-		
+		</thead>
 
 	</tr>
 	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/order.do"  align="center" >
@@ -76,14 +76,27 @@ total :${total}
 				<td>${OrderList.price}</td>
 
 				<td>
-			     <input type="text" name="quantity<%=i++%>" onchange="changeQuantity(this,${OrderList.ordercount})" value="${OrderList.ordercount}" style="width: 35px"  />
+			     <input type="number" style="border-radius:3px;width: 35px;" name="quantity<%=i++%>" onchange="changeQuantity(this,${OrderList.ordercount})" value="${OrderList.ordercount}"/>
    </td>
 			</td>
 		</tr>
 </c:forEach>
+				<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>總消費金額 :</td>
+				<td>${total}</td>
+				</tr>
 			</div>
 		</div>
-	</div>
+
 </table>
 	<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}">
 	<input type="hidden" name="amount" id="amount" value="${total}">
@@ -91,12 +104,11 @@ total :${total}
 	<input type="hidden" name="MEMNO" value="MEM0001">
 	<input type="hidden" name="action" value="CONFIRM_UPDATE_ORDERID">
 	<div align="center">
-		<input type="submit" value="確認購買">
+		<input  class="btn btn-success" type="submit" value="確認修改">
 	</div>
 	</FORM>
-total=<%=total%> 
-EL total=${total}
-Update_one_order.jsp
 
+Update_one_order.jsp
+<%}%>
 </body>
 </html>

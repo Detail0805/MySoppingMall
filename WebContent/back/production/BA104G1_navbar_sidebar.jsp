@@ -101,13 +101,11 @@
 
                   <li><a><i class="fa fa-home"></i> 商城管理 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">訂單新增</a></li>
-                      <li><a href="#">訂單查詢</a></li>
-                      <li><a href="#">訂單修改</a></li>
+                      <li><a href="<%=request.getContextPath()%>/back/production/BA104G1_back_ShopMaster.jsp">訂單管理</a></li>
                       <li><a href="#">新增商品</a></li>
                       <li><a href="#">修改商品</a></li>
-                      <li><a href="#">查詢商品</a></li>
-                      <li><a href="#">下架商品</a></li>
+                      <li><a href="#">瀏覽商品</a></li>
+
                     </ul>
                   </li> 
   

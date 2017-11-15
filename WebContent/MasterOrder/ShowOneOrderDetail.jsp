@@ -19,12 +19,12 @@
 </head>
 <body>
 <div align='center'>
-<a href="javascript:history.go(-1);" >回上一頁</a></div>
-
-<table border='1' bordercolor='#CCCCFF' width='800' align='center'>
-total :${total}
+	<div class="container">
+		<div class="row">
+			<table class="table table-hover" style="font-size:16px;">
+<thead>
 	<tr>
-		<th>訂單編號</th>
+		<th style="width: 150px;">訂單編號</th>
 		<th>會員編號</th>
 		<th>商品編號</th>
 		<th>訂購數量</th>
@@ -51,6 +51,20 @@ total :${total}
 				<td>${OrderList.price}</td>
 		</tr>
 </c:forEach>
+				<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>總消費金額 :</td>
+				<td>${total}</td>
+				</tr>
+			</div>
+		</div>
 </table>
 total=<%=total%> 
 EL total=${total}
