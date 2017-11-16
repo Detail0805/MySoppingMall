@@ -12,9 +12,9 @@ public interface ShopDAO_interface {
 	public ShopVO findByPrimaryKey(Integer pk);
 	public ShopVO findByPrimaryKeyByString(String pkName);
 	
-	//°Ó«°­º­¶±M¥Î¡A¥u¦³state=1¤~·|¨q¥X¨Ó
+	//å•†åŸé¦–é å°ˆç”¨ï¼Œåªæœ‰state=1æ‰æœƒç§€å‡ºä¾†
 	public List<ShopVO> getAll();
-	//«áºİºŞ²z°Ó«~±M¥Î
+	//å¾Œç«¯ç®¡ç†å•†å“å°ˆç”¨
 	public List<ShopVO> getAllFromBack();
 	
 	

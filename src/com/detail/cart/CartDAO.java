@@ -12,9 +12,9 @@ import javax.sql.DataSource;
 
 public class CartDAO implements CartDAO_Interface{
 
-	//¥Î½s¸¹§ä¥X¨S«P¾Pªº°Ó«~¸ê°T
+	//ç”¨ç·¨è™Ÿæ‰¾å‡ºæ²’ä¿ƒéŠ·çš„å•†å“è³‡è¨Š
 	private static final String GET_ONE_SHOP="SELECT ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES ,PICTURE1,PICTURE2,PICTURE3 FROM ShoppingMall where ITEMNO =?";
-	//¥Î½s¸¹§ä¥X¦³«P¾Pªº°Ó«~¸ê°T
+	//ç”¨ç·¨è™Ÿæ‰¾å‡ºæœ‰ä¿ƒéŠ·çš„å•†å“è³‡è¨Š
 	private static final String GET_ONE_PROSHOP=
 			"SELECT P.PROMOTIONNO,P.ITEMNO,P.PRICE,PT.NAME,BEGINDATE,ENDDATE,SP.NAME AS SHOPNAME,SP.DES FROM PROMOTIONDETAIL P JOIN PROMOTION PT ON (P.PROMOTIONNO = PT.PROMOTIONNO) JOIN (SELECT * FROM SHOPPINGMALL WHERE ITEMNO= ? )SP  ON SP.ITEMNO = P.ITEMNO";
 			private static DataSource ds = null;
@@ -44,11 +44,11 @@ public class CartDAO implements CartDAO_Interface{
 				cartVO.setNAME(rs.getString("NAME"));
 				cartVO.setPRICE(rs.getInt("PRICE"));
 				cartVO.setDES(rs.getString("DES"));
-				System.out.println("DAO¦¨¥\¦bÁÊª«¨®·s¼W¤@µ§¸ê®Æ");
+				System.out.println("DAOæˆåŠŸåœ¨è³¼ç‰©è»Šæ–°å¢ä¸€ç­†è³‡æ–™");
 			}
 			
 		} catch (SQLException se) {
-			System.out.println("³æ¶µ¬d´M¥¢±Ñ");
+			System.out.println("å–®é …æŸ¥å°‹å¤±æ•—");
 			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
@@ -97,7 +97,7 @@ public class CartDAO implements CartDAO_Interface{
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("CartDATO«P¾P°Ó«~¬d¸ß¥¢±Ñ");
+			System.out.println("CartDATOä¿ƒéŠ·å•†å“æŸ¥è©¢å¤±æ•—");
 			e.printStackTrace();
 		} finally {
 			if (rs != null) {

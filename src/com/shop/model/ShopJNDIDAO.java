@@ -23,7 +23,7 @@ public class ShopJNDIDAO implements ShopDAO_interface {
 	private static final String DELETE = "DELETE FROM ShoppingMall where ITEMNO = ?";
 	private static final String DELETE2 = "DELETE FROM PROMOTIONDETAIL where ITEMNO = ?";
 	private static final String CHANGESTATE="UPDATE SHOPPINGMALL  SET STATE =? WHERE ITEMNO=?";
-	// ª`·NtableÃ¹¤Î¬O§_¦³½Ä¬ğ
+	// æ³¨æ„tableç¾…åŠæ˜¯å¦æœ‰è¡çª
 	private static final String UPDATE = "UPDATE ShoppingMall set  STOCK=?, PRICE=?, STATE=?, CLASSNO=?,NAME=?,DES=?,PICTURE1=?,PICTURE2=?,PICTURE3=? where ITEMNO = ?";
 	private static final String UPDATE2 = "UPDATE ShoppingMall set  STOCK=?, PRICE=?,NAME=?,DES=? where ITEMNO = ?";
 	private static DataSource ds = null;
@@ -58,7 +58,7 @@ public class ShopJNDIDAO implements ShopDAO_interface {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("·s¼W¿ù»~");
+			System.out.println("æ–°å¢éŒ¯èª¤");
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -101,7 +101,7 @@ public class ShopJNDIDAO implements ShopDAO_interface {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("­×§ï¿ù»~");
+			System.out.println("ä¿®æ”¹éŒ¯èª¤");
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -139,7 +139,7 @@ public class ShopJNDIDAO implements ShopDAO_interface {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("­×§ï¿ù»~");
+			System.out.println("ä¿®æ”¹éŒ¯èª¤");
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -179,7 +179,7 @@ public class ShopJNDIDAO implements ShopDAO_interface {
 
 
 		} catch (SQLException se) {
-			System.out.println("§R°£¿ù»~");
+			System.out.println("åˆªé™¤éŒ¯èª¤");
 			// Clean up JDBC resources
 		} finally {
 		
@@ -229,13 +229,13 @@ public class ShopJNDIDAO implements ShopDAO_interface {
 				shopVO.setPicture1(rs.getBytes("PICTURE1"));
 				shopVO.setPicture2(rs.getBytes("PICTURE2"));
 				shopVO.setPicture3(rs.getBytes("PICTURE3"));
-				// shopVO ¤]ºÙ¬° Domain objects
+				// shopVO ä¹Ÿç¨±ç‚º Domain objects
 				
 			}
 
 			// Handle any driver errors
 		} catch (SQLException se) {
-			System.out.println("³æ¶µ¬d´M¥¢±Ñ");
+			System.out.println("å–®é …æŸ¥å°‹å¤±æ•—");
 			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
@@ -290,13 +290,13 @@ public class ShopJNDIDAO implements ShopDAO_interface {
 				shopVO.setPicture1(rs.getBytes("PICTURE1"));
 				shopVO.setPicture2(rs.getBytes("PICTURE2"));
 				shopVO.setPicture3(rs.getBytes("PICTURE3"));
-				// shopVO ¤]ºÙ¬° Domain objects
+				// shopVO ä¹Ÿç¨±ç‚º Domain objects
 				
 			}
 
 			// Handle any driver errors
 		} catch (SQLException se) {
-			System.out.println("³æ¶µ¬d´M¥¢±Ñ");
+			System.out.println("å–®é …æŸ¥å°‹å¤±æ•—");
 			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
@@ -351,10 +351,10 @@ public class ShopJNDIDAO implements ShopDAO_interface {
 				shopVO.setPicture1(rs.getBytes("PICTURE1"));
 				shopVO.setPicture2(rs.getBytes("PICTURE2"));
 				shopVO.setPicture3(rs.getBytes("PICTURE3"));
-				// shopVO ¤]ºÙ¬° Domain objects
+				// shopVO ä¹Ÿç¨±ç‚º Domain objects
 	
 				list.add(shopVO); // Store the row in the list
-				//System.out.println("getAll()¬d¸ß¦¨¥\JNDA");
+				//System.out.println("getAll()æŸ¥è©¢æˆåŠŸJNDA");
 			}
 
 			// Handle any driver errors
@@ -398,13 +398,13 @@ public class ShopJNDIDAO implements ShopDAO_interface {
 			pstmt = con.prepareStatement(CHANGESTATE);
 			pstmt.setInt(1, state);
 			pstmt.setInt(2, pk);
-			System.out.println("ChangeState¶}©l");
+			System.out.println("ChangeStateé–‹å§‹");
 			pstmt.executeUpdate();
-			System.out.println("ChangeState§¹²¦");
+			System.out.println("ChangeStateå®Œç•¢");
 			pstmt.executeUpdate();
-			System.out.println("ChangeState§¹²¦");
+			System.out.println("ChangeStateå®Œç•¢");
 		} catch (SQLException se) {
-			System.out.println("ChangeState¿ù»~:"+se);
+			System.out.println("ChangeStateéŒ¯èª¤:"+se);
 			// Clean up JDBC resources
 		} finally {
 		
@@ -456,10 +456,10 @@ public class ShopJNDIDAO implements ShopDAO_interface {
 					shopVO.setPicture1(rs.getBytes("PICTURE1"));
 					shopVO.setPicture2(rs.getBytes("PICTURE2"));
 					shopVO.setPicture3(rs.getBytes("PICTURE3"));
-					// shopVO ¤]ºÙ¬° Domain objects
+					// shopVO ä¹Ÿç¨±ç‚º Domain objects
 		
 					list.add(shopVO); // Store the row in the list
-					//System.out.println("getAll()¬d¸ß¦¨¥\JNDA");
+					//System.out.println("getAll()æŸ¥è©¢æˆåŠŸJNDA");
 				}
 
 				// Handle any driver errors

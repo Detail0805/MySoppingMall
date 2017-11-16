@@ -48,7 +48,7 @@
                     
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
+                  <div class="x_content" style="display: none;">
 <div>
                       <%@ include file="/MasterOrder/listallOrderbeautiful.jsp" %>
 
