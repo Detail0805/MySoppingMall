@@ -15,7 +15,7 @@
 	<%if (OrderList != null && (OrderList.size() > 0)) {%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=BIG5">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
  <script type="text/javascript">
     function changeQuantity(input,oldValue) {
@@ -40,6 +40,17 @@
 </script>
 </head>
 <body>
+
+<c:if test="${not empty errorMsgs}">
+	<font color='red'>請修正以下錯誤:
+	<ul>
+		<c:forEach var="message" items="${errorMsgs}">
+			<li>${message}</li>
+		</c:forEach>
+	</ul>
+	</font>
+</c:if>
+
 	<div class="container">
 		<div class="row">
 			<table class="table table-hover" style="font-size:16px;">

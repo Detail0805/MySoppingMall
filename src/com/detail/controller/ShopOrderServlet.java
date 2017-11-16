@@ -223,10 +223,12 @@ public class ShopOrderServlet extends HttpServlet{
 			}
 		}
 		if ("CONFIRM_UPDATE_ORDERID".equals(action)) {// 來自CHECK.JSP的請求
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
 			Integer amount=new Integer(req.getParameter("amount"));
 			Integer newTotal=0;
 			String Orderno=null;
-			
+			System.out.println("amount :"+amount);
 			HttpSession session = req.getSession();
 			List<ShopOrderVO> OrderList = (List<ShopOrderVO>) session.getAttribute("OrderList");
 			for(int i=0;i<OrderList.size();i++){
@@ -236,13 +238,32 @@ public class ShopOrderServlet extends HttpServlet{
 				System.out.println("新的價格 :"+newTotal);
 				Orderno=ShopOrderVO.getOrderno();
 			}
+			
 			Integer finalTotal=amount-newTotal;
+			System.out.println("finalTotal :"+finalTotal);
 			ShopOrderService shopOrSvc = new ShopOrderService();
 			Integer Point=shopOrSvc.returnPoint(OrderList.get(0).getMemberno());
-			if(Point>finalTotal) {
+			
+
+			if(Point>=-(finalTotal)) {
+			req.setAttribute("total", newTotal);
+			req.setAttribute("OrderList", OrderList);
 			shopOrSvc.updateShopOrder(OrderList,finalTotal);
+			String url = "/back/production/BA104G1_back_OrderMasterFORUPDATE.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
+			successView.forward(req, res);
+			
 			}else {
+				req.setAttribute("total", amount);
+				req.setAttribute("OrderList", OrderList);
 				System.out.println("餘額不足動作失敗");
+				errorMsgs.add("客戶餘額不足動作失敗");
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/back/production/BA104G1_back_OrderMasterFORUPDATE.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+				
 			}
 			
 //			System.out.println("消費前點數 :"+Point+",消費後點數"+NowPoint);
