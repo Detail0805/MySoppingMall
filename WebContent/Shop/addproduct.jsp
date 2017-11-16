@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +7,7 @@
 
 <title></title>
 </head>
-<body background="images/leaf.jpg" style="font-weight: bold;">
-	<h3 align="center">商城商品新增</h3>
-	
+
 <script type="text/javascript">
 function aa(e) {
 	var file = e.files[0];
@@ -26,32 +23,32 @@ function aa(e) {
 		fileReader.readAsDataURL(file);// 讀取檔案內容,以DataURL格式回傳結果
 	}
 }
-
 </script>
-	
+
+
 <style type="text/css">
-	
+
 img {
-	display: hidden height:200px;
+	display: hidden height:400px;
 	width: 200px;
 }
 
 input {
+	zoom: 1;
 	font-size: 10px;
 	color: deeppink
 }
-
-
 td, h3 {
 	zoom: 2;
 	font-size: 15px;
 	color: blue;
 }
-	
-	
 </style>
+<body background="images/leaf.jpg" style="font-weight: bold;">
+	<h3 align="center">商城商品新增</h3>
 
-	<form id="submit" action="addshop.do" method=post
+
+	<form id="submit" action="/MyShopping/addshop.do" method=post
 		enctype="multipart/form-data">
 		<table>
 			<th>
@@ -70,9 +67,9 @@ td, h3 {
 			<tr>
 				<td>商品圖片</td>
 				<td><input type=file id="xx1" name="upfile1" onchange="aa(this)" />
-					<input type=file id="xx2" name="upfile2" onchange="aa(this)" />
-					<input type=file id="xx3" name="upfile3" onchange="aa(this)" /></td>
-				</tr>
+				<input type=file id="xx2" name="upfile2" onchange="aa(this)" />
+				<input type=file id="xx3" name="upfile3" onchange="aa(this)" /></td>
+			</tr>
 
 			<tr>
 				<td>商品類別：</td>
@@ -105,6 +102,9 @@ td, h3 {
 		</table>
 	</form>
 	
-
+	<div align="center" class="foot">
+		<a href="ShowAll.jsp">查詢所有商品</a><br>
+		<a href='listAll.jsp'>查詢所有商品by EL</a>
+	</div>
 </body>
 </html>

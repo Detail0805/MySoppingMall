@@ -45,12 +45,13 @@ public class addshop extends HttpServlet {
 	private static final String INSERT_STMT = "INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES ,PICTURE1,PICTURE2,PICTURE3)  VALUES (FORSHOPITEM.Nextval,?,?,?,?,?,?,?,?,?)";
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		System.out.println("進入addshop.do");
 		doPost(req, res);
 
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+		System.out.println("進入addshop.do");
 		req.setCharacterEncoding("utf-8"); // 處理中文檔名
 		res.setContentType("text/html; charset=utf-8");
 		PrintWriter out = res.getWriter();
