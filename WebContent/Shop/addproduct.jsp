@@ -1,16 +1,55 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<link rel="stylesheet" href="/MyShopping/css/addproduct.css">
-<script src="js/addproduct.js"></script>
+
 
 
 <title></title>
 </head>
-<body background="/MyShopping/images/leaf.jpg" style="font-weight: bold;">
+<body background="images/leaf.jpg" style="font-weight: bold;">
 	<h3 align="center">商城商品新增</h3>
+	
+<script type="text/javascript">
+function aa(e) {
+	var file = e.files[0];
+	console.log(e.id.replace("xx", "yy"));
 
+	if (file) {
+		// 讀取檔案
+		var fileReader = new FileReader();
+		fileReader.onload = function(event) {// 讀取完後執行的動作
+			console.dir(event);
+			document.getElementById(e.id.replace("xx", "ss")).src = event.target.result;
+		};
+		fileReader.readAsDataURL(file);// 讀取檔案內容,以DataURL格式回傳結果
+	}
+}
+
+</script>
+	
+<style type="text/css">
+	
+img {
+	display: hidden height:200px;
+	width: 200px;
+}
+
+input {
+	font-size: 10px;
+	color: deeppink
+}
+
+
+td, h3 {
+	zoom: 2;
+	font-size: 15px;
+	color: blue;
+}
+	
+	
+</style>
 
 	<form id="submit" action="addshop.do" method=post
 		enctype="multipart/form-data">
@@ -30,11 +69,10 @@
 		<table align="center">
 			<tr>
 				<td>商品圖片</td>
-				<td><input type=file id="xx1" name="upfile1"
-					onchange="aa(this)" /><br> <input type=file id="xx2"
-					name="upfile2" onchange="aa(this)" /><br> <input type=file
-					id="xx3" name="upfile3" onchange="aa(this)" /></td>
-			</tr>
+				<td><input type=file id="xx1" name="upfile1" onchange="aa(this)" />
+					<input type=file id="xx2" name="upfile2" onchange="aa(this)" />
+					<input type=file id="xx3" name="upfile3" onchange="aa(this)" /></td>
+				</tr>
 
 			<tr>
 				<td>商品類別：</td>
@@ -67,9 +105,6 @@
 		</table>
 	</form>
 	
-	<div align="center" class="foot">
-		<a href="/MyShopping/ShowAll.jsp">查詢所有商品</a><br>
-		<a href='/MyShopping/Shop/listAll.jsp'>查詢所有商品by EL</a>
-	</div>
+
 </body>
 </html>
