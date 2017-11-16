@@ -51,10 +51,10 @@ public class addshop extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		req.setCharacterEncoding("utf-8"); // ³B²z¤¤¤åÀÉ¦W
+		req.setCharacterEncoding("utf-8"); // è™•ç†ä¸­æ–‡æª”å
 		res.setContentType("text/html; charset=utf-8");
 		PrintWriter out = res.getWriter();
-		System.out.println("ContentType=" + req.getContentType()); // ´ú¸Õ¥Î
+		System.out.println("ContentType=" + req.getContentType()); // æ¸¬è©¦ç”¨
 		ShopVO empVO=new ShopVO();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -64,14 +64,14 @@ public class addshop extends HttpServlet {
 		InputStream part11 = (InputStream) part.getInputStream();
 		InputStream part22 = (InputStream) part2.getInputStream();
 		InputStream part33 = (InputStream) part3.getInputStream();
-		//«Ü©_©Ç¥u¦³setbyte¤~·|¦b¸ê®Æ®w¥X²{blob
+		//å¾ˆå¥‡æ€ªåªæœ‰setbyteæ‰æœƒåœ¨è³‡æ–™åº«å‡ºç¾blob
 		byte[] part111=InputStreamToByte(part11);
 		byte[] part222=InputStreamToByte(part22);
 		byte[] part333=InputStreamToByte(part33);
 		String key = null;
 		
 		
-		//¨ú±o¤W¤@­Óºô­¶ªº¸ê°T(¥Ø«eµLªk·s¼W¤¤¤å...)
+		//å–å¾—ä¸Šä¸€å€‹ç¶²é çš„è³‡è¨Š(ç›®å‰ç„¡æ³•æ–°å¢ä¸­æ–‡...)
 		//int ITEMNO = Integer.parseInt(req.getParameter("ITEMNO"));
 		int CLASSNO = Integer.parseInt(req.getParameter("CLASSNO"));
 		int STOCK = Integer.parseInt(req.getParameter("STOCK"));
@@ -87,14 +87,14 @@ public class addshop extends HttpServlet {
 			//pstmt.setInt(1, ITEMNO);
 			pstmt.setInt(1, STOCK);
 			pstmt.setInt(2, PRICE);
-			pstmt.setInt(3, 1);//STATE¼È®É³£¥ıµ¹1
+			pstmt.setInt(3, 1);//STATEæš«æ™‚éƒ½å…ˆçµ¦1
 			pstmt.setInt(4, CLASSNO);
 			pstmt.setString(5,NAME);
 			pstmt.setString(6, DES);
 			pstmt.setBytes(7, part111);
 			pstmt.setBytes(8, part222);
 			pstmt.setBytes(9, part333);
-			System.out.println("§Ú­Ë¤F¶Ü0");
+			System.out.println("æˆ‘å€’äº†å—0");
 			pstmt.executeUpdate();
 			
 			ResultSet rs = pstmt.getGeneratedKeys();
@@ -104,7 +104,7 @@ public class addshop extends HttpServlet {
 				do {
 					for (int i = 1; i <= columnCount; i++) {
 						key = rs.getString(i);
-						System.out.println("¦Û¼W¥DÁä­È = " + key +"(­è·s¼W¦¨¥\ªº­û¤u½s¸¹)");
+						System.out.println("è‡ªå¢ä¸»éµå€¼ = " + key +"(å‰›æ–°å¢æˆåŠŸçš„å“¡å·¥ç·¨è™Ÿ)");
 					}
 				} while (rs.next());
 			} else {
@@ -126,19 +126,19 @@ public class addshop extends HttpServlet {
 		}
 
 		out.append(
-				"<h1 align=center>¤W¶Ç¦¨¥\¡I</h1>"+
+				"<h1 align=center>ä¸Šå‚³æˆåŠŸï¼</h1>"+
 				"\r\n" + 
 				"<table border='1' bordercolor='#CCCCFF' width='1500' align='center'>\r\n" + 
 				"	<tr>\r\n" + 
-				"		<th>°Ó«~¹Ï¤ù</th>\r\n" + 
-				"		<th>°Ó«~½s¸¹</th>\r\n" + 
-				"		<th>°Ó«~Ãş§O</th>\r\n" + 
-				"		<th>°Ó«~¦WºÙ</th>\r\n" + 
-				"		<th>°Ó«~¼Æ¶q</th>\r\n" + 
-				"		<th>°Ó«~»ù®æ</th>\r\n" + 
-				"		<th>°Ó«~´y­z</th>\r\n" + 
-				"		<th>­×§ï</th>\r\n" + 
-				"		<th>§R°£</th>\r\n" + 
+				"		<th>å•†å“åœ–ç‰‡</th>\r\n" + 
+				"		<th>å•†å“ç·¨è™Ÿ</th>\r\n" + 
+				"		<th>å•†å“é¡åˆ¥</th>\r\n" + 
+				"		<th>å•†å“åç¨±</th>\r\n" + 
+				"		<th>å•†å“æ•¸é‡</th>\r\n" + 
+				"		<th>å•†å“åƒ¹æ ¼</th>\r\n" + 
+				"		<th>å•†å“æè¿°</th>\r\n" + 
+				"		<th>ä¿®æ”¹</th>\r\n" + 
+				"		<th>åˆªé™¤</th>\r\n" + 
 				"	</tr>\r\n" + 
 				"	<tr>\r\n" + 
 				"		<th>"+"<img src='DBPicReader?ITEMNO="+key+"' height='150px'>"+
@@ -152,20 +152,20 @@ public class addshop extends HttpServlet {
 				"		<th>"+DES+"</th>\r\n" + 
 				"<td>\r\n" + 
 				"			  <form name=\"empnoForm\" method=\"post\" action=\"emp.do\">\r\n" + 
-				"			     <input type=\"submit\" value=\"­×§ï\">\r\n" + 
+				"			     <input type=\"submit\" value=\"ä¿®æ”¹\">\r\n" + 
 				"			     <input type=\"hidden\" name=\"ITEMNO\" value='"+key+"'>"+ 
 				"				 <input type=\"hidden\" name=\"action\"	value=\"getOne_For_Update\">" + 
 				"			</form>\r\n</td>\r\n" + 
 				"			<td>\r\n" + 
 				"			  <form name=\"empnoForm\" method=\"post\" action=\"emp.do\">\r\n" + 
-				"			    <input type=\"submit\" value=\"§R°£\">\r\n" + 
+				"			    <input type=\"submit\" value=\"åˆªé™¤\">\r\n" + 
 				"			    <input type=\"hidden\" name=\"ITEMNO\" value='"+key+"'>" + 
 				"				 <input type=\"hidden\" name=\"action\"	value=\"delete\">" + 
 				"			</form>\r\n</td>\r\n" + 
 				"			</td>"+
 				"	</tr>\r\n" + 
 				"</table>"+
-				"<div align='center'><a href=\"javascript:history.go(-1);\"><font size=\"5\">¦^¤W¤@­¶</font></a></div>\r\n"
+				"<div align='center'><a href=\"javascript:history.go(-1);\"><font size=\"5\">å›ä¸Šä¸€é </font></a></div>\r\n"
 				
 				);
 			
@@ -173,7 +173,7 @@ public class addshop extends HttpServlet {
 		
 	
 	
-//§âinputstreamÂà¦¨byte[]
+//æŠŠinputstreamè½‰æˆbyte[]
 	private byte[] InputStreamToByte(InputStream is) throws IOException {
 		ByteArrayOutputStream bytestream = new ByteArrayOutputStream();
 
@@ -187,12 +187,12 @@ public class addshop extends HttpServlet {
 		
 	}
 	
-	// ¨ú¥X¤W¶ÇªºÀÉ®×¦WºÙ (¦]¬°API¥¼´£¨Ñmethod,©Ò¥H¥²¶·¦Û¦æ¼¶¼g)
+	// å–å‡ºä¸Šå‚³çš„æª”æ¡ˆåç¨± (å› ç‚ºAPIæœªæä¾›method,æ‰€ä»¥å¿…é ˆè‡ªè¡Œæ’°å¯«)
 	public String getFileNameFromPart(Part part) {
 		String header = part.getHeader("content-disposition");
-		System.out.println("header=" + header); // ´ú¸Õ¥Î
+		System.out.println("header=" + header); // æ¸¬è©¦ç”¨
 		String filename = new File(header.substring(header.lastIndexOf("."), header.length() - 1)).getName();
-		System.out.println("filename=" + filename); // ´ú¸Õ¥Î
+		System.out.println("filename=" + filename); // æ¸¬è©¦ç”¨
 		if (filename.length() == 0) {
 			return null;
 		}

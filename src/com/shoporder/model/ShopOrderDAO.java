@@ -67,7 +67,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("GET_ONE_BY_ORDERNO¿ù»~ :" + e);
+			System.out.println("GET_ONE_BY_ORDERNOéŒ¯èª¤ :" + e);
 
 		}finally {
 			if (pstmt != null) {
@@ -90,7 +90,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 	}
 
 	@Override
-	// ¨ú±o¸Ó·|­û©ÒÁÊ¶Rªº°Ó«~
+	// å–å¾—è©²æœƒå“¡æ‰€è³¼è²·çš„å•†å“
 	public List<ShopOrderVO> getAllByMenNO(String menno) {
 		List<ShopOrderVO> list = new ArrayList<ShopOrderVO>();
 		ShopOrderVO shoporderVO = null;
@@ -118,7 +118,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("GET_ALL_NO¿ù»~ :" + e);
+			System.out.println("GET_ALL_NOéŒ¯èª¤ :" + e);
 
 		}finally {
 			if (pstmt != null) {
@@ -167,7 +167,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 				list.add(shoporderVO);
 			}
 		} catch (SQLException e) {
-			System.out.println("GET_ONE_BY_ORDERNO¿ù»~ :" + e);
+			System.out.println("GET_ONE_BY_ORDERNOéŒ¯èª¤ :" + e);
 		}
 		return list;
 	}
@@ -193,7 +193,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 				list.add(shoporderVO);
 			}
 		} catch (SQLException e) {
-			System.out.println("GET_ONE_BY_ORDERNO¿ù»~ :" + e);
+			System.out.println("GET_ONE_BY_ORDERNOéŒ¯èª¤ :" + e);
 		}finally {
 			if (pstmt != null) {
 				try {
@@ -225,9 +225,9 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 		
 		try {
 			con = ds.getConnection();
-			// ¤j¶q§ó°Ê¸ê®Æ®w¡A¤£¯à¦³¿ù»~¡C
+			// å¤§é‡æ›´å‹•è³‡æ–™åº«ï¼Œä¸èƒ½æœ‰éŒ¯èª¤ã€‚
 			con.setAutoCommit(false);
-			// ¦A¦P®É·s¼W­q³æ©ú²Ó¤º®e
+			// å†åŒæ™‚æ–°å¢è¨‚å–®æ˜ç´°å…§å®¹
 			for (int i = 0; i < shoporderVO.size(); i++) {
 				if(shoporderVO.get(i).getOrdercount()!=0) {
 				pstmt = con.prepareStatement("UPDATE ORDERDETAIL SET ORDERCOUNT=? WHERE ITEMNO=? AND ORDERNO=?");
@@ -253,13 +253,13 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 		} catch (SQLException e) {
 			try {
 				con.rollback();
-				System.out.println("updateShopOrder.java·s¼W­q³æ¿ù»~,°õ¦ærollback :" + e);
+				System.out.println("updateShopOrder.javaæ–°å¢è¨‚å–®éŒ¯èª¤,åŸ·è¡Œrollback :" + e);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
-			System.out.println("ShopOrderDAO¿ù»~");
+			System.out.println("ShopOrderDAOéŒ¯èª¤");
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -301,7 +301,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 				do {
 					for (int i = 1; i <= columnCount; i++) {
 						key = rs.getString(i);
-						System.out.println("¦Û¼W¥DÁä­È = " + key + "(­è·s¼W¦¨¥\ªº­û¤u½s¸¹)");
+						System.out.println("è‡ªå¢ä¸»éµå€¼ = " + key + "(å‰›æ–°å¢æˆåŠŸçš„å“¡å·¥ç·¨è™Ÿ)");
 					}
 				} while (rs.next());
 			} else {
@@ -313,7 +313,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 			pstmt.clearParameters();
 			pstmt = con.prepareStatement(ADD_ORDERDETAIL);
 			System.out.println("DB5");
-			// ¶·¨ú±o¦Û¼W¥DÁä¨Ó¤@¦¸§¹¦¨
+			// é ˆå–å¾—è‡ªå¢ä¸»éµä¾†ä¸€æ¬¡å®Œæˆ
 			pstmt.setString(1, key);
 			System.out.println("DB6");
 			pstmt.setInt(2, shoporderVO.getItemno());
@@ -324,7 +324,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("addShopOrder¿ù»~");
+			System.out.println("addShopOrderéŒ¯èª¤");
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -353,20 +353,20 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 		try {
 			String[] cols = { "ORDERNO" };
 			con = ds.getConnection();
-			// §âÁÊª«¨®ªºªF¦è·s¼W¶i¥h¤£±o¦³¿ù¡A©Ò¥HÃö³¬AUTOCOMMIT
+			// æŠŠè³¼ç‰©è»Šçš„æ±è¥¿æ–°å¢é€²å»ä¸å¾—æœ‰éŒ¯ï¼Œæ‰€ä»¥é—œé–‰AUTOCOMMIT
 			con.setAutoCommit(false);
-			// Àx¦sÂI
+			// å„²å­˜é»
 			savePoint = con.setSavepoint();
 			pstmt = con.prepareStatement(ADD_SHOPORDER, cols);
-			// ¤U­±³o¤@¬q¥u­n·s¼W¤@¦¸´N¥i¥H¡A±q·|­û¸ê®Æ¨ú±o«D«e­±ªí³æ
+			// ä¸‹é¢é€™ä¸€æ®µåªè¦æ–°å¢ä¸€æ¬¡å°±å¯ä»¥ï¼Œå¾æœƒå“¡è³‡æ–™å–å¾—éå‰é¢è¡¨å–®
 			pstmt.setString(1, "MEM0001");
-			pstmt.setString(2, "¦a§}");
-			pstmt.setString(3, "¹q¸Ü");
-			pstmt.setString(4, "©m¦W");
+			pstmt.setString(2, "åœ°å€");
+			pstmt.setString(3, "é›»è©±");
+			pstmt.setString(4, "å§“å");
 			pstmt.executeUpdate();
 			System.out.println("DB01");
 
-			// ¨ú±o¹ïÀ³ªº¦Û¼W¥DÁä­È
+			// å–å¾—å°æ‡‰çš„è‡ªå¢ä¸»éµå€¼
 			ResultSet rs = pstmt.getGeneratedKeys();
 			System.out.println("DB02");
 			ResultSetMetaData rsmd = rs.getMetaData();
@@ -377,7 +377,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 				do {
 					for (int i = 1; i <= columnCount; i++) {
 						key = rs.getString(i);
-						System.out.println("¦Û¼W¥DÁä­È = " + key + "(­è·s¼W¦¨¥\ªº­q³æ½s¸¹)");
+						System.out.println("è‡ªå¢ä¸»éµå€¼ = " + key + "(å‰›æ–°å¢æˆåŠŸçš„è¨‚å–®ç·¨è™Ÿ)");
 					}
 				} while (rs.next());
 			} else {
@@ -385,28 +385,28 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 			}
 			rs.close();
 			pstmt.clearParameters();
-			// ¦A¦P®É·s¼W­q³æ©ú²Ó¤º®e
+			// å†åŒæ™‚æ–°å¢è¨‚å–®æ˜ç´°å…§å®¹
 			for (int i = 0; i < shoporderVO.size(); i++) {
 				pstmt = con.prepareStatement(ADD_ORDERDETAIL);
-				// ¶·¨ú±o¦Û¼W¥DÁä¨Ó¤@¦¸§¹¦¨
+				// é ˆå–å¾—è‡ªå¢ä¸»éµä¾†ä¸€æ¬¡å®Œæˆ
 				pstmt.setString(1, key);
 				pstmt.setInt(2, shoporderVO.get(i).getItemno());
 				pstmt.setInt(3, shoporderVO.get(i).getOrdercount());
 				pstmt.executeUpdate();
-				System.out.println("²Ä" + i + " ¦¸·s¼W");
+				System.out.println("ç¬¬" + i + " æ¬¡æ–°å¢");
 			}
 			con.commit();
 			con.setAutoCommit(true);
 		} catch (SQLException e) {
 			try {
 				con.rollback();
-				System.out.println("ShopOrderDAO.java·s¼W­q³æ¿ù»~,°õ¦ærollback :" + e);
+				System.out.println("ShopOrderDAO.javaæ–°å¢è¨‚å–®éŒ¯èª¤,åŸ·è¡Œrollback :" + e);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
-			System.out.println("ShopOrderDAO¿ù»~");
+			System.out.println("ShopOrderDAOéŒ¯èª¤");
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -441,7 +441,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 			pstmt.setString(1, Orderno);
 			pstmt.executeUpdate();
 			pstmt.execute();
-			System.out.println("DAO­q³æ§R°£§¹²¦");
+			System.out.println("DAOè¨‚å–®åˆªé™¤å®Œç•¢");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -580,7 +580,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 				shoporderVO.setCustomer_name(rs.getString("NAME"));
 				shoporderVO.setShopname(rs.getString("CUSTOMER_NAME"));
 				shoporderVO.setPrice(rs.getInt("PRICE"));
-				// System.out.println("®³¨ìªºBEAN¤º®e :[ ORDERNO :"+shoporderVO.getOrderno()+"
+				// System.out.println("æ‹¿åˆ°çš„BEANå…§å®¹ :[ ORDERNO :"+shoporderVO.getOrderno()+"
 				// ,ITEMNO :"+shoporderVO.getOrdercount() +" ,ORDERCOUNT
 				// :"+shoporderVO.getOrdercount());
 				// System.out.println(" ,MEM_NO :"+shoporderVO.getMemberno()+" ,ORDER_DATE
@@ -593,7 +593,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 				list.add(shoporderVO);
 			}
 		} catch (SQLException e) {
-			System.out.println("GET_PROMOTIONPRICE_BY_ORDERNO¿ù»~ :" + e);
+			System.out.println("GET_PROMOTIONPRICE_BY_ORDERNOéŒ¯èª¤ :" + e);
 		}finally {
 			if (pstmt != null) {
 				try {
@@ -661,7 +661,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 					shoporderVO.setCustomer_phone(rs.getString("CUSTOMER_PHONE"));
 					shoporderVO.setCustomer_name(rs.getString("NAME"));
 					shoporderVO.setPrice(rs.getInt("NEWPRICE"));
-					System.out.println("®³¨ìªºBEAN¤º®e :[ ORDERNO :" + shoporderVO.getOrderno() + " ,ITEMNO :"
+					System.out.println("æ‹¿åˆ°çš„BEANå…§å®¹ :[ ORDERNO :" + shoporderVO.getOrderno() + " ,ITEMNO :"
 							+ shoporderVO.getOrdercount() + " ,ORDERCOUNT :" + shoporderVO.getOrdercount());
 					System.out.println(" ,MEM_NO :" + shoporderVO.getMemberno() + " ,ORDER_DATE :"
 							+ shoporderVO.getOrder_date() + " ,CUSTOMER_ADDRESS :" + shoporderVO.getCustomer_address());
@@ -685,7 +685,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 					shoporderVO.setCustomer_phone(rs.getString("CUSTOMER_PHONE"));
 					shoporderVO.setCustomer_name(rs.getString("NAME"));
 					shoporderVO.setPrice(rs.getInt("PRICE"));
-					System.out.println("®³¨ìªºBEAN¤º®e :[ ORDERNO :" + shoporderVO.getOrderno() + " ,ITEMNO :"
+					System.out.println("æ‹¿åˆ°çš„BEANå…§å®¹ :[ ORDERNO :" + shoporderVO.getOrderno() + " ,ITEMNO :"
 							+ shoporderVO.getOrdercount() + " ,ORDERCOUNT :" + shoporderVO.getOrdercount());
 					System.out.println(" ,MEM_NO :" + shoporderVO.getMemberno() + " ,ORDER_DATE :"
 							+ shoporderVO.getOrder_date() + " ,CUSTOMER_ADDRESS :" + shoporderVO.getCustomer_address());
@@ -696,7 +696,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 				}
 			}
 		} catch (SQLException e) {
-			System.out.println("GET_ONE_BY_ORDERNO2¿ù»~ :" + e);
+			System.out.println("GET_ONE_BY_ORDERNO2éŒ¯èª¤ :" + e);
 		}finally {
 			if (pstmt != null) {
 				try {

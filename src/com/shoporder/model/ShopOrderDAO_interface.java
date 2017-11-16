@@ -4,31 +4,31 @@ import java.util.List;
 
 public interface ShopOrderDAO_interface {
 
-	//¨ú±o­q³æ½s¸¹¸Ìªº©Ò¦³°Ó«~
+	//å–å¾—è¨‚å–®ç·¨è™Ÿè£¡çš„æ‰€æœ‰å•†å“
 	public List<ShopOrderVO> getAllByOrderNo(String orderno);
-	//¨ú±o­qÁÊ¸Ó°Ó«~½s¸¹ªº©Ò¦³¤H©ú²Ó
+	//å–å¾—è¨‚è³¼è©²å•†å“ç·¨è™Ÿçš„æ‰€æœ‰äººæ˜ç´°
 	public List<ShopOrderVO> getOneByItemNo(Integer pk);
-	//¨ú±o¸Ó­q³æ½s¸¹ªº©Ò¦³°Ó«~
+	//å–å¾—è©²è¨‚å–®ç·¨è™Ÿçš„æ‰€æœ‰å•†å“
 	public List<ShopOrderVO> getPriceByOrderNo(String orderno);
-	//¨ú±o¸Ó­q³æ½s¸¹¦³«P¾Pªº°Ó«~
+	//å–å¾—è©²è¨‚å–®ç·¨è™Ÿæœ‰ä¿ƒéŠ·çš„å•†å“
 	public List<ShopOrderVO> getPriceByOrderNoIfHave(String orderno);
-	//¨ú±o¸Ó·|­û©ÒÁÊ¶Rªº°Ó«~
+	//å–å¾—è©²æœƒå“¡æ‰€è³¼è²·çš„å•†å“
 	public List<ShopOrderVO> getAllByMenNO(String menno);
-	//¨ú±o©Ò¦³ªº­q³æ&¹ïÀ³ªº·|­û
+	//å–å¾—æ‰€æœ‰çš„è¨‚å–®&å°æ‡‰çš„æœƒå“¡
 	public List<ShopOrderVO> getAllOrder();
-	//·s¼W°Ó«~¤Î©ú²Ó
+	//æ–°å¢å•†å“åŠæ˜ç´°
 	public void addShopOrder(ShopOrderVO shoporderVO);
-	//ÁÊª«¨®°Ó«~§å¦¸·s¼W
+	//è³¼ç‰©è»Šå•†å“æ‰¹æ¬¡æ–°å¢
 	public void addShopCartOrder(List<ShopOrderVO> shoporderVO);
-	//§ó·s­q³æ
+	//æ›´æ–°è¨‚å–®
 	public List<ShopOrderVO> updateShopOrder(List<ShopOrderVO> shoporderVO,Integer finalTotal);
-	//¥ÎITEMNO&ORDERID§R°£
+	//ç”¨ITEMNO&ORDERIDåˆªé™¤
 	public void delete(String orderno,String memno);
-	//¦^³ø·|­ûªºÀx­ÈÂI¼Æ
+	//å›å ±æœƒå“¡çš„å„²å€¼é»æ•¸
 	public Integer returnPoint(String memno);
-	//¦©°£·|­ûÂI¼Æ
+	//æ‰£é™¤æœƒå“¡é»æ•¸
 	public Integer returnAfterShoppingPoint(Integer total,String memno);
-	//§R°£­q³æ«áªğÁÙ·|­ûÂI¼Æ  //¦^¶Ç³Ñ¾lÂI¼Æ
+	//åˆªé™¤è¨‚å–®å¾Œè¿”é‚„æœƒå“¡é»æ•¸  //å›å‚³å‰©é¤˜é»æ•¸
 	public Integer returnPointback(String Orderno);
 	
 }

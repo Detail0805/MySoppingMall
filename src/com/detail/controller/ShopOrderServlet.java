@@ -32,21 +32,21 @@ public class ShopOrderServlet extends HttpServlet{
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		if ("addshoporder".equals(action)) {// ¨Ó¦ÛListAllPropro.jspªº½Ğ¨D
-			System.out.println("¶i¤JShopOrderSevlet");
+		if ("addshoporder".equals(action)) {// ä¾†è‡ªListAllPropro.jspçš„è«‹æ±‚
+			System.out.println("é€²å…¥ShopOrderSevlet");
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
-				/*************************** 1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z **********************/
+				/*************************** 1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç† **********************/
 
 				String str = req.getParameter("ADDRESS");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤J¦a§}");
+					errorMsgs.add("è«‹è¼¸å…¥åœ°å€");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/MasterOrder/addshoporder.jsp");
 					failureView.forward(req, res);
-					return;// µ{¦¡¤¤Â_
+					return;// ç¨‹å¼ä¸­æ–·
 				}
 				ShopOrderVO shopOrderVO=new ShopOrderVO();
 				shopOrderVO.setCustomer_address(req.getParameter("ADDRESS"));
@@ -56,31 +56,31 @@ public class ShopOrderServlet extends HttpServlet{
 				shopOrderVO.setItemno(new Integer(req.getParameter("ITEMNO")));
 				shopOrderVO.setOrdercount(new Integer(req.getParameter("ORDERCOUNT")));
 
-				/*************************** 2.¶}©l·s¼W¸ê®Æ *****************************************/
+				/*************************** 2.é–‹å§‹æ–°å¢è³‡æ–™ *****************************************/
 				ShopOrderService shopOrderSvc = new ShopOrderService();
 				ShopOrderVO shopordervo =shopOrderSvc.addShopOrder(shopOrderVO);
 //				if (proVO == null) {
-//					errorMsgs.add("¬dµL¸ê®Æ");
+//					errorMsgs.add("æŸ¥ç„¡è³‡æ–™");
 //				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/MasterOrder/addshoporder.jsp");
 					failureView.forward(req, res);
-					return;//µ{¦¡¤¤Â_
+					return;//ç¨‹å¼ä¸­æ–·
 				}
-				/***************************3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)*************/
+				/***************************3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)*************/
 				req.setAttribute("shopordervo", shopordervo); 
 				String url = "/MasterOrder/ListAllProOrder.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ listOneEmp.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤ listOneEmp.jsp
 				successView.forward(req, res);
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o¸ê®Æ:" + e.getMessage());
+				errorMsgs.add("ç„¡æ³•å–å¾—è³‡æ–™:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/MasterOrder/addshoporder.jsp");
 				failureView.forward(req, res);
 			}
 		}
-		if ("CONFIRM".equals(action)) {// ¨Ó¦ÛCHECK.JSPªº½Ğ¨D
+		if ("CONFIRM".equals(action)) {// ä¾†è‡ªCHECK.JSPçš„è«‹æ±‚
 			
 			
 			HttpSession session = req.getSession();
@@ -90,7 +90,7 @@ public class ShopOrderServlet extends HttpServlet{
 			for(int i=0;i<buylist.size();i++){
 				CartVO cartVO = buylist.get(i);
 				cartVO.setQUANTITY(new Integer(req.getParameter("quantity"+i)));
-				System.out.println("©Ò§ïÅÜªº¼Æ¶q :"+req.getParameter("quantity"+i));
+				System.out.println("æ‰€æ”¹è®Šçš„æ•¸é‡ :"+req.getParameter("quantity"+i));
 			}
 			
 			List<ShopOrderVO> list = new ArrayList<ShopOrderVO>();
@@ -100,13 +100,13 @@ public class ShopOrderServlet extends HttpServlet{
 			String MEMNO=req.getParameter("MEMNO");
 			Point=shopOrSvc.returnPoint(MEMNO);
 			ShopOrderVO shopOrderVO = null;
-			//³oÃä­n¥ı¬d¸ß¤@¦¸³o¦ì·|­ûªºPOINT¦³¨S¦³§C©óÁ`ª÷ÃB¦b°õ¦æ¤U­±°Ê°µ
+			//é€™é‚Šè¦å…ˆæŸ¥è©¢ä¸€æ¬¡é€™ä½æœƒå“¡çš„POINTæœ‰æ²’æœ‰ä½æ–¼ç¸½é‡‘é¡åœ¨åŸ·è¡Œä¸‹é¢å‹•åš
 			if(Point>=amount) {
-				System.out.println("¾lÃB¨¬°÷");
+				System.out.println("é¤˜é¡è¶³å¤ ");
 			for (int i = 0; i < buylist.size(); i++) {
 				CartVO cartVO = buylist.get(i);
 				shopOrderVO = new ShopOrderVO();
-//				System.out.println("²Ä " + i + "¦¸¨ú¥XBEANªº­È§@´ú¸Õ");
+//				System.out.println("ç¬¬ " + i + "æ¬¡å–å‡ºBEANçš„å€¼ä½œæ¸¬è©¦");
 //				System.out.println("cartVO.getNAME()" + cartVO.getNAME());
 				shopOrderVO.setItemno(cartVO.getITEMNO());
 				shopOrderVO.setMemberno(MEMNO);
@@ -114,38 +114,38 @@ public class ShopOrderServlet extends HttpServlet{
 //				System.out.println("cartVO.getITEMNO()" + cartVO.getITEMNO());
 //				System.out.println("cartVO.getQUANTITY()" + cartVO.getQUANTITY());
 				shopOrderVO.setOrdercount(cartVO.getQUANTITY());
-				// ²Ä¤@¦¸ªº®É­ÔÁÙ»İ­n³]¸m¥Î¤á­q³æ¦a§}¡A¦ı¨º¥i¥H±q·|­ì¨ºÃä¼´³oÃä¥ı¤£¹ê°µ
+				// ç¬¬ä¸€æ¬¡çš„æ™‚å€™é‚„éœ€è¦è¨­ç½®ç”¨æˆ¶è¨‚å–®åœ°å€ï¼Œä½†é‚£å¯ä»¥å¾æœƒåŸé‚£é‚Šæ’ˆé€™é‚Šå…ˆä¸å¯¦åš
 //				System.out.println("shopOrderVO.getOrdercount():" + shopOrderVO.getOrdercount());
 //				System.out.println("cartVO.getDES()" + cartVO.getDES().substring(0, 5));
 //				System.out.println("cartVO.getPRICE()" + cartVO.getPRICE());
-				//¨âºØª©¥»¥Ø«e¥ÎLISTª©¥»¹ê°µ¡A¶Ç¹L¥h¬°LIST<ShopOrderVO>
+				//å…©ç¨®ç‰ˆæœ¬ç›®å‰ç”¨LISTç‰ˆæœ¬å¯¦åšï¼Œå‚³éå»ç‚ºLIST<ShopOrderVO>
 				list.add(shopOrderVO);
 				// shopOrSvc.addShopOrder(shopOrderVO);
 				}
-			//ª÷ÃB¨¬°÷­q³æ¦¨¥ß
+			//é‡‘é¡è¶³å¤ è¨‚å–®æˆç«‹
 			shopOrSvc.addShopCartOrder(list);
 			}else{
-				System.out.println("¾lÃB¤£¨¬­q³æ¥¼¦¨¥ß,FORWARD¥X¥h¤F¡C");
+				System.out.println("é¤˜é¡ä¸è¶³è¨‚å–®æœªæˆç«‹,FORWARDå‡ºå»äº†ã€‚");
 				//String url = "/MasterOrder/listallOrder.jsp";
 				String url = "/MasterOrder/listallOrderbeautiful.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ
+				RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤
 																				// ListAllProOrder.jsp
 				successView.forward(req, res);
-				//¥²¶·­nÂ_¤Fµ{¦¡¤~¤£·|Ä~Äò¶]¡A³q³z©Ê¡C
+				//å¿…é ˆè¦æ–·äº†ç¨‹å¼æ‰ä¸æœƒç¹¼çºŒè·‘ï¼Œé€šé€æ€§ã€‚
 				return;
 			}
 
 			Integer NowPoint=shopOrSvc.returnAfterShoppingPoint(amount, MEMNO);
 			
-			System.out.println("®ø¶O«eÂI¼Æ :"+Point+",®ø¶O«áÂI¼Æ"+NowPoint);
+			System.out.println("æ¶ˆè²»å‰é»æ•¸ :"+Point+",æ¶ˆè²»å¾Œé»æ•¸"+NowPoint);
 			//String url = "/MasterOrder/listallOrder.jsp";
 			String url = "/MasterOrder/listallOrderbeautiful.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ
+			RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤
 																			// ListAllProOrder.jsp
 			successView.forward(req, res);
 
 		} 
-		if ("DELETE".equals(action)) {// ¨Ó¦ÛCHECK.JSPªº½Ğ¨D
+		if ("DELETE".equals(action)) {// ä¾†è‡ªCHECK.JSPçš„è«‹æ±‚
 
 			try {
 				String ORDERID = (String) req.getParameter("ORDERID");
@@ -155,45 +155,45 @@ public class ShopOrderServlet extends HttpServlet{
 				shopOrderSvc.delete(ORDERID, MEMBERNO);
 
 				String url = "/MasterOrder/listallOrderbeautiful.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ
+				RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤
 																				// ListAllProOrder.jsp
 				successView.forward(req, res);
 
 			} catch (Exception e) {
-				System.out.println("ShopOrderServlet.java DELETE¥¢±Ñ :" + e);
+				System.out.println("ShopOrderServlet.java DELETEå¤±æ•— :" + e);
 			}
 		}
 		
-		if ("UPDATE_ORDERID".equals(action) || "LOOKORDERID".equals(action)) {// ¨Ó¦ÛCHECK.JSPªº½Ğ¨D
+		if ("UPDATE_ORDERID".equals(action) || "LOOKORDERID".equals(action)) {// ä¾†è‡ªCHECK.JSPçš„è«‹æ±‚
 
-			System.out.println("¶i¤JShopOrderServlet.java.UPdate_orderidÅŞ¿è¹Bºâ");
+			System.out.println("é€²å…¥ShopOrderServlet.java.UPdate_orderidé‚è¼¯é‹ç®—");
 			String orderid = req.getParameter("ORDERID");
 			String memberno = req.getParameter("MEMBERNO");
 			Integer total=0;
 			List<ShopOrderVO> FinishShopOrderVO = null;
 			ShopOrderService shopOrderSvc = new ShopOrderService();
-			// liatinpromotion­q³æ¤¤¦³¯S»ùªº°Ó«~¬°­ş¨Ç(¦h¤@­ÓVOÄİ©Ênewprice)
+			// liatinpromotionè¨‚å–®ä¸­æœ‰ç‰¹åƒ¹çš„å•†å“ç‚ºå“ªäº›(å¤šä¸€å€‹VOå±¬æ€§newprice)
 			List<ShopOrderVO> ListAllOrderShop = shopOrderSvc.getPriceByOrderNoIfHave(orderid);
-			System.out.println("·j´M¥ş³¡°Ó«~®ÉªºListAllOrderShop.size() :"+ListAllOrderShop.size());
+			System.out.println("æœå°‹å…¨éƒ¨å•†å“æ™‚çš„ListAllOrderShop.size() :"+ListAllOrderShop.size());
 			System.out.println("-----------------------------------------------");
-			// ListAllPro¬O¥ş³¡­qÁÊ°Ó«~ªº©ú²Ó
+			// ListAllProæ˜¯å…¨éƒ¨è¨‚è³¼å•†å“çš„æ˜ç´°
 			List<ShopOrderVO> ListAllPro = shopOrderSvc.getPriceByOrderNo(orderid);
-			System.out.println("·j´M¥ş³¡°Ó«~®ÉªºListAllPro.size() :"+ListAllPro.size());
-			// Âù°j°é¤ñ¹ï¬O§_¦³«P¾P»ù®æ¡A¦³ªº¸ÜÂĞ»\¨ìListAllPro
+			System.out.println("æœå°‹å…¨éƒ¨å•†å“æ™‚çš„ListAllPro.size() :"+ListAllPro.size());
+			// é›™è¿´åœˆæ¯”å°æ˜¯å¦æœ‰ä¿ƒéŠ·åƒ¹æ ¼ï¼Œæœ‰çš„è©±è¦†è“‹åˆ°ListAllPro
 			for (int i = 0; i < ListAllOrderShop.size(); i++) {
 				ShopOrderVO ListShopVO = ListAllOrderShop.get(i);
 				for (int j = 0; j < ListAllPro.size(); j++) {
 					ShopOrderVO ListShopProVO = ListAllPro.get(j);
 					if (ListShopVO.getItemno() == ListShopProVO.getItemno()) {
-						System.out.println("­ì¥»ListShopProVO.getPrice() :" + ListShopProVO.getPrice());
-						System.out.println("­ì¥»ListShopVO.getPrice() :" + ListShopVO.getPrice());
+						System.out.println("åŸæœ¬ListShopProVO.getPrice() :" + ListShopProVO.getPrice());
+						System.out.println("åŸæœ¬ListShopVO.getPrice() :" + ListShopVO.getPrice());
 						ListShopVO.setPrice(ListShopProVO.getPrice());
 						System.out.println( "ListShopVO.setPrice(ListShopProVO.getPrice()):" + ListShopProVO.getPrice());
-						System.out.println("¨âÄİ©Ê­È¬Û¦Pªí¬O§ïÅÜ¦¨¥\¡C");
+						System.out.println("å…©å±¬æ€§å€¼ç›¸åŒè¡¨æ˜¯æ”¹è®ŠæˆåŠŸã€‚");
 					}
 				}
 			}
-			//ºâ¥X¦¹µ§­q³æªºÁ`ª÷ÃB
+			//ç®—å‡ºæ­¤ç­†è¨‚å–®çš„ç¸½é‡‘é¡
 			for (int i = 0; i < ListAllOrderShop.size(); i++) {
 				total+=ListAllOrderShop.get(i).getPrice()*ListAllOrderShop.get(i).getOrdercount();
 				System.out.println("ListAllPro.size() :" + ListAllOrderShop.size());
@@ -202,7 +202,7 @@ public class ShopOrderServlet extends HttpServlet{
 				System.out.println("ListAllPro.get(i).getItemno() :"+ListAllOrderShop.get(i).getCustomer_name());
 				System.out.println("ListAllPro.get(i).getItemno() :"+ListAllOrderShop.get(i).getPrice());
 			}
-			System.out.println("Á`ª÷ÃB :"+total);
+			System.out.println("ç¸½é‡‘é¡ :"+total);
 			try {
 				req.setAttribute("total", total);
 				req.setAttribute("OrderList", ListAllOrderShop);
@@ -215,14 +215,14 @@ public class ShopOrderServlet extends HttpServlet{
 					url = "/back/production/BA104G1_back_OrderMasterForShowOne.jsp";
 				}
 				
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ
+				RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤
 				successView.forward(req, res);
 
 			} catch (Exception e) {
-				System.out.println("ShopOrderServlet.java DELETE¥¢±Ñ :" + e);
+				System.out.println("ShopOrderServlet.java DELETEå¤±æ•— :" + e);
 			}
 		}
-		if ("CONFIRM_UPDATE_ORDERID".equals(action)) {// ¨Ó¦ÛCHECK.JSPªº½Ğ¨D
+		if ("CONFIRM_UPDATE_ORDERID".equals(action)) {// ä¾†è‡ªCHECK.JSPçš„è«‹æ±‚
 			Integer amount=new Integer(req.getParameter("amount"));
 			Integer newTotal=0;
 			String Orderno=null;
@@ -233,7 +233,7 @@ public class ShopOrderServlet extends HttpServlet{
 				ShopOrderVO ShopOrderVO = OrderList.get(i);
 				ShopOrderVO.setOrdercount(new Integer(req.getParameter("quantity"+i)));
 				newTotal+=ShopOrderVO.getOrdercount()*ShopOrderVO.getPrice();
-				System.out.println("·sªº»ù®æ :"+newTotal);
+				System.out.println("æ–°çš„åƒ¹æ ¼ :"+newTotal);
 				Orderno=ShopOrderVO.getOrderno();
 			}
 			Integer finalTotal=amount-newTotal;
@@ -242,12 +242,12 @@ public class ShopOrderServlet extends HttpServlet{
 			if(Point>finalTotal) {
 			shopOrSvc.updateShopOrder(OrderList,finalTotal);
 			}else {
-				System.out.println("¾lÃB¤£¨¬°Ê§@¥¢±Ñ");
+				System.out.println("é¤˜é¡ä¸è¶³å‹•ä½œå¤±æ•—");
 			}
 			
-//			System.out.println("®ø¶O«eÂI¼Æ :"+Point+",®ø¶O«áÂI¼Æ"+NowPoint);
+//			System.out.println("æ¶ˆè²»å‰é»æ•¸ :"+Point+",æ¶ˆè²»å¾Œé»æ•¸"+NowPoint);
 //			String url = "/MasterOrder/listallOrder.jsp";
-//			RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ
+//			RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤
 //																			// ListAllProOrder.jsp
 //			successView.forward(req, res);
 

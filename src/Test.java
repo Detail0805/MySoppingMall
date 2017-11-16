@@ -33,14 +33,14 @@ public class Test {
 		
 		for(int i=0;i<5;i++){
 			shopvo=new ShopVO();
-			shopvo.setDES("´ú¸Õ"+i);
+			shopvo.setDES("æ¸¬è©¦"+i);
 			shopvo.setITEMNO(0);
 			list.add(shopvo);
 			list.setElementAt(shopvo, i);
 		}
 		System.out.println(list.get(1).getDES());
 		shopvo2=new ShopVO();
-		shopvo2.setDES("´ú¸Õ0");
+		shopvo2.setDES("æ¸¬è©¦0");
 		shopvo2.setITEMNO(0);
 		
 		System.out.println(list.removeElement(shopvo2));
@@ -49,7 +49,7 @@ public class Test {
 		System.out.println(list.get(1));
 		System.out.println(list.get(2));
 		System.out.println(list.get(3));
-//		//§R°£¦¨¥\
+//		//åˆªé™¤æˆåŠŸ
 //		String sqltext="SELECT OT.ORDERNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE,PD.PRICE AS NEWPRICE FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO) JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO JOIN PROMOTIONDETAIL PD ON SP.ITEMNO=PD.ITEMNO WHERE OT.ORDERNO='20171025-000040'";
 //		DataSource ds = null;
 //		Connection con = null;

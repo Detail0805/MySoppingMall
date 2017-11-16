@@ -29,150 +29,150 @@ public class ProServlet extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
-		if ("getOne_For_Display".equals(action)) {// ¨Ó¦Ûlistallpro.jspªº½Ğ¨D
+		if ("getOne_For_Display".equals(action)) {// ä¾†è‡ªlistallpro.jspçš„è«‹æ±‚
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
-				/*************************** 1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z **********************/
+				/*************************** 1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç† **********************/
 
 				String str = req.getParameter("ITEMNO");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤J°Ó«~½s¸¹");
+					errorMsgs.add("è«‹è¼¸å…¥å•†å“ç·¨è™Ÿ");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/mainforpro.jsp");
 					failureView.forward(req, res);
-					return;// µ{¦¡¤¤Â_
+					return;// ç¨‹å¼ä¸­æ–·
 				}
 
 
 
-				/*************************** 2.¶}©l¬d¸ß¸ê®Æ *****************************************/
+				/*************************** 2.é–‹å§‹æŸ¥è©¢è³‡æ–™ *****************************************/
 				ProService proSvc = new ProService();
 				List<ProVO> proVO =  proSvc.getOneEmpbyString(str);
 				if (proVO == null) {
-					errorMsgs.add("¬dµL¸ê®Æ");
+					errorMsgs.add("æŸ¥ç„¡è³‡æ–™");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/mainforpro.jsp");
 					failureView.forward(req, res);
-					return;//µ{¦¡¤¤Â_
+					return;//ç¨‹å¼ä¸­æ–·
 				}
-				/***************************3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)*************/
-				req.setAttribute("proVO", proVO); // ¸ê®Æ®w¨ú¥XªºempVOª«¥ó,¦s¤Jreq
+				/***************************3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)*************/
+				req.setAttribute("proVO", proVO); // è³‡æ–™åº«å–å‡ºçš„empVOç‰©ä»¶,å­˜å…¥req
 				String url = "/Promotion/listonepro.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ listOneEmp.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤ listOneEmp.jsp
 				successView.forward(req, res);
 
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o¸ê®Æ:" + e.getMessage());
+				errorMsgs.add("ç„¡æ³•å–å¾—è³‡æ–™:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/mainforpro.jsp");
 				failureView.forward(req, res);
 			}
 		}
 		
-		if ("getOne_For_Display2".equals(action)) {// ¨Ó¦Ûlistallpro.jspªº½Ğ¨D
+		if ("getOne_For_Display2".equals(action)) {// ä¾†è‡ªlistallpro.jspçš„è«‹æ±‚
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
-				/*************************** 1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z **********************/
+				/*************************** 1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç† **********************/
 
 				String str = req.getParameter("ITEMNO");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤J°Ó«~½s¸¹");
+					errorMsgs.add("è«‹è¼¸å…¥å•†å“ç·¨è™Ÿ");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/mainforpro.jsp");
 					failureView.forward(req, res);
-					return;// µ{¦¡¤¤Â_
+					return;// ç¨‹å¼ä¸­æ–·
 				}
-				/*************************** 2.¶}©l¬d¸ß¸ê®Æ *****************************************/
+				/*************************** 2.é–‹å§‹æŸ¥è©¢è³‡æ–™ *****************************************/
 				ProService proSvc = new ProService();
 				ProVO proVO =  proSvc.getOneEmpForStringName(str);
 				if (proVO == null) {
-					errorMsgs.add("¬dµL¸ê®Æ");
+					errorMsgs.add("æŸ¥ç„¡è³‡æ–™");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/Promotion/listoneProForName.jsp");
 					failureView.forward(req, res);
-					return;//µ{¦¡¤¤Â_
+					return;//ç¨‹å¼ä¸­æ–·
 				}
-				/***************************3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)*************/
-				req.setAttribute("SeachForOneProShop", proVO); // ¸ê®Æ®w¨ú¥XªºempVOª«¥ó,¦s¤Jreq
+				/***************************3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)*************/
+				req.setAttribute("SeachForOneProShop", proVO); // è³‡æ–™åº«å–å‡ºçš„empVOç‰©ä»¶,å­˜å…¥req
 				//String url = "/Promotion/listoneProForName.jsp";
 				String url = "/front/SearchForProShop.jsp";
 				
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ listOneEmp.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤ listOneEmp.jsp
 				successView.forward(req, res);
 
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o¸ê®Æ:" + e.getMessage());
+				errorMsgs.add("ç„¡æ³•å–å¾—è³‡æ–™:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/Promotion/listoneProForName.jsp");
 				failureView.forward(req, res);
 			}
 		}
 		
-		if ("getOne_For_Display3".equals(action)) {// ¨Ó¦Ûlistallpro.jspªº½Ğ¨D
+		if ("getOne_For_Display3".equals(action)) {// ä¾†è‡ªlistallpro.jspçš„è«‹æ±‚
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
-				/*************************** 1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z **********************/
+				/*************************** 1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç† **********************/
 
 				String str = req.getParameter("PRONO");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤J°Ó«~½s¸¹");
+					errorMsgs.add("è«‹è¼¸å…¥å•†å“ç·¨è™Ÿ");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/mainforpro.jsp");
 					failureView.forward(req, res);
-					return;// µ{¦¡¤¤Â_
+					return;// ç¨‹å¼ä¸­æ–·
 				}
 				
 				Integer empno = null;
 				try {
 					empno = new Integer(str);
 				} catch (Exception e) {
-					errorMsgs.add("°Ó«~½s¸¹®æ¦¡¤£¥¿½T");
+					errorMsgs.add("å•†å“ç·¨è™Ÿæ ¼å¼ä¸æ­£ç¢º");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/mainforpro.jsp");
 					failureView.forward(req, res);
-					return;//µ{¦¡¤¤Â_
+					return;//ç¨‹å¼ä¸­æ–·
 				}
 
 
-				/*************************** 2.¶}©l¬d¸ß¸ê®Æ *****************************************/
+				/*************************** 2.é–‹å§‹æŸ¥è©¢è³‡æ–™ *****************************************/
 				ProService proSvc = new ProService();
 				ProVO proVO =  proSvc.getOneOnItemNO(empno);
 				if (proVO == null) {
-					errorMsgs.add("¬dµL¸ê®Æ");
+					errorMsgs.add("æŸ¥ç„¡è³‡æ–™");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/mainforpro.jsp");
 					failureView.forward(req, res);
-					return;//µ{¦¡¤¤Â_
+					return;//ç¨‹å¼ä¸­æ–·
 				}
-				/***************************3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)*************/
-				req.setAttribute("proVO", proVO); // ¸ê®Æ®w¨ú¥XªºempVOª«¥ó,¦s¤Jreq
+				/***************************3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)*************/
+				req.setAttribute("proVO", proVO); // è³‡æ–™åº«å–å‡ºçš„empVOç‰©ä»¶,å­˜å…¥req
 				String url = "/Promotion/listoneProForName.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ listOneEmp.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤ listOneEmp.jsp
 				successView.forward(req, res);
 
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o¸ê®Æ:" + e.getMessage());
+				errorMsgs.add("ç„¡æ³•å–å¾—è³‡æ–™:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/mainforpro.jsp");
 				failureView.forward(req, res);
 			}
 		}
 
-		if ("getOne_For_Update".equals(action)) { // ¨Ó¦ÛlistAllPro.jspªº½Ğ¨D
+		if ("getOne_For_Update".equals(action)) { // ä¾†è‡ªlistAllPro.jspçš„è«‹æ±‚
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -180,37 +180,37 @@ public class ProServlet extends HttpServlet{
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			try {
-				/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ****************************************/
+				/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸****************************************/
 				Integer PRONO = new Integer(req.getParameter("ITEMNO"));
 				
-				/***************************2.¶}©l¬d¸ß¸ê®Æ****************************************/
+				/***************************2.é–‹å§‹æŸ¥è©¢è³‡æ–™****************************************/
 				ProService proSvc = new ProService();
 				ProVO proVO = proSvc.getOneEmp(PRONO);
 								
-				/***************************3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)************/
-				req.setAttribute("proVO", proVO);         // ¸ê®Æ®w¨ú¥XªºempVOª«¥ó,¦s¤Jreq
+				/***************************3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)************/
+				req.setAttribute("proVO", proVO);         // è³‡æ–™åº«å–å‡ºçš„empVOç‰©ä»¶,å­˜å…¥req
 				String url = "/Promotion/update_pro_input.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);// ¦¨¥\Âà¥æ update_pro_input.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url);// æˆåŠŸè½‰äº¤ update_pro_input.jsp
 				successView.forward(req, res);
 
-				/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+				/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 			} catch (Exception e) {
-				System.out.println("getOne_For_Update¸õ¿ù¤F");
-				errorMsgs.add("µLªk¨ú±o­n­×§ïªº¸ê®Æ:" + e.getMessage());
+				System.out.println("getOne_For_Updateè·³éŒ¯äº†");
+				errorMsgs.add("ç„¡æ³•å–å¾—è¦ä¿®æ”¹çš„è³‡æ–™:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/Promotion/listAllPro.jsp");
 				failureView.forward(req, res);
 			}
 		}
-		//¨ì¥Ø«e¬°¤îÁÙ¨S¦³¶Ç¤é´Á¶i¥h­n°O±o¹ê°µ
-		if ("update".equals(action)) {	// ¨Ó¦Ûupdate_pro_input.jspªº½Ğ¨D
+		//åˆ°ç›®å‰ç‚ºæ­¢é‚„æ²’æœ‰å‚³æ—¥æœŸé€²å»è¦è¨˜å¾—å¯¦åš
+		if ("update".equals(action)) {	// ä¾†è‡ªupdate_pro_input.jspçš„è«‹æ±‚
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
-				/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z**********************/
+				/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†**********************/
 				String NAME = req.getParameter("NAME").trim();
 				Integer ITEMNO =new Integer(req.getParameter("ITEMNO"));
-				//¦r¦êÂàInteger¦AÂàLong
+				//å­—ä¸²è½‰Integerå†è½‰Long
 				Long BEGINDATE = new Long(req.getParameter("BEGINDATE"));
 				Long ENDDATE = new Long(req.getParameter("ENDDATE"));
 			
@@ -221,10 +221,10 @@ public class ProServlet extends HttpServlet{
 					PRICE =new Integer(req.getParameter("PRICE").trim());
 				} catch (NumberFormatException e) {
 					PRICE = 0;
-					errorMsgs.add("¶ñ¤J²£«~»ù®æ");
+					errorMsgs.add("å¡«å…¥ç”¢å“åƒ¹æ ¼");
 				}
 				ProVO proVO = new ProVO();
-				//¤£»İ­nimport¼gªk
+				//ä¸éœ€è¦importå¯«æ³•
 				proVO.setBEGINDATE(new java.sql.Date(BEGINDATE*1000L));
 				proVO.setENDDATE(new java.sql.Date(ENDDATE*1000L));
 				proVO.setNAME(NAME);
@@ -233,44 +233,44 @@ public class ProServlet extends HttpServlet{
 				proVO.setPROMOTIOMNO(PROMOTIOMNO);
 
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("proVO", proVO); // §t¦³¿é¤J®æ¦¡¿ù»~ªºproVOª«¥ó,¤]¦s¤Jreq
+					req.setAttribute("proVO", proVO); // å«æœ‰è¼¸å…¥æ ¼å¼éŒ¯èª¤çš„proVOç‰©ä»¶,ä¹Ÿå­˜å…¥req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/Promotion/update_pro_input.jsp");
 					failureView.forward(req, res);
-					return; //µ{¦¡¤¤Â_
+					return; //ç¨‹å¼ä¸­æ–·
 				}
 				
-				//­«½Æ°µÁ×§K¨â¦¸¿ù»~¦P®É²£¥Í¿é¥X¦r¦ê®æ¦¡¤£¥¿½T
+				//é‡è¤‡åšé¿å…å…©æ¬¡éŒ¯èª¤åŒæ™‚ç”¢ç”Ÿè¼¸å‡ºå­—ä¸²æ ¼å¼ä¸æ­£ç¢º
 				if(BEGINDATE>ENDDATE) {
 					
-					errorMsgs.add("¤é´Á®æ¦¡¤£¥¿½T:¶}©l®É¶¡¤ñµ²§ô®É¶¡±ß");
+					errorMsgs.add("æ—¥æœŸæ ¼å¼ä¸æ­£ç¢º:é–‹å§‹æ™‚é–“æ¯”çµæŸæ™‚é–“æ™š");
 				}
 				
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("proVO", proVO); // §t¦³¿é¤J®æ¦¡¿ù»~ªºproVOª«¥ó,¤]¦s¤Jreq
+					req.setAttribute("proVO", proVO); // å«æœ‰è¼¸å…¥æ ¼å¼éŒ¯èª¤çš„proVOç‰©ä»¶,ä¹Ÿå­˜å…¥req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/Promotion/update_pro_input.jsp");
 					failureView.forward(req, res);
-					return; //µ{¦¡¤¤Â_
+					return; //ç¨‹å¼ä¸­æ–·
 				}
 				
-				/***************************2.¶}©l­×§ï¸ê®Æ*****************************************/
+				/***************************2.é–‹å§‹ä¿®æ”¹è³‡æ–™*****************************************/
 				ProService proSvc = new ProService();
-				System.out.println("pro­×§ï¸ê®Æ«e");
+				System.out.println("proä¿®æ”¹è³‡æ–™å‰");
 				proVO = proSvc.updateEmp(NAME, PROMOTIOMNO, PRICE, ITEMNO,new java.sql.Date(BEGINDATE*1000L),new java.sql.Date(ENDDATE*1000L));
-				System.out.println("pro­×§ï¸ê®Æ«á");
-				/***************************3.­×§ï§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)*************/
-				req.setAttribute("proVO", proVO); // ¸ê®Æ®wupdate¦¨¥\«á,¥¿½TªºªºproVOª«¥ó,¦s¤Jreq
+				System.out.println("proä¿®æ”¹è³‡æ–™å¾Œ");
+				/***************************3.ä¿®æ”¹å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)*************/
+				req.setAttribute("proVO", proVO); // è³‡æ–™åº«updateæˆåŠŸå¾Œ,æ­£ç¢ºçš„çš„proVOç‰©ä»¶,å­˜å…¥req
 				String url = "/Promotion/listoneProForName.jsp";
-				System.out.println("PROSERVLET¦¨¥\FORWARED TO  LISTONEPRO");
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ­×§ï¦¨¥\«á,Âà¥ælistOneEmp.jsp
+				System.out.println("PROSERVLETæˆåŠŸFORWARED TO  LISTONEPRO");
+				RequestDispatcher successView = req.getRequestDispatcher(url); // ä¿®æ”¹æˆåŠŸå¾Œ,è½‰äº¤listOneEmp.jsp
 				successView.forward(req, res);
 				
 
-				/***************************¨ä¥L¥i¯àªº¿ù»~³B²z*************************************/
+				/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†*************************************/
 			} catch (Exception e) {
-				System.out.println("¶i¤J¤F*¨ä¥L¥i¯àªº¿ù»~³B²z*");
-				errorMsgs.add("­×§ï¸ê®Æ¥¢±Ñ:"+e.getMessage());
+				System.out.println("é€²å…¥äº†*å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†*");
+				errorMsgs.add("ä¿®æ”¹è³‡æ–™å¤±æ•—:"+e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/Promotion/update_pro_input.jsp");
 				failureView.forward(req, res);
@@ -280,68 +280,68 @@ public class ProServlet extends HttpServlet{
 		if("addpromotion".equals(action)){
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			System.out.println("¶i¤Jaddpromotion");
+			System.out.println("é€²å…¥addpromotion");
 			
 			try {
-				/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z**********************/
+				/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†**********************/
 				
 				String NAME = req.getParameter("NAME");
 				if (NAME == null || (NAME.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤J°Ó«~¦WºÙ");
+					errorMsgs.add("è«‹è¼¸å…¥å•†å“åç¨±");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/Promotion/addpromotion.jsp");
 					failureView.forward(req, res);
-					return;// µ{¦¡¤¤Â_
+					return;// ç¨‹å¼ä¸­æ–·
 				}
 
-				//¦r¦êÂàInteger¦AÂàLong
+				//å­—ä¸²è½‰Integerå†è½‰Long
 				Long BEGINDATE = new Long(req.getParameter("BEGINDATE"));
 				Long ENDDATE = new Long(req.getParameter("ENDDATE"));
 			
 				ProVO proVO = new ProVO();
-				//¤£»İ­nimport¼gªk
+				//ä¸éœ€è¦importå¯«æ³•
 				proVO.setBEGINDATE(new java.sql.Date(BEGINDATE*1000L));
 				proVO.setENDDATE(new java.sql.Date(ENDDATE*1000L));
 				proVO.setNAME(NAME);
 				
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("proVO", proVO); // §t¦³¿é¤J®æ¦¡¿ù»~ªºproVOª«¥ó,¤]¦s¤Jreq
+					req.setAttribute("proVO", proVO); // å«æœ‰è¼¸å…¥æ ¼å¼éŒ¯èª¤çš„proVOç‰©ä»¶,ä¹Ÿå­˜å…¥req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/Promotion/addpromotion.jsp");
 					failureView.forward(req, res);
-					return; //µ{¦¡¤¤Â_
+					return; //ç¨‹å¼ä¸­æ–·
 				}
 				
-				//­«½Æ°µÁ×§K¨â¦¸¿ù»~¦P®É²£¥Í¿é¥X¦r¦ê®æ¦¡¤£¥¿½T
+				//é‡è¤‡åšé¿å…å…©æ¬¡éŒ¯èª¤åŒæ™‚ç”¢ç”Ÿè¼¸å‡ºå­—ä¸²æ ¼å¼ä¸æ­£ç¢º
 				if(BEGINDATE>ENDDATE) {
-					errorMsgs.add("¤é´Á®æ¦¡¤£¥¿½T:¶}©l®É¶¡¤ñµ²§ô®É¶¡±ß");
+					errorMsgs.add("æ—¥æœŸæ ¼å¼ä¸æ­£ç¢º:é–‹å§‹æ™‚é–“æ¯”çµæŸæ™‚é–“æ™š");
 				}
 				
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("proVO", proVO); // §t¦³¿é¤J®æ¦¡¿ù»~ªºproVOª«¥ó,¤]¦s¤Jreq
+					req.setAttribute("proVO", proVO); // å«æœ‰è¼¸å…¥æ ¼å¼éŒ¯èª¤çš„proVOç‰©ä»¶,ä¹Ÿå­˜å…¥req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/Promotion/addpromotion.jsp");
 					failureView.forward(req, res);
-					return; //µ{¦¡¤¤Â_
+					return; //ç¨‹å¼ä¸­æ–·
 				}
 				
-				/***************************2.¶}©l­×§ï¸ê®Æ*****************************************/
+				/***************************2.é–‹å§‹ä¿®æ”¹è³‡æ–™*****************************************/
 				ProService proSvc = new ProService();
-				//¶Ç¤J¬O¬í¼Æ DATE*1000L
+				//å‚³å…¥æ˜¯ç§’æ•¸ DATE*1000L
 				proVO = proSvc.addPro(NAME, new java.sql.Date(BEGINDATE*1000L),new java.sql.Date(ENDDATE*1000L));
-				/***************************3.­×§ï§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)*************/
-				req.setAttribute("proVO", proVO); // ¸ê®Æ®wupdate¦¨¥\«á,¥¿½TªºªºproVOª«¥ó,¦s¤Jreq
+				/***************************3.ä¿®æ”¹å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)*************/
+				req.setAttribute("proVO", proVO); // è³‡æ–™åº«updateæˆåŠŸå¾Œ,æ­£ç¢ºçš„çš„proVOç‰©ä»¶,å­˜å…¥req
 				String url = "/Promotion/listAllPromotion.jsp";
-				System.out.println("PROSERVLET¦¨¥\FORWARED TO  listAllPro");
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ­×§ï¦¨¥\«á,Âà¥ælistOneEmp.jsp
+				System.out.println("PROSERVLETæˆåŠŸFORWARED TO  listAllPro");
+				RequestDispatcher successView = req.getRequestDispatcher(url); // ä¿®æ”¹æˆåŠŸå¾Œ,è½‰äº¤listOneEmp.jsp
 				successView.forward(req, res);
 				
 
-				/***************************¨ä¥L¥i¯àªº¿ù»~³B²z*************************************/
+				/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†*************************************/
 			} catch (Exception e) {
-				System.out.println("¶i¤J¤F*¨ä¥L¥i¯àªº¿ù»~³B²z*");
-				errorMsgs.add("­×§ï¸ê®Æ¥¢±Ñ:"+e.getMessage());
+				System.out.println("é€²å…¥äº†*å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†*");
+				errorMsgs.add("ä¿®æ”¹è³‡æ–™å¤±æ•—:"+e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/Promotion/addpromotion.jsp");
 				failureView.forward(req, res);
@@ -350,7 +350,7 @@ public class ProServlet extends HttpServlet{
 		
 		
 		
-		if ("delete".equals(action)) { // ¨Ó¦ÛlistAllPro.do,listonepro.jsp
+		if ("delete".equals(action)) { // ä¾†è‡ªlistAllPro.do,listonepro.jsp
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -358,21 +358,21 @@ public class ProServlet extends HttpServlet{
 			req.setAttribute("errorMsgs", errorMsgs);
 	
 			try {
-				/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ***************************************/
+				/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸***************************************/
 				Integer ITEMNO = new Integer(req.getParameter("ITEMNO"));
 				
-				/***************************2.¶}©l§R°£¸ê®Æ***************************************/
+				/***************************2.é–‹å§‹åˆªé™¤è³‡æ–™***************************************/
 				ShopService empSvc = new ShopService();
 				empSvc.deleteEmp(ITEMNO);
 				
-				/***************************3.§R°£§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)***********/								
+				/***************************3.åˆªé™¤å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)***********/								
 				String url = "/Promotion/listAllPro.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);// §R°£¦¨¥\«á,Âà¥æ¦^°e¥X§R°£ªº¨Ó·½ºô­¶
+				RequestDispatcher successView = req.getRequestDispatcher(url);// åˆªé™¤æˆåŠŸå¾Œ,è½‰äº¤å›é€å‡ºåˆªé™¤çš„ä¾†æºç¶²é 
 				successView.forward(req, res);
 				
-				/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+				/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 			} catch (Exception e) {
-				errorMsgs.add("§R°£¸ê®Æ¥¢±Ñ:"+e.getMessage());
+				errorMsgs.add("åˆªé™¤è³‡æ–™å¤±æ•—:"+e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/Promotion/listAllPro.jsp");
 				failureView.forward(req, res);

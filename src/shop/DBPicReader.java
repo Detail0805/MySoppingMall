@@ -63,7 +63,7 @@ public class DBPicReader extends HttpServlet {
 	public void init() throws ServletException {
 	     try {
 			Context ctx = new javax.naming.InitialContext();
-			 DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB"); // ds©M¨ä¥¦ªºjava fileªºds¬O¦P¤@­Óds
+			 DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB"); // dså’Œå…¶å®ƒçš„java fileçš„dsæ˜¯åŒä¸€å€‹ds
 			 con = ds.getConnection();
 		} catch (NamingException e) {
 			e.printStackTrace();

@@ -94,7 +94,7 @@
                 <div class="tab-content">
                     <div class="tab-pane fade" id="tab1" role="tabpanel">
                         目前點擊#TAB2 Directive
-                        <%@ include file="textforjsp.jsp" %>  //目前成功要把一些基本資料修改結束
+                         //目前成功要把一些基本資料修改結束
                     </div>
                     <div class="tab-pane fade" id="tab2" role="tabpanel">
                         目前點擊#tab2
