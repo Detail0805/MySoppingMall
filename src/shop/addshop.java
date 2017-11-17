@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -56,7 +57,7 @@ public class addshop extends HttpServlet {
 		res.setContentType("text/html; charset=utf-8");
 		PrintWriter out = res.getWriter();
 		System.out.println("ContentType=" + req.getContentType()); // 測試用
-		ShopVO empVO=new ShopVO();
+		ShopVO shopVO=new ShopVO();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		Part part = req.getPart("upfile1");
@@ -113,6 +114,16 @@ public class addshop extends HttpServlet {
 			}
 			
 			rs.close();
+			shopVO.setSTOCK(STOCK);
+			shopVO.setPRICE(PRICE);
+			shopVO.setCLASSNO(CLASSNO);
+			shopVO.setNAME(NAME);
+			shopVO.setCLASSNO(CLASSNO);
+			shopVO.setKey(key);
+			req.setAttribute("shopVO",shopVO);
+			String url = "/back/production/BA104G1_back_ShopADDAfter.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+			successView.forward(req, res);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

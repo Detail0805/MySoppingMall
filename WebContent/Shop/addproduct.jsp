@@ -72,9 +72,7 @@ td, h3 {
 			</tr>
 
 			<tr>
-				<td>商品類別：</td>
-				<td><input type="text" name="CLASSNO" size="20"></td>
-			</tr>
+				<td><input type="hidden" value="1" name="CLASSNO" size="20"></td>
 			<tr>
 				<td>商品名稱：</td>
 				<td><input type="text" name="NAME" size="20"></td>
