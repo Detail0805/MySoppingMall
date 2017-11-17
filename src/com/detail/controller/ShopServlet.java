@@ -17,12 +17,13 @@ import com.shop.model.ShopVO;
 
 public class ShopServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		System.out.println("shop.do.doget");
 		doPost(req, res);
 		
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
+		System.out.println("shop.do.dopost");
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
@@ -161,16 +162,16 @@ public class ShopServlet extends HttpServlet {
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("shopVO", shopVO);         // 資料庫取出的shopVO物件,存入req
-				String url = "/Shop/update_emp_input.jsp";
+				String url = "/back/production/BA104G1_back_ShopADD2.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
-				System.out.println("跳錯了");
+				System.out.println("SHOP.DO.getOne_For_Update跳錯了");
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/ShowAll.jsp");
+						.getRequestDispatcher("/back/production/BA104G1_back_ShopADD2.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -230,7 +231,7 @@ public class ShopServlet extends HttpServlet {
 		}
 		
 		if ("delete".equals(action)) { // 來自addshop.do
-
+				System.out.println("進入shop.do.delete");
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -288,38 +289,38 @@ public class ShopServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
-		
-		if ("getOne_For_Update".equals(action)) { // 來自addshop.jsp的請求
-			
-			System.out.println("進入getOne_For_Update");
-			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
-			req.setAttribute("errorMsgs", errorMsgs);
-			
-			try {
-				/***************************1.接收請求參數****************************************/
-				Integer ITEMNO = new Integer(req.getParameter("ITEMNO"));
-				
-				/***************************2.開始查詢資料****************************************/
-				ShopService empSvc = new ShopService();
-				ShopVO shopVO = empSvc.getOneEmp(ITEMNO);
-								
-				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("shopVO", shopVO);         // 資料庫取出的shopVO物件,存入req
-				String url = "/Shop/update_emp_input.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
-				successView.forward(req, res);
-
-				/***************************其他可能的錯誤處理**********************************/
-			} catch (Exception e) {
-				System.out.println("跳錯了");
-				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req
-						.getRequestDispatcher("/ShowAll.jsp");
-				failureView.forward(req, res);
-			}
-		}
+//		
+//		if ("getOne_For_Update".equals(action)) { // 來自addshop.jsp的請求
+//			
+//			System.out.println("進入getOne_For_Update");
+//			List<String> errorMsgs = new LinkedList<String>();
+//			// Store this set in the request scope, in case we need to
+//			// send the ErrorPage view.
+//			req.setAttribute("errorMsgs", errorMsgs);
+//			
+//			try {
+//				/***************************1.接收請求參數****************************************/
+//				Integer ITEMNO = new Integer(req.getParameter("ITEMNO"));
+//				
+//				/***************************2.開始查詢資料****************************************/
+//				ShopService empSvc = new ShopService();
+//				ShopVO shopVO = empSvc.getOneEmp(ITEMNO);
+//								
+//				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+//				req.setAttribute("shopVO", shopVO);         // 資料庫取出的shopVO物件,存入req
+//				String url = "/Shop/update_emp_input.jsp";
+//				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
+//				successView.forward(req, res);
+//
+//				/***************************其他可能的錯誤處理**********************************/
+//			} catch (Exception e) {
+//				System.out.println("跳錯了");
+//				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+//				RequestDispatcher failureView = req
+//						.getRequestDispatcher("/ShowAll.jsp");
+//				failureView.forward(req, res);
+//			}
+//		}
 		
 		if ("checkone".equals(action)) {	// 來自update_emp_input.jsp的請求
 			System.out.println("checkone");

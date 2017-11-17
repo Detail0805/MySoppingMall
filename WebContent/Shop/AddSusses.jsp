@@ -5,26 +5,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>AddSusses.jsp</title>
-
-
 </head>
 <body>
-
-
-  
   	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 col-md-10 col-md-offset-1">
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th>產品照片</th>
-							<th>產品名稱</th>
-							<th>數量</th>
-							<th>編號</th>
+							<th class="text-center">產品照片</th>
+							<th class="text-center">產品名稱</th>
+							<th class="text-center">數量</th>
+							<th class="text-center">商品編號</th>
 							<th class="text-center">單價</th>
-							<th>修改</th>
-							<th>下架</th>
+							<th class="text-center">修改</th>
+							<th class="text-center">下架</th>
 						</tr>
 					</thead>
 						<tbody>
@@ -32,18 +27,16 @@
 								<td class="col-sm-8 col-md-1">
 									<div class="media">
 										<a class="thumbnail pull-left" href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.key}&PRO=0"" style=" margin-top: 10px;"> <img
-											src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${shopVO.key}" height="72px"
-											width="72px">
+											src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${shopVO.key}" height="72px"width="72px">
 										</a>
-										<div class="media-body">
+
+									</div>
+								</td>
+								<td class="col-sm-8 col-md-2">
 											<h4 class="media-heading" style="margin-top: 39px">
 												<a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.key}&PRO=0">${shopVO.NAME}</a>
 											</h4>
-
-										</div>
-									</div>
 								</td>
-
 								<td class="col-sm-1 col-md-1 text-center">
 									<div class="media">
 										<div class="media-body">
@@ -66,7 +59,7 @@
 									<div class="media">
 										<div class="media-body">
 											<h4 class="media-heading" style="margin-top: 36px">
-												<strong>11111</strong>
+												<strong>內容${shopVO.DES}</strong>
 											</h4>
 										</div>
 									</div>
@@ -76,16 +69,32 @@
 
 								<div class="media">
 										<div class="media-body">
-							<form  name="deleteForm" action="<%=request.getContextPath()%>/emp.do" method="POST" ">
+							<form  name="deleteForm" action="<%=request.getContextPath()%>/shop.do" method="POST" ">
 								<button  type="submit" class="btn btn-danger" role="button" style="margin-top:30px">
 										 <span class="glyphicon glyphicon-remove"></span>Remove
 									</button>
-										<input type="hidden" name="price" value=${shopVO.key}> 
-										<input type="hidden" name="action" value="DELETE"> 
+										<input type="hidden" name="ITEMNO" value="${shopVO.key}"> 
+										<input type="hidden" name="action" value="delete"> 
 							</form>
 								</div>
 									</div>
-									</button></td>
+								</td>
+								
+								<td class="col-sm-1 col-md-1">
+										<div align="center">
+
+								<div class="media">
+										<div class="media-body">
+							<form  name="deleteForm" action="<%=request.getContextPath()%>/shop.do" method="POST" ">
+								<button  type="submit" class="btn btn-warning" role="button" style="margin-top:30px">
+										 getOne_For_Update
+									</button>
+										<input type="hidden" name="ITEMNO" value="${shopVO.key}"> 
+										<input type="hidden" name="action" value="getOne_For_Update"> 
+							</form>
+								</div>
+									</div>
+								</td>
 							</tr>
 
 					

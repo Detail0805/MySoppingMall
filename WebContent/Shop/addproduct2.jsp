@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-
-
-
 <title></title>
 </head>
 
@@ -53,7 +51,8 @@ td, h3 {
 		<table>
 			<th>
 				<div class="div1" id="yy1" align="center">
-					<img id="ss1" src="" />
+					<img id="ss1" src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${shopVO.ITEMNO}" />
+					
 				</div>
 			</th>
 			<th><div class="div1" id="yy2" align="center">
@@ -75,19 +74,19 @@ td, h3 {
 				<td><input type="hidden" value="1" name="CLASSNO" size="20"></td>
 			<tr>
 				<td>商品名稱：</td>
-				<td><input type="text" name="NAME" size="20"></td>
+				<td><input type="text" name="NAME" size="20" value="${shopVO.NAME}"></td>
 			</tr>
 			<tr>
 				<td>商品數量：</td>
-				<td><input type="text" name="STOCK" size="20"></td>
+				<td><input type="text" name="STOCK" size="20" value="${shopVO.STOCK}"></td>
 			</tr>
 			<tr>
 				<td>商品價格：</td>
-				<td><input type="text" name="PRICE" size="20"></td>
+				<td><input type="text" name="PRICE" size="20" value="${shopVO.PRICE}"></td>
 			</tr>
 			<tr>
 				<td>商品描述：</td>
-				<td><textarea rows="4" cols="35" name="DES" ></textarea>
+				<td><textarea rows="4" cols="35" name="DES" >${shopVO.DES}</textarea>
 				</td>
 			</tr>
 
@@ -95,8 +94,11 @@ td, h3 {
 
 			<tr>
 				<td><input type="submit">
-				<input type="hidden" name="action" value="uploadgogo">
+				
+				<input type="hidden" name="action" value="uploadgogo2">
+				<input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}">
 				</td>
+				
 				<br>
 			</tr>
 		</table>

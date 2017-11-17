@@ -55,12 +55,12 @@
 			%>
 		</select><br>產品描述:<%=des %></td>
 		<td width="50">
-					<form name="empnoForm" method="post" action="emp.do">
+					<form name="empnoForm" method="post" action="shop.do">
 						<input type="submit" value="修改"> <input type="hidden"
 							name="ITEMNO" value=<%=ITEMNO%>> <input type="hidden"
 							name="action" value="getOne_For_Update">
 					</form>
-					<form name="empnoForm" method="post" action="emp.do">
+					<form name="empnoForm" method="post" action="shop.do">
 						<input type=submit value=刪除> <input type="hidden"
 							name="ITEMNO" value=<%=ITEMNO%>> <input type="hidden"
 							name="action" value="delete">
