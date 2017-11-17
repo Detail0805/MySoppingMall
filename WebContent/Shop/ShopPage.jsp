@@ -535,8 +535,8 @@ color: #333;
     <div class="col-xs-12 col-sm-3"></div>
     <div class="row">
     <ol class="breadcrumb">
-      <li><a href="<%=request.getContextPath()%>/shopindex.jsp" style="color:#fff;"><strong>首頁</strong></a></li>
-      <li><a href="<%=request.getContextPath()%>/shopindex.jsp" style="color:#fff;"><strong>${(proVO.NAME!=null)?proVO.NAME:'商品區'}</strong></a></li>
+      <li><a href="<%=request.getContextPath()%>/front/shopindex.jsp" style="color:#fff;"><strong>首頁</strong></a></li>
+      <li><a href="<%=request.getContextPath()%>/front/shopindex.jsp" style="color:#fff;"><strong>${(proVO.NAME!=null)?proVO.NAME:'商品區'}</strong></a></li>
       <li class="active" style="color:#fff;"><strong>${((shopVO.NAME)==null)?proVO.SHOPNAME:shopVO.NAME}</strong></li>
     </ol>
     </div>

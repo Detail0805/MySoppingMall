@@ -124,6 +124,7 @@ public class addshop extends HttpServlet {
 			shopVO.setNAME(NAME);
 			shopVO.setCLASSNO(CLASSNO);
 			shopVO.setKey(key);
+			shopVO.setDES(DES);
 			req.setAttribute("shopVO", shopVO);
 			String url = "/back/production/BA104G1_back_ShopADDAfter.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
@@ -210,6 +211,7 @@ public class addshop extends HttpServlet {
 			shopVO.setNAME(NAME);
 			shopVO.setCLASSNO(CLASSNO);
 			shopVO.setKey(key2);
+			shopVO.setDES(DES);
 			req.setAttribute("shopVO", shopVO);
 			String url = "/back/production/BA104G1_back_ShopADDAfter.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
