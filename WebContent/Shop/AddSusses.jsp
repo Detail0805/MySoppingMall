@@ -18,7 +18,7 @@
 							<td class="text-center">商品價錢</td>
 							<td class="text-center">商品描述</td>
 							<td class="text-center">修改</td>
-							<td class="text-center">繼續新增</td>
+							<td class="text-center">新增&瀏覽</td>
 
 						</tr>
 				
@@ -100,10 +100,15 @@
 										 <span class="glyphicon glyphicon-ok"></span>繼續新增
 									</button> 
 							</form>
+							<form  name="deleteForm" action="<%=request.getContextPath()%>/back/production/BA104G1_back_ShopSearch.jsp" method="POST" ">
+								<button  type="submit" class="btn btn-success" role="button" style="margin-top:10px">
+										 <span class="glyphicon glyphicon-search"></span>流覽商品
+									</button> 
+							</form>
 								</div>
 									</div>
 								</td>
-						
+	
 							</tr>
 						</tbody>
 				</table>

@@ -21,13 +21,14 @@ public class ProDAO implements ProDAO_interface{
 	private static final String INSERT_STMT2 = "UPDATE PROMOTION set NAME=? WHERE PROMOTIONNO=?";
 	private static final String GET_ALL_PRO_SHOP =
 "SELECT P.PROMOTIONNO,P.ITEMNO,P.PRICE,PT.NAME,BEGINDATE,ENDDATE,SP.NAME AS SHOPNAME,SP.DES,STATE,SP.PRICE AS OLDPRICE FROM PROMOTIONDETAIL P JOIN PROMOTION PT ON (P.PROMOTIONNO = PT.PROMOTIONNO) JOIN SHOPPINGMALL SP  ON SP.ITEMNO = P.ITEMNO WHERE STATE=1 ORDER BY PT.NAME";
-	private static final String GET_ALL_STMT_BY_NOW ="SELECT P.PROMOTIONNO,P.ITEMNO,P.PRICE,PT.NAME,BEGINDATE,ENDDATE,SP.NAME AS SHOPNAME,SP.DES,SP.PRICE AS OLDPRICE,SP.STOCK FROM PROMOTIONDETAIL P JOIN PROMOTION PT ON (P.PROMOTIONNO = PT.PROMOTIONNO) JOIN SHOPPINGMALL SP  ON SP.ITEMNO = P.ITEMNO where to_char(BEGINDATE,'yyyymmdd')<=to_char(sysdate,'yyyymmdd') and to_char(ENDDATE,'yyyymmdd')>=to_char(sysdate,'yyyymmdd')";
+	private static final String GET_ALL_STMT_BY_NOW ="SELECT P.PROMOTIONNO,P.ITEMNO,P.PRICE,PT.NAME,BEGINDATE,ENDDATE,SP.NAME AS SHOPNAME,SP.DES,SP.PRICE AS OLDPRICE,SP.STOCK FROM PROMOTIONDETAIL P JOIN PROMOTION PT ON (P.PROMOTIONNO = PT.PROMOTIONNO) JOIN SHOPPINGMALL SP  ON SP.ITEMNO = P.ITEMNO where SP.STATE=1 and to_char(BEGINDATE,'yyyymmdd')<=to_char(sysdate,'yyyymmdd') and to_char(ENDDATE,'yyyymmdd')>=to_char(sysdate,'yyyymmdd')";
 			private static final String GET_ONE_STMT =
 "SELECT P.PROMOTIONNO, ITEMNO, PRICE,NAME,BEGINDATE,ENDDATE FROM PROMOTIONDETAIL P JOIN PROMOTION PT ON P.PROMOTIONNO = PT.PROMOTIONNO WHERE ITEMNO=?";
 	private static final String activity="SELECT NAME FROM PROMOTION";
 	private static final String DELETE = "DELETE  FROM PROMOTIONDETAIL where ITEMNO =?";
 	private static final String UPDATE = "UPDATE PROMOTIONDETAIL set  PROMOTIONNO=?,  PRICE=?  where ITEMNO =?";
 	private static final String UPDATE_TO_POR = "UPDATE PROMOTION set  NAME=?,BEGINDATE=?,ENDDATE=?  where PROMOTIONNO =?";
+	private static final String GET_PRO_PROJECT_NOW = "SELECT PROMOTIONNO,NAME,BEGINDATE,ENDDATE FROM PROMOTION where to_char(BEGINDATE,'yyyymmdd')<=to_char(sysdate,'yyyymmdd') and to_char(ENDDATE,'yyyymmdd')>=to_char(sysdate,'yyyymmdd')";
 	
 	private static DataSource ds = null;
 	
@@ -661,6 +662,57 @@ public class ProDAO implements ProDAO_interface{
 			}
 		}
 		System.out.println("proVO.getITEMNO() :"+proVO.getITEMNO());
+		return proVO;
+	}
+
+	@Override
+	public ProVO getProProjectNow() {
+		ProVO proVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_PRO_PROJECT_NOW);
+			rs = pstmt.executeQuery();
+			System.out.println("進來GET_PRO_PROJECT_NOW");
+			while (rs.next()) {
+				proVO=new ProVO();
+				proVO.setPROMOTIOMNO(rs.getInt("PROMOTIONNO"));
+				proVO.setACTIVITYNAME(rs.getString("NAME"));
+				proVO.setBEGINDATE(rs.getDate("BEGINDATE"));
+				proVO.setENDDATE(rs.getDate("ENDDATE"));
+				// proVO 也稱為 Domain objects
+			}
+	
+			// Handle any driver errors
+		} catch (SQLException se) {
+			System.out.println("全體查尋失敗 :"+se);
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 		return proVO;
 	}
 }

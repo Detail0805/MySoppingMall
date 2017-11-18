@@ -45,7 +45,7 @@ td, h3 {
 }
 </style>
 <body background="images/leaf.jpg" style="font-weight: bold;">
-	<h3 align="center">商城商品新增</h3>
+	<h3 align="center">商城商品新增&修改</h3>
 
 
 	<form id="submit" action="/MyShopping/addshop.do" method=post

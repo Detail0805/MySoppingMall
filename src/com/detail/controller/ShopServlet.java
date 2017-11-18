@@ -278,14 +278,14 @@ public class ShopServlet extends HttpServlet {
 				}
 
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/Shop/listAll.jsp";
+				String url = "/back/production/BA104G1_back_ShopSearch.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/ShowAll.jsp");
+						.getRequestDispatcher("/back/production/BA104G1_back_ShopSearch.jsp");
 				failureView.forward(req, res);
 			}
 		}

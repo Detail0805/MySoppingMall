@@ -14,7 +14,7 @@ DROP sequence FORPROMOTION;
 
 
 
----------------------�ۼW�D��1(�ӫ~�s����)-----------------------------
+---------------------自增主鍵1(商品編號用)-----------------------------
 
 create sequence FORSHOPITEM
 minvalue 1
@@ -23,7 +23,7 @@ start with 1
 increment by 1
 nocache;
 
----------------------�ۼW�D��2(�P�P�s����)-----------------------------
+---------------------自增主鍵2(促銷編號用)-----------------------------
 create sequence FORPROMOTION
 minvalue 1
 maxvalue 999999999999999999999999999
@@ -31,7 +31,7 @@ start with 1
 increment by 1
 nocache;
 
----------------------�ۼW�D��3(�ӫ~�q��M��)-----------------------------
+---------------------自增主鍵3(商品訂單專用)-----------------------------
 create sequence FORSHOPORDER
 minvalue 1
 maxvalue 999999999999999999999999999
@@ -40,7 +40,7 @@ increment by 1
 nocache;
 
 
------------------�ۤv���˷|��-----------------------
+-----------------自己假裝會員-----------------------
 CREATE TABLE MEMBER(
 MEM_NO VARCHAR2(10)PRIMARY KEY,
 POINT NUMBER(20)
@@ -58,25 +58,25 @@ INSERT INTO MEMBER (MEM_NO,POINT) VALUES(9,5000);
 
 
 
-----------------�ӫ~����----------------------
+----------------商品種類----------------------
 CREATE TABLE CLASSSTYLE (
 CLASSNO      NUMBER(10)  PRIMARY KEY ,
 CLASSNAME  VARCHAR2(15) NOT NULL
 );
 
-----------------�ӫ~���������------------------------------
-INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (1,'���G');
-INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (2,'����');
-INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (3,'����');
-INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (4,'������');
-INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (5,'�O����');
-INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (6,'���~��');
-INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (7,'�ħ���');
-INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (8,'�B�ʾ�����');
-INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (9,'���U������');
+----------------商品種類假資料------------------------------
+INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (1,'水果');
+INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (2,'肉類');
+INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (3,'魚類');
+INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (4,'蔬菜類');
+INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (5,'保健類');
+INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (6,'食品類');
+INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (7,'藥材類');
+INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (8,'運動器材類');
+INSERT INTO CLASSSTYLE(CLASSNO, CLASSNAME)  VALUES (9,'輔助器材類');
 
 
-----------------�ӫ~----------------------
+----------------商品----------------------
 CREATE TABLE ShoppingMall (
 ITEMNO      NUMBER(10)      PRIMARY KEY,
 STOCK            NUMBER(5) NOT NULL,
@@ -91,7 +91,7 @@ PICTURE3        BLOB,
 CONSTRAINT FK_CLASSNO  FOREIGN KEY (CLASSNO) REFERENCES CLASSSTYLE(CLASSNO)
 );
 
-----------------�ӫ~�q��----------------------
+----------------商品訂單----------------------
 CREATE TABLE SHOPORDER (
 ORDERNO VARCHAR2(15) PRIMARY KEY,
 MEM_NO VARCHAR2(10),
@@ -102,22 +102,22 @@ CUSTOMER_NAME VARCHAR2(80),
 CONSTRAINT FK_MEM_NO  FOREIGN KEY (MEM_NO) REFERENCES MEMBER(MEM_NO)
 );
 
-----------------�ӫ~�q�氲���------------------
+----------------商品訂單假資料------------------
 INSERT INTO SHOPORDER(ORDERNO,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME) 
-VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(FORSHOPORDER.Nextval),6,'0'),1,TO_DATE('2017/5/5', 'yyyy-mm-dd'),'�x�_���s��','0926','�Q��s�Ӥ�');
+VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(FORSHOPORDER.Nextval),6,'0'),1,TO_DATE('2017/5/5', 'yyyy-mm-dd'),'台北天龍國','0926','霸氣連勝文');
 INSERT INTO SHOPORDER(ORDERNO,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME) 
-VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(FORSHOPORDER.Nextval),6,'0'),2,TO_DATE('2010/4/5', 'yyyy-mm-dd'),'�H���x�n��','0918','�˺Ƴ�����');
+VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(FORSHOPORDER.Nextval),6,'0'),2,TO_DATE('2010/4/5', 'yyyy-mm-dd'),'人情台南市','0918','裝瘋陳水扁');
 INSERT INTO SHOPORDER(ORDERNO,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME) 
-VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(FORSHOPORDER.Nextval),6,'0'),3,TO_DATE('2013/2/9', 'yyyy-mm-dd'),'�H���x�n��','0800','�k�|�{�Ҥ��إ���Ĥ@���-���Ӥ�');
+VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(FORSHOPORDER.Nextval),6,'0'),3,TO_DATE('2013/2/9', 'yyyy-mm-dd'),'人情台南市','0800','法院認證中華民國第一嫖客-陳志中');
 INSERT INTO SHOPORDER(ORDERNO,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME) 
-VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(FORSHOPORDER.Nextval),6,'0'),4,TO_DATE('1950/4/5', 'yyyy-mm-dd'),'�x�_���s��','0987','�x�W���^��');
+VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(FORSHOPORDER.Nextval),6,'0'),4,TO_DATE('1950/4/5', 'yyyy-mm-dd'),'台北天龍國','0987','台獨蔡英文');
 INSERT INTO SHOPORDER(ORDERNO,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME) 
-VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(FORSHOPORDER.Nextval),6,'0'),5,TO_DATE('1966/12/5', 'yyyy-mm-dd'),'�x�_���s��','0926','���@�p�̰��^�E');
+VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(FORSHOPORDER.Nextval),6,'0'),5,TO_DATE('1966/12/5', 'yyyy-mm-dd'),'台北天龍國','0926','中共小弟馬英九');
 INSERT INTO SHOPORDER(ORDERNO,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME) 
-VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(FORSHOPORDER.Nextval),6,'0'),6,TO_DATE('1960/5/5', 'yyyy-mm-dd'),'�����̪F��','0926','�ª����n��');
+VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(FORSHOPORDER.Nextval),6,'0'),6,TO_DATE('1960/5/5', 'yyyy-mm-dd'),'熱情屏東市','0926','黑金李登輝');
 
 
-----------------�P�P�M��----------------------
+----------------促銷專案----------------------
 CREATE TABLE PROMOTION (
 PROMOTIONNO  NUMBER(10)  PRIMARY KEY,
 NAME  VARCHAR2(45),
@@ -125,7 +125,7 @@ BEGINDATE DATE,
 ENDDATE DATE
 );
 
-----------------�P�P����----------------------
+----------------促銷明細----------------------
 CREATE TABLE PROMOTIONDETAIL (
 PROMOTIONNO  NUMBER(10)  ,
 ITEMNO           NUMBER(10),
@@ -135,9 +135,9 @@ CONSTRAINT FK_PROMOTIONNO  FOREIGN KEY (PROMOTIONNO) REFERENCES PROMOTION(PROMOT
 CONSTRAINT FK_CLASSNOS  FOREIGN KEY (ITEMNO) REFERENCES ShoppingMall (ITEMNO)
 );
 
-----------------�q�����----------------------
+----------------訂單明細----------------------
 CREATE TABLE ORDERDETAIL (
-ORDERNO      VARCHAR2(15) ,--20171023�ק�L--
+ORDERNO      VARCHAR2(15) ,--20171023修改過--
 ITEMNO         NUMBER(10),
 ORDERCOUNT NUMBER(5),
 constraint PR_SUPPLIER_EX_OR primary key(ORDERNO, ITEMNO),
@@ -145,92 +145,92 @@ CONSTRAINT FK_ORDERNO  FOREIGN KEY (ORDERNO) REFERENCES SHOPORDER(ORDERNO),
 CONSTRAINT FK_NAME  FOREIGN KEY (ITEMNO) REFERENCES ShoppingMall(ITEMNO)
 );
 
---------------------------�ӫ��ӫ~�����-----------------------------
+--------------------------商城商品假資料-----------------------------
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,10,499,1,1,'�iDaiwa�j�饻�s�q�λ��U�_','�����~�������A����O�q�h�ơA�Ϊ̦]�������L�k�κD�Τ���_�_�l�i���A���ֺ����˦��ڸ_�l�A�i�H�����e���ۦ�i���ӵL�ݤH�����C�s�Τ��D�_�l���~��H��i�����ϥΥ��_�l�Өɥά������a�C');
-
-INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,20,350,1,1,'�iForsound�j�ĤT�N��������������','�ܦh�~���̬Ҧ��ƫK�������x�Z�A�u���������v��O�ܦh�~���̪��@�P���D�A���S���@�Ӧn���y�ԥi�H����U�ɪ����K�O?���ֺ����z���Ф@�ڥ~�P�w�B�骺�s�M�Q�������ԡA�S�����y����SGEL�����P�H��u�Ǫ����X�A���z�q�����A�p���w�֡C');
+VALUES (FORSHOPITEM.Nextval,10,499,1,1,'【Daiwa】日本製通用輔助筷','長輩年紀漸長，手指力量退化，或者因為中風無法用慣用手執起筷子進食，樂齡網推薦此款筷子，可以讓其更容易自行進食而無需人餵食。連用不慣筷子的外國人亦可輕易使用本筷子而享用美食佳餚。');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,299,1,1,'Hi-Bone���Ҧ�(���Ǿ�+�Ů�Ǿ�)���P�צվ�','�z���h�[�S��ť���u��������? �a���O�_�������٤���n�t���Uť���A���O�P�H���q���ȮǤH�n�θ��j�����q�A�Ӧۤv�����]ť���ܨ��W�A�b���q���}�����p�U�A�����]�����ѤH�a�v���ʳ��C���ť�l�����ֱڦӨ��A�@�w����A��ť������ʤH�����֡A�ɨ��H���b���֤������n���^��C���ֺ����z��{�@��A�ڭ̱��˱z�@�ڳ̷s��ު����Ҧ�(���Ǿ�+�Ů�Ǿ�)���P�צվ��A���z�A�׷P�����״I���֭��A���ͩR�A�׬��D�_�ӡC');
+VALUES (FORSHOPITEM.Nextval,20,350,1,1,'【Forsound】第三代防痔型凝膠坐墊','很多年長者皆有排便不順的困擾，「有痔難伸」更是很多年長者的共同問題，有沒有一個好的座墊可以減輕坐下時的不便呢?樂齡網為您介紹一款外銷德、日的新專利減壓坐墊，特殊的造型及SGEL凝膠與人體工學的結合，讓您從此不再如坐針氈。');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,199,1,1,'�饻�s�Ǥ��U','���ֱڪ��ɶ��ݦb�N��Ф��Ϊ̥~�X�H�y��ŧ�A�@�w�n�`�N�Y�����O�x�A�y�@���V�N�|���D�C���ֺ����ˤ@�ڤ饻�s���Ǥ��U�A�i���īO���Y���ŷx�A���v�q�}�֩Φ����v�x�Z���Ⱦv�ڦ��]�B�����ĪG�C');
+VALUES (FORSHOPITEM.Nextval,50,299,1,1,'Hi-Bone雙模式(骨傳導+空氣傳導)高感度耳機','您有多久沒有聽到優美的音樂? 家中是否有長者還不到要配戴助聽器，但是與人溝通不僅旁人要用較大的音量，而自己本身也聽的很辛苦，在溝通不良的狀況下，往往因此讓老人家逐漸封閉。對於有聽損的樂齡族而言，一定渴望再聆聽到美妙動人的音樂，享受沈浸在音樂中那美好的氛圍。樂齡網幫您實現願望，我們推薦您一款最新科技的雙模式(骨傳導+空氣傳導)高感度耳機，讓您再度感受到豐富的樂音，讓生命再度活躍起來。');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,899,1,1,'���覡��j�� 2.3��','�H�ۦ~�ּW���A���O�V�ӶV�ҽk���M�A�o�ɻݭn�@�Ӥ��e�����⪺��j��Ӿ\Ū�Τu�@�A���ڰӫ~�N�O�z���̨ο�ܡC������ΦѪᲴ��]�i�A���W����j��A���ΦA�@�⮳�۩�j��A�@�⮳�ۮѡC�������ݡA������}��!');
+VALUES (FORSHOPITEM.Nextval,50,199,1,1,'日本製室內帽','樂齡族長時間待在冷氣房內或者外出寒流來襲，一定要注意頭部的保暖，稍一不慎就會受涼。樂齡網推薦一款日本製的室內帽，可有效保持頭部溫暖，對於髮量稀少或有掉髮困擾的銀髮族有也遮掩的效果。');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,100,1,1,'�iLifePlus�j�}�����L��ê�D��','�a�������O���O�ܤ[�S���ɨ��w�������ִ���? �@�Q��n�}��L�����_���D�����A�K�����������w�������Y�C
-�����ֺ��x�_���ͩ� (�x�_�����ͪF�����q91��)������i�ܡA�w��e������
-�������~���椣�t�w�ˬI�u�O��
-���x�����H�_�K�B(�����s�ϰ��~)�A�H�n�B�Ϊ�F�����a�ϹB�O�ݥt�p�A�Шӹq�߰ݳ�');
+VALUES (FORSHOPITEM.Nextval,50,899,1,1,'眼鏡式放大鏡 2.3倍','隨著年齡增長，視力越來越模糊不清，這時需要一個不占用雙手的放大鏡來閱讀或工作，此款商品將是您的最佳選擇。戴眼鏡或老花眼鏡也可再戴上此放大鏡，不用再一手拿著放大鏡，一手拿著書。用雙眼看，視野更開闊!');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,100,1,1,'�iNISHIKI�j�k�Ψ��|�w�߿� - �l���q150cc (�����T�A��)','�z���]���j���B�y�©δ������A�����ۥD���|�����ζ�? �O�_�ݭn�ԭ��@�ԩνåͯȤ~���~�X? �����~�k�ʪ��|�����άO�@�ӫܴ��M���{�H�A�ھڰ�����d��96�~�լd�A��H54���H�W�k�ʨC4����k���A�N��1�즳�����T�x�Z�A65���H�W�k�ʧ�O���F1/3�A�ѩ��H�����O�u�A�j���������Ԥ�`�ͬ����]�����T���x�Z�C ���ֺ����˱z�@�ڥѤ饻��u��s�A�w�ﻴ���T���k�ҳ]�p�����|���ǡA�l���B����S�����A���z�H�ɫO���M�n�A�ͬ��~��o�H�ﵽ�C');
+VALUES (FORSHOPITEM.Nextval,50,100,1,1,'【LifePlus】開門式無障礙浴缸','家中長輩是不是很久沒有享受泡澡的幸福滋味? 一想到要腳跨過那高起的浴缸壁，便讓長輩打消泡澡的念頭。
+※樂齡網台北民生店 (台北市民生東路五段91號)有實體展示，歡迎前往體驗
+※本產品價格不含安裝施工費用
+※台中市以北免運(偏遠山區除外)，以南、及花東偏遠地區運費需另計，請來電詢問喔');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,100,1,1,'�iSWANY�jWalking Bag 134 �_�j������c (�@�ئ�)','�饻����c�j�t - SWANY�M�����ֱڸs�ҳ]�p����Φ���c�mWalking Bag�n�A�ŦX�H��u�ǡA�S�����ƽ��b�ӳ]�p�W�R���A�i360�ױ���A���N�ܴ��樫��V�A�L���W���ƪo�Y�i�O�� ���l�������L�n�C
-�i���������W���q�]�A����c�i�ܨ����ⴣ�]�A���z��B�w�w���A���ξ�߫p����������z�����u�L�ׯh�ҡC�𮧬O���F������������C�i�H���z��٤O�A���z���C�|���L�t��!');
+VALUES (FORSHOPITEM.Nextval,50,100,1,1,'【NISHIKI】女用防漏安心褲 - 吸水量150cc (輕失禁適用)','您有因為大笑、咳嗽或提重物，有不自主的漏尿情形嗎? 是否需要墊個護墊或衛生紙才敢外出? 其實熟年女性的漏尿情形是一個很普遍的現象，根據國民健康局96年調查，國人54歲以上女性每4位婦女中，就有1位有尿失禁困擾，65歲以上女性更是高達1/3，由於國人較為保守，大部分皆隱忍日常生活中因尿失禁的困擾。 樂齡網推薦您一款由日本手工精製，針對輕失禁婦女所設計的防漏內褲，吸水、消臭又輕薄，讓您隨時保持清爽，生活品質得以改善。');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,100,1,1,'���֫Ǥ��֬��c','�@��Ǥ�������c�ѩ��Ӿc����Ĳ�a���A�e���y���^�ˡC���ʵξA�����^�B���ƾc�O�ѤH���n�~�a���@������C���ﱵ���֤ƪ��|�����{�A�����q�ۤ饻�޶i�M���Ⱦv�ڤH�h�]�p�����֬�Ǥ��c���C�y�֦~���̡A�гy���d�ξA���a�~�ͬ��C');
+VALUES (FORSHOPITEM.Nextval,50,100,1,1,'【SWANY】Walking Bag 134 復古風行李箱 (咖啡色)','日本行李箱大廠 - SWANY專為熟齡族群所設計的日用行李箱《Walking Bag》，符合人體工學，特殊的滑輪軸承設計超靜音，可360度旋轉，任意變換行走方向，無須上潤滑油即可保持 輪子的平順無聲。
+可分離式的超輕量包，行李箱可變身為手提包，讓您到處趴趴走，不用擔心厚重的行李讓您的手臂過度疲勞。休息是為了走更長遠的路。可以讓您更省力，讓您雲遊四海無負擔!');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,100,1,1,'�i+VENTURE�j�h�\����ī��t�t�����Ź�(������)�a�Ϋ�KB-243','�ær�֥i�r���G�ó��徹�s���r��005451��');
+VALUES (FORSHOPITEM.Nextval,50,100,1,1,'樂齡室內福祉拖鞋','一般室內平底拖鞋由於整個鞋底機觸地面，容易造成跌倒。選購舒適的防跌、防滑鞋是老人做好居家防護的首選。為迎接高齡化社會的來臨，本公司自日本引進專為銀髮族人士設計的”福祉室內鞋”。造福年長者，創造健康舒適的家居生活。');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,100,1,1,'�iMr. Pad�j�W�X�n�O�Ъw�֦a�� 40X60cm','�V�ѧ֨ӤF�A���̤U�ɭY���b�ŷx��ƪ��a�ԡA���Ȩ���]�߿O���L�z�ƭ˪����I�A�ӥB�]�i�������ެ�M���Y�����I�C
-���a�Խ�P�׫p�A�������}�ŬX�����@�A�A�Ω�D�Ǫ��f�B�p�СB�����A���L�ǡF���~�ϥ�SBR���Ʃ����[�j��ơA�����ưʡA����@�Τ�����A�i�f�t�~����~���A�M�~��k²��S�ٮɡA���z�復�R�������~');
+VALUES (FORSHOPITEM.Nextval,50,100,1,1,'【+VENTURE】多功能長效型速配鼎熱敷墊(未滅菌)家用型KB-243','衛字核可字號：衛部醫器製壹字第005451號');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,100,1,1,'SHIMA�Ⱦv���ʪ����B���A10/5-10/31�R�N�e���q�հ��ʡA�e������!','�Ѥ饻�ѤH���s�y�j�t - �q�s�@�ҡA�M���Ⱦv�ڦӳ]�p���ʪ����B���A��K�Ⱦv�ڥ~�X�ʪ��A��W���u�n�N���ũ�b���W�Y�i�}�l�ʪ��A�R���F��b�������m���Ť��A�Y�i�N�ʶR���~���^�a�A���δ������A���֤F�٥i���U�𮧡C
-�L�ױz�O�n���鴲�B�B�}���ʪ��A�٬O�n�𶢹B�ʳ���K�B�٤O�ΤΦw���A�O�@���D�`�K�ߪ��Ⱦv�ڰӫ~�C');
+VALUES (FORSHOPITEM.Nextval,50,100,1,1,'【Mr. Pad】超柔軟記憶泡棉地墊 40X60cm','冬天快來了，長者下床若能踏在溫暖止滑的地墊，不僅防止夜晚燈光微弱滑倒的風險，而且也可防止足部血管突然緊縮的風險。
+本地墊質感豐厚，給予雙腳溫柔的呵護，適用於浴室門口、廚房、玄關，茶几旁；產品使用SBR防滑底面加強止滑，不易滑動，結實耐用不掉毛，可搭配洗衣網洗滌，清洗方法簡單又省時，讓您對它愛不釋手喔~');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,100,1,1,'�iFamica�j�ίv�M�Χ��@��','���ǻȾv���̥ѩ�U�ئ]���A�q�ɤW�_���ν��U�ɱ`�|�P��ܦY�O�A�{�b���F�o�@�ڧ����@��A���F���������ίv�w���[���A�_���ɥi�H���P�F�A���ѤH�a�q�ɤW�_����[���伵�O�C');
+VALUES (FORSHOPITEM.Nextval,50,100,1,1,'SHIMA銀髮族購物散步車，10/5-10/31買就送五段調高傘，送完為止!','由日本老人車製造大廠 - 島製作所，專為銀髮族而設計的購物散步車，方便銀髮族外出購物，到超市只要將菜藍放在車上即可開始購物，買完了放在本車的置物藍中，即可將購買物品推回家，不用提重物，走累了還可坐下休息。
+無論您是要公園散步、逛街購物，還是要休閒運動都方便、省力及及安全，是一項非常貼心的銀髮族商品。');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,100,1,1,'�iRyka�jRKF1272M1600�k�ΰ����c','�A�]�O�ӳ߷R�𶢰����A��B�w�w�y���Ⱦv�ڶܡH
-�B�ʬO�������O���̨Χ���A���p��D��@���קK�B�ʶˮ`���c�l�i�O�D�`���n���C
-�ר�����̨ӻ��A�e�ɤ������B�׾_�w�ĵ����A���O�D�諸���I�C
-���ֺ����˦��ڡiRyka�j�����𶢾c�A
-�~�P�п�̦]�������B�ʤ��W�A�˦ۧ�J�B�ʾc��o�A
-�S�O�w��k�ʪ��٦׻P���f���c�A�]�p����קK�B�ʶˮ`���M�ݾc�ڡA
-�L�׬O�n����֨��ιB�ʰ��泣�A�X��I');
+VALUES (FORSHOPITEM.Nextval,50,100,1,1,'【Famica】睡眠專用床護欄','有些銀髮長者由於各種因素，從床上起身或躺下時常會感到很吃力，現在有了這一款床邊護欄，除了為長輩的睡眠安全加分，起身時可以更輕鬆了，讓老人家從床上起身更加有支撐力。');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,100,1,1,'�i�ӥi�j���䰨���_���ߤ�','��󦳨Ǫ����ӻ��A�ѩ󽥻\�B�y�����h�ƵL�O�A�n�q�������_�ӬO�۷����W���A�ӥB�b�o�A�K�_�����L�{�����A�ټ��õ۶^�˪��M�I�C
-���ֺ����ˤ@�ڡi�ӥi���䰨���_���ߤ�j�A�����w�ˡA�����\��b�Z�Ұ�������A�������n���_�Ӯɦ��Ҩ̾a�A�z�K�ߡB�L(�o)�ۤߡB���a����ߡI');
+VALUES (FORSHOPITEM.Nextval,50,100,1,1,'【Ryka】RKF1272M1600女用健走鞋','你也是個喜愛休閒健走，到處趴趴造的銀髮族嗎？
+運動是維持活力的最佳妙方，但如何挑選一雙避免運動傷害的鞋子可是非常重要的。
+尤其對於長者來說，寬楦不束縛、避震緩衝等等，都是挑選的重點。
+樂齡網推薦此款【Ryka】健走休閒鞋，
+品牌創辦者因為飽受運動之苦，親自投入運動鞋研發，
+特別針對女性的肌肉與骨骼結構，設計能夠避免運動傷害的專屬鞋款，
+無論是要公園快走或運動健行都適合喔！');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,100,1,1,'�饻GREEN BELL�}���ұM�Ϋ��Ұ�','���ѤH�a�Ÿ}���ҬO���O�ܧx��?
-
-�~���̥ѩ�ӭM���s���N�s�ΦA�ͯ�O�h�ơA�c�����Ҫ�����h���N�¤]�|��C�A�ɭP����h�[�p�A�����ܪ����w���šA�ר�}���ҭY�S���w�n�A�u�������šC �饻�M�~���ҰŤj�t-GREEN BELL�A�K�]���Ӷ}�o�F�@�t�C�M���p���ҡB�ܧΫ��Ҧӳ]�p�����ҰšA�L�׬O�ۥΩέn���ѤH�a�Ÿ}���ҬҤ�K�h�F�C');
-
-INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,100,1,1,'�iKeyCatch�j�ϤO���Ǿ�','�a�̤j�p�Ʀp�¡A�`�O�ѰO�_�ͩ�b���H
-�~���O�ФO�h�ơA���ɨ�N�O�䤣��
-
-���˵��z��²���Ǫ��̨Τ�סiKeyCatch�j�ϤO���Ǿ�
-�u�n�T�����H�K�A�a�����󥭷ƪ����үব�ǡA�a���z�L���K�Q�I');
+VALUES (FORSHOPITEM.Nextval,50,100,1,1,'【來可】側邊馬桶起身扶手','對於有些長輩來說，由於膝蓋、腰部的退化無力，要從馬桶站起來是相當辛苦的，而且在這顛沛起身的過程當中，還潛藏著跌倒的危險。
+樂齡網推薦一款【來可側邊馬桶起身扶手】，不須安裝，直接擺放在廁所馬桶側邊，讓長輩要站起來時有所依靠，您貼心、他(她)窩心、全家都放心！');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,100,1,1,'�iMOTORIZED�j���O�⨬������ (�i������)','�Ⱦv�ڭY������O���B�ʲߺD�A���|�鶴�߲��ͷ��j���U�q�A���������i���ר�ΡA��}�ҥi�B�ʡC ���ΥX�O�A���������|�H�q�ʪ��覡�a�ʱz����}���ʡA���z���P�ۦb�F��B�ʮĪG�C');
+VALUES (FORSHOPITEM.Nextval,50,100,1,1,'日本GREEN BELL腳指甲專用指甲剪','幫老人家剪腳指甲是不是很困難?
+
+年長者由於細胞的新陳代新及再生能力退化，構成指甲的角質層的代謝也會減慢，導致角質層加厚，指甲變的堅硬難剪，尤其腳指甲若沒有泡軟，真的很難剪。 日本專業指甲剪大廠-GREEN BELL，便因此而開發了一系列專為厚指甲、變形指甲而設計的指甲剪，無論是自用或要幫老人家剪腳指甲皆方便多了。');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,100,1,1,'�ۤ����O�Uť�q��','�q��ť���M����? �ȰO�����q�ܶ�? ����Ӥp�ݤ��M��? ���ξ�ߡA���q�ܤ@���ѨM�z�Ҧ����D!!!���˳̨���§!');
+VALUES (FORSHOPITEM.Nextval,50,100,1,1,'【KeyCatch】磁力收納器','家裡大小事如麻，總是忘記鑰匙放在哪？
+年長記憶力退化，緊急時刻就是找不到
+
+推薦給您極簡收納的最佳方案【KeyCatch】磁力收納器
+只要三秒鐘黏貼，家中任何平滑表面皆能收納，帶給您無限便利！');
 
 INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
-VALUES (FORSHOPITEM.Nextval,50,100,1,1,'SHIMA�Ⱦv���ʪ����B���A10/5-10/31�R�N�e���q�հ��ʡA�e������!','�Ѥ饻�ѤH���s�y�j�t - �q�s�@�ҡA�M���Ⱦv�ڦӳ]�p���ʪ����B���A��K�Ⱦv�ڥ~�X�ʪ��A��W���u�n�N���ũ�b���W�Y�i�}�l�ʪ��A�R���F��b�������m���Ť��A�Y�i�N�ʶR���~���^�a�A���δ������A���֤F�٥i���U�𮧡C
-�L�ױz�O�n���鴲�B�B�}���ʪ��A�٬O�n�𶢹B�ʳ���K�B�٤O�ΤΦw���A�O�@���D�`�K�ߪ��Ⱦv�ڰӫ~�C');
+VALUES (FORSHOPITEM.Nextval,50,100,1,1,'【MOTORIZED】活力手足健身機 (可正反轉)','銀髮族若能長期保持運動習慣，必會對身心產生極大的助益，本健身器可坐臥兩用，手腳皆可運動。 不用出力，本健身器會以電動的方式帶動您的手腳活動，讓您輕鬆自在達到運動效果。');
+
+INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
+VALUES (FORSHOPITEM.Nextval,50,100,1,1,'相片輔記助聽電話','電話聽不清楚嗎? 怕記不住電話嗎? 按鍵太小看不清嗎? 不用擔心，本電話一次解決您所有問題!!!孝親最佳贈禮!');
+
+INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES)  
+VALUES (FORSHOPITEM.Nextval,50,100,1,1,'SHIMA銀髮族購物散步車，10/5-10/31買就送五段調高傘，送完為止!','由日本老人車製造大廠 - 島製作所，專為銀髮族而設計的購物散步車，方便銀髮族外出購物，到超市只要將菜藍放在車上即可開始購物，買完了放在本車的置物藍中，即可將購買物品推回家，不用提重物，走累了還可坐下休息。
+無論您是要公園散步、逛街購物，還是要休閒運動都方便、省力及及安全，是一項非常貼心的銀髮族商品。');
 
 --
 --INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES,PICTURE1,PICTURE2,PICTURE3)  
---VALUES (FORSHOPITEM.Nextval,50,100,1,1,'�K���B�\��2','�j������2',?,?,?);
+--VALUES (FORSHOPITEM.Nextval,50,100,1,1,'鐵牛運功散2','強身健體2',?,?,?);
 
-----------------�ӫ~�q����Ӱ����(�����ʪ����s�W�H����k����)------------------------------
+----------------商品訂單明細假資料(未來購物車新增以此方法為基底)------------------------------
 
 INSERT INTO ORDERDETAIL (ORDERNO,ITEMNO,ORDERCOUNT) VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD('000001',6,'0'),1,15);
 INSERT INTO ORDERDETAIL (ORDERNO,ITEMNO,ORDERCOUNT) VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD('000001',6,'0'),5,4);
@@ -258,20 +258,20 @@ INSERT INTO ORDERDETAIL (ORDERNO,ITEMNO,ORDERCOUNT) VALUES(to_char(sysdate,'yyyy
 INSERT INTO ORDERDETAIL (ORDERNO,ITEMNO,ORDERCOUNT) VALUES(to_char(sysdate,'yyyymmdd')||'-'||LPAD('000005',6,'0'),2,10);
 
 
---------------------------�P�P�M�װ����------------------------------
+--------------------------促銷專案假資料------------------------------
 INSERT INTO PROMOTION (PROMOTIONNO,NAME,BEGINDATE,ENDDATE) 
-VALUES(1,'����`����',TO_DATE('2017/9/1', 'yyyy-mm-dd'),TO_DATE('2017/9/30', 'yyyy-mm-dd'));
+VALUES(1,'中秋節活動',TO_DATE('2017/9/1', 'yyyy-mm-dd'),TO_DATE('2017/9/30', 'yyyy-mm-dd'));
 
 INSERT INTO PROMOTION (PROMOTIONNO,NAME,BEGINDATE,ENDDATE) 
-VALUES(2,'�ݤȸ`����',TO_DATE('2017/10/1', 'yyyy-mm-dd'),TO_DATE('2017/10/30', 'yyyy-mm-dd'));
+VALUES(2,'端午節活動',TO_DATE('2017/10/1', 'yyyy-mm-dd'),TO_DATE('2017/10/30', 'yyyy-mm-dd'));
 
 INSERT INTO PROMOTION (PROMOTIONNO,NAME,BEGINDATE,ENDDATE) 
-VALUES(3,'�U�t�`����',TO_DATE('2017/11/1', 'yyyy-mm-dd'),TO_DATE('2017/11/30', 'yyyy-mm-dd'));
+VALUES(3,'萬聖節活動',TO_DATE('2017/11/1', 'yyyy-mm-dd'),TO_DATE('2017/11/30', 'yyyy-mm-dd'));
 
 INSERT INTO PROMOTION (PROMOTIONNO,NAME,BEGINDATE,ENDDATE) 
-VALUES(4,'�t�ϸ`����',TO_DATE('2017/12/1', 'yyyy-mm-dd'),TO_DATE('2017/12/30', 'yyyy-mm-dd'));
+VALUES(4,'聖誕節活動',TO_DATE('2017/12/1', 'yyyy-mm-dd'),TO_DATE('2017/12/30', 'yyyy-mm-dd'));
 
---------------------------�P�P���Ӱ����------------------------------
+--------------------------促銷明細假資料------------------------------
 INSERT INTO PROMOTIONDETAIL (PROMOTIONNO,ITEMNO,PRICE) VALUES(1,1,100);
 INSERT INTO PROMOTIONDETAIL (PROMOTIONNO,ITEMNO,PRICE) VALUES(2,2,200);
 INSERT INTO PROMOTIONDETAIL (PROMOTIONNO,ITEMNO,PRICE) VALUES(3,3,250);
@@ -300,89 +300,89 @@ SELECT PICTURE1 FROM SHOPPINGMALL WHERE ITEMNO = 3;
 SELECT PICTURE1 FROM SHOPPINGMALL WHERE ITEMNO = 4;
 SELECT PICTURE FROM PRODUCT WHERE PDNO = 9;
 
-�x����sql�y�k
+屌炸天sql語法
 SELECT P.PROMOTIONNO,P.ITEMNO,P.PRICE,PT.NAME,BEGINDATE,ENDDATE,SP.NAME AS SHOPNAME 
 FROM PROMOTIONDETAIL P JOIN PROMOTION PT ON (P.PROMOTIONNO = PT.PROMOTIONNO) 
-JOIN (SELECT * FROM SHOPPINGMALL WHERE NAME='�����')SP  ON SP.ITEMNO = P.ITEMNO
+JOIN (SELECT * FROM SHOPPINGMALL WHERE NAME='國民黨')SP  ON SP.ITEMNO = P.ITEMNO
 
 
---------------------------------------�d��JOIN���楢��---------------------------------
+--------------------------------------查詢JOIN表格失敗---------------------------------
 SELECT P.PROMOTIONNO,P.ITEMNO,P.PRICE,PT.NAME,BEGINDATE,ENDDATE,SP.NAME AS SHOPNAME FROM 
 PROMOTIONDETAIL P JOIN PROMOTION PT ON (P.PROMOTIONNO = PT.PROMOTIONNO) JOIN 
-(SELECT * FROM SHOPPINGMALL WHERE NAME='���A�ۥѦ�')SP ON SP.ITEMNO = P.ITEMNO;
---------------------------------------�d��JOIN���榨�\(INT)----------------------------
+(SELECT * FROM SHOPPINGMALL WHERE NAME='海鮮自由行')SP ON SP.ITEMNO = P.ITEMNO;
+--------------------------------------查詢JOIN表格成功(INT)----------------------------
 SELECT P.PROMOTIONNO,P.ITEMNO,P.PRICE,PT.NAME,BEGINDATE,ENDDATE,SP.NAME AS 
 SHOPNAME FROM PROMOTIONDETAIL P JOIN PROMOTION PT ON (P.PROMOTIONNO = PT.PROMOTIONNO) 
 JOIN (SELECT * FROM SHOPPINGMALL WHERE ITEMNO=3)SP  ON SP.ITEMNO = P.ITEMNO;
---------------------------------------�d��JOIN���榨�\(String)-------------------------
+--------------------------------------查詢JOIN表格成功(String)-------------------------
 SELECT P.PROMOTIONNO,P.ITEMNO,P.PRICE,PT.NAME,BEGINDATE,ENDDATE,SP.NAME AS 
-SHOPNAME FROM PROMOTIONDETAIL P JOIN (SELECT * FROM PROMOTION WHERE NAME='�U�t�`����')PT ON (P.PROMOTIONNO = PT.PROMOTIONNO) 
+SHOPNAME FROM PROMOTIONDETAIL P JOIN (SELECT * FROM PROMOTION WHERE NAME='萬聖節活動')PT ON (P.PROMOTIONNO = PT.PROMOTIONNO) 
 JOIN (SELECT * FROM SHOPPINGMALL )SP  ON SP.ITEMNO = P.ITEMNO;
---------------------------------------�d�ߩҦ��P�P����--------------------------------
+--------------------------------------查詢所有促銷活動--------------------------------
 SELECT * FROM PROMOTION ORDER BY PROMOTIONNO;
---------------------------------------�d�ߩҦ��P�P���ʦW��--------------------------------
+--------------------------------------查詢所有促銷活動名稱--------------------------------
 SELECT NAME FROM PROMOTION;
---------------------------------------�d�ߩҦ��q����O----------------------------------
+--------------------------------------查詢所有訂單指令----------------------------------
 SELECT OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME
 FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) 
---------------------------------------�d�߯S�w�q����O(�̷ӭq��s��)----------------------------------
+--------------------------------------查詢特定訂單指令(依照訂單編號)----------------------------------
 SELECT OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME
 FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) WHERE OT.ORDERNO='20171025-000001';
---------------------------------------�d�߯S�w�q����O(�̷ӷ|���s��)----------------------------------
+--------------------------------------查詢特定訂單指令(依照會員編號)----------------------------------
 SELECT OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME
 FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) WHERE MEM_NO=4;
---------------------------------------�d�߯S�w�q����O(�̷Ӥ���¨�s)-------------------------------------
+--------------------------------------查詢特定訂單指令(依照日期舊到新)-------------------------------------
 SELECT OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME
 FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) ORDER BY ORDER_DATE ;
---------------------------------------�d�߯S�w�q����O(�̷Ӥ���s����)-------------------------------------
+--------------------------------------查詢特定訂單指令(依照日期新到舊)-------------------------------------
 SELECT OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME
 FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) ORDER BY ORDER_DATE DESC;
---------------------------------------�d�߯S�w�q����O(�̷ӷ|���W��)--------------------------------------
+--------------------------------------查詢特定訂單指令(依照會員名稱)--------------------------------------
 SELECT OT.ORDERNO,ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME
 FROM ORDERDETAIL OT JOIN SHOPORDER S ON (OT.ORDERNO = S.ORDERNO) ORDER BY CUSTOMER_NAME ;
---------------------------------------�d�ߨS���P�P�������ӫ~(�x���ѻy�k)--------------------------------------
+--------------------------------------查詢沒有促銷的全部商品(屌炸天語法)--------------------------------------
 select * from shoppingmall where itemno not in (
    select a.itemno from shoppingmall a right join promotiondetail b on a.itemno = b.itemno
 );
 
---------------------------------------�M�ثe�ɶ��O�_�ŦX�{�b�P�P�`��(�ڬO�x���ѻy�k)-----------------------------------------
+--------------------------------------尋目前時間是否符合現在促銷節目(我是屌炸天語法)-----------------------------------------
 SELECT P.PROMOTIONNO,P.ITEMNO,P.PRICE,PT.NAME,BEGINDATE,ENDDATE,SP.NAME AS SHOPNAME
 FROM PROMOTIONDETAIL P 
 JOIN PROMOTION PT ON (P.PROMOTIONNO = PT.PROMOTIONNO)
 JOIN SHOPPINGMALL SP  ON SP.ITEMNO = P.ITEMNO where to_char(BEGINDATE,'yyyymmdd')<=to_char(sysdate,'yyyymmdd')   
 and to_char(ENDDATE,'yyyymmdd')>=to_char(sysdate,'yyyymmdd');
 
---------------------------------------�d�ߥ����|���q��ӫ~+�P�P����---------------------------------------------
+--------------------------------------查詢全部會員訂單商品+促銷價格---------------------------------------------
 SELECT OT.ORDERNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE,PD.PRICE AS NEWPRICE
 FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO) 
 JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO
 JOIN PROMOTIONDETAIL PD ON SP.ITEMNO=PD.ITEMNO
---------------------------------------�d�߯S�w�|���q��ӫ~+�P�P����---------------------------------------------
+--------------------------------------查詢特定會員訂單商品+促銷價格---------------------------------------------
 SELECT OT.ORDERNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE,PD.PRICE AS NEWPRICE
 FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO) 
 JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO
 JOIN PROMOTIONDETAIL PD ON SP.ITEMNO=PD.ITEMNO
 WHERE OT.ORDERNO='20171030-000040';
 
---------------------------------------�d�߭q��s���Ҧ��ӫ~+�٨S�����Y�P�P---------------------------------------------
+--------------------------------------查詢訂單編號所有商品+還沒有限縮促銷---------------------------------------------
 SELECT OT.ORDERNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE
 FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO) 
 JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO
 WHERE OT.ORDERNO='20171030-000040';
---------------------------------------�έq��s�����X�U�w�ɶ�-----------------------------------------
+--------------------------------------用訂單編號取出下定時間-----------------------------------------
 SELECT ORDER_DATE FROM SHOPORDER WHERE ORDERNO='20171030-000040';
---------------------------------------�Q�η|���q��ɶ��h�d�߷��U���L�P�P-----------------------------------------
+--------------------------------------利用會員訂單時間去查詢當下有無促銷-----------------------------------------
 SELECT PROMOTIONNO FROM PROMOTION WHERE 
 BEGINDATE<=to_date('2017-11-01', 'yyyy-mm-dd') 
 AND ENDDATE>=to_date('2017-10-25', 'yyyy-mm-dd') ;
 
---------------------------------------�d�߯S�w�|���s���ʶR���ӫ~+�P�P����(�i�]�w�ɶ�+PROMOTIONNO)-----------------------------------------
+--------------------------------------查詢特定會員編號購買的商品+促銷價格(可設定時間+PROMOTIONNO)-----------------------------------------
 SELECT OT.ORDERNO,PD.PROMOTIONNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE,PD.PRICE AS NEWPRICE
 FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO) 
 JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO
 JOIN PROMOTIONDETAIL PD ON SP.ITEMNO=PD.ITEMNO
 WHERE OT.ORDERNO='20171030-000039' AND PD.PROMOTIONNO=4; 
---------------------------------------�d�߯S�w�|���s���ʶR���ӫ~+�P�P����(�i�]�w�ɶ�)-----------------------------------------
+--------------------------------------查詢特定會員編號購買的商品+促銷價格(可設定時間)-----------------------------------------
 SELECT OT.ORDERNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE,PD.PRICE AS NEWPRICE
 FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO) 
 JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO
@@ -390,11 +390,11 @@ JOIN PROMOTIONDETAIL PD ON SP.ITEMNO=PD.ITEMNO
 WHERE OT.ORDERNO='20171030-000040' AND ORDER_DATE<to_date('2017-10-25', 'yyyy-mm-dd') AND ORDER_DATE>to_date('2017-10-1', 'yyyy-mm-dd');
 
 
---------------------------------------�d�߯S�w�|���s���ʶR���ӫ~+�P�P����-----------------------------------------
+--------------------------------------查詢特定會員編號購買的商品+促銷價格-----------------------------------------
 SELECT OT.ORDERNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE,PD.PRICE AS NEWPRICE
 FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO) 
 JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO
 JOIN PROMOTIONDETAIL PD ON SP.ITEMNO=PD.ITEMNO
 WHERE MEM_NO='MEM0001';
---------------------------------------�d�ߩҦ��q��----------------------------------------------------------
+--------------------------------------查詢所有訂單----------------------------------------------------------
 SELECT ORDERNO FROM SHOPORDER;

@@ -43,6 +43,9 @@ public class ProService {
 	public void deleteEmp(Integer proVO) {
 		dao.delete(proVO);
 	}
+	public ProVO getProProjectNow() {
+		return dao.getProProjectNow();
+	}
 
 	//你好，我是update專用的
 	public ProVO getOneEmp(Integer proVO) {
