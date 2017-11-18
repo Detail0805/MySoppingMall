@@ -16,10 +16,10 @@
 							<td class="text-center">產品名稱</td>
 							<td class="text-center">數量</td>
 							<td class="text-center">商品價錢</td>
-							<td class="text-center">商品編號</td>
 							<td class="text-center">商品描述</td>
-							<td class="text-center">單價</td>
 							<td class="text-center">修改</td>
+							<td class="text-center">繼續新增</td>
+
 						</tr>
 				
 						<tbody >
@@ -95,18 +95,15 @@
 
 								<div class="media">
 										<div class="media-body">
-							<form  name="deleteForm" action="<%=request.getContextPath()%>/shop.do" method="POST" ">
-								<button  type="submit" class="btn btn-danger" role="button" style="margin-top:70px">
-										 <span class="glyphicon glyphicon-remove"></span>Remove
-									</button>
-										<input type="hidden" name="ITEMNO" value="${shopVO.key}"> 
-										<input type="hidden" name="action" value="delete"> 
+							<form  name="deleteForm" action="<%=request.getContextPath()%>/back/production/BA104G1_back_ShopADD.jsp" method="POST" ">
+								<button  type="submit" class="btn btn-success" role="button" style="margin-top:70px">
+										 <span class="glyphicon glyphicon-ok"></span>繼續新增
+									</button> 
 							</form>
 								</div>
 									</div>
 								</td>
-								<td class="col-sm-1 col-md-1">
-								</td>
+						
 							</tr>
 						</tbody>
 				</table>
