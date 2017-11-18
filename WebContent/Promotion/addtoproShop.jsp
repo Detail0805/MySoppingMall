@@ -12,7 +12,7 @@
 <title>addpromotion.jsp</title>
 </head>
 <body  style="background-size: cover;">
-	<h3 align="center">促銷專案新增</h3>
+	<h3 align="center">促銷商品新增</h3>
 
 
 		<c:if test="${not empty errorMsgs}">
@@ -25,14 +25,17 @@
 			</font>
 		</c:if>
 
-	<form id="submit" action="<%=request.getContextPath()%>/pro.do" method=post >
+	
 		<table align="center">
 
 			<tr>
 				<td>促銷專案名稱：</td>
+				<div>
+				  <a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${proVOproject.ITEMNO}&PRO=0"><img class="img-responsive" img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${proVOproject.ITEMNO}" style=" height: 188px; width: 188px;margin-right: auto;margin-left: auto;" title="##"></a>
+				  </div>
 				<td><input type="text" name="NAME" size="20"></td>
 			</tr>
-			
+			<form id="submit" action="<%=request.getContextPath()%>/pro.do" method=post >
 			<tr>
 			<td>活動開始日期：</td>
 			<td>	
@@ -52,6 +55,7 @@
 PRICE:${proVOproject.PRICE}
 PROMOTIOMNO:${proVOproject.PROMOTIOMNO}
 ITEMNO:${proVOproject.ITEMNO}
+DES:${proVOproject.DES}
 	<select >
 		<option value="${proVOproject.ACTIVITYNAME}">${proVOproject.ACTIVITYNAME}
 	</select>
@@ -63,10 +67,8 @@ ITEMNO:${proVOproject.ITEMNO}
 			</tr>
 		</table>
 	</form>
-	
-	<div align="center" class="foot">
-		<a href="Promotion/listAllPro.jsp">查詢所有促銷商品</a><br>
-	</div>
+----------------------------------------------------------------------------------
+
 
 </body>
 </html>

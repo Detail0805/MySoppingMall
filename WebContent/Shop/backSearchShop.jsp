@@ -186,6 +186,7 @@
 			    <input type="submit" style="font-size: 16px;border-radius: 3px;width: 110px;" class="btn btn-sm btn-info" value="加入促銷">
 			    <input type="hidden" name="PRICE" value="${shopVO.PRICE}">
 			    <input type="hidden" name="ITEMNO" value="${shopVO.ITEMNO}">
+			    <input type="hidden" name="DES" value="${shopVO.DES}">
 			    <input type="hidden" name="action"value="PUTINPROJECT"></FORM>
                       	</div>
 
