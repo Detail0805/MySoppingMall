@@ -103,9 +103,7 @@
                     <ul class="nav child_menu">
                       <li><a href="<%=request.getContextPath()%>/back/production/BA104G1_back_ShopMaster.jsp">訂單管理</a></li>
                       <li><a href="<%=request.getContextPath()%>/back/production/BA104G1_back_ShopADD.jsp">新增商品</a></li>
-                      <li><a href="#">修改商品</a></li>
-                      <li><a href="#">瀏覽商品</a></li>
-
+                      <li><a href="<%=request.getContextPath()%>/back/production/BA104G1_back_ShopSearch.jsp">瀏覽商品</a></li>
                     </ul>
                   </li> 
   
