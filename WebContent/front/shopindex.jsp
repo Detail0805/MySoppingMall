@@ -152,7 +152,11 @@
           </ul>
         </li>
   <!-- 聯絡我們 ================================================== -->
-
+<!--         <li> -->
+<%--           <a href="<%=request.getContextPath()%>/front/shopindex.jsp"> --%>
+<%--           <img src="<%=request.getContextPath()%>/images/cart.png" style="width: 20px;height: 20px;"> --%>
+<!--           		<span class="badge">N</span>購&nbsp&nbsp物&nbsp&nbsp車</a> -->
+<!--         </li> -->
 
       </ul>
       		  
@@ -361,8 +365,32 @@
       </script>  
 
 
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalforShopCart">Open Modal</button>
+<!--   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalforShopCart">Open Modal</button> -->
+<style type="text/css">
+#MyBlog{
+    position: fixed;  /*固定在網頁上不隨卷軸移動，若要隨卷軸移動用absolute*/
+    top: 50%;  /*設置垂直位置*/
+    right: -20px;  /*設置水平位置，依所放的內容多寡需要自行手動調整*/
+    background: #ffffff;  /*背景顏色*/
+    padding: 10px 20px;
+    border-radius: 10px;  /*圓角*/
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+#MyBlog:hover{  /*當滑鼠移至此區塊時，伸縮區塊*/
+    right: -10px;
+}
+#MyBlog #title{
+    padding-right: 5px;  /*讓標題與連結中間有空隙*/
+}
 
+</style>
+<div id="MyBlog">
+	 <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModalforShopCart">
+	 <img src="<%=request.getContextPath()%>/images/cart.png" style="width: 50px;height: 50px;">
+	 </button>
+
+</div>
 
 
     <div class="container">
