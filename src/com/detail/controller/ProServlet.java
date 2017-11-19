@@ -423,8 +423,8 @@ public class ProServlet extends HttpServlet{
 				proVOproject.setDES(DES);
 				req.setAttribute("proVOproject", proVOproject);
 				if(NEWPRICE>PRICE) {
-					errorMsgs.add("<div class='alert alert-danger alert-dismissible' role='alert'>"
-							+ "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>"+
+					errorMsgs.add("<div style='font-size:50px;text-align: center;' class='alert alert-danger alert-dismissible' role='alert'>"
+							+ "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span style='font-size:80px; aria-hidden='true'>"+
 							"&times;</span></button>促銷商品價格不得高於原價!</div>");
 				}
 				
