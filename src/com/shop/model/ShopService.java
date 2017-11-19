@@ -58,4 +58,7 @@ public class ShopService {
 	public List<ShopVO> getAllFromBack() {
 		return dao.getAllFromBack();
 	}
+	public void deleteProShop(Integer itemno,Integer promotiomno) {
+		dao.deleteProShop(itemno, promotiomno);
+	}
 }

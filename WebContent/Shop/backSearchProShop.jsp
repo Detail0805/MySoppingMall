@@ -93,8 +93,8 @@
 }
 
 </style>
-	
-				<c:forEach var="shopVO" items="${listforpro}"  >
+	<%@ include file="/front/pages/listallOrderForProSearch1.file" %> 
+				<c:forEach var="shopVO" items="${listforpro}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>" >
 
 	
 	 <tr>
@@ -134,7 +134,13 @@
                        <input type="hidden" class="STOCK" name="STOCK" value="1">
                        <input type="hidden" class="ITEMNO" name="ITEMNO" value="${shopVO.ITEMNO}" id="ITEMNO" >
                       </span><input class="btn btn-sm btn-success" style="background-color: green;font-size: 16px;border-radius: 3px;width: 110px;" type="submit" value="修改">
-                      	</FORM>                    
+                      	</FORM>       
+                      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shop.do" class="searchnow">
+                       <input type="hidden" class="action" name="action" value="DELETE_PROMOTION_SHOP">
+                       <input type="hidden" class="ITEMNO" name="PROMOTIOMNO" value="${shopVO.PROMOTIOMNO}" >
+                       <input type="hidden" class="ITEMNO" name="ITEMNO" value="${shopVO.ITEMNO}" id="ITEMNO" >
+                      </span><input class="btn btn-sm btn-warning" style="font-size: 16px;border-radius: 3px;width: 110px;" type="submit" value="刪除">
+                      	</FORM>             
                       	</div>
 
                     
@@ -151,7 +157,7 @@
                 </tr>
 	</c:forEach>
     </table>
-   
+   <%@ include file="/front/pages/listallOrderForProSearch2.file" %>
   </div>
 </body>
 </html>

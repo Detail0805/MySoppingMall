@@ -369,6 +369,38 @@ public class ShopServlet extends HttpServlet {
 			}
 		}
 		
+		if ("DELETE_PROMOTION_SHOP".equals(action)) { // 來自addshop.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/***************************1.接收請求參數****************************************/
+				Integer ITEMNO = new Integer(req.getParameter("ITEMNO"));
+				Integer PROMOTIOMNO = new Integer(req.getParameter("PROMOTIOMNO"));
+				
+				/***************************2.開始查詢資料****************************************/
+				ShopService shopSvc = new ShopService();
+				shopSvc.deleteProShop(ITEMNO, PROMOTIOMNO);
+								
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+			     // 資料庫取出的shopVO物件,存入req
+				String url = "/back/production/BA104G1_back_ShopProSearch.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				System.out.println("DELETE_PROMOTION_SHOP跳錯了");
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/back/production/BA104G1_back_ShopProSearch.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
 		
 	}
 

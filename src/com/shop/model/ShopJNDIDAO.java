@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 
 public class ShopJNDIDAO implements ShopDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO ShoppingMall(ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES ,PICTURE1,PICTURE2,PICTURE3)  VALUES (?,?,?,?,?,?,?,?,?,?)";
+	private static final String DELETE_PRO_SHOP = "DELETE FROM PROMOTIONDETAIL WHERE ITEMNO=? AND PROMOTIONNO=?";
 	private static final String GET_ALL_STMT = "SELECT ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES ,PICTURE1,PICTURE2,PICTURE3 FROM ShoppingMall WHERE STATE=1 order by ITEMNO";
 	private static final String GET_ALL_BACK = "SELECT ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES ,PICTURE1,PICTURE2,PICTURE3 FROM ShoppingMall order by ITEMNO";
 	private static final String GET_ONE_STMT = "SELECT ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES ,PICTURE1,PICTURE2,PICTURE3 FROM ShoppingMall where ITEMNO =?";
@@ -491,4 +492,48 @@ public class ShopJNDIDAO implements ShopDAO_interface {
 			}
 			return list;
 		}
+
+	@Override
+	public void deleteProShop(Integer itemno, Integer promotiomno) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETE_PRO_SHOP);
+			pstmt.setInt(1, itemno);
+			pstmt.setInt(2, promotiomno);
+			pstmt.executeUpdate();
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("DELETE_PRO_SHOP " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	
+	}
 }

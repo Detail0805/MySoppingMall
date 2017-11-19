@@ -81,6 +81,10 @@ public class ProService {
 	public ProVO getOneProShop(Integer itemno) {
 		return dao.getOneProShop(itemno);
 	}
+	//你好，我是用商品編號拿當前促銷
+	public void putShopInPromotion(Integer promotionno,Integer itemno,Integer price) {
+		dao.putShopInPromotion(promotionno, itemno, price);
+	}
 	
 }
 

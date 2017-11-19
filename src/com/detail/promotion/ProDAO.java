@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import com.shop.model.ShopVO;
 
 public class ProDAO implements ProDAO_interface{
+	private static final String PUT_SHOP_TO_PROMOTION="INSERT INTO PROMOTIONDETAIL (PROMOTIONNO,ITEMNO,PRICE) VALUES(?,?,?)";
 	private static final String FIND_ALL_PRO="SELECT * FROM PROMOTION ORDER BY PROMOTIONNO";
 	private static final String GET_ONE_PRO_SHOP="SELECT P.PROMOTIONNO,P.ITEMNO,P.PRICE,PT.NAME,BEGINDATE,ENDDATE,SP.NAME AS SHOPNAME,SP.DES,SP.PRICE AS OLDPRICE,SP.STOCK FROM PROMOTIONDETAIL P JOIN PROMOTION PT ON (P.PROMOTIONNO = PT.PROMOTIONNO) JOIN SHOPPINGMALL SP  ON SP.ITEMNO = P.ITEMNO where to_char(BEGINDATE,'yyyymmdd')<=to_char(sysdate,'yyyymmdd') and to_char(ENDDATE,'yyyymmdd')>=to_char(sysdate,'yyyymmdd') and P.ITEMNO=?";
 	private static final String INSERT_STMT = "INSERT INTO PROMOTION (PROMOTIONNO,NAME,BEGINDATE,ENDDATE) VALUES(FORPROMOTION.NEXTVAL,?,?,?)";
@@ -714,5 +715,47 @@ public class ProDAO implements ProDAO_interface{
 			}
 		}
 		return proVO;
+	}
+
+	@Override
+	public void putShopInPromotion(Integer promotionno, Integer itemno, Integer price) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(PUT_SHOP_TO_PROMOTION);
+			pstmt.setInt(1, promotionno);
+			pstmt.setInt(2, itemno);
+			pstmt.setInt(3, price);
+			pstmt.executeUpdate();
+			// Handle any driver errors
+		} catch (SQLException se) {
+			System.out.println("PUT_SHOP_TO_PROMOTION:"+se);
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 	}
 }

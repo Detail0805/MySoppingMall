@@ -414,6 +414,7 @@ public class ProServlet extends HttpServlet{
 				Integer ITEMNO = new Integer(req.getParameter("ITEMNO"));
 				Integer PRICE =new Integer(req.getParameter("PRICE"));
 				Integer NEWPRICE =new Integer(req.getParameter("NEWPRICE"));
+				Integer PROMOTIOMNO =new Integer(req.getParameter("PROMOTIOMNO"));
 				String DES =req.getParameter("DES");
 				
 				ProService proSvc = new ProService();
@@ -434,11 +435,12 @@ public class ProServlet extends HttpServlet{
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
-				/*************************** 2.開始查詢資料 *****************************************/
-
+				/*************************** 2.開始做事*****************************************/
+				proSvc.putShopInPromotion(PROMOTIOMNO, ITEMNO, NEWPRICE);
+					
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("proVOproject", proVOproject); // 資料庫取出的empVO物件,存入req
-				String url ="/back/production/BA104G1_back_ShopAddToPROJECT.jsp";
+				String url ="/back/production/BA104G1_back_ShopProSearch.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 				

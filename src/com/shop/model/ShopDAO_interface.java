@@ -16,6 +16,8 @@ public interface ShopDAO_interface {
 	public List<ShopVO> getAll();
 	//後端管理商品專用
 	public List<ShopVO> getAllFromBack();
+	//後台管理刪除特定促銷商品
+	public void deleteProShop(Integer itemno,Integer promotiomno);
 	
 	
 }

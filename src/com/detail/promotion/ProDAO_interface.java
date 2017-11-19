@@ -29,6 +29,8 @@ public interface ProDAO_interface {
 	public ProVO getOneProShop(Integer itemno);
 	//你好，查詢目前時間正在執行的促銷專案
 	public ProVO getProProjectNow();
+	//你好，我是把商品變成促銷商品的方法
+	public void putShopInPromotion(Integer promotionno,Integer itemno,Integer price);
 	
 	
 }
