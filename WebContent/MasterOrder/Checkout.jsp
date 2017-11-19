@@ -12,6 +12,12 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <body>
+
+	    <div class="col-lg-12">
+      <h1 style="font-size: 72px;text-align: center;">結帳確認</h1>
+      
+    </div>
+    
 <div class="container">
     <div class="row">
 			<div class="col-sm-12 col-md-10 col-md-offset-1">
@@ -121,6 +127,15 @@
 								<!-- 						假裝會員已經登入了 -->
 								<input type="hidden" name="MEMNO" value="MEM0001">
 								<input type="hidden" name="action" value="CONFIRM">
+							</tr>
+							<tr>
+								
+								<td>送貨地址: <input type="text" style="border-radius: 4px;border: 1px solid #ccc;width: 445px;height: 35px;" name="address" placeholder="如果有需要更改請輸入地址">
+							
+								</td>
+								<td> </td>
+								<td> </td>
+								<td> </td>
 							</tr>
 						</tbody>
 				</table>

@@ -124,6 +124,7 @@ $(document).ready(function(){
 
  
 </script>  
+<%@ include file="pages/navbar.jsp" %> 
 </head>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -140,8 +141,18 @@ $(document).ready(function(){
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
+	    <div class="col-lg-12">
+      <h1 style="font-size: 72px;text-align: center;">Welcome 購物車</h1>
+      
+    </div>
 <body>
 
+<style type="text/css">
+	.table{
+	font-size: 25px;
+	font-family: sans-serif;
+	}
+</style>
 						<%
 							Vector<CartVO> buylist = (Vector<CartVO>) session.getAttribute("shoppingcart");
 							String amount = (String)session.getAttribute("amount");
@@ -280,6 +291,6 @@ $(document).ready(function(){
 	</div>
 	<%}%>
 </body>
-
+<%@ include file="pages/footerbar.jsp" %> 
 
 </html>

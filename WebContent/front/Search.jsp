@@ -213,7 +213,7 @@ a {
 
   <!-- 商城服務 ================================================== -->
         <li>
-          <a href="#">商&nbsp&nbsp&nbsp&nbsp城</a>
+          <a href="<%=request.getContextPath()%>/front/shopindex.jsp">商&nbsp&nbsp&nbsp&nbsp城</a>
         </li>
   <!-- 商城服務 ================================================== -->
 

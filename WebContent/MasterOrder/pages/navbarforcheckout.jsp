@@ -158,8 +158,8 @@
   <div class="page-header" id="banner">
   <div class="row">
     <div class="col-lg-6">
-      <h1>Welcome</h1>
-      <p class="lead">To a new bootstrap theme by UseBootstrap.</p>
+      <h1>Welcome 購物車</h1>
+      
     </div>
   </div>
 </div>

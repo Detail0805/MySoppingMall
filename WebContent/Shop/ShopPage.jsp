@@ -111,6 +111,11 @@ list = list3;// include page1.file JSP用
             });  
         });  
       </script>  
+      
+      
+
+      
+      
 <style type="text/css">
 
 /*強迫限制大小*/
