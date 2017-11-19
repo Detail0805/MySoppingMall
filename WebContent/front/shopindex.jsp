@@ -385,12 +385,7 @@
 }
 
 </style>
-<div id="MyBlog">
-	 <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModalforShopCart">
-	 <img src="<%=request.getContextPath()%>/images/cart.png" style="width: 50px;height: 50px;">
-	 </button>
 
-</div>
 
 
     <div class="container">
@@ -596,6 +591,12 @@ color: #ffe200;
 
 <div class="col-xs-12 col-sm-12">
 
+<div id="MyBlog">
+	 <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModalforShopCart">
+	 <img src="<%=request.getContextPath()%>/images/cart.png" style="width: 50px;height: 50px;">
+	 </button>
+
+</div>
 
 <div class="col-xs-12 col-sm-2">
 </div>
@@ -653,6 +654,13 @@ color: #ffe200;
  </div>
 
 
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12">
+			
+		</div>
+	</div>
+</div>
   <!-- NavBar的CSS 專區 不能刪喔 ================================================== -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/usebootstrap.css">
