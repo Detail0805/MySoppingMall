@@ -83,11 +83,7 @@ public class ProServlet extends HttpServlet{
 				if (str == null || (str.trim()).length() == 0) {
 					errorMsgs.add("請輸入商品編號");
 				}
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/mainforpro.jsp");
-					failureView.forward(req, res);
-					return;// 程式中斷
-				}
+
 				/*************************** 2.開始查詢資料 *****************************************/
 				ProService proSvc = new ProService();
 				ProVO proVO =  proSvc.getOneEmpForStringName(str);
@@ -115,6 +111,45 @@ public class ProServlet extends HttpServlet{
 				failureView.forward(req, res);
 			}
 		}
+		
+		if ("GET_ONE_FOR_BACKPRO".equals(action)) {// 來自listallpro.jsp的請求
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+
+				String str = req.getParameter("ITEMNO");
+				if (str == null || (str.trim()).length() == 0) {
+					errorMsgs.add("請輸入商品編號");
+				}
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/mainforpro.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+				/*************************** 2.開始查詢資料 *****************************************/
+				ProService proSvc = new ProService();
+				ProVO proVO =  proSvc.getOneEmpForStringName(str);
+				if (proVO == null) {
+					errorMsgs.add("查無資料");
+				}
+				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
+				req.setAttribute("SeachForOneProShop", proVO); // 資料庫取出的empVO物件,存入req
+				//String url = "/Promotion/listoneProForName.jsp";
+				String url = "/back/production/BA104G1_back_ShopProSearchForResult.jsp";
+				
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				successView.forward(req, res);
+
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/back/production/BA104G1_back_ShopProSearchForResult.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+		
 		
 		if ("getOne_For_Display3".equals(action)) {// 來自listallpro.jsp的請求
 			List<String> errorMsgs = new LinkedList<String>();

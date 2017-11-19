@@ -13,6 +13,7 @@
 	List<ProVO> list2 = proSvc.getAllProNow();
     List listforpro=list2;
     pageContext.setAttribute("listforpro", list2);
+    ProVO pro=(ProVO) pageContext.getAttribute("SeachForOneProShop");
    
 	
 %>
@@ -93,9 +94,6 @@
 }
 
 </style>
-	<%@ include file="/front/pages/listallOrderForProSearch1.file" %> 
-	<%@ include file="/front/pages/listallOrderForProSearch2.file" %> 
-				<c:forEach var="shopVO" items="${listforpro}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>" >
 
 	
 	 <tr>
@@ -103,7 +101,7 @@
   <div class="row">
         <div class="col-xs-12 col-sm-3">
           <div class="picture thumbnail">
-                    <a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}&PRO=0"><img class="img-responsive" img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${shopVO.ITEMNO}" style=" height: 188px; width: 188px;" title="##"></a>
+                    <a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${SeachForOneProShop.ITEMNO}&PRO=0"><img class="img-responsive" img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${SeachForOneProShop.ITEMNO}" style=" height: 188px; width: 188px;" title="##"></a>
                   </div>
         </div>
         <div class="col-xs-12 col-sm-9">
@@ -113,9 +111,9 @@
                 <div class="white-box">
                   
                   <div class="middle-content">
-                    <h2 class="product-title"><a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}&PRO=0">${shopVO.SHOPNAME}</a></h2>
+                    <h2 class="product-title"><a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${SeachForOneProShop.ITEMNO}&PRO=0">${SeachForOneProShop.SHOPNAME}</a></h2>
                     <div class="description" style="font-size: 18px;">
-                        	${shopVO.DES}
+                        	${SeachForOneProShop.DES}
                     </div>
                   </div>
                    <br><br>
@@ -127,19 +125,19 @@
                     <div class="prices" style="float:right;">
 
                    		 <div>
-                   		 <span class="price old-price" style="text-decoration: line-through;font-size:20px">$${shopVO.OLDPRICE}</span>
-                   		 <span class="price special-price">$${shopVO.PRICE}
+                   		 <span class="price old-price" style="text-decoration: line-through;font-size:20px">$${SeachForOneProShop.OLDPRICE}</span>
+                   		 <span class="price special-price">$${SeachForOneProShop.PRICE}
                     	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shop.do" class="searchnow">
                        
                        <input type="hidden" class="action" name="action" value="getOne_For_Update">
                        <input type="hidden" class="STOCK" name="STOCK" value="1">
-                       <input type="hidden" class="ITEMNO" name="ITEMNO" value="${shopVO.ITEMNO}" id="ITEMNO" >
+                       <input type="hidden" class="ITEMNO" name="ITEMNO" value="${SeachForOneProShop.ITEMNO}" id="ITEMNO" >
                       </span><input class="btn btn-sm btn-success" style="background-color: green;font-size: 16px;border-radius: 3px;width: 110px;" type="submit" value="修改">
                       	</FORM>       
                       <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/shop.do" class="searchnow">
                        <input type="hidden" class="action" name="action" value="DELETE_PROMOTION_SHOP">
-                       <input type="hidden" class="ITEMNO" name="PROMOTIOMNO" value="${shopVO.PROMOTIOMNO}" >
-                       <input type="hidden" class="ITEMNO" name="ITEMNO" value="${shopVO.ITEMNO}" id="ITEMNO" >
+                       <input type="hidden" class="ITEMNO" name="PROMOTIOMNO" value="${SeachForOneProShop.PROMOTIOMNO}" >
+                       <input type="hidden" class="ITEMNO" name="ITEMNO" value="${SeachForOneProShop.ITEMNO}" id="ITEMNO" >
                       </span><input class="btn btn-sm btn-warning" style="font-size: 16px;border-radius: 3px;width: 110px;" type="submit" value="刪除">
                       	</FORM>             
                       	</div>
@@ -156,9 +154,8 @@
           
           </td>
                 </tr>
-	</c:forEach>
     </table>
-   <%@ include file="/front/pages/listallOrderForProSearch2.file" %>
+
   </div>
 </body>
 </html>
