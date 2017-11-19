@@ -136,9 +136,10 @@
 }
 
 </style>
-		<%@ include file="/front/pages/listallOrderForSearch1.file" %> 
+		<%@ include file="/front/pages/listallOrderForSearch1.file" %>
+		<%@ include file="/front/pages/listallOrderForSearch2.file" %>  
 				<c:forEach var="shopVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>" >
-
+	
 	
 	 <tr>
           <td>

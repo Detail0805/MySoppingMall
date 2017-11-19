@@ -103,7 +103,7 @@ public class ShopServlet extends HttpServlet {
 				}
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("shopVO", shopVO); // 資料庫取出的shopVO物件,存入req
-				String url = "/front/SearchForNormalShop.jsp";
+				String url = "/front/SearchForNormalShopNotyping.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 

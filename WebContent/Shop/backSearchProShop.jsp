@@ -94,6 +94,7 @@
 
 </style>
 	<%@ include file="/front/pages/listallOrderForProSearch1.file" %> 
+	<%@ include file="/front/pages/listallOrderForProSearch2.file" %> 
 				<c:forEach var="shopVO" items="${listforpro}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>" >
 
 	

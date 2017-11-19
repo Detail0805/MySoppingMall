@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%
-ProVO OnePro = (ProVO)request.getAttribute("SeachForOneProShop"); //EmpServlet.java(Concroller), 存入req的empVO物件
+ShopVO shopVO = (ShopVO) request.getAttribute("shopVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
 
 %>
 <%
@@ -35,7 +35,6 @@ ProVO OnePro = (ProVO)request.getAttribute("SeachForOneProShop"); //EmpServlet.j
 	list = list3;// include page1.file JSP用
 
 %>
-
 
 <!DOCTYPE html>
 <html lang="">
@@ -216,7 +215,7 @@ a {
 
   <!-- 商城服務 ================================================== -->
         <li>
-          <a href="<%=request.getContextPath()%>/front/shopindex.jsp">商&nbsp&nbsp&nbsp&nbsp城</a>
+          <a href="#">商&nbsp&nbsp&nbsp&nbsp城</a>
         </li>
   <!-- 商城服務 ================================================== -->
 
@@ -269,6 +268,7 @@ a {
   <div class="row">
     <div class="col-lg-6">
       <h1>Welcome</h1>
+      <p class="lead">To a new bootstrap theme by UseBootstrap.</p>
     </div>
   </div>
 </div>
@@ -322,7 +322,7 @@ height: 40px;border-radius: 3px;
             	console.log($(this).find(".action").val());
             	console.log($(this).find(".STOCK").val());
             	console.log($(this).find(".ITEMNO").val());
-            	
+          
                 var STOCK = $(this).find(".STOCK").val();
                 var action = $(this).find(".action").val();
                 var ITEMNO = $(this).find(".ITEMNO").val();
@@ -330,7 +330,7 @@ height: 40px;border-radius: 3px;
 
                      $.ajax({  
                         type: "POST",  
-                        url: "cart.do",  
+                        url: "<%=request.getContextPath()%>/cart.do",  
                         data: {"STOCK" : STOCK,"action" : action,"ITEMNO" : ITEMNO},  
                         success: function(msg){
                         	swal({
@@ -454,13 +454,13 @@ height: 40px;border-radius: 3px;
 
 </style>
 
-	
+
 	 <tr>
           <td>
   <div class="row">
         <div class="col-xs-12 col-sm-3">
           <div class="picture thumbnail">
-                    <a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${SeachForOneProShop.ITEMNO}&PRO=0"><img class="img-responsive" img src="DBPicReader?ITEMNO=${SeachForOneProShop.ITEMNO}" style=" height: 188px; width: 188px;" title="${SeachForOneProShop.NAME}"></a>
+                    <a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}&PRO=0"><img class="img-responsive" img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=<%=shopVO.getITEMNO()%>" style=" height: 188px; width: 188px;" title="${shopVO.NAME}"></a>
                   </div>
         </div>
         <div class="col-xs-12 col-sm-9">
@@ -470,9 +470,9 @@ height: 40px;border-radius: 3px;
                 <div class="white-box">
                   
                   <div class="middle-content">
-                    <h2 class="product-title"><a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${SeachForOneProShop.ITEMNO}&PRO=1">${SeachForOneProShop.SHOPNAME}</a></h2>
+                    <h2 class="product-title"><a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}&PRO=0">${shopVO.NAME}</a></h2>
                     <div class="description" style="font-size: 18px;">
-                        	${SeachForOneProShop.DES.substring(0,15)}...
+                        	<%=shopVO.getDES().substring(0,15)%>...
                     </div>
                   </div>
                    <br><br>
@@ -482,12 +482,11 @@ height: 40px;border-radius: 3px;
                 <div class="add-info">
                   <div class="ash-box">
                     <div class="prices" style="float:right;">
-                    	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/cart.do" class="searchnow">
-                    <span class="price old-price" style="text-decoration: line-through;">原價$${SeachForOneProShop.OLDPRICE}</span>
-                       <span class="price special-price">$${SeachForOneProShop.PRICE}
-                       <input type="hidden" class="action" name="action" value="ADD2">
+                    	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/MyShopping/cart.do" class="searchnow">
+                       <span class="price special-price">$<%=shopVO.getPRICE()%>
+                       <input type="hidden" class="action" name="action" value="ADD">
                        <input type="hidden" class="STOCK" name="STOCK" value="1">
-                       <input type="hidden" class="ITEMNO" name="ITEMNO" value="${SeachForOneProShop.ITEMNO}" id="ITEMNO" >
+                       <input type="hidden" class="ITEMNO" name="ITEMNO" value="<%=shopVO.getITEMNO()%>" id="ITEMNO" >
                       </span><input class="btn btn-sm btn-success" style="background-color: green;font-size: 16px;border-radius: 3px;width: 110px;" type="submit" value="放入購物車">
                       	</FORM>
                     </div>
@@ -497,10 +496,13 @@ height: 40px;border-radius: 3px;
               </div>
             </div>
         </div>
-	</div>
+</div>
+          
           </td>
                 </tr>
+
     </table>
+
   </div>
   
   </script> 
