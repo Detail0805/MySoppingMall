@@ -11,7 +11,7 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>DBPicReader</servlet-name>
-    <servlet-class>shop.DBPicReader</servlet-class>
+    <servlet-class>com.shop.tool.DBPicReader</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DBPicReader</servlet-name>
@@ -19,7 +19,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>DBPicReader2</servlet-name>
-    <servlet-class>shop.DBPicReader2</servlet-class>
+    <servlet-class>com.shop.tool.DBPicReader2</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DBPicReader2</servlet-name>
@@ -27,7 +27,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>DBPicReader3</servlet-name>
-    <servlet-class>shop.DBPicReader3</servlet-class>
+    <servlet-class>com.shop.tool.DBPicReader3</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DBPicReader3</servlet-name>

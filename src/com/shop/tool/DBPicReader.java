@@ -1,4 +1,4 @@
-package shop;
+package com.shop.tool;
 
 
 import java.io.*;

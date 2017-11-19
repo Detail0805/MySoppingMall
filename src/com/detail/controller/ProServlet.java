@@ -406,6 +406,50 @@ public class ProServlet extends HttpServlet{
 				failureView.forward(req, res);
 			}
 		}
+		if ("addtopromotion".equals(action)) {// 來自listallpro.jsp的請求
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				Integer ITEMNO = new Integer(req.getParameter("ITEMNO"));
+				Integer PRICE =new Integer(req.getParameter("PRICE"));
+				Integer NEWPRICE =new Integer(req.getParameter("NEWPRICE"));
+				String DES =req.getParameter("DES");
+				
+				ProService proSvc = new ProService();
+				ProVO proVOproject =  proSvc.getProProjectNow();
+				proVOproject.setPRICE(PRICE);
+				proVOproject.setITEMNO(ITEMNO);
+				proVOproject.setDES(DES);
+				req.setAttribute("proVOproject", proVOproject);
+				if(NEWPRICE>PRICE) {
+					errorMsgs.add("<div class='alert alert-danger alert-dismissible' role='alert'>"
+							+ "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>"+
+							"&times;</span></button>促銷商品價格不得高於原價!</div>");
+				}
+				
+				if (!errorMsgs.isEmpty()) {
+				 // 含有輸入格式錯誤的proVO物件,也存入req
+					RequestDispatcher failureView = req.getRequestDispatcher("/back/production/BA104G1_back_ShopAddToPROJECT.jsp");
+					failureView.forward(req, res);
+					return; //程式中斷
+				}
+				/*************************** 2.開始查詢資料 *****************************************/
+
+				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
+				req.setAttribute("proVOproject", proVOproject); // 資料庫取出的empVO物件,存入req
+				String url ="/back/production/BA104G1_back_ShopAddToPROJECT.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				successView.forward(req, res);
+				
+			} catch (Exception e) {
+				System.out.println(e);
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/back/production/BA104G1_back_ShopAddToPROJECT.jsp");
+				failureView.forward(req, res);
+			}
+		}
 		
 	}
 

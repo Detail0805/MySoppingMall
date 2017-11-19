@@ -1,4 +1,4 @@
-package shop;
+package com.shop.tool;
 
 
 import java.io.*;
@@ -10,7 +10,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.sql.DataSource;
 
-public class DBPicReader3 extends HttpServlet {
+public class DBPicReader2 extends HttpServlet {
 
 	Connection con;
 
@@ -27,9 +27,9 @@ public class DBPicReader3 extends HttpServlet {
 			//String ITEMNO2 = new String(ITEMNO.getBytes("ISO-8859-1"), "UTF-8");
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(
-				"SELECT PICTURE3 FROM SHOPPINGMALL WHERE ITEMNO = '" + ITEMNO  + "'");
+				"SELECT PICTURE2 FROM SHOPPINGMALL WHERE ITEMNO = '" + ITEMNO  + "'");
 			if (rs.next()) {
-				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("PICTURE3"));
+				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("PICTURE2"));
 				byte[] buf = new byte[4 * 1024]; // 4K buffer
 				int len;
 				while ((len = in.read(buf)) != -1) {

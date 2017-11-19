@@ -17,13 +17,13 @@ import com.shop.model.ShopVO;
 
 public class ShopServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		System.out.println("shop.do.doget");
+		System.out.println("com.shop.tool.do.doget");
 		doPost(req, res);
 		
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		System.out.println("shop.do.dopost");
+		System.out.println("com.shop.tool.do.dopost");
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
