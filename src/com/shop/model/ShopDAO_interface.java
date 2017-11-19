@@ -18,6 +18,7 @@ public interface ShopDAO_interface {
 	public List<ShopVO> getAllFromBack();
 	//後台管理刪除特定促銷商品
 	public void deleteProShop(Integer itemno,Integer promotiomno);
-	
+	//查詢回傳list
+	public List<ShopVO> findByPrimaryKeyByString2(String pkName);
 	
 }

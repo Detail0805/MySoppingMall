@@ -536,4 +536,66 @@ public class ShopJNDIDAO implements ShopDAO_interface {
 		}
 	
 	}
+
+	@Override
+	public List<ShopVO> findByPrimaryKeyByString2(String pkName) {
+		List<ShopVO> list = new ArrayList<ShopVO>();
+		ShopVO shopVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			//con = ds.getConnection();		pstmt = con.prepareStatement("SELECT ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES ,PICTURE1,PICTURE2,PICTURE3 FROM ShoppingMall where NAME ='"+pk+"'");
+			con = ds.getConnection();
+			pstmt = con.prepareStatement("SELECT ITEMNO, STOCK, PRICE, STATE, CLASSNO, NAME, DES ,PICTURE1,PICTURE2,PICTURE3 FROM ShoppingMall where NAME LIKE '%"+pkName+"%'");
+
+			rs = pstmt.executeQuery();
+	
+			while (rs.next()) {
+				shopVO=new ShopVO();
+				shopVO.setITEMNO(rs.getInt("ITEMNO"));
+				shopVO.setSTOCK(rs.getInt("STOCK"));
+				shopVO.setPRICE(rs.getInt("PRICE"));
+				shopVO.setSTATE(rs.getInt("STATE"));
+				shopVO.setCLASSNO(rs.getInt("CLASSNO"));
+				shopVO.setNAME(rs.getString("NAME"));
+				shopVO.setDES(rs.getString("DES"));
+				shopVO.setPicture1(rs.getBytes("PICTURE1"));
+				shopVO.setPicture2(rs.getBytes("PICTURE2"));
+				shopVO.setPicture3(rs.getBytes("PICTURE3"));
+				// shopVO 也稱為 Domain objects
+				list.add(shopVO);
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			System.out.println("單項查尋失敗");
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	
 }

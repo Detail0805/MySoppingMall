@@ -381,15 +381,17 @@
 				
 			</div>
 			<div class="col-xs-12 col-sm-3">
-	<form action="<%=request.getContextPath()%>/shop.do" class="form-inline" method="POST">
+	
 		<div class="input-group">
-	  <input type="text" class="form-control" style="border-radius: 5px;" placeholder="您想找什麼...">
+	  <input type="text" name="ITEMNO" class="form-control" style="border-radius: 5px;" placeholder="您想找什麼...">
+	  <input type="hidden" name="action" value="getOne_For_Display_byString">
+	  
 	  <span class="input-group-btn">
-	    <button class="btn btn-info btn btn-warning " style="border-radius: 5px;" type="button"><span class="glyphicon glyphicon-search">
+	    <button class="btn btn-info btn btn-warning " style="border-radius: 5px;" type="button" onclick="javascript:location.href='<%=request.getContextPath()%>/front/Search.jsp'"><span class="glyphicon glyphicon-search">
 	    </span>搜尋</button>
 	  </span>
 	</div>
-	</form>
+
 			</div>
 		</div>
 	</div>

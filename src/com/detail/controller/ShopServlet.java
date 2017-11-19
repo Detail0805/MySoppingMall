@@ -123,15 +123,14 @@ public class ShopServlet extends HttpServlet {
 			try {
 				String str = req.getParameter("ITEMNO");
 				if(str.length()==0) {
-					List<ShopVO> list = shopSvc.getAllFromBack();
-					req.setAttribute("list", list); 
-					String url = "/Shop/listAll.jsp";
+					String url = "/front/Search.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 					successView.forward(req, res);
 				}else {
-					ShopVO shopVO = shopSvc.getOneEmpbyString(str);
-					req.setAttribute("shopVO", shopVO); // 資料庫取出的shopVO物件,存入req
-					String url = "/Shop/listone.jsp";
+					List<ShopVO> shopVOlist =  shopSvc.findByPrimaryKeyByString2(str);
+					System.out.println("getOne_For_Display_byString3");
+					req.setAttribute("shopVOlist", shopVOlist); // 資料庫取出的shopVO物件,存入req
+					String url = "/front/SearchForNormalShop.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 					successView.forward(req, res);
 				}

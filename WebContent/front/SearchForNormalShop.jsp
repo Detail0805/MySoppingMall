@@ -4,8 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%
-ShopVO shopVO = (ShopVO) request.getAttribute("shopVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
-
+List<ShopVO> shopVO5 = (List) request.getAttribute("shopVOlist"); //EmpServlet.java(Concroller), 存入req的empVO物件
+pageContext.setAttribute("shopVO5", shopVO5);
 %>
 <%
 //此段複寫equals 去比較itemno
@@ -268,7 +268,6 @@ a {
   <div class="row">
     <div class="col-lg-6">
       <h1>Welcome</h1>
-      <p class="lead">To a new bootstrap theme by UseBootstrap.</p>
     </div>
   </div>
 </div>
@@ -453,14 +452,14 @@ height: 40px;border-radius: 3px;
 }
 
 </style>
-
-
+<%@ include file="pages/listallSearchForString1.file" %> 
+<c:forEach var="shopVO" items="${shopVOlist}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 	 <tr>
           <td>
   <div class="row">
         <div class="col-xs-12 col-sm-3">
           <div class="picture thumbnail">
-                    <a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}&PRO=0"><img class="img-responsive" img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=<%=shopVO.getITEMNO()%>" style=" height: 188px; width: 188px;" title="${shopVO.NAME}"></a>
+                    <a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}&PRO=0"><img class="img-responsive" img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${shopVO.ITEMNO}" style=" height: 188px; width: 188px;" title="${shopVO.NAME}"></a>
                   </div>
         </div>
         <div class="col-xs-12 col-sm-9">
@@ -472,7 +471,7 @@ height: 40px;border-radius: 3px;
                   <div class="middle-content">
                     <h2 class="product-title"><a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${shopVO.ITEMNO}&PRO=0">${shopVO.NAME}</a></h2>
                     <div class="description" style="font-size: 18px;">
-                        	<%=shopVO.getDES().substring(0,15)%>...
+                        	${shopVO.DES.substring(0,15)}...
                     </div>
                   </div>
                    <br><br>
@@ -483,10 +482,10 @@ height: 40px;border-radius: 3px;
                   <div class="ash-box">
                     <div class="prices" style="float:right;">
                     	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/MyShopping/cart.do" class="searchnow">
-                       <span class="price special-price">$<%=shopVO.getPRICE()%>
+                       <span class="price special-price">$${shopVO.PRICE}
                        <input type="hidden" class="action" name="action" value="ADD">
                        <input type="hidden" class="STOCK" name="STOCK" value="1">
-                       <input type="hidden" class="ITEMNO" name="ITEMNO" value="<%=shopVO.getITEMNO()%>" id="ITEMNO" >
+                       <input type="hidden" class="ITEMNO" name="ITEMNO" value="${shopVO.ITEMNO}" id="ITEMNO" >
                       </span><input class="btn btn-sm btn-success" style="background-color: green;font-size: 16px;border-radius: 3px;width: 110px;" type="submit" value="放入購物車">
                       	</FORM>
                     </div>
@@ -500,9 +499,9 @@ height: 40px;border-radius: 3px;
           
           </td>
                 </tr>
-
+</c:forEach>
     </table>
-
+<%@ include file="pages/listallSearchForString2.file" %> 
   </div>
   
   </script> 
