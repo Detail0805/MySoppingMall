@@ -124,6 +124,8 @@ public class ShopOrderServlet extends HttpServlet{
 				}
 			//金額足夠訂單成立
 			shopOrSvc.addShopCartOrder(list);
+			
+			
 			}else{
 				System.out.println("餘額不足訂單未成立,FORWARD出去了。");
 				//String url = "/MasterOrder/listallOrder.jsp";
@@ -139,7 +141,7 @@ public class ShopOrderServlet extends HttpServlet{
 			
 			System.out.println("消費前點數 :"+Point+",消費後點數"+NowPoint);
 			//String url = "/MasterOrder/listallOrder.jsp";
-			String url = "/MasterOrder/listallOrderbeautiful.jsp";
+			String url = "/MasterOrder/OrderDone.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
 																			// ListAllProOrder.jsp
 			successView.forward(req, res);
@@ -257,7 +259,9 @@ public class ShopOrderServlet extends HttpServlet{
 				req.setAttribute("total", amount);
 				req.setAttribute("OrderList", OrderList);
 				System.out.println("餘額不足動作失敗");
-				errorMsgs.add("客戶餘額不足動作失敗");
+				errorMsgs.add("<div style='font-size:50px;text-align: center;' class='alert alert-danger alert-dismissible' role='alert'>"
+							+ "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span style='font-size:80px; aria-hidden='true'>"+
+							"&times;</span></button>客戶餘額不足動作失敗!</div>");
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/back/production/BA104G1_back_OrderMasterFORUPDATE.jsp");
 					failureView.forward(req, res);

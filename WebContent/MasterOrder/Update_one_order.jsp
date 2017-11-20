@@ -42,12 +42,11 @@
 <body>
 
 <c:if test="${not empty errorMsgs}">
-	<font color='red'>請修正以下錯誤:
-	<ul>
+
 		<c:forEach var="message" items="${errorMsgs}">
-			<li>${message}</li>
+			${message}
 		</c:forEach>
-	</ul>
+	
 	</font>
 </c:if>
 
