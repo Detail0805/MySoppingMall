@@ -9,9 +9,10 @@
 <title>Insert title here</title>
 
 <%
-List<ShopVO> shopVO5 = (List) request.getAttribute("shopVOlist"); //EmpServlet.java(Concroller), 存入req的empVO物件
-pageContext.setAttribute("shopVO5", shopVO5);
+List<ShopVO> shopVOlist = (List) request.getAttribute("shopVOlist"); //EmpServlet.java(Concroller), 存入req的empVO物件
+pageContext.setAttribute("shopVOlist", shopVOlist);
 %>
+
 <%
 //此段複寫equals 去比較itemno
     ShopService shopSvc = new ShopService();
@@ -141,9 +142,9 @@ pageContext.setAttribute("shopVO5", shopVO5);
 }
 
 </style>
-		<%@ include file="pages/listallOrderForSearch1.file" %>
-		<%@ include file="pages/listallOrderForSearch2.file" %>  
-				<c:forEach var="shopVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>" >
+		<%@ include file="pages/listSearchShopResultString1.file" %>
+		
+				<c:forEach var="shopVO" items="${shopVOlist}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>" >
 	
 	
 	 <tr>
@@ -210,7 +211,7 @@ pageContext.setAttribute("shopVO5", shopVO5);
                 </tr>
 	</c:forEach>
     </table>
-    <%@ include file="pages/listallOrderForSearch2.file" %> 
+    <%@ include file="pages/listSearchShopResultString2.file" %> 
   </div>
 </body>
 </html>

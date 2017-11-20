@@ -54,5 +54,11 @@ public class ShopOrderService {
 	public List<ShopOrderVO> getPriceByOrderNo(String orderno){
 		return dao.getPriceByOrderNo(orderno);
 	}
+	public void changeOrderToOK(String orderno){
+		dao.changeOrderToOK(orderno);
+	}
+	public void changeOrderToCancel(String orderno){
+		dao.changeOrderToCancel(orderno);
+	}
 	
 }

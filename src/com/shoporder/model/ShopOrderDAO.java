@@ -19,6 +19,8 @@ import javax.sql.DataSource;
 import com.shop.model.ShopVO;
 
 public class ShopOrderDAO implements ShopOrderDAO_interface {
+	private static final String CHANGE_ORDER_TO_OK ="UPDATE SHOPORDER SET ORDER_STATUS =2 WHERE ORDERNO=?";
+	private static final String CHANGE_ORDER_TO_CANCEL="UPDATE SHOPORDER SET ORDER_STATUS =3 WHERE ORDERNO=?";
 	private static final String GET_PROMOTIONPRICE_BY_ORDERNO ="SELECT OT.ORDERNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO) JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO  WHERE OT.ORDERNO=?"; 
 	private static final String GET_ALL_BUY_PRICE_BY_ORDERNO = "SELECT OT.ORDERNO,PD.PROMOTIONNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE,PD.PRICE AS NEWPRICE FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO)  JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO JOIN PROMOTIONDETAIL PD ON SP.ITEMNO=PD.ITEMNO WHERE OT.ORDERNO=? AND PD.PROMOTIONNO=?";
 	private static final String GET_ALL_BUY_PRICE_BY_ORDERNO2 = "SELECT OT.ORDERNO,PD.PROMOTIONNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE,PD.PRICE AS NEWPRICE FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO)  JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO JOIN PROMOTIONDETAIL PD ON SP.ITEMNO=PD.ITEMNO WHERE OT.ORDERNO=?";
@@ -715,5 +717,72 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public void changeOrderToOK(String orderid) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(CHANGE_ORDER_TO_OK);
+			pstmt.setString(1, orderid);
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	@Override
+	public void changeOrderToCancel(String orderid) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(CHANGE_ORDER_TO_CANCEL);
+			pstmt.setString(1, orderid);
+			pstmt.executeUpdate();
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }

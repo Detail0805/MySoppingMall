@@ -30,5 +30,8 @@ public interface ShopOrderDAO_interface {
 	public Integer returnAfterShoppingPoint(Integer total,String memno);
 	//刪除訂單後返還會員點數  //回傳剩餘點數
 	public Integer returnPointback(String Orderno);
-	
+	//更改訂單狀態為2,已完成
+	public void changeOrderToOK(String orderid);
+	//更改訂單狀態為3,已取消
+	public void changeOrderToCancel(String orderid);
 }

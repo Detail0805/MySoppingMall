@@ -273,6 +273,44 @@ public class ShopOrderServlet extends HttpServlet{
 //			successView.forward(req, res);
 
 		} 
+		
+		
+		if ("CONFIRNORDER".equals(action)) {// listallOrderbeautiful.jsp的請求
+
+			try {
+				String ORDERID = (String) req.getParameter("ORDERID");
+
+
+				ShopOrderService shopOrderSvc = new ShopOrderService();
+				shopOrderSvc.changeOrderToOK(ORDERID);
+
+				String url = "/back/production/BA104G1_back_ShopMaster.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
+																				// ListAllProOrder.jsp
+				successView.forward(req, res);
+
+			} catch (Exception e) {
+				System.out.println("ShopOrderServlet.java CONFIRNORDER失敗 :" + e);
+			}
+		}
+		
+		if ("CANCELORDER".equals(action)) {// 來自listallOrderbeautiful.jsp的請求
+
+			try {
+				String ORDERID = (String) req.getParameter("ORDERID");
+
+				ShopOrderService shopOrderSvc = new ShopOrderService();
+				shopOrderSvc.changeOrderToCancel(ORDERID);
+
+				String url = "/back/production/BA104G1_back_ShopMaster.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
+																				// ListAllProOrder.jsp
+				successView.forward(req, res);
+
+			} catch (Exception e) {
+				System.out.println("ShopOrderServlet.java CANCELORDER失敗 :" + e);
+			}
+		}
 	}
 	
 }

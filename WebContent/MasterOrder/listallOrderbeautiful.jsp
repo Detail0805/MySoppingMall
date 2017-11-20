@@ -198,6 +198,7 @@ $(document).ready(function(){
                         <th>會員姓名</th>
                         <th>訂單狀態</th>
                         <th>修改訂單</th>
+                        <th>完成訂單</th>
                         <th>取消訂單</th>
                     </tr>
                 </thead>
@@ -218,7 +219,14 @@ $(document).ready(function(){
                         <td>${shoporderVO.memberno}</td>
                         <td>${shoporderVO.order_date}</td>
                         <td>${shoporderVO.customer_name}</td>
-                        <td>${((shoporderVO.order_state)==1)?'出貨中':'完成訂單'}</td>
+                        <td>
+                            <c:if test="${(shoporderVO.order_state)=='1'}">出貨中
+                        	</c:if> 
+                        	<c:if test="${(shoporderVO.order_state)=='2'}">已完成
+                        	</c:if> 
+                        	<c:if test="${(shoporderVO.order_state)=='3'}">取消訂單
+                        	</c:if> 
+                        </td>
                         <td>
 
 			     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/order.do">
@@ -233,8 +241,18 @@ $(document).ready(function(){
                  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/order.do">
 			     <input type="hidden" name="ORDERID" value="${shoporderVO.orderno}">
 			     <input type="hidden" name="MEMBERNO" value="${shoporderVO.memberno}">
-			     <a href="javascript:;" onclick="parentNode.submit();" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-			     <input type="hidden" name="action"	value="DELETE"></FORM>
+			     <a href="javascript:;" onclick="parentNode.submit();" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">done</i></a>
+			     <input type="hidden" name="action"	value="CONFIRNORDER"></FORM>
+			     
+                        </td>
+                        
+                 <td>
+                           
+                 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/order.do">
+			     <input type="hidden" name="ORDERID" value="${shoporderVO.orderno}">
+			     <input type="hidden" name="MEMBERNO" value="${shoporderVO.memberno}">
+			     <a href="javascript:;" onclick="parentNode.submit();" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">backspace</i></a>
+			     <input type="hidden" name="action"	value="CANCELORDER"></FORM>
 			     
                         </td>
                     </tr>

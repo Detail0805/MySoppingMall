@@ -119,7 +119,6 @@
 	</div>
 	</FORM>
 
-Update_one_order.jsp
 <%}%>
 </body>
 </html>

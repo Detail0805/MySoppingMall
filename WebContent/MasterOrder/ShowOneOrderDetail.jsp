@@ -66,10 +66,6 @@
 			</div>
 		</div>
 </table>
-total=<%=total%> 
-EL total=${total}
-ShowOneOrderDetail.jsp
-
 <%}%>
 </body>
 </html>

@@ -101,7 +101,7 @@
   <div class="row">
         <div class="col-xs-12 col-sm-3">
           <div class="picture thumbnail">
-                    <a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${SeachForOneProShop.ITEMNO}&PRO=0"><img class="img-responsive" img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${SeachForOneProShop.ITEMNO}" style=" height: 188px; width: 188px;" title="##"></a>
+                    <a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${SeachForOneProShop.ITEMNO}&PRO=1"><img class="img-responsive" img src="<%=request.getContextPath()%>/DBPicReader?ITEMNO=${SeachForOneProShop.ITEMNO}" style=" height: 188px; width: 188px;" title="##"></a>
                   </div>
         </div>
         <div class="col-xs-12 col-sm-9">
@@ -111,7 +111,7 @@
                 <div class="white-box">
                   
                   <div class="middle-content">
-                    <h2 class="product-title"><a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${SeachForOneProShop.ITEMNO}&PRO=0">${SeachForOneProShop.SHOPNAME}</a></h2>
+                    <h2 class="product-title"><a href="<%=request.getContextPath()%>/shop.do?action=checkone&ITEMNO=${SeachForOneProShop.ITEMNO}&PRO=1">${SeachForOneProShop.SHOPNAME}</a></h2>
                     <div class="description" style="font-size: 18px;">
                         	${SeachForOneProShop.DES}
                     </div>
