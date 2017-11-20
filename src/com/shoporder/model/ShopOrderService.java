@@ -60,5 +60,8 @@ public class ShopOrderService {
 	public void changeOrderToCancel(String orderno){
 		dao.changeOrderToCancel(orderno);
 	}
+	public void addPointForMember(Integer point, String memno){
+		dao.addPointForMember(point, memno);
+	}
 	
 }

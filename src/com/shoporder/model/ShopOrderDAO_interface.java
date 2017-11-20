@@ -34,4 +34,6 @@ public interface ShopOrderDAO_interface {
 	public void changeOrderToOK(String orderid);
 	//更改訂單狀態為3,已取消
 	public void changeOrderToCancel(String orderid);
+	//增加某位會員點數
+	public void addPointForMember(Integer point,String memno);
 }

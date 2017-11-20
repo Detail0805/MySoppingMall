@@ -303,6 +303,9 @@ public class ShopOrderServlet extends HttpServlet{
 			try {
 				String ORDERID = (String) req.getParameter("ORDERID");
 
+				
+				
+				
 				ShopOrderService shopOrderSvc = new ShopOrderService();
 				shopOrderSvc.changeOrderToCancel(ORDERID);
 

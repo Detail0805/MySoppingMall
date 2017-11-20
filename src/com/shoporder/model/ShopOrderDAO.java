@@ -19,6 +19,7 @@ import javax.sql.DataSource;
 import com.shop.model.ShopVO;
 
 public class ShopOrderDAO implements ShopOrderDAO_interface {
+	private static final String ADD_POINT_TO_MEMBER ="UPDATE MEMBER SET POINT =POINT+(?) WHERE MEM_NO=?";
 	private static final String CHANGE_ORDER_TO_OK ="UPDATE SHOPORDER SET ORDER_STATUS =2 WHERE ORDERNO=?";
 	private static final String CHANGE_ORDER_TO_CANCEL="UPDATE SHOPORDER SET ORDER_STATUS =3 WHERE ORDERNO=?";
 	private static final String GET_PROMOTIONPRICE_BY_ORDERNO ="SELECT OT.ORDERNO,OT.ITEMNO,ORDERCOUNT,MEM_NO,ORDER_DATE,CUSTOMER_ADDRESS,CUSTOMER_PHONE,CUSTOMER_NAME,SP.NAME,SP.PRICE FROM SHOPORDER S JOIN ORDERDETAIL OT  ON (OT.ORDERNO = S.ORDERNO) JOIN SHOPPINGMALL SP  ON SP.ITEMNO = OT.ITEMNO  WHERE OT.ORDERNO=?"; 
@@ -612,6 +613,13 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 					e.printStackTrace();
 				}
 			}
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
 		}
 		return list;
 	}
@@ -640,6 +648,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 			pstmt.setDate(1, ORDERDATE);
 			pstmt.setDate(2, ORDERDATE);
 			rs = pstmt.executeQuery();
+			
 			while (rs.next()) {
 				PROMOTIONNO = rs.getInt("PROMOTIONNO");
 			}
@@ -651,6 +660,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 				pstmt = con.prepareStatement(GET_ALL_BUY_PRICE_BY_ORDERNO);
 				pstmt.setString(1, orderno);
 				pstmt.setInt(2, PROMOTIONNO);
+				
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
 					shoporderVO = new ShopOrderVO();
@@ -715,6 +725,13 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 					e.printStackTrace();
 				}
 			}
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
 		}
 		return list;
 	}
@@ -749,6 +766,7 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 					e.printStackTrace();
 				}
 			}
+			
 		}
 	}
 
@@ -761,6 +779,43 @@ public class ShopOrderDAO implements ShopOrderDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(CHANGE_ORDER_TO_CANCEL);
 			pstmt.setString(1, orderid);
+			pstmt.executeUpdate();
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	@Override
+	public void addPointForMember(Integer point, String memno) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(ADD_POINT_TO_MEMBER);
+
+			pstmt.setInt(1, point);
+			pstmt.setString(2, memno);
 			pstmt.executeUpdate();
 
 
