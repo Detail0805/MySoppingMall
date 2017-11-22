@@ -47,10 +47,16 @@ list = list3;// include page1.file JSP用
 
 <link rel="shortcut icon" href="imgs/Houselogo1.png" />
 <title>有你真好-商品頁面</title>
-<link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- NavBar的CSS 專區 不能刪喔 ================================================== -->
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/navbar/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/navbar/usebootstrap.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/navbar/newstyle_footer.css">
+  <!-- NavBar的CSS 專區 不能刪喔 ================================================== -->
+<!-- <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <!-- 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
          <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.5/sweetalert2.all.js"></script>
@@ -81,7 +87,7 @@ list = list3;// include page1.file JSP用
                         		  title: '',
                         		  text: "已成功加入購物車。",
                         		  type: 'success',
-                        		  timer: 5000,
+//                         		  timer: 5000,
                         		  showCancelButton: true,
                                   confirmButtonColor: "#8fdd54",
                                   cancelButtonColor: "#DD6B55",
@@ -100,7 +106,9 @@ list = list3;// include page1.file JSP用
                         			  console.log('按下右邊');
                         		  }
                         		})
-                     
+                     		$('.swal2-cancel').css('height', '34px').css('margin-left', '10px').css('width','100px').css('padding','6px 12px').css('border-radius','4px');
+                     		$('.swal2-confirm').css('height', '34px').css('margin-left', '10px').css('width','100px').css('padding','6px 12px').css('border-radius','4px').css('background-color','#5cb85c');
+    
 //                        	sweetAlert("", "已成功加入購物車。","success");
 //                         	$('#myModal').modal();
                         }  
@@ -310,11 +318,10 @@ body {
 }
 
 .navbar {
-  background-color: #ffffff;
+/*   background-color: #ffffff; */
   margin-bottom: 0;
   border-radius: 0;
-  height: 80px;
-  box-shadow: 0px 2px 1px #bdbdbd;
+
 }
 
 .navshadow {
@@ -576,6 +583,7 @@ color: #333;
           <!-- 地區+編號+價錢 -->
           <div class="row info_title">
 
+
           
           <!-- 主要區塊的細節們 -->
           <table class="table table-hover">
@@ -583,7 +591,7 @@ color: #333;
         <tr>商品資訊</tr>
         </thead>
         <tbody>
-          <tr>
+          <tr style="font-size: 19px;">
             <td>${((shopVO.DES)==null)?proVO.DES:shopVO.DES}</td>
           </tr>
 
@@ -607,7 +615,7 @@ color: #333;
               <div class="col-xs-12 col-sm-4">
                 <input type="hidden" name="action" value="${(isPro==1)?'ADD2':'ADD'}" id="action" ">
                 <input type="hidden" name="ITEMNO" value="${((shopVO.ITEMNO)==null)?proVO.ITEMNO:shopVO.ITEMNO}" id="ITEMNO" ">
-                <input type="submit" class="btn btn-sm btn-success"  style="background-color: green;font-size: 16px;" value="放入購物車" style="height: 35; width: 100%;font-size: 15px;">
+                <input type="submit" id="forcatch" class="btn btn-sm btn-success"  value="放入購物車"  style="font-family: Microsoft JhengHei;border-radius: 3px;background-color: green;font-size: 16px;">
     			</FORM>
               </div>
 
@@ -657,11 +665,181 @@ color: #333;
     </div>
    </div>
    
+       <title >有我罩你</title>
+  <!-- 頁面標題 ================================================== -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="bootstrap/html5shiv.js"></script>
+      <script src="bootstrap/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>
+  
+
+<!-- image資料夾 - share裡有 一些小圖示可使用 (都是.png檔//是透明底圖//) -->
+
+<!-- 大家的各自頁面拜託記得要加上註解 這樣之後整合 會比較好找到 -->
+<!-- 各自 CSS & JS 資料夾記得取名歸類  -->
+
+<!-- 專題加油～～～～～  -->
+
+
+
+<!-- 是Navbar 不要亂刪 感謝～～ ==================================================================== -->
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+            
+<!-- logo 區 稍後會補上 ================================================== -->
+    <a href="#" class="navbar-brand" style="color: black;">
+      <img src="" >有我罩你
+    </a>
+<!-- logo 區 稍後會補上 ================================================== -->
+
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+
+    <div class="navbar-collapse collapse" id="navbar-main">
+              
+
+    		 
+  <!-- 各項button 連結請自行找 <a href= "填入自己的頁面連結 (溫腥提醒:記得用動態) "> ================== -->
+
+      <ul class="nav navbar-nav">
+                
+        <!-- 關於我們 ================================================== -->
+        <li>
+          <a href="#">關於我們</a>
+        </li>
+  <!-- 關於我們 ================================================== -->
+
+
+  <!-- 最新消息 ================================================== -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">最新消息 <span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="themes">
+            <li><a href="#">最新消息</a></li>
+            <li><a href="#">保健資訊</a></li>
+          </ul>
+        </li>
+  <!-- 最新消息 ================================================== -->
+
+
+
+  <!-- 長照服務 ================================================== -->
+        <li>
+          <a href="#">長照服務</a>
+        </li>
+  <!-- 長照服務 ================================================== -->
+
+  <!-- 派車服務 ================================================== -->
+        <li>
+          <a href="#">派車服務</a>
+        </li>
+  <!-- 派車服務 ================================================== -->
+
+
+  <!-- 送餐服務 ================================================== -->
+        <li>
+          <a href="#">送餐服務</a>
+        </li>
+  <!-- 送餐服務 ================================================== -->
+
+
+  <!-- 商城服務 ================================================== -->
+        <li>
+          <a href="<%=request.getContextPath()%>/front/shopindex.jsp">商&nbsp&nbsp&nbsp&nbsp城</a>
+        </li>
+  <!-- 商城服務 ================================================== -->
+
+
+  <!-- 聯絡我們 ================================================== -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">聯絡我們 <span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="themes">
+            <li><a href="#">線上客服</a></li>
+            <li><a href="#">意見回饋</a></li>
+          </ul>
+        </li>
+  <!-- 聯絡我們 ================================================== -->
+
+
+      </ul>
+      		  
+      <ul class="nav navbar-nav navbar-right">
+
+
+  <!-- 會員專區 ================================================== -->
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">會員專區 <span class="caret"></span></a>
+        <ul class="dropdown-menu" aria-labelledby="themes">
+          <li><a href="#">會員資料管理</a></li>
+          <li><a href="#">我的錢包</a></li>
+          <li><a href="#">訂單管理</a></li>
+          <li><a href="#">我的最愛</a></li>
+        </ul>
+      </li>
+  <!-- 會員專區 ================================================== -->
+
+
+  <!-- 登入 / 註冊 ================================================== -->
+      <li><a href="#">登入 / 註冊 </a></li>
+  <!-- 登入 / 註冊 ================================================== -->
+
+      </ul>
+    		  
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- 大圖bannan -->
+<div class="container">
+  <div class="page-header" id="banner">
+  <div class="row">
+    <div class="col-lg-6">
+  
+    </div>
+  </div>
+</div>
+<hr>
+<!-- 大圖bannan -->
+
+
+
+
+<!-- 各項button 連結請自行找 <a href= "填入自己的頁面連結 (溫腥提醒:記得用動態) "> ================== -->
+
+
+<!-- 這裡是JS專區 =========================================================== -->
+
+<!-- <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> -->
+<%-- <script src="<%=request.getContextPath()%>/front/js/navbar/bootstrap.min.js"></script> --%>
+<script src="<%=request.getContextPath()%>/front/js/navbar/usebootstrap.js"></script>
+
+<!-- 這裡是JS專區 =========================================================== -->
+
+</body>
+   
 <!--    ---------------------------------- -->
 
 <div class="container">
 <div class="col-xs-12 col-sm-1"></div>
-<div class="col-xs-12 col-sm-10">
+<div class="col-xs-12 col-sm-10" style="width:100%;">
 	<div class="title mid-content-title">
             <strong>現正促銷</strong>
                     <span class="pull-right">
@@ -714,7 +892,7 @@ color: #333;
 											</c:forEach> </select>
 											<input type="hidden" name="action" value="ADD2" id="action">
 										<input type="hidden" id="ITEMNO" name="ITEMNO" value="<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" id="ITEMNO" > 
-										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" >
+										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" style="background-color: green;font-size: 16px;     padding: 5px 10px;    font-family: Microsoft JhengHei;border-radius: 3px;" >
 										</FORM>
 										</div>
 									</div>
@@ -755,7 +933,7 @@ color: #333;
 											</c:forEach> </select>
 											<input type="hidden" name="action" value="ADD2" id="ADD2">
 										<input type="hidden" id="ITEMNO" name="ITEMNO" value="<%=((ProVO)(listforpro.get(i))).getITEMNO()%>" id="ITEMNO" > 
-										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" >
+										<input type="submit" class="btn btn-sm btn-success" value="放入購物車" style="background-color: green;font-size: 16px;    padding: 5px 10px;    font-family: Microsoft JhengHei;border-radius: 3px;" >
 										</FORM>
 										</div>
 									</div>
@@ -779,6 +957,59 @@ color: #333;
 	</div>
 </div>
 </div>
+
+
+  <!-- NavBar的CSS 專區 不能刪喔 ================================================== -->
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/usebootstrap.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front/css/navbar/newstyle_footer.css">
+  <!-- NavBar的CSS 專區 不能刪喔 ================================================== -->
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="bootstrap/html5shiv.js"></script>
+      <script src="bootstrap/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>
+  
+
+<!-- image資料夾 - share裡有 一些小圖示可使用 (都是.png檔//是透明底圖//) -->
+
+<!-- 大家的各自頁面拜託記得要加上註解 這樣之後整合 會比較好找到 -->
+<!-- 各自 CSS & JS 資料夾記得取名歸類  -->
+
+<!-- 專題加油～～～～～  -->
+
+
+
+<!-- 是footer bar 不要亂刪 感謝～～ ==================================================================== -->
+<div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <p class="navbar-text text-center" 　>BA104G1&nbsp ©&nbsp 2017 &nbsp&nbsp 有我罩你全家股份有限公司 </p>
+        </div>
+    </div>
+<!-- 是footer bar 不要亂刪 感謝～～ ==================================================================== -->
+
+
+
+
+<!-- 這裡是JS專區 =========================================================== -->
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/front/js/navbar/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/front/js/navbar/usebootstrap.js"></script>
+<script>
+</script>	
+<style type="text/css">
+	
+.swal2-cancel {
+    margin-left: 10;
+    width: 100px;
+}
+	
+</style>
+
 
 
 </body>
