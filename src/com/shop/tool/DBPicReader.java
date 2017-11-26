@@ -63,7 +63,7 @@ public class DBPicReader extends HttpServlet {
 	public void init() throws ServletException {
 	     try {
 			Context ctx = new javax.naming.InitialContext();
-			 DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB"); // ds和其它的java file的ds是同一個ds
+			 DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/BA104G1DB"); // ds和其它的java file的ds是同一個ds
 			 con = ds.getConnection();
 		} catch (NamingException e) {
 			e.printStackTrace();
